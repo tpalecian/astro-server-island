@@ -1,0 +1,10 @@
+.astro/
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.DS_Store
+.idea/
+.vscode/
+node_modules/

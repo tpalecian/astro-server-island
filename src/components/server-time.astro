@@ -1,0 +1,12 @@
+---
+const date = new Date();
+
+// Add a lazy loading await for the time
+const time = await new Promise((resolve) => {
+    setTimeout(() => {
+        resolve(date.toLocaleTimeString());
+    }, 5000);
+});
+---
+
+<p>The time on the server is {time}</p>

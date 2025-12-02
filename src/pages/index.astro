@@ -1,0 +1,15 @@
+---
+import Base from '../layouts/Base.astro';
+
+import ServerTime from '../components/server-time.astro';
+import ServerTimeSkeleton from '../components/server-time-skeleton.astro';
+---
+
+<Base>
+  <h1>Experiment: Astro Server Island</h1>
+  <p>This is a test of the Astro Server Island feature.</p>
+
+  <ServerTime server:defer>
+    <ServerTimeSkeleton slot='fallback' />
+  </ServerTime>
+</Base>

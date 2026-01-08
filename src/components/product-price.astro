@@ -1,0 +1,35 @@
+---
+const { sku = 'default' } = Astro.props;
+
+// Set cache headers for Bunny CDN - Price data can be cached for 5 minutes
+// Include SKU in cache key to ensure different products are cached separately
+Astro.response.headers.set('Cache-Control', `public, max-age=300, s-maxage=300`);
+
+// Generate consistent price based on SKU (deterministic but different per product)
+const hashSKU = (str: string) => {
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) {
+        const char = str.charCodeAt(i);
+        hash = ((hash << 5) - hash) + char;
+        hash = hash | 0; // Convert to 32bit integer
+    }
+    return Math.abs(hash);
+};
+
+// Calculate price seed outside Promise to ensure determinism
+const priceSeed = hashSKU(sku);
+const basePrice = 20 + (priceSeed % 280);
+const cents = (priceSeed % 100);
+const priceValue = basePrice + (cents / 100);
+
+// Simulate fetching product price from database/API
+const price = await new Promise((resolve) => {
+    setTimeout(() => {
+        resolve(priceValue.toFixed(2));
+    }, 500); // Fast loading - price should be quick to fetch
+});
+---
+
+<div class="text-2xl font-bold text-green-600">
+    ${price}
+</div>

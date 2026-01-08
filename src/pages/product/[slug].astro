@@ -1,0 +1,187 @@
+---
+import Base from '../../layouts/Base.astro';
+import ServerIslandWrapper from '../../components/ui/server-island-wrapper.astro';
+import ProductPrice from '../../components/product-price.astro';
+import ProductInventory from '../../components/product-inventory.astro';
+import ProductVariants from '../../components/product-variants.astro';
+import ProductPriceSkeleton from '../../components/product-price-skeleton.astro';
+import ProductInventorySkeleton from '../../components/product-inventory-skeleton.astro';
+import ProductVariantsSkeleton from '../../components/product-variants-skeleton.astro';
+
+const { slug } = Astro.params;
+const sku = slug || 'default';
+
+// Generate consistent product data based on SKU (for demo purposes)
+// In real app, this would come from a CMS/database
+const productNames: Record<string, { name: string; description: string; category: string }> = {
+  'example-1': {
+    name: 'Wireless Headphones Pro',
+    description: 'Premium wireless headphones with active noise cancellation and 30-hour battery life. Perfect for music lovers and professionals.',
+    category: 'Electronics'
+  },
+  'example-2': {
+    name: 'Smart Watch Series X',
+    description: 'Advanced fitness tracking smartwatch with heart rate monitoring, GPS, and water resistance up to 50 meters.',
+    category: 'Wearables'
+  },
+  'example-3': {
+    name: 'Mechanical Keyboard RGB',
+    description: 'Professional mechanical keyboard with customizable RGB lighting, Cherry MX switches, and premium aluminum frame.',
+    category: 'Accessories'
+  }
+};
+
+const product = productNames[sku] || {
+  name: slug ? slug.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase()) : 'Sample Product',
+  description: 'This is a high-quality product with excellent features and great value.',
+  category: 'Electronics'
+};
+---
+
+<Base>
+  <div class="bg-gray-50 min-h-screen">
+    <div class="max-w-6xl mx-auto px-4 md:px-6 lg:px-8 py-16">
+      <!-- Product Header -->
+      <div class="mb-20">
+        <div class="mb-3">
+          <span class="text-xs font-semibold text-gray-500 uppercase tracking-widest">{product.category}</span>
+        </div>
+        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight">{product.name}</h1>
+        <p class="text-lg text-gray-600 max-w-2xl leading-relaxed">{product.description}</p>
+      </div>
+
+    <!-- Product Details Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-20">
+      <!-- Left Column - Product Info -->
+      <div class="space-y-6">
+        <!-- Price Section - Fast Loading -->
+        <div class="bg-white rounded-xl border border-gray-200 p-6">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-lg bg-green-100 flex items-center justify-center">
+              <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            </div>
+            <div>
+              <h2 class="text-sm font-semibold text-gray-900">Price</h2>
+              <p class="text-xs text-gray-500">Fast loading • 5 min cache</p>
+            </div>
+          </div>
+          <ServerIslandWrapper
+            color="fastServerIsland"
+            cacheTime="5 min"
+            cacheDescription="Price data"
+          >
+            <ProductPrice sku={sku} server:defer>
+              <ProductPriceSkeleton slot="fallback" />
+            </ProductPrice>
+          </ServerIslandWrapper>
+        </div>
+
+        <!-- Inventory Section - Medium Loading -->
+        <div class="bg-white rounded-xl border border-gray-200 p-6">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-lg bg-yellow-100 flex items-center justify-center">
+              <svg class="w-5 h-5 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
+              </svg>
+            </div>
+            <div>
+              <h2 class="text-sm font-semibold text-gray-900">Availability</h2>
+              <p class="text-xs text-gray-500">Medium loading • 1 min cache</p>
+            </div>
+          </div>
+          <ServerIslandWrapper
+            color="slowServerIsland"
+            cacheTime="1 min"
+            cacheDescription="Stock levels"
+          >
+            <ProductInventory sku={sku} server:defer>
+              <ProductInventorySkeleton slot="fallback" />
+            </ProductInventory>
+          </ServerIslandWrapper>
+        </div>
+      </div>
+
+      <!-- Right Column - Variants -->
+      <div>
+        <div class="bg-white rounded-xl border border-gray-200 p-6">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-lg bg-red-100 flex items-center justify-center">
+              <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>
+              </svg>
+            </div>
+            <div>
+              <h2 class="text-sm font-semibold text-gray-900">Product Variants</h2>
+              <p class="text-xs text-gray-500">Slow loading • 10 min cache</p>
+            </div>
+          </div>
+          <ServerIslandWrapper
+            color="verySlowServerIsland"
+            cacheTime="10 min"
+            cacheDescription="Product options"
+          >
+            <ProductVariants sku={sku} server:defer>
+              <ProductVariantsSkeleton slot="fallback" />
+            </ProductVariants>
+          </ServerIslandWrapper>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cache Information Section -->
+    <div class="bg-white border border-gray-200 rounded-xl p-8 md:p-10">
+      <div class="mb-8">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4 leading-tight">Server Island Caching</h2>
+        <p class="text-lg text-gray-600 leading-relaxed max-w-3xl">
+          Each server island component has different cache durations optimized for its data freshness requirements.
+          This ensures fast loading while keeping data current.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div class="bg-gray-50 rounded-xl border border-gray-200 p-6 hover:border-gray-300 transition-colors">
+          <div class="w-12 h-12 rounded-lg bg-green-500 flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <h3 class="font-semibold text-gray-900 mb-2">Price Data</h3>
+          <p class="text-sm text-gray-600 mb-1">Cached for <strong class="text-gray-900">5 minutes</strong></p>
+          <p class="text-xs text-gray-500 leading-relaxed">Prices change infrequently, safe to cache longer</p>
+        </div>
+
+        <div class="bg-gray-50 rounded-xl border border-gray-200 p-6 hover:border-gray-300 transition-colors">
+          <div class="w-12 h-12 rounded-lg bg-yellow-500 flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
+            </svg>
+          </div>
+          <h3 class="font-semibold text-gray-900 mb-2">Stock Levels</h3>
+          <p class="text-sm text-gray-600 mb-1">Cached for <strong class="text-gray-900">1 minute</strong></p>
+          <p class="text-xs text-gray-500 leading-relaxed">Inventory changes frequently, shorter cache</p>
+        </div>
+
+        <div class="bg-gray-50 rounded-xl border border-gray-200 p-6 hover:border-gray-300 transition-colors">
+          <div class="w-12 h-12 rounded-lg bg-red-500 flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>
+            </svg>
+          </div>
+          <h3 class="font-semibold text-gray-900 mb-2">Product Options</h3>
+          <p class="text-sm text-gray-600 mb-1">Cached for <strong class="text-gray-900">10 minutes</strong></p>
+          <p class="text-xs text-gray-500 leading-relaxed">Variants rarely change, can cache longer</p>
+        </div>
+      </div>
+
+      <div class="bg-gray-50 border border-gray-200 rounded-lg p-6">
+        <p class="text-sm text-gray-700 leading-relaxed">
+          <strong class="text-gray-900 font-semibold">How it works:</strong> Bunny CDN caches each server island response separately based on the Cache-Control headers.
+          When a user visits, cached islands load instantly while fresh data is fetched in the background.
+        </p>
+      </div>
+    </div>
+    </div>
+  </div>
+</Base>

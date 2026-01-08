@@ -1,13 +1,23 @@
 ---
+import Header from '../components/ui/header.astro';
+
 import '../styles/global.css';
 ---
 
-<html>
+<html lang="en">
     <head>
         <title>Experiment: Astro Server Island</title>
-        <meta name="trustpilot-one-time-domain-verification-id" content="fd2dd672-7147-4bb8-870e-bd5809e4fd19"/>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+        <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
     </head>
     <body>
-        <slot />
+        <Header />
+        
+        <main class="flex flex-col min-h-svh">
+            <slot />
+        </main>
     </body>
 </html>

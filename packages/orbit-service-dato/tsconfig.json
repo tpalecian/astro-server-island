@@ -1,0 +1,10 @@
+{
+  "extends": "@build/tsconfig/lib.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@service/dato/*": ["./src/*"]
+    }
+  },
+  "include": ["src"]
+}

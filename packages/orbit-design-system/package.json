@@ -1,0 +1,11 @@
+{
+	"name": "@orbit/design-system",
+	"version": "0.0.0",
+	"private": true,
+	"devDependencies": {
+		"@build/prettier-config": "workspace:*",
+		"@build/tsconfig": "workspace:*",
+		"@build/eslint-config": "workspace:*",
+		"prettier-plugin-tailwindcss": "^0.7.1"
+	}
+}

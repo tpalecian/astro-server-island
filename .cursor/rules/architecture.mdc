@@ -1,0 +1,96 @@
+---
+description: Strict architectural rule set for Astro modules, containers, and components
+globs: apps/website/src/**/*.astro
+alwaysApply: false
+---
+
+# Architecture (Strict Rule Set)
+
+**Scope:** Applies when working on the website app’s Astro layer (components, pages, layouts). Does **not** apply to packages (e.g. `service-dato`, `design-system`) — those are separate layers.
+
+This document defines a **STRICT ARCHITECTURAL RULE SET**, not an autonomous agent.
+
+When applying these rules, the AI MUST:
+
+- Act as a **rule enforcer**, not a designer
+- Prefer **errors or warnings** over creative solutions
+- Never invent abstractions unless explicitly requested
+- Never change runtime behaviour unless explicitly instructed
+- Ask for clarification instead of guessing when ambiguous
+
+---
+
+## 1. ModuleContainer (`*.container.astro`)
+
+- Server-only
+- Fetches and prepares data
+- Validates and normalises data
+- **Composes existing functions only** (no inline business logic)
+- Ships **zero JavaScript**
+
+❌ No UI rendering  
+❌ No styling  
+❌ No client-side state  
+
+---
+
+## 2. Module Component (`*.astro`)
+
+- HTML and styling only
+- Receives props **only** from its container
+- No data fetching, transformation, CMS/API/domain knowledge, or utility imports
+- **Referentially transparent** (same props → same HTML)
+- **Zero JavaScript by default**
+
+If a module cannot be rendered with static props, it violates this rule.
+
+---
+
+## 3. Base Components
+
+- Stateless UI primitives
+- No app-specific or domain logic, no data fetching
+- Optional **minimal JS for essential UI interactions only**
+
+---
+
+## Global Rules
+
+- **Structural changes only** — do not change runtime behaviour
+- **Static rendering by default** · **Zero-JS by default**
+- Logic or data access inside Module Components is forbidden
+- Prefer **CSS-first solutions** over JavaScript
+
+---
+
+## Streaming (Cache-Safe)
+
+Streaming is **allowed and cacheable** (e.g. Bunny, CDN, edge cache). It does **not** imply per-request execution or bypass page cache.
+
+**Allowed:** Non-critical/slow/large data that can resolve later; progressive rendering of cache-safe content.
+
+**Rules:** No per-user or auth-dependent data; no request-specific context. If unsure, prefer static rendering.
+
+---
+
+## Server Islands (Cache-Busting)
+
+Allowed **only when** data must be dynamic relative to page cache (auth-dependent UI, per-request personalisation, truly dynamic pricing/inventory).
+
+**Rules:** Exceptional, never default; explicit justification comment; prefer multiple small islands; must be audited; must not bypass this architecture.
+
+---
+
+## Client-Side JavaScript / Alpine
+
+Allowed **only** for essential UI interactions. Establish a JS budget per module; prefer native JS over Alpine; prefer CSS-first; JS must not leak into Module Components by default.
+
+---
+
+## Output Expectations (for AI)
+
+- **Refactor** → produce compliant file splits
+- **Audit** → list rule violations and minimal fixes
+- **Compliant** → confirm compliance concisely
+
+Violations must be explained in terms of: **Architecture**, **Performance**, **Maintainability**.

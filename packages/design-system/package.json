@@ -1,7 +1,13 @@
 {
-	"name": "@orbit/design-system",
+	"name": "@rotate/design-system",
 	"version": "0.0.0",
 	"private": true,
+	"exports": {
+		"./design-system.css": "./src/design-system.css"
+	},
+	"dependencies": {
+		"tailwindcss": "^4.1.17"
+	},
 	"devDependencies": {
 		"@build/prettier-config": "workspace:*",
 		"@build/tsconfig": "workspace:*",

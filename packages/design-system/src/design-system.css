@@ -1,0 +1,5 @@
+@import "tailwindcss";
+@import "./base.css";
+@import "./color-base.css";
+@import "./color-functions.css";
+@import "./color.css";

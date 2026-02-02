@@ -1,0 +1,143 @@
+@theme {
+  --grid-default-gutter: 12px;
+  --grid-default-margin: 21px;
+  --grid-default-margin-offset: 21px;
+
+  --grid-default-colspan-1: 18px;
+  --grid-default-colspan-2: 48px;
+  --grid-default-colspan-3: 78px;
+  --grid-default-colspan-4: 108px;
+  --grid-default-colspan-5: 138px;
+  --grid-default-colspan-6: 168px;
+  --grid-default-colspan-7: 198px;
+  --grid-default-colspan-8: 228px;
+  --grid-default-colspan-9: 258px;
+  --grid-default-colspan-10: 288px;
+  --grid-default-colspan-11: 318px;
+  --grid-default-colspan-12: 348px;
+  --grid-default-colspan-fullwidth: 390px;
+  --grid-default-colspan-sidepanel: 390px;
+
+  --grid-default-height: 844px;
+  --grid-default-height-landscape-colspan-1: 10px;
+  --grid-default-height-landscape-colspan-2: 27px;
+  --grid-default-height-landscape-colspan-3: 44px;
+  --grid-default-height-landscape-colspan-4: 61px;
+  --grid-default-height-landscape-colspan-5: 78px;
+  --grid-default-height-landscape-colspan-6: 95px;
+  --grid-default-height-landscape-colspan-7: 111px;
+  --grid-default-height-landscape-colspan-8: 128px;
+  --grid-default-height-landscape-colspan-9: 145px;
+  --grid-default-height-landscape-colspan-10: 162px;
+  --grid-default-height-landscape-colspan-11: 179px;
+  --grid-default-height-landscape-colspan-12: 196px;
+  --grid-default-height-landscape-colspan-fullwidth: 219px;
+
+  --grid-default-height-portrait-colspan-1: 23px;
+  --grid-default-height-portrait-colspan-2: 60px;
+  --grid-default-height-portrait-colspan-3: 98px;
+  --grid-default-height-portrait-colspan-4: 135px;
+  --grid-default-height-portrait-colspan-5: 173px;
+  --grid-default-height-portrait-colspan-6: 210px;
+  --grid-default-height-portrait-colspan-7: 248px;
+  --grid-default-height-portrait-colspan-8: 285px;
+  --grid-default-height-portrait-colspan-9: 323px;
+  --grid-default-height-portrait-colspan-10: 360px;
+  --grid-default-height-portrait-colspan-11: 398px;
+  --grid-default-height-portrait-colspan-12: 435px;
+  --grid-default-height-portrait-colspan-fullwidth: 488px;
+
+  --grid-fullwidth-gutter: 0px;
+  --grid-fullwidth-margin: 0px;
+  --grid-fullwidth-margin-offset: 21px;
+
+  --grid-fullwidth-colspan-1: 32.5px;
+  --grid-fullwidth-colspan-2: 65px;
+  --grid-fullwidth-colspan-3: 97.5px;
+  --grid-fullwidth-colspan-4: 130px;
+  --grid-fullwidth-colspan-5: 162.5px;
+  --grid-fullwidth-colspan-6: 195px;
+  --grid-fullwidth-colspan-7: 227.5px;
+  --grid-fullwidth-colspan-8: 260px;
+  --grid-fullwidth-colspan-9: 292.5px;
+  --grid-fullwidth-colspan-10: 325px;
+  --grid-fullwidth-colspan-11: 357.5px;
+  --grid-fullwidth-colspan-12: 390px;
+  --grid-fullwidth-colspan-fullwidth: 390px;
+
+  --grid-fullwidth-height: 844px;
+  --grid-fullwidth-height-landscape-colspan-1: 18px;
+  --grid-fullwidth-height-landscape-colspan-2: 37px;
+  --grid-fullwidth-height-landscape-colspan-3: 55px;
+  --grid-fullwidth-height-landscape-colspan-4: 73px;
+  --grid-fullwidth-height-landscape-colspan-5: 91px;
+  --grid-fullwidth-height-landscape-colspan-6: 110px;
+  --grid-fullwidth-height-landscape-colspan-7: 128px;
+  --grid-fullwidth-height-landscape-colspan-8: 146px;
+  --grid-fullwidth-height-landscape-colspan-9: 165px;
+  --grid-fullwidth-height-landscape-colspan-10: 183px;
+  --grid-fullwidth-height-landscape-colspan-11: 201px;
+  --grid-fullwidth-height-landscape-colspan-12: 219px;
+  --grid-fullwidth-height-landscape-colspan-fullwidth: 219px;
+
+  --grid-fullwidth-height-portrait-colspan-1: 41px;
+  --grid-fullwidth-height-portrait-colspan-2: 81px;
+  --grid-fullwidth-height-portrait-colspan-3: 122px;
+  --grid-fullwidth-height-portrait-colspan-4: 163px;
+  --grid-fullwidth-height-portrait-colspan-5: 203px;
+  --grid-fullwidth-height-portrait-colspan-6: 244px;
+  --grid-fullwidth-height-portrait-colspan-7: 284px;
+  --grid-fullwidth-height-portrait-colspan-8: 325px;
+  --grid-fullwidth-height-portrait-colspan-9: 366px;
+  --grid-fullwidth-height-portrait-colspan-10: 406px;
+  --grid-fullwidth-height-portrait-colspan-11: 447px;
+  --grid-fullwidth-height-portrait-colspan-12: 488px;
+  --grid-fullwidth-height-portrait-colspan-fullwidth: 488px;
+
+  --grid-presentation-colspan-1: 0px;
+  --grid-presentation-colspan-2: 0px;
+  --grid-presentation-colspan-3: 0px;
+  --grid-presentation-colspan-4: 0px;
+  --grid-presentation-colspan-5: 0px;
+  --grid-presentation-colspan-6: 0px;
+  --grid-presentation-colspan-7: 0px;
+  --grid-presentation-colspan-8: 0px;
+  --grid-presentation-colspan-9: 0px;
+  --grid-presentation-colspan-10: 0px;
+  --grid-presentation-colspan-11: 0px;
+  --grid-presentation-colspan-12: 0px;
+  --grid-presentation-colspan-fullwidth: 0px;
+
+  --grid-presentation-gutter: 0px;
+  --grid-presentation-height: 0px;
+  --grid-presentation-margin: 0px;
+  --grid-presentation-margin-offset: 0px;
+
+  --grid-presentation-height-landscape-colspan-1: 0px;
+  --grid-presentation-height-landscape-colspan-2: 0px;
+  --grid-presentation-height-landscape-colspan-3: 0px;
+  --grid-presentation-height-landscape-colspan-4: 0px;
+  --grid-presentation-height-landscape-colspan-5: 0px;
+  --grid-presentation-height-landscape-colspan-6: 0px;
+  --grid-presentation-height-landscape-colspan-7: 0px;
+  --grid-presentation-height-landscape-colspan-8: 0px;
+  --grid-presentation-height-landscape-colspan-9: 0px;
+  --grid-presentation-height-landscape-colspan-10: 0px;
+  --grid-presentation-height-landscape-colspan-11: 0px;
+  --grid-presentation-height-landscape-colspan-12: 0px;
+  --grid-presentation-height-landscape-colspan-fullwidth: 0px;
+
+  --grid-presentation-height-portrait-colspan-1: 0px;
+  --grid-presentation-height-portrait-colspan-2: 0px;
+  --grid-presentation-height-portrait-colspan-3: 0px;
+  --grid-presentation-height-portrait-colspan-4: 0px;
+  --grid-presentation-height-portrait-colspan-5: 0px;
+  --grid-presentation-height-portrait-colspan-6: 0px;
+  --grid-presentation-height-portrait-colspan-7: 0px;
+  --grid-presentation-height-portrait-colspan-8: 0px;
+  --grid-presentation-height-portrait-colspan-9: 0px;
+  --grid-presentation-height-portrait-colspan-10: 0px;
+  --grid-presentation-height-portrait-colspan-11: 0px;
+  --grid-presentation-height-portrait-colspan-12: 0px;
+  --grid-presentation-height-portrait-colspan-fullwidth: 0px;
+}

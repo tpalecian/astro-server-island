@@ -14,6 +14,7 @@
   "packageManager": "pnpm@10.13.1",
   "dependencies": {
     "@astrojs/vercel": "^9.0.2",
+    "@rotate/design-system": "workspace:*",
     "@tailwindcss/vite": "^4.1.17",
     "astro": "^5.16.3",
     "class-variance-authority": "^0.7.1",
@@ -24,7 +25,6 @@
     "@build/prettier-config": "workspace:*",
     "@build/tsconfig": "workspace:*",
     "@ianvs/prettier-plugin-sort-imports": "4.6.2",
-    "@orbit/design-system": "workspace:*",
     "prettier-plugin-packagejson": "^2.5.22"
   }
 }

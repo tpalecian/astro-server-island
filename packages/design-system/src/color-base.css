@@ -1,0 +1,84 @@
+@theme {
+  --color-core-black: oklch(0% 0 0);
+  --color-core-white: oklch(100% 0 0);
+
+  --color-cobalt-100: #f1f7fd;
+  --color-cobalt-200: #cde1f9;
+  --color-cobalt-300: #9fc6f4;
+  --color-cobalt-400: #71abef;
+  --color-cobalt-500: #196dd1;
+  --color-cobalt-600: #1461b8;
+  --color-cobalt-700: #0f498a;
+  --color-cobalt-800: #0a305c;
+  --color-cobalt-900: #05182e;
+
+  --color-grey-100: #f7f7f7;
+  --color-grey-200: #f0f0f0;
+  --color-grey-300: #d6d6d6;
+  --color-grey-400: #bdbdbd;
+  --color-grey-500: #a3a3a3;
+  --color-grey-600: #8a8a8a;
+  --color-grey-700: #717171;
+  --color-grey-800: #4e4e4e;
+  --color-grey-900: #131313;
+
+  --color-leaf-100: #eef7f0;
+  --color-leaf-200: #e0f0e4;
+  --color-leaf-300: #bee0c7;
+  --color-leaf-400: #9ad0a8;
+  --color-leaf-500: #6dc083;
+  --color-leaf-600: #3db361;
+  --color-leaf-700: #339551;
+  --color-leaf-800: #266533;
+  --color-leaf-900: #183f20;
+
+  --color-moss-100: #f0f5f3;
+  --color-moss-200: #d1e1db;
+  --color-moss-300: #b2cdc3;
+  --color-moss-400: #93b9ab;
+  --color-moss-500: #74a593;
+  --color-moss-600: #5a8b7a;
+  --color-moss-700: #466c5f;
+  --color-moss-800: #324d44;
+  --color-moss-900: #1e2e29;
+
+  --color-mustard-100: #fef8ec;
+  --color-mustard-200: #fbe6bc;
+  --color-mustard-300: #f7d38d;
+  --color-mustard-400: #f2c568;
+  --color-mustard-500: #d49a4a;
+  --color-mustard-600: #c9882b;
+  --color-mustard-700: #9c6126;
+  --color-mustard-800: #73471c;
+  --color-mustard-900: #492e13;
+
+  --color-orange-flame-100: #fdede8;
+  --color-orange-flame-200: #f9cab9;
+  --color-orange-flame-300: #f5a78a;
+  --color-orange-flame-400: #f0835b;
+  --color-orange-flame-500: #ec5e2a;
+  --color-orange-flame-600: #d34613;
+  --color-orange-flame-700: #a4370f;
+  --color-orange-flame-800: #75270a;
+  --color-orange-flame-900: #461706;
+
+  --color-putty-100: #f6f6f3;
+  --color-putty-200: #e9e9e4;
+  --color-putty-300: #cfcec9;
+  --color-putty-400: #c2c1bd;
+  --color-putty-500: #aba7a0;
+  --color-putty-600: #847e75;
+  --color-putty-700: #69645d;
+  --color-putty-800: #4f4b46;
+  --color-putty-900: #33312e;
+
+  --color-scarlet-100: #fbe1da;
+  --color-scarlet-200: #f5b8a8;
+  --color-scarlet-300: #f0937a;
+  --color-scarlet-400: #e95f3a;
+  --color-scarlet-500: #ce3e18;
+  --color-scarlet-600: #c12f15;
+  --color-scarlet-700: #8f2310;
+  --color-scarlet-800: #65190b;
+  --color-scarlet-900: #370e06;
+}

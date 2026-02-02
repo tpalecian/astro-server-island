@@ -35,6 +35,9 @@ importers:
       '@astrojs/vercel':
         specifier: ^9.0.2
         version: 9.0.4(astro@5.16.15(@types/node@25.0.10)(@vercel/functions@2.2.13)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.56.0)(typescript@5.9.3))(rollup@4.56.0)
+      '@rotate/design-system':
+        specifier: workspace:*
+        version: link:../../packages/design-system
       '@tailwindcss/vite':
         specifier: ^4.1.17
         version: 4.1.18(vite@6.4.1(@types/node@25.0.10)(jiti@2.6.1)(lightningcss@1.30.2))
@@ -60,9 +63,6 @@ importers:
       '@ianvs/prettier-plugin-sort-imports':
         specifier: 4.6.2
         version: 4.6.2(prettier@3.8.1)
-      '@orbit/design-system':
-        specifier: workspace:*
-        version: link:../../packages/orbit-design-system
       prettier-plugin-packagejson:
         specifier: ^2.5.22
         version: 2.5.22(prettier@3.8.1)
@@ -141,7 +141,11 @@ importers:
 
   packages/build-tsconfig: {}
 
-  packages/orbit-design-system:
+  packages/design-system:
+    dependencies:
+      tailwindcss:
+        specifier: ^4.1.17
+        version: 4.1.18
     devDependencies:
       '@build/eslint-config':
         specifier: workspace:*
@@ -156,7 +160,7 @@ importers:
         specifier: ^0.7.1
         version: 0.7.2(@ianvs/prettier-plugin-sort-imports@4.6.2(prettier@3.8.1))(prettier-plugin-astro@0.14.1)(prettier@3.8.1)
 
-  packages/orbit-service-dato:
+  packages/service-dato:
     devDependencies:
       '@build/eslint-config':
         specifier: workspace:*

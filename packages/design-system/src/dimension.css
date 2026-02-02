@@ -1,0 +1,56 @@
+@theme {
+  --dimension-dimension-0: 0px;
+  --dimension-dimension-25: 1px;
+  --dimension-dimension-50: 2px;
+  --dimension-dimension-75: 4px;
+  --dimension-dimension-100: 8px;
+  --dimension-dimension-150: 12px;
+  --dimension-dimension-200: 16px;
+  --dimension-dimension-300: 24px;
+  --dimension-dimension-400: 32px;
+  --dimension-dimension-450: 44px;
+  --dimension-dimension-500: 48px;
+  --dimension-dimension-600: 64px;
+  --dimension-dimension-700: 80px;
+  --dimension-dimension-800: 96px;
+  --dimension-dimension-900: 128px;
+  --dimension-dimension-1000: 160px;
+  --dimension-dimension-1100: 192px;
+  --dimension-dimension-1200: 256px;
+  --dimension-dimension-1300: 320px;
+}
+
+@layer base {
+  :root {
+    --spacer-spacer-100: var(--dimension-dimension-50);
+    --spacer-spacer-200: var(--dimension-dimension-75);
+    --spacer-spacer-300: var(--dimension-dimension-100);
+    --spacer-spacer-400: var(--dimension-dimension-200);
+    --spacer-spacer-500: var(--dimension-dimension-300);
+    --spacer-spacer-600: var(--dimension-dimension-500);
+    --spacer-spacer-700: var(--dimension-dimension-600);
+    --spacer-spacer-800: var(--dimension-dimension-800);
+
+    @media (min-width: theme(--breakpoint-tablet)) {
+      --spacer-spacer-100: var(--dimension-dimension-50);
+      --spacer-spacer-200: var(--dimension-dimension-75);
+      --spacer-spacer-300: var(--dimension-dimension-100);
+      --spacer-spacer-400: var(--dimension-dimension-200);
+      --spacer-spacer-500: var(--dimension-dimension-300);
+      --spacer-spacer-600: var(--dimension-dimension-500);
+      --spacer-spacer-700: var(--dimension-dimension-600);
+      --spacer-spacer-800: var(--dimension-dimension-800);
+    }
+
+    @media (min-width: theme(--breakpoint-desktop)) {
+      --spacer-spacer-100: var(--dimension-dimension-50);
+      --spacer-spacer-200: var(--dimension-dimension-75);
+      --spacer-spacer-300: var(--dimension-dimension-100);
+      --spacer-spacer-400: var(--dimension-dimension-200);
+      --spacer-spacer-500: var(--dimension-dimension-300);
+      --spacer-spacer-600: var(--dimension-dimension-500);
+      --spacer-spacer-700: var(--dimension-dimension-700);
+      --spacer-spacer-800: var(--dimension-dimension-1000);
+    }
+  }
+}

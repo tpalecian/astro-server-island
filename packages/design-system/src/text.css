@@ -1,0 +1,51 @@
+@theme {
+  --font-sans:
+    ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol", "Noto Color Emoji";
+  --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-mono:
+    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
+
+  --font-body-style1: Graphik, var(--font-sans);
+  --weight-body-style1: Regular;
+
+  --font-body-style2: Graphik, var(--font-sans);
+  --weight-body-style2: Medium;
+
+  --font-body-style3: Tiempos Text, var(--font-serif);
+  --weight-body-style3: Regular;
+
+  --font-longform-style1: Graphik, var(--font-sans);
+  --weight-longform-style1: Regular;
+
+  --font-title-style1: Graphik, var(--font-sans);
+  --weight-title-style1: Regular;
+
+  --font-title-style2: Graphik, var(--font-sans);
+  --weight-title-style2: Medium;
+
+  --font-title-style3: Graphik, var(--font-sans);
+  --weight-title-style3: Regular;
+
+  --font-title-style4: Tiempos Text, var(f--font-serif);
+  --weight-title-style4: Regular;
+
+  --size-size-100: 9px;
+  --size-size-200: 11px;
+  --size-size-300: 12px;
+  --size-size-400: 13px;
+  --size-size-500: 14px;
+  --size-size-600: 16px;
+  --size-size-700: 18px;
+  --size-size-800: 24px;
+  --size-size-900: 27px;
+  --size-size-1000: 36px;
+  --size-size-1100: 48px;
+  --size-size-1200: 64px;
+  --size-size-1300: 96px;
+  --size-size-1400: 128px;
+  --size-size-1500: 160px;
+  --size-size-1600: 192px;
+  --size-size-1700: 256px;
+}

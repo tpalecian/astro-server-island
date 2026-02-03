@@ -1,0 +1,7 @@
+query Redirects {
+  allRedirects {
+    to
+    from
+    redirectType
+  }
+}

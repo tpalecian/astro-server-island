@@ -26,7 +26,10 @@ Use these files as **Linear ticket templates**. Each ticket is written to be sel
 
 | Ticket | Template |
 |---|---|
-| A | `a-service-dato.md` |
+| A1 | `a1-service-dato-client-types.md` |
+| A2 | `a2-service-dato-gql-fragments.md` |
+| A3 | `a3-service-dato-models.md` (superseded — no normaliser) |
+| A4 | `a4-service-dato-getters-exports.md` |
 | B | `b-app-container.md` |
 | E | `e-dynamic-routes.md` |
 | F | `f-content-blocks-content-island.md` |

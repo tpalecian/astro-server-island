@@ -1,0 +1,33 @@
+query ThinkingBySlug($slug: String!) {
+  thinking(filter: { slug: { eq: $slug } }) {
+    ...Type
+    title
+    author {
+      name
+    }
+    publishDate
+    heroTitle {
+      links {
+        ...OnEmojiRecord
+      }
+      value
+    }
+    tags {
+      name
+      cards {
+        ...Card
+      }
+    }
+    slug
+    ...SeoThinking
+    content {
+      ...OnQuoteRecord
+      ...OnTextHalfRecord
+      ...OnTextLeadRecord
+      ...OnMediaSingleRecord
+      ...OnMediaMultipleRecord
+      ...OnCardSliderRecord
+      ...OnStatsRecord
+    }
+  }
+}

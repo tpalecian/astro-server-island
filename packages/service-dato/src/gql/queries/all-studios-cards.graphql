@@ -1,0 +1,7 @@
+query AllStudiosCategoryCards {
+  allStudios(first: 100) {
+    card {
+      ...Card
+    }
+  }
+}

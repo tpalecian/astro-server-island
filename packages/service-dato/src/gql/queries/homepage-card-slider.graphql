@@ -1,0 +1,10 @@
+query HomepageCardSlider {
+  homepage {
+    slug
+    title
+    ...SeoHomepage
+    content {
+      ...OnCardSliderRecord
+    }
+  }
+}

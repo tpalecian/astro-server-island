@@ -2,6 +2,14 @@
 
 DatoCMS GraphQL client for server-side use. Consumed **only by Astro containers** in the website app; no UI or framework code.
 
+## Type generation (codegen)
+
+Types are generated from your GraphQL queries and the Dato schema. Use a **read-only** API token only.
+
+1. Set `DATOCMS_API_KEY` (read-only token; do not commit full-access tokens).
+2. Run from the package: `pnpm codegen`.
+3. This overwrites `src/types-dato.ts` with schema-based types. Getters use these types for type-safe results.
+
 ## Architecture alignment
 
 Per [.cursor/rules/architecture.mdc](../../.cursor/rules/architecture.mdc):

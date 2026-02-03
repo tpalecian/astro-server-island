@@ -1,0 +1,100 @@
+fragment Type on RecordInterface {
+	id
+	type: _modelApiKey
+}
+
+fragment Media on FileField {
+	url
+	alt
+	width
+	height
+	format
+	type: mimeType
+	customData
+}
+
+# Seo exists on concrete records, not RecordInterface. Define per record type.
+fragment SeoCategory on CategoryRecord {
+	seo {
+		title
+		description
+		image {
+			...Media
+		}
+	}
+	seoMetaTags: _seoMetaTags {
+		attributes
+		tag
+		content
+	}
+}
+fragment SeoHomepage on HomepageRecord {
+	seo {
+		title
+		description
+		image {
+			...Media
+		}
+	}
+	seoMetaTags: _seoMetaTags {
+		attributes
+		tag
+		content
+	}
+}
+fragment SeoInfoPage on InfoPageRecord {
+	seo {
+		title
+		description
+		image {
+			...Media
+		}
+	}
+	seoMetaTags: _seoMetaTags {
+		attributes
+		tag
+		content
+	}
+}
+fragment SeoWork on WorkRecord {
+	seo {
+		title
+		description
+		image {
+			...Media
+		}
+	}
+	seoMetaTags: _seoMetaTags {
+		attributes
+		tag
+		content
+	}
+}
+fragment SeoThinking on ThinkingRecord {
+	seo {
+		title
+		description
+		image {
+			...Media
+		}
+	}
+	seoMetaTags: _seoMetaTags {
+		attributes
+		tag
+		content
+	}
+}
+fragment SeoStudio on StudioRecord {
+	seo {
+		title
+		description
+		image {
+			...Media
+		}
+	}
+	seoMetaTags: _seoMetaTags {
+		attributes
+		tag
+		content
+	}
+}

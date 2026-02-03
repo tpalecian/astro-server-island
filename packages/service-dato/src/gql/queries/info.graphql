@@ -1,0 +1,22 @@
+query Info {
+  infoPage {
+    title
+    slug
+    ...SeoInfoPage
+    heroTitle {
+      links {
+        ...OnEmojiRecord
+      }
+      value
+    }
+    content {
+      ...OnQuoteRecord
+      ...OnTextHalfRecord
+      ...OnTextLeadRecord
+      ...OnMediaSingleRecord
+      ...OnMediaMultipleRecord
+      ...OnCardSliderRecord
+      ...OnStatsRecord
+    }
+  }
+}

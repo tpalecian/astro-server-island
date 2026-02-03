@@ -1,0 +1,8 @@
+query CategoryBySlug($slug: String!) {
+  category(filter: { slug: { eq: $slug } }) {
+    id
+    slug
+    filterText
+    ...SeoCategory
+  }
+}

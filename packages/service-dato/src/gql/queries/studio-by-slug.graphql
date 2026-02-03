@@ -1,0 +1,43 @@
+query StudioBySlug($slug: String!) {
+  studio(filter: { slug: { eq: $slug } }) {
+    ...Type
+    title
+    publishDate: _publishedAt
+    introduction {
+      links {
+        ...OnEmojiRecord
+      }
+      value
+    }
+    client {
+      name
+      site
+    }
+    heroTitle {
+      links {
+        ...OnEmojiRecord
+      }
+      value
+    }
+    heroImage {
+      ...Media
+    }
+    tags {
+      name
+      cards {
+        ...Card
+      }
+    }
+    slug
+    ...SeoStudio
+    content {
+      ...OnQuoteRecord
+      ...OnTextHalfRecord
+      ...OnTextLeadRecord
+      ...OnMediaSingleRecord
+      ...OnMediaMultipleRecord
+      ...OnCardSliderRecord
+      ...OnStatsRecord
+    }
+  }
+}

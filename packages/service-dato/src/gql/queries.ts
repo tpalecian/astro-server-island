@@ -1,9 +1,7 @@
 import blocks from './fragments/blocks.graphql?raw'
 import inlineBlocks from './fragments/inline-blocks.graphql?raw'
-import link from './fragments/link.graphql?raw'
 import meta from './fragments/meta.graphql?raw'
 import models from './fragments/models.graphql?raw'
-import structuredText from './fragments/structured-text.graphql?raw'
 import allCategories from './queries/all-categories.graphql?raw'
 import allStudiosCards from './queries/all-studios-cards.graphql?raw'
 import allThinkingsCards from './queries/all-thinkings-cards.graphql?raw'
@@ -21,7 +19,7 @@ import studioBySlug from './queries/studio-by-slug.graphql?raw'
 import thinkingBySlug from './queries/thinking-by-slug.graphql?raw'
 import workBySlug from './queries/work-by-slug.graphql?raw'
 
-const FRAGMENTS = [meta, link, models, inlineBlocks, structuredText, blocks]
+const FRAGMENTS = [meta, models, inlineBlocks, blocks]
 const withFragments = (query: string) => `${FRAGMENTS}\n${query}`
 
 export const QUERY_HOME = withFragments(home)

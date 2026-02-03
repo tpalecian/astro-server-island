@@ -72,10 +72,3 @@ fragment Card on CardRecord {
 		}
 	}
 }
-
-fragment Tag on TagRecord {
-	name
-	cards {
-		...Card
-	}
-}

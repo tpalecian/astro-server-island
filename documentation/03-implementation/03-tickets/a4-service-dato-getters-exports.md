@@ -1,7 +1,7 @@
 ---
 title: Task A4 — service-dato getters + exports
 phase: implementation
-status: in-review
+status: approved
 owner: solutions-engineering
 last_updated: 2026-02-03
 depends_on: [A1, A2]

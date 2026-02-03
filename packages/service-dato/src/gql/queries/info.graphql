@@ -2,7 +2,11 @@ query Info {
   infoPage {
     title
     slug
-    ...SeoInfoPage
+    seoMetaTags: _seoMetaTags {
+      attributes
+      tag
+      content
+    }
     heroTitle {
       links {
         ...OnEmojiRecord

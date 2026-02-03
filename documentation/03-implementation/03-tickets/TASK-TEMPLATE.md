@@ -13,10 +13,10 @@ tags: [implementation, tickets]
 
 **Ticket:** [A–J]
 **Phase:** [1–6]
-**Scope (files/dirs you may edit):** [List of allowed paths]
+**Scope (files/dirs you may edit):** [Exact allowed paths — see `02-workstreams/00-implementation-context-requirements.md`]
 
-**Dependencies (blocking):** [IDs or None]
-**Unblocks:** [IDs]
+**Dependencies (blocking):** [Ticket IDs or None]
+**Unblocks:** [Ticket IDs]
 
 ---
 
@@ -32,11 +32,17 @@ tags: [implementation, tickets]
 
 ## 2. Context & Scope (what/where)
 
-**Scope:**
+**Scope:** [Same as header; exact paths.]
 
-**Dependencies:**
+**Dependencies:** [Blocking ticket IDs.]
 
-**Unblocks:**
+**Unblocks:** [Ticket IDs.]
+
+**Contract / API:** [Function names, exports, types, or props to implement — enough that an agent can implement without guessing.]
+
+**Data source & shape:** [Where data comes from and expected type/shape.]
+
+**Out of scope / Don’t do:** [Explicit list of what not to do.]
 
 **Risks & mitigations:**
 
@@ -49,7 +55,7 @@ tags: [implementation, tickets]
 2.
 3.
 
-**Acceptance criteria:**
+**Acceptance criteria:** [Testable; each verifiable.]
 
 | # | Criterion | Done |
 |---|-----------|------|
@@ -60,15 +66,15 @@ tags: [implementation, tickets]
 
 ## 4. Validation & Testing
 
-**Validation steps:**
+**Validation:** [Command(s) or manual steps to verify — e.g. `pnpm codegen`, run tests, smoke check.]
 
-**Tests:**
+**Tests:** [If any.]
 
 ---
 
 ## 5. References
 
-- 
+- [Link to solution or discovery doc — required for strict context.]
 
 ---
 

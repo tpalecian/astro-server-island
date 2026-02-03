@@ -3,6 +3,10 @@ query CategoryBySlug($slug: String!) {
     id
     slug
     filterText
-    ...SeoCategory
+    seoMetaTags: _seoMetaTags {
+      attributes
+      tag
+      content
+    }
   }
 }

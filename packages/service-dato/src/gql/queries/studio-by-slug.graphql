@@ -29,7 +29,11 @@ query StudioBySlug($slug: String!) {
       }
     }
     slug
-    ...SeoStudio
+    seoMetaTags: _seoMetaTags {
+      attributes
+      tag
+      content
+    }
     content {
       ...OnQuoteRecord
       ...OnTextHalfRecord

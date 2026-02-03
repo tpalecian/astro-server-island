@@ -29,7 +29,11 @@ query WorkBySlug($slug: String!) {
       }
     }
     slug
-    ...SeoWork
+    seoMetaTags: _seoMetaTags {
+      attributes
+      tag
+      content
+    }
     content {
       ...OnQuoteRecord
       ...OnTextHalfRecord

@@ -1,0 +1,25 @@
+---
+interface Props {
+	title?: string | null
+	heroWords?: Array<{ word?: string | null }>
+	heroVideo?: { url: string; alt?: string | null } | null
+}
+
+const { title, heroWords = [], heroVideo } = Astro.props
+---
+
+<section class="home-hero">
+	{title && <h1>{title}</h1>}
+	{heroWords.length > 0 && (
+		<ul>
+			{heroWords.map((item, i) => (
+				<li>{item.word ?? ''}</li>
+			))}
+		</ul>
+	)}
+	{heroVideo?.url && (
+		<figure>
+			<img src={heroVideo.url} alt={heroVideo.alt ?? ''} />
+		</figure>
+	)}
+</section>

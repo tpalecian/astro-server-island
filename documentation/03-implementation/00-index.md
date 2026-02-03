@@ -19,6 +19,7 @@ tags: [implementation, index]
 ## Quick links
 
 - Plan of attack: `03-implementation/01-plan-of-attack.md`
+- **Implementation context (for agents):** `03-implementation/02-workstreams/00-implementation-context-requirements.md`
 - Workstreams: `03-implementation/02-workstreams/`
 - Ticket templates (Linear): `03-implementation/03-tickets/`
 
@@ -26,6 +27,7 @@ tags: [implementation, index]
 
 | Workstream | Doc |
 |---|---|
+| *(Context requirements for agents)* | `03-implementation/02-workstreams/00-implementation-context-requirements.md` |
 | CMS service layer | `03-implementation/02-workstreams/01-cms-service.md` |
 | App shell and layout | `03-implementation/02-workstreams/02-app-shell.md` |
 | Routing and pages | `03-implementation/02-workstreams/03-routing-and-pages.md` |

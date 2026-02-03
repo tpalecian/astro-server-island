@@ -13,78 +13,8 @@ fragment Media on FileField {
 	customData
 }
 
-# Seo exists on concrete records, not RecordInterface. Define per record type.
-fragment SeoCategory on CategoryRecord {
-	seo {
-		title
-		description
-		image {
-			...Media
-		}
-	}
-	seoMetaTags: _seoMetaTags {
-		attributes
-		tag
-		content
-	}
-}
+# Homepage has full seo block + _seoMetaTags. Other records only have _seoMetaTags (meta field on every record).
 fragment SeoHomepage on HomepageRecord {
-	seo {
-		title
-		description
-		image {
-			...Media
-		}
-	}
-	seoMetaTags: _seoMetaTags {
-		attributes
-		tag
-		content
-	}
-}
-fragment SeoInfoPage on InfoPageRecord {
-	seo {
-		title
-		description
-		image {
-			...Media
-		}
-	}
-	seoMetaTags: _seoMetaTags {
-		attributes
-		tag
-		content
-	}
-}
-fragment SeoWork on WorkRecord {
-	seo {
-		title
-		description
-		image {
-			...Media
-		}
-	}
-	seoMetaTags: _seoMetaTags {
-		attributes
-		tag
-		content
-	}
-}
-fragment SeoThinking on ThinkingRecord {
-	seo {
-		title
-		description
-		image {
-			...Media
-		}
-	}
-	seoMetaTags: _seoMetaTags {
-		attributes
-		tag
-		content
-	}
-}
-fragment SeoStudio on StudioRecord {
 	seo {
 		title
 		description

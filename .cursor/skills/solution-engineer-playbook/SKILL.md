@@ -58,7 +58,23 @@ Ask these in order and keep them concise:
 
 - **Discovery** = final decisions, scope, constraints, risks.
 - **Solution** = approach, interfaces, delivery plan, success criteria.
-- **Implementation** = workstreams + tickets; split large tickets into smaller subtasks.
+- **Implementation** = workstreams + tickets; split large tickets into smaller subtasks. Every ticket must satisfy **strict implementation context** (see below).
+
+## Strict implementation context (for agents)
+
+Implementation context must be **strict and self-contained** so an agent or developer can implement without guessing.
+
+- **Standard:** `documentation/03-implementation/02-workstreams/00-implementation-context-requirements.md`
+- When creating or updating **workstreams** or **tickets**, ensure they satisfy the checklist in that doc:
+  - Allowed paths (exact dirs/files)
+  - Blocking dependencies and unblocks
+  - Contract / API (names, exports, types, props)
+  - Data source and shape
+  - Out of scope / don’t do
+  - Acceptance criteria (testable)
+  - Validation (commands or steps)
+  - Link to solution/reference doc
+- If a ticket is vague, add the missing context before implementation starts.
 
 ## SEL Format (required)
 
@@ -87,6 +103,7 @@ tags: [...]
 ## Index Updates
 
 Always update:
+
 - `documentation/README.md`
 - `documentation/00-start-here/handover-next-steps.md`
 - `documentation/01-discovery/00-index.md`

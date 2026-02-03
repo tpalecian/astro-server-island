@@ -19,7 +19,11 @@ query ThinkingBySlug($slug: String!) {
       }
     }
     slug
-    ...SeoThinking
+    seoMetaTags: _seoMetaTags {
+      attributes
+      tag
+      content
+    }
     content {
       ...OnQuoteRecord
       ...OnTextHalfRecord

@@ -5185,17 +5185,17 @@ export type TypeFragment =
 
 export type MediaFragment = { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string };
 
-export type SeoCategoryFragment = { seo?: { title?: string | null, description?: string | null, image?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null } | null, seoMetaTags: Array<{ attributes?: any | null, tag: string, content?: string | null }> };
-
 export type SeoHomepageFragment = { seo?: { title?: string | null, description?: string | null, image?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null } | null, seoMetaTags: Array<{ attributes?: any | null, tag: string, content?: string | null }> };
 
-export type SeoInfoPageFragment = { seo?: { title?: string | null, description?: string | null, image?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null } | null, seoMetaTags: Array<{ attributes?: any | null, tag: string, content?: string | null }> };
+export type SeoMetaTagsCategoryFragment = { seoMetaTags: Array<{ attributes?: any | null, tag: string, content?: string | null }> };
 
-export type SeoWorkFragment = { seo?: { title?: string | null, description?: string | null, image?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null } | null, seoMetaTags: Array<{ attributes?: any | null, tag: string, content?: string | null }> };
+export type SeoMetaTagsInfoPageFragment = { seoMetaTags: Array<{ attributes?: any | null, tag: string, content?: string | null }> };
 
-export type SeoThinkingFragment = { seo?: { title?: string | null, description?: string | null, image?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null } | null, seoMetaTags: Array<{ attributes?: any | null, tag: string, content?: string | null }> };
+export type SeoMetaTagsWorkFragment = { seoMetaTags: Array<{ attributes?: any | null, tag: string, content?: string | null }> };
 
-export type SeoStudioFragment = { seo?: { title?: string | null, description?: string | null, image?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null } | null, seoMetaTags: Array<{ attributes?: any | null, tag: string, content?: string | null }> };
+export type SeoMetaTagsThinkingFragment = { seoMetaTags: Array<{ attributes?: any | null, tag: string, content?: string | null }> };
+
+export type SeoMetaTagsStudioFragment = { seoMetaTags: Array<{ attributes?: any | null, tag: string, content?: string | null }> };
 
 export type CardFragment = { id: any, cardType?: string | null, doubleWidth?: any | null, useHeroImage?: any | null, copy?: string | null, hasDarkText?: any | null, type: string, category?: { slug?: string | null } | null, title?: { value: any, links: Array<{ id: any, title?: string | null, type: 'EmojiRecord', media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null }> } | null, subtitle?: { value: any, links: Array<{ id: any, title?: string | null, type: 'EmojiRecord', media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null }> } | null, media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null, mediaHover?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null, link?: { text?: string | null, url?: string | null, record?:
       | { slug?: string | null }
@@ -5204,14 +5204,6 @@ export type CardFragment = { id: any, cardType?: string | null, doubleWidth?: an
       | { slug?: string | null, category?: { slug?: string | null } | null }
       | { slug?: string | null, category?: { slug?: string | null } | null }
      | null } | null };
-
-export type TagFragment = { name?: string | null, cards: Array<{ id: any, cardType?: string | null, doubleWidth?: any | null, useHeroImage?: any | null, copy?: string | null, hasDarkText?: any | null, type: string, category?: { slug?: string | null } | null, title?: { value: any, links: Array<{ id: any, title?: string | null, type: 'EmojiRecord', media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null }> } | null, subtitle?: { value: any, links: Array<{ id: any, title?: string | null, type: 'EmojiRecord', media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null }> } | null, media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null, mediaHover?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null, link?: { text?: string | null, url?: string | null, record?:
-        | { slug?: string | null }
-        | { slug?: string | null }
-        | { slug?: string | null, category?: { slug?: string | null } | null }
-        | { slug?: string | null, category?: { slug?: string | null } | null }
-        | { slug?: string | null, category?: { slug?: string | null } | null }
-       | null } | null }> };
 
 export type AllCategoriesQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -5256,7 +5248,7 @@ export type CategoryBySlugQueryVariables = Exact<{
 }>;
 
 
-export type CategoryBySlugQuery = { category?: { id: any, slug?: string | null, filterText?: string | null, seo?: { title?: string | null, description?: string | null, image?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null } | null, seoMetaTags: Array<{ attributes?: any | null, tag: string, content?: string | null }> } | null };
+export type CategoryBySlugQuery = { category?: { id: any, slug?: string | null, filterText?: string | null, seoMetaTags: Array<{ attributes?: any | null, tag: string, content?: string | null }> } | null };
 
 export type GlobalsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -5449,7 +5441,7 @@ export type InfoQuery = { infoPage?: { title?: string | null, slug?: string | nu
             | { id: any, slug?: string | null, title?: string | null, type: 'ThinkingRecord' }
             | { id: any, slug?: string | null, title?: string | null, type: 'WorkRecord' }
           > } | null }
-    >, seo?: { title?: string | null, description?: string | null, image?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null } | null, seoMetaTags: Array<{ attributes?: any | null, tag: string, content?: string | null }> } | null };
+    >, seoMetaTags: Array<{ attributes?: any | null, tag: string, content?: string | null }> } | null };
 
 export type NavigationFooterQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -5595,7 +5587,7 @@ export type StudioBySlugQuery = { studio?: { title?: string | null, slug?: strin
             | { id: any, slug?: string | null, title?: string | null, type: 'ThinkingRecord' }
             | { id: any, slug?: string | null, title?: string | null, type: 'WorkRecord' }
           > } | null }
-    >, seo?: { title?: string | null, description?: string | null, image?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null } | null, seoMetaTags: Array<{ attributes?: any | null, tag: string, content?: string | null }> } | null };
+    >, seoMetaTags: Array<{ attributes?: any | null, tag: string, content?: string | null }> } | null };
 
 export type ThinkingBySlugQueryVariables = Exact<{
   slug: Scalars['String']['input'];
@@ -5685,7 +5677,7 @@ export type ThinkingBySlugQuery = { thinking?: { title?: string | null, publishD
             | { id: any, slug?: string | null, title?: string | null, type: 'ThinkingRecord' }
             | { id: any, slug?: string | null, title?: string | null, type: 'WorkRecord' }
           > } | null }
-    >, seo?: { title?: string | null, description?: string | null, image?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null } | null, seoMetaTags: Array<{ attributes?: any | null, tag: string, content?: string | null }> } | null };
+    >, seoMetaTags: Array<{ attributes?: any | null, tag: string, content?: string | null }> } | null };
 
 export type WorkBySlugQueryVariables = Exact<{
   slug: Scalars['String']['input'];
@@ -5781,4 +5773,4 @@ export type WorkBySlugQuery = { work?: { title?: string | null, slug?: string | 
             | { id: any, slug?: string | null, title?: string | null, type: 'ThinkingRecord' }
             | { id: any, slug?: string | null, title?: string | null, type: 'WorkRecord' }
           > } | null }
-    >, seo?: { title?: string | null, description?: string | null, image?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null } | null, seoMetaTags: Array<{ attributes?: any | null, tag: string, content?: string | null }> } | null };
+    >, seoMetaTags: Array<{ attributes?: any | null, tag: string, content?: string | null }> } | null };

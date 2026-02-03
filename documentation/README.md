@@ -1,33 +1,63 @@
 # Documentation
 
-All plan-mode output and scoped documentation lives here. See [.cursor/rules/planning.mdc](.cursor/rules/planning.mdc).
+All plan-mode output and scoped documentation lives here. See `.cursor/rules/planning.mdc` for format rules.
 
-## Structure
+## Current phase
 
-| Purpose               | Location                    |
-|-----------------------|-----------------------------|
-| Plans & docs (root)   | `/documentation`            |
-| Drafts / in progress  | `/documentation/temporary`  |
-| Final, grouped docs   | `/documentation/<group>`     |
+We are in **Implementation**. This means:
 
-- **temporary/** — Work in progress, drafts, unapproved. Move to a group when finalized.
-- **technical/** — Technical specs, migration reviews, architecture-related docs.
-- **overview/** — Holistic overviews, roadmap.
-- **business/** — Business plans, strategy.
+- Source of truth lives in `03-implementation/` with references to Discovery and Solution.
+- Discovery and Solution docs remain authoritative for decisions and design.
 
-Plans use the STL format: Summary (leadership) → Context (holistic) → Technical/execution (actionable).
+## Structure (lifecycle)
 
-## Separate plans (do not merge)
+| Phase / Purpose | Location |
+|---|---|
+| Start here / entry point | `/documentation/00-start-here` |
+| Discovery | `/documentation/01-discovery` |
+| Solution design | `/documentation/02-solution` |
+| Implementation | `/documentation/03-implementation` |
+| Reference (supporting) | `/documentation/05-reference` |
+| Work in progress | `/documentation/wip` |
+| Archived / out of phase | `/documentation/99-archive` |
 
-These are **two distinct initiatives**. Keep them in separate documents; do not override or merge one into the other.
+Plans use the SEL format: Outcome & Business Value → Context & Scope → Solution Design → Delivery Plan.
 
-| Initiative | Document | Scope |
-|------------|----------|--------|
-| **CMS service pattern and Dato centralisation** | [technical/cms-service-pattern-and-dato-centralisation.md](technical/cms-service-pattern-and-dato-centralisation.md) | service-dato, @rotate/cms alias, getHomepage/getPageBySlug, architecture alignment |
-| **Vue to Astro migration** | [temporary/vue-to-astro-migration.md](temporary/vue-to-astro-migration.md) | Phased migration of 2022-site to Astro (routes, components, design-system, containers/modules) |
+## Start here
 
-The migration plan may reference the CMS pattern (e.g. "CMS access via @rotate/cms"); the CMS plan does not define the migration. Edit each doc only for its own scope.
+- **Handover — next steps**: `00-start-here/handover-next-steps.md`
 
-## Parallel agents
+## Discovery
 
-To run **multiple agents at the same time**, use [temporary/parallel-agent-workstreams.md](temporary/parallel-agent-workstreams.md). It splits todos into four workstreams (A: service-dato package; B: app alias + container; C: 2022-site discovery; D: design-system + layout). Each agent picks one workstream and edits only those files; no overlap.
+- **Discovery index**: `01-discovery/00-index.md`
+- **CMS and data**: `01-discovery/01-cms-and-data.md`
+- **Content blocks and rendering**: `01-discovery/02-content-blocks-and-rendering.md`
+- **Tracking and consent**: `01-discovery/03-tracking-and-consent.md`
+- **SEO and routing**: `01-discovery/04-seo-and-routing.md`
+- **Images and media**: `01-discovery/05-images-and-media.md`
+- **Deployment and QA**: `01-discovery/06-deployment-and-qa.md`
+- **Coverage checklist**: `01-discovery/07-coverage-checklist.md`
+
+## Solution design
+
+- **Solution design index**: `02-solution/00-index.md`
+- **CMS service pattern and Dato centralisation**: `02-solution/cms-service-pattern-and-dato-centralisation.md`
+- **Content blocks and inline blocks**: `02-solution/content-blocks-and-inline-blocks-plan.md`
+- **External services and tracking**: `02-solution/external-services-and-tracking-plan.md`
+- **SEO, sitemap, redirects, error pages**: `02-solution/seo-sitemap-redirects-error-pages-plan.md`
+- **Images and media**: `02-solution/images-and-media.md`
+- **Deployment and QA**: `02-solution/deployment-and-qa.md`
+
+## Implementation
+
+- **Implementation index**: `03-implementation/00-index.md`
+- **Workstreams**: `03-implementation/02-workstreams/`
+- **Ticket templates**: `03-implementation/03-tickets/`
+
+## Reference
+
+- **Dato Vue to service review**: `05-reference/dato-vue-to-service-review.md`
+
+## Archive
+
+Out-of-phase or superseded material belongs in `99-archive/`.

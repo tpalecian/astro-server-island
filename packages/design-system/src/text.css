@@ -48,4 +48,684 @@
   --size-size-1500: 160px;
   --size-size-1600: 192px;
   --size-size-1700: 256px;
+
+  --letter-spacing-body-style1-100: 0px;
+  --letter-spacing-body-style1-200: 0px;
+  --letter-spacing-body-style1-300: 0px;
+  --letter-spacing-body-style1-400: 0px;
+  --letter-spacing-body-style1-500: -0.11999999731779099px;
+  --letter-spacing-body-style1-600: -0.18000000715255737px;
+  --letter-spacing-body-style1-700: -0.47999998927116394px;
+  --letter-spacing-body-style1-800: -0.9599999785423279px;
+  --letter-spacing-body-style1-900: -1.9199999570846558px;
+  --letter-spacing-body-style1-1000: -2.4000000953674316px;
+
+  --letter-spacing-body-style2-100: 0px;
+  --letter-spacing-body-style2-200: 0px;
+  --letter-spacing-body-style2-300: 0px;
+  --letter-spacing-body-style2-400: 0px;
+  --letter-spacing-body-style2-500: 0px;
+  --letter-spacing-body-style2-600: 0px;
+  --letter-spacing-body-style2-700: -0.23999999463558197px;
+  --letter-spacing-body-style2-800: -0.6399999856948853px;
+  --letter-spacing-body-style2-900: -1.440000057220459px;
+  --letter-spacing-body-style2-1000: -1.600000023841858px;
+
+  --letter-spacing-body-style3-100: 0px;
+  --letter-spacing-body-style3-200: 0px;
+  --letter-spacing-body-style3-300: 0px;
+  --letter-spacing-body-style3-400: 0px;
+  --letter-spacing-body-style3-500: -0.11999999731779099px;
+  --letter-spacing-body-style3-600: -0.18000000715255737px;
+  --letter-spacing-body-style3-700: -0.47999998927116394px;
+  --letter-spacing-body-style3-800: -0.6399999856948853px;
+  --letter-spacing-body-style3-900: -0.9599999785423279px;
+  --letter-spacing-body-style3-1000: -1.600000023841858px;
+
+  --letter-spacing-longform-style1-100: 0px;
+  --letter-spacing-longform-style1-200: 0px;
+  --letter-spacing-longform-style1-300: 0px;
+  --letter-spacing-longform-style1-400: 0px;
+  --letter-spacing-longform-style1-500: -0.11999999731779099px;
+  --letter-spacing-longform-style1-600: -0.18000000715255737px;
+  --letter-spacing-longform-style1-700: -0.47999998927116394px;
+  --letter-spacing-longform-style1-800: -0.9599999785423279px;
+  --letter-spacing-longform-style1-900: -1.9199999570846558px;
+  --letter-spacing-longform-style1-1000: -2.4000000953674316px;
+
+  --letter-spacing-thumbnail-description: 0px;
+  --letter-spacing-thumbnail-title: -1.9199999570846558px;
+
+  --letter-spacing-title-style1-100: 0px;
+  --letter-spacing-title-style1-200: 0px;
+  --letter-spacing-title-style1-300: 0px;
+  --letter-spacing-title-style1-400: 0px;
+  --letter-spacing-title-style1-500: -0.11999999731779099px;
+  --letter-spacing-title-style1-600: -0.18000000715255737px;
+  --letter-spacing-title-style1-700: -0.47999998927116394px;
+  --letter-spacing-title-style1-800: -0.9599999785423279px;
+  --letter-spacing-title-style1-900: -1.9199999570846558px;
+  --letter-spacing-title-style1-1000: -2.4000000953674316px;
+
+  --letter-spacing-title-style2-100: 0px;
+  --letter-spacing-title-style2-200: 0px;
+  --letter-spacing-title-style2-300: 0px;
+  --letter-spacing-title-style2-400: 0px;
+  --letter-spacing-title-style2-500: 0px;
+  --letter-spacing-title-style2-600: 0px;
+  --letter-spacing-title-style2-700: -0.23999999463558197px;
+  --letter-spacing-title-style2-800: -0.6399999856948853px;
+  --letter-spacing-title-style2-900: -1.440000057220459px;
+  --letter-spacing-title-style2-1000: -1.600000023841858px;
+
+  --letter-spacing-title-style3-100: 0px;
+  --letter-spacing-title-style3-200: 0px;
+  --letter-spacing-title-style3-300: 0px;
+  --letter-spacing-title-style3-400: 0px;
+  --letter-spacing-title-style3-500: 0px;
+  --letter-spacing-title-style3-600: 0px;
+  --letter-spacing-title-style3-700: -0.47999998927116394px;
+  --letter-spacing-title-style3-800: -0.6399999856948853px;
+  --letter-spacing-title-style3-900: -1.440000057220459px;
+  --letter-spacing-title-style3-1000: -1.600000023841858px;
+
+  --letter-spacing-title-style4-100: 0px;
+  --letter-spacing-title-style4-200: 0px;
+  --letter-spacing-title-style4-300: 0px;
+  --letter-spacing-title-style4-400: 0px;
+  --letter-spacing-title-style4-500: -0.11999999731779099px;
+  --letter-spacing-title-style4-600: -0.18000000715255737px;
+  --letter-spacing-title-style4-700: -0.47999998927116394px;
+  --letter-spacing-title-style4-800: -0.6399999856948853px;
+  --letter-spacing-title-style4-900: -0.9599999785423279px;
+  --letter-spacing-title-style4-1000: -1.600000023841858px;
+}
+
+
+@utility title-style1-100 {
+  font-family: var(--font-title-style1);
+  font-size: var(--size-size-300);
+  font-weight: var(--weight-title-style1);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-title-style1-100);
+}
+@utility title-style1-200 {
+  font-family: var(--font-title-style1);
+  font-size: var(--size-size-500);
+  font-weight: var(--weight-title-style1);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-title-style1-200);
+}
+@utility title-style1-300 {
+  font-family: var(--font-title-style1);
+  font-size: var(--size-size-600);
+  font-weight: var(--weight-title-style1);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-title-style1-300);
+}
+@utility title-style1-400 {
+  font-family: var(--font-title-style1);
+  font-size: var(--size-size-700);
+  font-weight: var(--weight-title-style1);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-title-style1-400);
+}
+@utility title-style1-500 {
+  font-family: var(--font-title-style1);
+  font-size: var(--size-size-800);
+  font-weight: var(--weight-title-style1);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-title-style1-500);
+}
+@utility title-style1-600 {
+  font-family: var(--font-title-style1);
+  font-size: var(--size-size-900);
+  font-weight: var(--weight-title-style1);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-title-style1-600);
+}
+@utility title-style1-700 {
+  font-family: var(--font-title-style1);
+  font-size: var(--size-size-1000);
+  font-weight: var(--weight-title-style1);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-title-style1-700);
+}
+@utility title-style1-800 {
+  font-family: var(--font-title-style1);
+  font-size: var(--size-size-1100);
+  font-weight: var(--weight-title-style1);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-title-style1-800);
+}
+@utility title-style1-900 {
+  font-family: var(--font-title-style1);
+  font-size: var(--size-size-1200);
+  font-weight: var(--weight-title-style1);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-title-style1-900);
+}
+@utility title-style1-1000 {
+  font-family: var(--font-title-style1);
+  font-size: var(--size-size-1300);
+  font-weight: var(--weight-title-style1);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-title-style1-1000);
+}
+
+@utility title-style2-100 {
+  font-family: var(--font-title-style2);
+  font-size: var(--size-size-300);
+  font-weight: var(--weight-title-style2);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-title-style2-100);
+}
+@utility title-style2-200 {
+  font-family: var(--font-title-style2);
+  font-size: var(--size-size-500);
+  font-weight: var(--weight-title-style2);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-title-style2-200);
+}
+@utility title-style2-300 {
+  font-family: var(--font-title-style2);
+  font-size: var(--size-size-600);
+  font-weight: var(--weight-title-style2);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-title-style2-300);
+}
+@utility title-style2-400 {
+  font-family: var(--font-title-style2);
+  font-size: var(--size-size-700);
+  font-weight: var(--weight-title-style2);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-title-style2-400);
+}
+@utility title-style2-500 {
+  font-family: var(--font-title-style2);
+  font-size: var(--size-size-800);
+  font-weight: var(--weight-title-style2);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-title-style2-500);
+}
+@utility title-style2-600 {
+  font-family: var(--font-title-style2);
+  font-size: var(--size-size-900);
+  font-weight: var(--weight-title-style2);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-title-style2-600);
+}
+@utility title-style2-700 {
+  font-family: var(--font-title-style2);
+  font-size: var(--size-size-1000);
+  font-weight: var(--weight-title-style2);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-title-style2-700);
+}
+@utility title-style2-800 {
+  font-family: var(--font-title-style2);
+  font-size: var(--size-size-1100);
+  font-weight: var(--weight-title-style2);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-title-style2-800);
+}
+@utility title-style2-900 {
+  font-family: var(--font-title-style2);
+  font-size: var(--size-size-1200);
+  font-weight: var(--weight-title-style2);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-title-style2-900);
+}
+@utility title-style2-1000 {
+  font-family: var(--font-title-style2);
+  font-size: var(--size-size-1300);
+  font-weight: var(--weight-title-style2);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-title-style2-1000);
+}
+
+@utility title-style3-100 {
+  font-family: var(--font-title-style3);
+  font-size: var(--size-size-300);
+  font-weight: var(--weight-title-style3);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-title-style3-100);
+}
+@utility title-style3-200 {
+  font-family: var(--font-title-style3);
+  font-size: var(--size-size-500);
+  font-weight: var(--weight-title-style3);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-title-style3-200);
+}
+@utility title-style3-300 {
+  font-family: var(--font-title-style3);
+  font-size: var(--size-size-600);
+  font-weight: var(--weight-title-style3);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-title-style3-300);
+}
+@utility title-style3-400 {
+  font-family: var(--font-title-style3);
+  font-size: var(--size-size-700);
+  font-weight: var(--weight-title-style3);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-title-style3-400);
+}
+@utility title-style3-500 {
+  font-family: var(--font-title-style3);
+  font-size: var(--size-size-800);
+  font-weight: var(--weight-title-style3);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-title-style3-500);
+}
+@utility title-style3-600 {
+  font-family: var(--font-title-style3);
+  font-size: var(--size-size-900);
+  font-weight: var(--weight-title-style3);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-title-style3-600);
+}
+@utility title-style3-700 {
+  font-family: var(--font-title-style3);
+  font-size: var(--size-size-1000);
+  font-weight: var(--weight-title-style3);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-title-style3-700);
+}
+@utility title-style3-800 {
+  font-family: var(--font-title-style3);
+  font-size: var(--size-size-1100);
+  font-weight: var(--weight-title-style3);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-title-style3-800);
+}
+@utility title-style3-900 {
+  font-family: var(--font-title-style3);
+  font-size: var(--size-size-1200);
+  font-weight: var(--weight-title-style3);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-title-style3-900);
+}
+@utility title-style3-1000 {
+  font-family: var(--font-title-style3);
+  font-size: var(--size-size-1300);
+  font-weight: var(--weight-title-style3);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-title-style3-1000);
+}
+
+@utility title-style4-100 {
+  font-family: var(--font-title-style4);
+  font-size: var(--size-size-300);
+  font-weight: var(--weight-title-style4);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-title-style4-100);
+}
+@utility title-style4-200 {
+  font-family: var(--font-title-style4);
+  font-size: var(--size-size-500);
+  font-weight: var(--weight-title-style4);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-title-style4-200);
+}
+@utility title-style4-300 {
+  font-family: var(--font-title-style4);
+  font-size: var(--size-size-600);
+  font-weight: var(--weight-title-style4);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-title-style4-300);
+}
+@utility title-style4-400 {
+  font-family: var(--font-title-style4);
+  font-size: var(--size-size-700);
+  font-weight: var(--weight-title-style4);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-title-style4-400);
+}
+@utility title-style4-500 {
+  font-family: var(--font-title-style4);
+  font-size: var(--size-size-800);
+  font-weight: var(--weight-title-style4);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-title-style4-500);
+}
+@utility title-style4-600 {
+  font-family: var(--font-title-style4);
+  font-size: var(--size-size-900);
+  font-weight: var(--weight-title-style4);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-title-style4-600);
+}
+@utility title-style4-700 {
+  font-family: var(--font-title-style4);
+  font-size: var(--size-size-1000);
+  font-weight: var(--weight-title-style4);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-title-style4-700);
+}
+@utility title-style4-800 {
+  font-family: var(--font-title-style4);
+  font-size: var(--size-size-1100);
+  font-weight: var(--weight-title-style4);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-title-style4-800);
+}
+@utility title-style4-900 {
+  font-family: var(--font-title-style4);
+  font-size: var(--size-size-1200);
+  font-weight: var(--weight-title-style4);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-title-style4-900);
+}
+@utility title-style4-1000 {
+  font-family: var(--font-title-style4);
+  font-size: var(--size-size-1300);
+  font-weight: var(--weight-title-style4);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-title-style4-1000);
+}
+
+@utility body-style1-100 {
+  font-family: var(--font-body-style1);
+  font-size: var(--size-size-300);
+  font-weight: var(--weight-body-style1);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-body-style1-100);
+}
+@utility body-style1-200 {
+  font-family: var(--font-body-style1);
+  font-size: var(--size-size-500);
+  font-weight: var(--weight-body-style1);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-body-style1-200);
+}
+@utility body-style1-300 {
+  font-family: var(--font-body-style1);
+  font-size: var(--size-size-600);
+  font-weight: var(--weight-body-style1);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-body-style1-300);
+}
+@utility body-style1-400 {
+  font-family: var(--font-body-style1);
+  font-size: var(--size-size-700);
+  font-weight: var(--weight-body-style1);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-body-style1-400);
+}
+@utility body-style1-500 {
+  font-family: var(--font-body-style1);
+  font-size: var(--size-size-800);
+  font-weight: var(--weight-body-style1);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-body-style1-500);
+}
+@utility body-style1-600 {
+  font-family: var(--font-body-style1);
+  font-size: var(--size-size-900);
+  font-weight: var(--weight-body-style1);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-body-style1-600);
+}
+@utility body-style1-700 {
+  font-family: var(--font-body-style1);
+  font-size: var(--size-size-1000);
+  font-weight: var(--weight-body-style1);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-body-style1-700);
+}
+@utility body-style1-800 {
+  font-family: var(--font-body-style1);
+  font-size: var(--size-size-1100);
+  font-weight: var(--weight-body-style1);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-body-style1-800);
+}
+@utility body-style1-900 {
+  font-family: var(--font-body-style1);
+  font-size: var(--size-size-1200);
+  font-weight: var(--weight-body-style1);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-body-style1-900);
+}
+@utility body-style1-1000 {
+  font-family: var(--font-body-style1);
+  font-size: var(--size-size-1300);
+  font-weight: var(--weight-body-style1);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-body-style1-1000);
+}
+
+@utility body-style2-100 {
+  font-family: var(--font-body-style2);
+  font-size: var(--size-size-300);
+  font-weight: var(--weight-body-style2);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-body-style2-100);
+}
+@utility body-style2-200 {
+  font-family: var(--font-body-style2);
+  font-size: var(--size-size-500);
+  font-weight: var(--weight-body-style2);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-body-style2-200);
+}
+@utility body-style2-300 {
+  font-family: var(--font-body-style2);
+  font-size: var(--size-size-600);
+  font-weight: var(--weight-body-style2);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-body-style2-300);
+}
+@utility body-style2-400 {
+  font-family: var(--font-body-style2);
+  font-size: var(--size-size-700);
+  font-weight: var(--weight-body-style2);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-body-style2-400);
+}
+@utility body-style2-500 {
+  font-family: var(--font-body-style2);
+  font-size: var(--size-size-800);
+  font-weight: var(--weight-body-style2);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-body-style2-500);
+}
+@utility body-style2-600 {
+  font-family: var(--font-body-style2);
+  font-size: var(--size-size-900);
+  font-weight: var(--weight-body-style2);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-body-style2-600);
+}
+@utility body-style2-700 {
+  font-family: var(--font-body-style2);
+  font-size: var(--size-size-1000);
+  font-weight: var(--weight-body-style2);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-body-style2-700);
+}
+@utility body-style2-800 {
+  font-family: var(--font-body-style2);
+  font-size: var(--size-size-1100);
+  font-weight: var(--weight-body-style2);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-body-style2-800);
+}
+@utility body-style2-900 {
+  font-family: var(--font-body-style2);
+  font-size: var(--size-size-1200);
+  font-weight: var(--weight-body-style2);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-body-style2-900);
+}
+@utility body-style2-1000 {
+  font-family: var(--font-body-style2);
+  font-size: var(--size-size-1300);
+  font-weight: var(--weight-body-style2);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-body-style2-1000);
+}
+
+@utility body-style3-100 {
+  font-family: var(--font-body-style3);
+  font-size: var(--size-size-300);
+  font-weight: var(--weight-body-style3);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-body-style3-100);
+}
+@utility body-style3-200 {
+  font-family: var(--font-body-style3);
+  font-size: var(--size-size-500);
+  font-weight: var(--weight-body-style3);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-body-style3-200);
+}
+@utility body-style3-300 {
+  font-family: var(--font-body-style3);
+  font-size: var(--size-size-600);
+  font-weight: var(--weight-body-style3);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-body-style3-300);
+}
+@utility body-style3-400 {
+  font-family: var(--font-body-style3);
+  font-size: var(--size-size-700);
+  font-weight: var(--weight-body-style3);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-body-style3-400);
+}
+@utility body-style3-500 {
+  font-family: var(--font-body-style3);
+  font-size: var(--size-size-800);
+  font-weight: var(--weight-body-style3);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-body-style3-500);
+}
+@utility body-style3-600 {
+  font-family: var(--font-body-style3);
+  font-size: var(--size-size-900);
+  font-weight: var(--weight-body-style3);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-body-style3-600);
+}
+@utility body-style3-700 {
+  font-family: var(--font-body-style3);
+  font-size: var(--size-size-1000);
+  font-weight: var(--weight-body-style3);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-body-style3-700);
+}
+@utility body-style3-800 {
+  font-family: var(--font-body-style3);
+  font-size: var(--size-size-1100);
+  font-weight: var(--weight-body-style3);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-body-style3-800);
+}
+@utility body-style3-900 {
+  font-family: var(--font-body-style3);
+  font-size: var(--size-size-1200);
+  font-weight: var(--weight-body-style3);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-body-style3-900);
+}
+@utility body-style3-1000 {
+  font-family: var(--font-body-style3);
+  font-size: var(--size-size-1300);
+  font-weight: var(--weight-body-style3);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-body-style3-1000);
+}
+
+@utility longform-style1-100 {
+  font-family: var(--font-longform-style1);
+  font-size: var(--size-size-300);
+  font-weight: var(--weight-longform-style1);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-longform-style1-100);
+}
+@utility longform-style1-200 {
+  font-family: var(--font-longform-style1);
+  font-size: var(--size-size-500);
+  font-weight: var(--weight-longform-style1);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-longform-style1-200);
+}
+@utility longform-style1-300 {
+  font-family: var(--font-longform-style1);
+  font-size: var(--size-size-600);
+  font-weight: var(--weight-longform-style1);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-longform-style1-300);
+}
+@utility longform-style1-400 {
+  font-family: var(--font-longform-style1);
+  font-size: var(--size-size-700);
+  font-weight: var(--weight-longform-style1);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-longform-style1-400);
+}
+@utility longform-style1-500 {
+  font-family: var(--font-longform-style1);
+  font-size: var(--size-size-800);
+  font-weight: var(--weight-longform-style1);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-longform-style1-500);
+}
+@utility longform-style1-600 {
+  font-family: var(--font-longform-style1);
+  font-size: var(--size-size-900);
+  font-weight: var(--weight-longform-style1);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-longform-style1-600);
+}
+@utility longform-style1-700 {
+  font-family: var(--font-longform-style1);
+  font-size: var(--size-size-1000);
+  font-weight: var(--weight-longform-style1);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-longform-style1-700);
+}
+@utility longform-style1-800 {
+  font-family: var(--font-longform-style1);
+  font-size: var(--size-size-1100);
+  font-weight: var(--weight-longform-style1);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-longform-style1-800);
+}
+@utility longform-style1-900 {
+  font-family: var(--font-longform-style1);
+  font-size: var(--size-size-1200);
+  font-weight: var(--weight-longform-style1);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-longform-style1-900);
+}
+@utility longform-style1-1000 {
+  font-family: var(--font-longform-style1);
+  font-size: var(--size-size-1300);
+  font-weight: var(--weight-longform-style1);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-longform-style1-1000);
+}
+
+@utility thumbnail-title {
+  font-family: var(--font-body-style1);
+  font-size: var(--size-size-600);
+  font-weight: var(--weight-body-style1);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-thumbnail-title);
+}
+@utility thumbnail-description {
+  font-family: var(--font-body-style1);
+  font-size: var(--size-size-400);
+  font-weight: var(--weight-body-style1);
+  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-thumbnail-description);
+}
+
+@utility text-trimmed {
+  leading-trim: both;
+  text-edge: cap;
 }

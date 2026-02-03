@@ -6,6 +6,7 @@
 
   --breakpoint-tablet: 768px;
   --breakpoint-desktop: 1024px;
+  --breakpoint-maxwidth: 2048px
 }
 
 @layer base {

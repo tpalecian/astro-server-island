@@ -1,0 +1,65 @@
+---
+title: Task A1 — service-dato client + base types
+phase: implementation
+status: in-review
+owner: solutions-engineering
+last_updated: 2026-02-03
+depends_on: []
+related_docs: [02-solution/cms-service-pattern-and-dato-centralisation.md]
+tags: [implementation, ticket, cms]
+---
+
+# Task A1 — service-dato client + base types
+
+**Ticket:** A1
+**Phase:** 1
+**Scope (files/dirs you may edit):** `packages/service-dato/` only
+
+**Dependencies (blocking):** None.
+**Unblocks:** A2, A3, A4
+
+## 1. Outcome & Business Value (why)
+
+**Description:**
+Implement the Dato client wrapper and base CMS-agnostic types.
+
+**Outcome we expect:**
+Client setup and core types are in place.
+
+**Value (user / business):**
+Enables all downstream CMS work without app coupling.
+
+## 2. Context & Scope (what/where)
+
+**Scope:** `packages/service-dato/` only
+
+**Dependencies:** None.
+
+**Unblocks:** A2, A3, A4
+
+## 3. Delivery Plan (how)
+
+**Steps:**
+1. Add Dato client wrapper (executeQuery).
+2. Define base types (Homepage, Page, Navigation, RouteList, Globals).
+
+**Acceptance criteria:**
+
+| # | Criterion | Done |
+|---|---|---|
+| AC1 | Client wrapper exists and reads token from env. | |
+| AC2 | Base types compile and are exported internally. | |
+
+
+## 4. Validation & Testing
+
+Validate client can execute a basic query with mock or real env.
+
+## 5. References
+
+- 02-solution/cms-service-pattern-and-dato-centralisation.md
+
+
+## 6. Notes
+
+Keep client internal; export only from package index in A4.

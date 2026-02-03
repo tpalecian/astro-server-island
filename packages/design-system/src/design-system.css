@@ -3,3 +3,9 @@
 @import "./color-base.css";
 @import "./color-functions.css";
 @import "./color.css";
+@import "./dimension.css";
+@import "./grid.css";
+@import "./icon.css";
+@import "./opacity.css";
+@import "./radius.css";
+@import "./text.css";

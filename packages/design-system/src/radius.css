@@ -1,13 +1,15 @@
 @theme {
   --radius-radius-0: 0px;
+  --radius-radius-full: 999px;
+
   --radius-radius-primary: 0px;
   --radius-radius-primary-smallest: 4px;
   --radius-radius-primary-small: 8px;
   --radius-radius-primary-large: 16px;
   --radius-radius-primary-largest: 32px;
+
   --radius-radius-button-100: 999px;
   --radius-radius-button-200: 999px;
   --radius-radius-button-300: 999px;
   --radius-radius-button-400: 999px;
-  --radius-radius-full: 999px;
 }

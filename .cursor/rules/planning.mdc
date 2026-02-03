@@ -5,37 +5,61 @@ alwaysApply: true
 
 # Documentation & Planning Structure
 
-When scoping in **plan mode** or producing plans/overviews, follow this structure so leadership, engineers, and AI agents can use it.
+When scoping in **plan mode** or producing plans/overviews, follow this structure so **Solutions Engineers**, leadership, and delivery teams can use it.
 
-## Plan format: Structured Technical Layout
+## Plan format: Solutions Engineering Layout (SEL)
 
-Means **one document, three audiences**: leadership (decide), product/strategy (context), engineering/agents (execute). Each section is self-contained and skimmable.
+Means **one document, three lenses**: business value (why), solution design (what), delivery (how). Each section is self-contained and skimmable.
+
+### Required front matter (for search)
+
+Add a small metadata block at the top of every plan doc:
+
+```yaml
+---
+title: Short, searchable title
+phase: discovery | solution-design | implementation | operations | archived
+status: draft | in-review | approved | superseded
+owner: team or name
+last_updated: YYYY-MM-DD
+depends_on: [optional list of doc paths]
+related_docs: [optional list of doc paths]
+tags: [keyword, keyword, keyword]
+---
+```
 
 ### Required sections (in order)
 
-1. **Summary (leadership)**  
-   - **Purpose**: What we’re doing in one sentence; why now; expected outcome.  
-   - **Key decisions**: 2–5 bullets (go/no-go, scope boundaries, trade-offs).  
-   - **Impact & risks**: Business/customer impact; top 1–3 risks and mitigations.  
-   - **Tone**: No jargon. Readable in under 2 minutes. No implementation detail.
+1. **Outcome & Business Value (why)**  
+   - **Purpose**: Why we’re doing this now.  
+   - **Value**: Business impact, customer value, or risk reduction.  
+   - **Success criteria**: Measurable outcomes (what “done” means).  
+   - **Key decisions**: 2–5 bullets (scope boundaries, trade-offs).
 
-2. **Context (holistic)**  
-   - **Purpose**: Where this sits in the product/roadmap and how it connects.  
+2. **Context & Scope (what/where)**  
+   - **Current state**: What exists today.  
    - **In scope / out of scope**: Explicit boundaries (table or list).  
+   - **Assumptions**: What must be true.  
    - **Dependencies**: Upstream/downstream systems, teams, or milestones.  
-   - **Assumptions**: What we assume to be true; what would invalidate the plan.
+   - **Risks & mitigations**: Top 1–3 risks and how we reduce them.
 
-3. **Technical / execution (actionable)**  
-   - **Purpose**: Enough for engineers and AI agents to implement without guessing.  
+3. **Solution Design (how, at a high level)**  
+   - **Proposed approach**: Architecture, patterns, or flow.  
+   - **Interfaces & data**: Key integrations, data sources, contracts.  
+   - **Alternatives considered**: Briefly list 1–2 and why not chosen.  
+   - **Non‑goals**: What we explicitly won’t do.
+
+4. **Delivery Plan (how, at a practical level)**  
+   - **Phases / steps**: Ordered breakdown; each step testable or demonstrable.  
    - **Deliverables**: Concrete list (features, docs, configs) with acceptance criteria where useful.  
-   - **Phases or steps**: Ordered breakdown; each step testable or demonstrable.  
-   - **Open questions / TBD**: Called out so they don’t block implementation discovery.
+   - **Validation**: Tests, checks, or demos to prove success.  
+   - **Open questions / TBD**: Anything that blocks or needs decision.
 
-### STL quality bar
+### SEL quality bar
 
-- **Headings**: Use the section names above (Summary, Context, Technical/execution); add subsections as needed.  
+- **Headings**: Use the section names above; add subsections as needed.  
 - **Format**: Short paragraphs; bullets and tables for lists and comparisons.  
-- **Traceability**: Decisions in Summary should align with scope in Context and deliverables in Technical.  
+- **Traceability**: Outcomes in Section 1 must align with scope and delivery steps.  
 - **Single source of truth**: One doc per initiative/plan; link to deeper specs if needed, don’t duplicate.
 
 ### When producing a plan
@@ -45,19 +69,25 @@ Default to this structure. If the user asks for “just a summary” or “just 
 ## Root: `/documentation`
 
 - **All** plan-mode output and scoped documentation lives under **`/documentation`** (project root).
-- Keep it **organized**: e.g. business plan, holistic overview, technical specs, each in a logical place under `/documentation`.
+- Keep it **organized** by lifecycle phase.
 
-## Temporary vs final
+## Lifecycle structure
 
-- **Work in progress / drafts / unapproved** → **`/documentation/temporary`**
-- **Approved, final, canonical** → Move out of `temporary` and place in the right group under **`/documentation`** (e.g. `/documentation/business`, `/documentation/overview`, `/documentation/technical`).
+| Phase / Purpose | Location |
+|---|---|
+| Start here / entry point | `/documentation/00-start-here` |
+| Discovery | `/documentation/01-discovery` |
+| Solution design | `/documentation/02-solution` |
+| Implementation (future) | `/documentation/03-implementation` |
+| Operations & QA (future) | `/documentation/04-operations` |
+| Reference (supporting) | `/documentation/05-reference` |
+| Work in progress | `/documentation/wip` |
+| Archived / out of phase | `/documentation/99-archive` |
 
-When creating or editing docs, put new or in-progress items in `/documentation/temporary`; when something is finalized, describe or perform moving it to the appropriate subfolder under `/documentation`.
+## Drafts vs final
 
-## Summary
+- **Drafts / work in progress** → **`/documentation/wip`**
+- **Approved, in-phase** → Move into the correct lifecycle folder (00–05).
+- **Out of current phase** → **`/documentation/99-archive`**
 
-| Purpose              | Location                    |
-|----------------------|-----------------------------|
-| Plans & docs (root)  | `/documentation`            |
-| Drafts / in progress | `/documentation/temporary` |
-| Final, grouped docs  | `/documentation/<group>`    |
+When creating or editing docs, put new or in-progress items in `/documentation/wip`; when something is finalized, move it to the appropriate lifecycle folder. If it is no longer relevant to the current phase, move it to `/documentation/99-archive`.

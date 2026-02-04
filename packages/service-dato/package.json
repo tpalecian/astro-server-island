@@ -5,20 +5,21 @@
 	"sideEffects": false,
 	"main": "./src/index.ts",
 	"scripts": {
-		"build": "tsc -p .",
 		"check:types": "tsc -p . --noEmit",
 		"codegen": "graphql-codegen"
 	},
 	"dependencies": {
-		"@datocms/cda-client": "^0.2.10"
+		"@datocms/cda-client": "^0.2.10",
+		"graphql-tag": "^2.12.6"
 	},
 	"devDependencies": {
 		"@build/eslint-config": "workspace:*",
 		"@build/tsconfig": "workspace:*",
-		"dotenv": "^16.4.5",
 		"@graphql-codegen/cli": "^6.1.1",
 		"@graphql-codegen/typescript": "^5.0.7",
 		"@graphql-codegen/typescript-operations": "^5.0.7",
-		"typescript": "^5.9.0"
+		"dotenv": "^17.2.3",
+		"graphql": "^16.12.0",
+		"typescript": "^5.9.3"
 	}
 }

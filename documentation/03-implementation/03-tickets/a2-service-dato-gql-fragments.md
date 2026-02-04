@@ -37,7 +37,7 @@ Provides consistent query layer for CMS access and type-safe results.
 
 **Unblocks:** A4
 
-**Constraint:** Dato schema uses per-model field types (e.g. `HomepageModelHeroLinkField`). There is no generic `LinkField` or `StructuredTextField`; link and structured-text selections are inlined in queries/fragments where used. Fragment files `link.graphql` and `structured-text.graphql` are comment-only; selections live inline.
+**Constraint:** Dato schema uses per-model field types (e.g. `HomepageModelHeroLinkField`). There is no generic `LinkField` or `StructuredTextField`; link and structured-text selections are inlined in queries/fragments where used.
 
 ## 3. Delivery Plan (how)
 
@@ -54,16 +54,30 @@ Provides consistent query layer for CMS access and type-safe results.
 | AC1 | All required fragments exist and are referenced in queries; link/structured-text inlined. | ✓ |
 | AC2 | Queries compile with fragments; codegen produces `types-dato.ts`. | ✓ |
 
+## 4. Implementation (current)
 
-## 4. Validation & Testing
+**File layout:**
+
+- **Queries:** `src/gql/*.gql.ts` — one file per operation (e.g. `home.gql.ts`, `homepage-card-slider.gql.ts`, `all-studios-cards.gql.ts`). Each exports a `gql`-tagged document (from `graphql-tag`). Re-exported from `src/gql/index.ts`.
+- **Fragments:** `src/gql/fragments/*.gql.ts` — `meta.gql.ts` (Type, Media, SeoHomepage), `models.gql.ts` (Card, Tag), `inline-blocks.gql.ts` (OnTagRecord, OnEmojiRecord, etc.), `blocks.gql.ts` (OnCardSliderRecord, OnQuoteRecord, etc.). Re-exported from `src/gql/fragments/index.ts`.
+- **Codegen:** `codegen.ts` uses `documents: ['src/gql/**/*.gql.ts']`; output `src/types-dato.ts`. No `.graphql` files; all operations and fragments live in `.gql.ts`.
+
+**Fragment usage in queries:**
+
+- Queries that use fragments import the fragment DocumentNode(s) from `./fragments` and interpolate them into the query template using **`print(fragment)`** from `graphql`. Example: `` gql`query Home { homepage { ...SeoHomepage ... } } ${print(MediaFragment)} ${print(SeoHomepageFragment)}` ``.
+- **Do not** interpolate a fragment DocumentNode directly (e.g. `${MediaFragment}`). That stringifies to `"[object Object]"` and causes GraphQL parse errors (e.g. "Unexpected [").
+- Any query that spreads a fragment must include that fragment’s definition in the same document (and any fragment it depends on, e.g. Card requires Type + Media). List all required fragments and interpolate each with `print(...)`.
+
+**Handlers:** Import query DocumentNodes from `../gql` and pass them to `executeQuery`. Getters remain the only public API; gql is internal.
+
+## 5. Validation & Testing
 
 Run codegen and a sample query to ensure fragments resolve and types are generated.
 
-## 5. References
+## 6. References
 
 - 02-solution/cms-service-pattern-and-dato-centralisation.md
 
-
-## 6. Notes
+## 7. Notes
 
 Keep gql internal; export only through getters. Types from `types-dato.ts` are exported with getters.

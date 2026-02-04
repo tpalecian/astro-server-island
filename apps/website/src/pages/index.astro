@@ -4,8 +4,6 @@ import HomeHero from '@/components/modules/HomeHero.astro'
 
 const token = import.meta.env.DATOCMS_API_KEY ?? ''
 const homepage = await getHomepage({ token })
-
-console.log(homepage)
 ---
 
 <html lang="en">

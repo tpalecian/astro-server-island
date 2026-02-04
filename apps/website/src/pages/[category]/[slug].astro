@@ -1,0 +1,30 @@
+---
+import { getPageBySlug } from '@rotate/cms'
+
+export const prerender = false
+
+const token = import.meta.env.DATOCMS_API_KEY ?? ''
+const category = Astro.params.category ?? ''
+const slug = Astro.params.slug ?? ''
+const page = await getPageBySlug(category, slug, { token })
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		<title>{page ? `${slug} | ${category}` : 'Not found'}</title>
+	</head>
+	<body>
+		<main>
+			{page ? (
+				<article>
+					<h1>{category} / {slug}</h1>
+					<p>Page content (blocks in Task F)</p>
+				</article>
+			) : (
+				<p>Not found</p>
+			)}
+		</main>
+	</body>
+</html>

@@ -1,5 +1,5 @@
 import { executeQuery } from '../client'
-import { QUERY_STUDIO_BY_SLUG, QUERY_THINKING_BY_SLUG, QUERY_WORK_BY_SLUG } from '../gql/queries'
+import { studioBySlugQuery, thinkingBySlugQuery, workBySlugQuery } from '../gql'
 
 import type {
 	StudioBySlugQuery,
@@ -23,7 +23,7 @@ export async function getPageBySlug(
 		case 'work':
 			return (
 				(
-					await executeQuery<WorkBySlugQuery>(QUERY_WORK_BY_SLUG, {
+					await executeQuery<WorkBySlugQuery>(workBySlugQuery, {
 						...options,
 						variables,
 					})
@@ -32,7 +32,7 @@ export async function getPageBySlug(
 		case 'thinking':
 			return (
 				(
-					await executeQuery<ThinkingBySlugQuery>(QUERY_THINKING_BY_SLUG, {
+					await executeQuery<ThinkingBySlugQuery>(thinkingBySlugQuery, {
 						...options,
 						variables,
 					})
@@ -41,7 +41,7 @@ export async function getPageBySlug(
 		case 'studio':
 			return (
 				(
-					await executeQuery<StudioBySlugQuery>(QUERY_STUDIO_BY_SLUG, {
+					await executeQuery<StudioBySlugQuery>(studioBySlugQuery, {
 						...options,
 						variables,
 					})

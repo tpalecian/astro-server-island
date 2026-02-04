@@ -1,0 +1,29 @@
+---
+import { getCategoryBySlug, getCategoryCards } from '@rotate/cms'
+
+export const prerender = false
+// Server-rendered; cache at Bunny. No getStaticPaths (sitemap uses getRoutes() in G2).
+const token = import.meta.env.DATOCMS_API_KEY ?? ''
+const category = Astro.params.category ?? ''
+const getterOptions = { token }
+
+const categoryData = await getCategoryBySlug(category, getterOptions)
+const cardsSlug =
+	{ work: 'works', thinking: 'thinkings', studio: 'studios' }[category] ?? category
+const cards = await getCategoryCards(cardsSlug, getterOptions)
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		<title>{categoryData?.filterText ?? category} | Category</title>
+	</head>
+	<body>
+		<main>
+			<h1>{categoryData?.filterText ?? category}</h1>
+			{categoryData && <p>Category: {category}</p>}
+			{!categoryData && <p>Not found</p>}
+		</main>
+	</body>
+</html>

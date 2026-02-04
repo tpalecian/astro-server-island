@@ -1,12 +1,12 @@
 import { executeQuery } from '../client'
 import {
-	QUERY_ALL_CATEGORIES,
-	QUERY_ALL_STUDIOS_CATEGORY_CARDS,
-	QUERY_ALL_THINKINGS_CATEGORY_CARDS,
-	QUERY_ALL_WORKS_CATEGORY_CARDS,
-	QUERY_CATEGORY_BY_SLUG,
-	QUERY_HOMEPAGE_CARD_SLIDER,
-} from '../gql/queries'
+	allCategoriesQuery,
+	allStudiosCategoryCardsQuery,
+	allThinkingsCategoryCardsQuery,
+	allWorksCategoryCardsQuery,
+	categoryBySlugQuery,
+	homepageCardSliderQuery,
+} from '../gql'
 
 import type {
 	AllCategoriesQuery,
@@ -22,7 +22,7 @@ export async function getCategoryBySlug(
 	slug: string,
 	options: GetterOptions
 ): Promise<CategoryBySlugQuery['category']> {
-	const data = await executeQuery<CategoryBySlugQuery>(QUERY_CATEGORY_BY_SLUG, {
+	const data = await executeQuery<CategoryBySlugQuery>(categoryBySlugQuery, {
 		...options,
 		variables: { slug },
 	})
@@ -32,7 +32,7 @@ export async function getCategoryBySlug(
 export async function getAllCategories(
 	options: GetterOptions
 ): Promise<AllCategoriesQuery['allCategories']> {
-	const data = await executeQuery<AllCategoriesQuery>(QUERY_ALL_CATEGORIES, options)
+	const data = await executeQuery<AllCategoriesQuery>(allCategoriesQuery, options)
 	return data.allCategories ?? []
 }
 
@@ -48,7 +48,7 @@ export async function getCategoryCards(
 	| null
 > {
 	if (slug === 'everything') {
-		const data = await executeQuery<HomepageCardSliderQuery>(QUERY_HOMEPAGE_CARD_SLIDER, options)
+		const data = await executeQuery<HomepageCardSliderQuery>(homepageCardSliderQuery, options)
 		return data.homepage ?? null
 	}
 	switch (slug) {
@@ -56,21 +56,21 @@ export async function getCategoryCards(
 			return (
 				(
 					await executeQuery<AllThinkingsCategoryCardsQuery>(
-						QUERY_ALL_THINKINGS_CATEGORY_CARDS,
+						allThinkingsCategoryCardsQuery,
 						options
 					)
 				).allThinkings ?? []
 			)
 		case 'works':
 			return (
-				(await executeQuery<AllWorksCategoryCardsQuery>(QUERY_ALL_WORKS_CATEGORY_CARDS, options))
+				(await executeQuery<AllWorksCategoryCardsQuery>(allWorksCategoryCardsQuery, options))
 					.allWorks ?? []
 			)
 		case 'studios':
 			return (
 				(
 					await executeQuery<AllStudiosCategoryCardsQuery>(
-						QUERY_ALL_STUDIOS_CATEGORY_CARDS,
+						allStudiosCategoryCardsQuery,
 						options
 					)
 				).allStudios ?? []

@@ -1,7 +1,0 @@
-query AllWorksCategoryCards {
-  allWorks(first: 100) {
-    card {
-      ...Card
-    }
-  }
-}

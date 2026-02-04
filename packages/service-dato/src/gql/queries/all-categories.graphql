@@ -1,8 +1,0 @@
-query AllCategories {
-  allCategories {
-    id
-    slug
-    filterText
-    filterOrder
-  }
-}

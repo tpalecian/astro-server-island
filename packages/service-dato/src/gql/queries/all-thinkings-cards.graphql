@@ -1,7 +1,0 @@
-query AllThinkingsCategoryCards {
-  allThinkings(first: 100) {
-    card {
-      ...Card
-    }
-  }
-}

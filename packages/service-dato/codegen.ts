@@ -25,7 +25,7 @@ const config: CodegenConfig = {
 			},
 		},
 	],
-	documents: ['src/gql/**/*.graphql'],
+	documents: ['src/gql/**/*.gql.ts'],
 	generates: {
 		'src/types-dato.ts': {
 			plugins: ['typescript', 'typescript-operations'],

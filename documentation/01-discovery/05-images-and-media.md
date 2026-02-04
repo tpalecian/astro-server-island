@@ -3,10 +3,9 @@ title: Discovery — Images and media
 phase: discovery
 status: approved
 owner: solutions-engineering
-last_updated: 2026-02-03
+last_updated: 2026-02-04
 depends_on: []
-related_docs:
-  - 02-solution/content-blocks-and-inline-blocks-plan.md
+related_docs: []
 tags: [discovery, images, media, cdn]
 ---
 
@@ -32,25 +31,31 @@ tags: [discovery, images, media, cdn]
 **Assumptions:**
 - Media is served via Dato CDN.
 
-**Dependencies:** `02-solution/content-blocks-and-inline-blocks-plan.md`.
-
 **Risks & mitigations:**
 - Risk: inconsistent URL params. Mitigation: single utility function in implementation.
 
-## 3. Solution Design (final decisions)
+## 3. Ideas, options & references
 
-- Use **Dato CDN + query params**, with **Bunny CDN** in front.
-- Do not use imgix or Cloudinary.
+**Ideas / options explored:**
+- Dato CDN + query params vs. imgix/Cloudinary (current infra: Dato + Bunny CDN).
+- Single URL construction utility vs. ad-hoc per module (single utility for consistency).
 
-**Alternatives considered:**
-- Imgix/Cloudinary. Rejected due to current infrastructure decision.
+**References & further reading:**
+- Dato media API and URL formats; Bunny CDN docs.
+- 2022-site media usage and CDN setup.
 
-**Non‑goals:**
-- Building a new media pipeline.
+**Old code (2022-site) — current state / prior art:**
 
-## 4. Delivery Plan (how)
+| What | Path (2022-site) |
+|------|-------------------|
+| Content components that render images/video | `2022-site/components/Content/` (e.g. `MediaCaption.vue`, `MediaCarousel.vue` — how Dato media URLs and params are used) |
+| Any shared image/asset helper | 2022-site `plugins/`, `utils/`, or component imports (base URL, query params) |
 
-- Ensure the solution doc calls out URL generation and CDN placement.
+Use these paths when auditing how the 2022-site builds media URLs (Dato + Bunny); the new solution uses a single URL helper in the app.
 
-**Open questions / TBD:**
-- None.
+**Key information:**
+- Dato media base URL and query params; CDN placement (Bunny in front of Dato).
+
+---
+
+For the exact approach, CDN/URL strategy, and delivery → see `02-solution/images-and-media.md`.

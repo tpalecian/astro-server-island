@@ -1,69 +1,62 @@
 ---
-title: Block — Media Single
+title: Ticket FB1 — block media_single
 phase: implementation
-status: in-review
+status: approved
 owner: solutions-engineering
-last_updated: 2026-02-03
-depends_on: [A4, B, F1]
-related_docs: [02-solution/content-blocks-and-inline-blocks-plan.md]
+last_updated: 2026-02-04
+depends_on: [CMS getters + exports, app container, core content block modules]
 tags: [implementation, ticket, content-blocks]
 ---
 
-# Block — Media Single
+# Ticket FB1 — block media_single
 
-**Ticket:** FB1
-**Phase:** 3
-**Scope (files/dirs you may edit):** `apps/website/src/components/modules/`
+---
 
-**Dependencies (blocking):** A4, B, F1
-**Unblocks:** —
+## Description, Value & ACs
 
-## 1. Outcome & Business Value (why)
+**Scope:** Edit `apps/website/src/components/modules/`. Implement **media_single** block (_modelApiKey). Component: props only (caption, ratio, displayType, fullScreen, single asset). Use design-system; use getMediaUrl (images/media helper) for image src when that helper is available. No data fetching; no ad-hoc URL construction. Wire into block mapping by _modelApiKey.
 
-**Description:**
-Implement the `media_single` block module mapped by `_modelApiKey`.
+**Outcome:** media_single block renders with props only; matches design intent.
 
-**Outcome we expect:**
-The `media_single` block renders with props only and matches design intent.
-
-**Value (user / business):**
-Ensures CMS-driven pages render all required blocks consistently.
-
-## 2. Context & Scope (what/where)
-
-**Scope:** `apps/website/src/components/modules/`
-
-**Legacy component:** `2022-site/components/Content/MediaCaption.vue`
-
-**Design system:** Use `@rotate/design-system` tokens for typography, spacing, and layout.
-
-**Figma:** TODO — add Figma URL for `Block — Media Single`.
-
-## 3. Delivery Plan (how)
-
-**Steps:**
-1. Create module component for `media_single`.
-2. Map props to match legacy behavior.
-3. Ensure module is used via block mapping by `_modelApiKey`.
+**Value:** Single-media block with caption and display options.
 
 **Acceptance criteria:**
 
 | # | Criterion | Done |
-|---|---|---|
-| AC1 | `media_single` module renders without data fetching. | |
-| AC2 | Props align with legacy component behavior. | |
+|---|-----------|------|
+| AC1 | media_single module renders without data fetching. | |
+| AC2 | Props align with legacy component behaviour. | |
 | AC3 | Module uses design-system tokens (no ad-hoc styling). | |
 
-## 4. Validation & Testing
+---
 
-- Render the block in a page with mock CMS data.
-- Compare output to legacy component and Figma design.
+## Feasibility & Dependencies
 
-## 5. References
+**Blocking:** CMS getters + exports; app container; core content block modules.  
+**Unblocks:** —
 
-- `02-solution/content-blocks-and-inline-blocks-plan.md`
-- Legacy: `2022-site/components/Content/MediaCaption.vue`
+**Dependencies / risks:** Use media helper (images/media) when available for URLs.
 
-## 6. Notes
+---
 
-- Includes caption, ratio, displayType, fullScreen, single asset.
+## Analytics & Measurement
+
+N/A — implementation task. Success = ACs met.
+
+---
+
+## Testing
+
+Render block in page with mock CMS data; compare to legacy and Figma.
+
+---
+
+## Design & References
+
+**Figma / design:** [Add when available]
+
+---
+
+## Notes
+
+Steps: (1) Create module component for media_single. (2) Map props to match legacy behaviour (caption, ratio, displayType, fullScreen, single asset). (3) Ensure module is used via block mapping by _modelApiKey.

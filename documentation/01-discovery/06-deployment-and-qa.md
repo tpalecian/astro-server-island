@@ -3,12 +3,9 @@ title: Discovery — Deployment and QA expectations
 phase: discovery
 status: approved
 owner: solutions-engineering
-last_updated: 2026-02-03
+last_updated: 2026-02-04
 depends_on: []
-related_docs:
-  - 02-solution/seo-sitemap-redirects-error-pages-plan.md
-  - 02-solution/external-services-and-tracking-plan.md
-  - 03-implementation/vue-to-astro-migration.md
+related_docs: []
 tags: [discovery, deployment, qa, vercel]
 ---
 
@@ -37,32 +34,34 @@ tags: [discovery, deployment, qa, vercel]
 
 - Vercel remains the target host.
 
-**Dependencies:** `03-implementation/vue-to-astro-migration.md` for later implementation details.
-
 **Risks & mitigations:**
 
 - Risk: insufficient QA prior to cutover. Mitigation: pre‑launch checklist + automated tests.
 
-## 3. Solution Design (final decisions)
+## 3. Ideas, options & references
 
-- **Deployment host:** Vercel.
-- **QA:** Pre‑launch checklist required.
-- **Testing:** Playwright e2e tests and design‑matching (visual) checks.
-- **Env:** Single `.env.example` including Dato and all tracking vars.
+**Ideas / options explored:**
+- Vercel vs. other hosts (Vercel retained for current infrastructure).
+- Pre‑launch checklist + Playwright e2e and design/visual checks vs. manual-only QA.
+- Single `.env.example` for Dato and tracking vars (documented in app README).
 
-**Alternatives considered:**
+**References & further reading:**
+- Vercel deployment and env docs; Playwright e2e patterns.
+- 2022-site deployment and QA process.
 
-- Hosting elsewhere. Rejected due to current infrastructure alignment.
+**Old code (2022-site) — current state / prior art:**
 
-**Non‑goals:**
+| What | Path (2022-site) |
+|------|-------------------|
+| Deploy config | 2022-site `vercel.json`, `netlify.toml`, or host-specific config at repo root |
+| Env / build | 2022-site `.env.example`, build scripts, and env var usage |
+| QA / tests | Any 2022-site e2e or visual test setup (if present) |
 
-- Migrating CI/CD tooling beyond what’s needed for Vercel.
+Use these paths when aligning deployment and QA with current 2022-site behaviour; the new app deploys to Vercel with a single `.env.example` and Playwright e2e + pre-launch checklist.
 
-## 4. Delivery Plan (how)
+**Key information:**
+- Env var requirements (Dato, tracking); QA expectations and test coverage.
 
-- Define checklist items during implementation planning.
-- Ensure env var requirements are documented in the app README when implementation starts.
+---
 
-**Open questions / TBD:**
-
-- None.
+For the exact approach, host choice, QA checklist, and delivery → see `02-solution/deployment-and-qa.md`.

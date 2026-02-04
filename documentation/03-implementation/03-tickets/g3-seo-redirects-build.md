@@ -1,65 +1,61 @@
 ---
-title: Task G3 — build-time redirects
+title: Ticket G3 — SEO redirects (build)
 phase: implementation
-status: in-review
+status: approved
 owner: solutions-engineering
-last_updated: 2026-02-03
-depends_on: [A4]
-related_docs: [02-solution/seo-sitemap-redirects-error-pages-plan.md]
+last_updated: 2026-02-04
+depends_on: [CMS getters + exports]
 tags: [implementation, ticket, seo]
 ---
 
-# Task G3 — build-time redirects
+# Ticket G3 — SEO redirects (build)
 
-**Ticket:** G3
-**Phase:** 4
-**Scope (files/dirs you may edit):** Host config + build scripts
+---
 
-**Dependencies (blocking):** A4
-**Unblocks:** G4
+## Description, Value & ACs
 
-## 1. Outcome & Business Value (why)
+**Scope:** Edit `apps/website/vercel.json` (or host redirect config); build script that calls getRedirects(). Call getRedirects() at build; output in host format. Vercel: `vercel.json` with `redirects` array (source, destination, permanent). Map Dato redirectType (301/302) to permanent true/false. Build-time config only; no runtime redirect server. Out of scope: meta, sitemap, error pages.
 
-**Description:**
-Generate redirect config from getRedirects() at build.
+**Outcome:** Redirects generated at build; host config applied; redirectType mapped.
 
-**Outcome we expect:**
-Redirects applied by host during runtime.
-
-**Value (user / business):**
-Preserves legacy URL behavior.
-
-## 2. Context & Scope (what/where)
-
-**Scope:** Host config + build scripts
-
-**Dependencies:** A4
-
-**Unblocks:** G4
-
-## 3. Delivery Plan (how)
-
-**Steps:**
-1. Fetch redirects at build.
-2. Output host config.
+**Value:** Legacy URL redirects for SEO and bookmarks.
 
 **Acceptance criteria:**
 
 | # | Criterion | Done |
-|---|---|---|
-| AC1 | Redirect config includes all CMS redirects. | |
-| AC2 | Redirects work for legacy URLs. | |
+|---|-----------|------|
+| AC1 | getRedirects() at build produces redirect config. | |
+| AC2 | Vercel (or host) redirects applied; 301/302 correct. | |
 
+---
 
-## 4. Validation & Testing
+## Feasibility & Dependencies
 
-Test a sample of legacy redirects.
+**Blocking:** CMS getters + exports (getRedirects()).  
+**Unblocks:** Deployment + QA (validates redirects).
 
-## 5. References
+**Dependencies / risks:** None.
 
-- 02-solution/seo-sitemap-redirects-error-pages-plan.md
+---
 
+## Analytics & Measurement
 
-## 6. Notes
+N/A — implementation task. Success = ACs met.
 
-Confirm redirectType mapping during implementation.
+---
+
+## Testing
+
+Test redirect URLs in staging.
+
+---
+
+## Design & References
+
+**Figma / design:** N/A
+
+---
+
+## Notes
+
+Steps: (1) At build, call getRedirects(). (2) Map to Vercel (or host) redirect format; write vercel.json or inject into config.

@@ -1,13 +1,13 @@
 @theme {
-  --opacity-opacity-0: 0;
-  --opacity-opacity-100: 0.1;
-  --opacity-opacity-200: 0.2;
-  --opacity-opacity-300: 0.3;
-  --opacity-opacity-400: 0.4;
-  --opacity-opacity-500: 0.5;
-  --opacity-opacity-600: 0.6;
-  --opacity-opacity-700: 0.7;
-  --opacity-opacity-800: 0.8;
-  --opacity-opacity-900: 0.9;
-  --opacity-opacity-1000: 1;
+	--opacity-opacity-0: 0;
+	--opacity-opacity-100: 0.1;
+	--opacity-opacity-200: 0.2;
+	--opacity-opacity-300: 0.3;
+	--opacity-opacity-400: 0.4;
+	--opacity-opacity-500: 0.5;
+	--opacity-opacity-600: 0.6;
+	--opacity-opacity-700: 0.7;
+	--opacity-opacity-800: 0.8;
+	--opacity-opacity-900: 0.9;
+	--opacity-opacity-1000: 1;
 }

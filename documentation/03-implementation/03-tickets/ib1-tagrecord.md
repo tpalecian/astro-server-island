@@ -1,69 +1,61 @@
 ---
-title: Inline Block — Tag
+title: Ticket IB1 — inline block TagRecord
 phase: implementation
-status: in-review
+status: approved
 owner: solutions-engineering
-last_updated: 2026-02-03
-depends_on: [A4, F2]
-related_docs: [02-solution/content-blocks-and-inline-blocks-plan.md]
+last_updated: 2026-02-04
+depends_on: [CMS getters + exports, structured text]
 tags: [implementation, ticket, content-blocks]
 ---
 
-# Inline Block — Tag
+# Ticket IB1 — inline block TagRecord
 
-**Ticket:** IB1
-**Phase:** 3
-**Scope (files/dirs you may edit):** `apps/website/src/components/modules/` (StructuredText inline)
+---
 
-**Dependencies (blocking):** A4, F2
-**Unblocks:** —
+## Description, Value & ACs
 
-## 1. Outcome & Business Value (why)
+**Scope:** Edit `apps/website/src/components/modules/` (StructuredText inline renderer). Implement **TagRecord** inline block (_modelApiKey). Renders inside structured text. Props only; design-system. No fetch. Inline block props from structured text; shape from GQL onTagRecord. Wire into the structured-text renderer.
 
-**Description:**
-Implement the `TagRecord` block module mapped by `_modelApiKey`.
+**Outcome:** TagRecord renders inside structured text with props only.
 
-**Outcome we expect:**
-The `TagRecord` block renders with props only and matches design intent.
-
-**Value (user / business):**
-Ensures CMS-driven pages render all required blocks consistently.
-
-## 2. Context & Scope (what/where)
-
-**Scope:** `apps/website/src/components/modules/` (StructuredText inline)
-
-**Legacy component:** `2022-site/gql/fragments/inline-blocks.gql.js (onTagRecord)`
-
-**Design system:** Use `@rotate/design-system` tokens for typography, spacing, and layout.
-
-**Figma:** TODO — add Figma URL for `Inline Block — Tag`.
-
-## 3. Delivery Plan (how)
-
-**Steps:**
-1. Create module component for `TagRecord`.
-2. Map props to match legacy behavior.
-3. Ensure module is used via block mapping by `_modelApiKey`.
+**Value:** Tag inline in rich text.
 
 **Acceptance criteria:**
 
 | # | Criterion | Done |
-|---|---|---|
-| AC1 | `TagRecord` module renders without data fetching. | |
-| AC2 | Props align with legacy component behavior. | |
-| AC3 | Module uses design-system tokens (no ad-hoc styling). | |
+|---|-----------|------|
+| AC1 | TagRecord module renders without data fetching. | |
+| AC2 | Props align with legacy; design-system tokens. | |
 
-## 4. Validation & Testing
+---
 
-- Render the block in a page with mock CMS data.
-- Compare output to legacy component and Figma design.
+## Feasibility & Dependencies
 
-## 5. References
+**Blocking:** CMS getters + exports; structured text.  
+**Unblocks:** —
 
-- `02-solution/content-blocks-and-inline-blocks-plan.md`
-- Legacy: `2022-site/gql/fragments/inline-blocks.gql.js (onTagRecord)`
+**Dependencies / risks:** None.
 
-## 6. Notes
+---
 
-- Inline tag rendering inside structured text.
+## Analytics & Measurement
+
+N/A — implementation task. Success = ACs met.
+
+---
+
+## Testing
+
+Render structured text with TagRecord; compare to legacy.
+
+---
+
+## Design & References
+
+**Figma / design:** [Add when available]
+
+---
+
+## Notes
+
+Steps: (1) Create inline component for TagRecord. (2) Map props to legacy behaviour; wire into the structured-text renderer.

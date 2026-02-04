@@ -3,26 +3,55 @@ title: Route migration map (Nuxt → Astro)
 phase: discovery
 status: in-review
 owner: solutions-engineering
-last_updated: 2026-02-03
+last_updated: 2026-02-04
 depends_on: []
 related_docs:
-  - 03-implementation/vue-to-astro-migration.md
-  - 03-implementation/03-tickets/e-dynamic-routes.md
   - 01-discovery/04-seo-and-routing.md
 tags: [discovery, routes, migration, 2022-site, nuxt]
 ---
 
 # Route migration map (Nuxt → Astro)
 
-**Purpose:** Single source of truth for which legacy Nuxt routes map to which Astro pages. Derived from the 2022-site (Nuxt 2) `pages/` structure and `services/routes.js`. Used by Task E (dynamic routes) and getStaticPaths.
+## 1. Outcome & Business Value (why)
 
-## Source of truth: legacy project (2022-site)
+**Purpose:** Single source of truth for which legacy Nuxt routes map to which Astro pages, so implementation (Task E, getStaticPaths, sitemap) can proceed without guessing.
 
-Routes are retrieved from the **legacy Nuxt project (2022-site)**:
+**Value:** Reduces re-work and keeps route behaviour consistent during migration.
 
-- **Nuxt file-based routing:** `2022-site/pages/` — each file becomes a route (Nuxt 2: [directory structure](https://v2.nuxt.com/docs/directory-structure/pages)).
-- **Dynamic route list from Dato:** `2022-site/services/routes.js` — used at build/generate time.
-- **This repo:** No 2022-site code lives here; this map is the handover. When in doubt, audit the legacy repo.
+**Success criteria:** Map is accurate and referenced by implementation docs.
+
+## 2. Context & Scope (what/where)
+
+**Current state:** Derived from the 2022-site (Nuxt 2) `pages/` structure and `services/routes.js`. This repo has no 2022-site code; the map is the handover.
+
+**In scope:** Route mapping only. Out of scope: redirects (see G3), sitemap generation (see G2), content blocks (Task F).
+
+**Risks & mitigations:** Map drift if 2022-site or Dato routes change — refresh using steps below.
+
+## 3. Ideas, options & references
+
+**Ideas / options explored:**
+- Single handover map (this doc) vs. embedding route list in implementation only (map preferred for discoverability and sitemap/SEO alignment).
+- Path list from `getRoutes()` (from `@rotate/cms`) for sitemap (G2) and getStaticPaths.
+
+**References & further reading:**
+- Nuxt 2 [directory structure](https://v2.nuxt.com/docs/directory-structure/pages); 2022-site `pages/` and `services/routes.js`.
+- `01-discovery/04-seo-and-routing.md` for SEO/routing scope; Task E and G2 for implementation.
+
+**Key information:**
+- Legacy route → Astro file mapping; `getRoutes()` output (`allCategories`, `allThinkings`, `allWorks`, `allStudios`, `infoPage`).
+
+**Old code (2022-site) — current state / prior art:**
+
+| What | Path (2022-site) |
+|------|-------------------|
+| Nuxt file-based routing | `2022-site/pages/` (e.g. `index.vue`, `info.vue`, `_category/index.vue`, `_category/_slug.vue`, `styleguide/*.vue`) — [Nuxt 2 directory structure](https://v2.nuxt.com/docs/directory-structure/pages) |
+| Dynamic route list from Dato | `2022-site/services/routes.js` — used at build/generate time |
+| This repo | No 2022-site code lives here; this map is the handover. When in doubt, audit the legacy repo. |
+
+### Source of truth: legacy project (2022-site)
+
+Routes are retrieved from the **legacy Nuxt project (2022-site)** using the paths in the table above.
 
 ## How to refresh this map
 

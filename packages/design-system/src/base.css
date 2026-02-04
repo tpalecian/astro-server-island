@@ -1,45 +1,39 @@
 @theme {
-  --*: initial;
+	--*: initial;
 
-  --color-background: light-dark(white, black);
-  --color-foreground: light-dark(black, white);
-
-  --breakpoint-tablet: 768px;
-  --breakpoint-desktop: 1024px;
-  --breakpoint-maxwidth: 2048px
+	--breakpoint-tablet: 768px;
+	--breakpoint-desktop: 1024px;
+	--breakpoint-maxwidth: 2048px;
 }
 
 @layer base {
-  :root {
-    color-scheme: light dark;
-  }
+	:root {
+		color-scheme: light dark;
+	}
 
-  :root[data-theme="light"] {
-    color-scheme: light;
-  }
+	:root[data-theme='light'] {
+		color-scheme: light;
+	}
 
-  :root[data-theme="dark"] {
-    color-scheme: dark;
-  }
+	:root[data-theme='dark'] {
+		color-scheme: dark;
+	}
 
-  *[data-theme="light"] {
-    color-scheme: light;
-  }
+	*[data-theme='light'] {
+		color-scheme: light;
+	}
 
-  *[data-theme="dark"] {
-    color-scheme: dark;
-  }
+	*[data-theme='dark'] {
+		color-scheme: dark;
+	}
 
-  html {
-      min-width: 320px;
-  }
+	html {
+		min-width: 320px;
+	}
 
-  body {
-    background: light-dark(white, rgb(59, 59, 59));
-    color: light-dark(black, rgb(187, 187, 187));
-
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      text-rendering: optimizeLegibility;
-  }
+	body {
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+		text-rendering: optimizeLegibility;
+	}
 }

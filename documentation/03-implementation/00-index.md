@@ -3,7 +3,7 @@ title: Implementation index
 phase: implementation
 status: in-review
 owner: solutions-engineering
-last_updated: 2026-02-03
+last_updated: 2026-02-04
 depends_on:
   - 01-discovery/00-index.md
   - 02-solution/00-index.md
@@ -20,58 +20,49 @@ tags: [implementation, index]
 
 - Plan of attack: `03-implementation/01-plan-of-attack.md`
 - **Implementation context (for agents):** `03-implementation/02-workstreams/00-implementation-context-requirements.md`
-- Workstreams: `03-implementation/02-workstreams/`
-- Ticket templates (Linear): `03-implementation/03-tickets/`
+- Workstreams: `03-implementation/02-workstreams/` (01–29)
+- Tickets: `03-implementation/03-tickets/` (29 tickets: a1–a4, b, e, f1–f3, fb1–fb7, g1–g4, h, i, ib1–ib6, j)
 
-## Workstreams
+## Workstreams = full context for AI (29)
 
-| Workstream | Doc |
-|---|---|
-| *(Context requirements for agents)* | `03-implementation/02-workstreams/00-implementation-context-requirements.md` |
-| CMS service layer | `03-implementation/02-workstreams/01-cms-service.md` |
-| App shell and layout | `03-implementation/02-workstreams/02-app-shell.md` |
-| Routing and pages | `03-implementation/02-workstreams/03-routing-and-pages.md` |
-| Content blocks | `03-implementation/02-workstreams/04-content-blocks.md` |
-| SEO and redirects | `03-implementation/02-workstreams/05-seo-and-redirects.md` |
-| Tracking and consent | `03-implementation/02-workstreams/06-tracking.md` |
-| Images and media | `03-implementation/02-workstreams/07-images.md` |
-| Deployment and QA | `03-implementation/02-workstreams/08-deployment-qa.md` |
+Workstreams contain **all** rules and context for AI: allowed paths, contract, data shape, out of scope, steps, done criteria, acceptance criteria, validation, solution/discovery links, old code (2022-site).
 
-## Ticket templates
+| # | Workstream | Doc |
+|---|------------|-----|
+| 0 | Context requirements (read first) | `02-workstreams/00-implementation-context-requirements.md` |
+| 1 | A1 — client + base types | `02-workstreams/01-a1-client-types.md` |
+| 2 | A2 — GQL + fragments | `02-workstreams/02-a2-gql-fragments.md` |
+| 3 | A3 — models (superseded) | `02-workstreams/03-a3-models.md` |
+| 4 | A4 — getters + exports | `02-workstreams/04-a4-getters-exports.md` |
+| 5 | B — app container (homepage) | `02-workstreams/05-b-app-container.md` |
+| 6 | E — dynamic routes | `02-workstreams/06-e-dynamic-routes.md` |
+| 7 | F1 — content blocks core | `02-workstreams/07-f1-content-blocks-core.md` |
+| 8 | F2 — structured text | `02-workstreams/08-f2-structured-text.md` |
+| 9 | F3 — ContentIsland | `02-workstreams/09-f3-content-island.md` |
+| 10–16 | FB1–FB7 — block modules | `02-workstreams/10-fb1-media-single.md` … `16-fb7-stats-block.md` |
+| 17–20 | G1–G4 — SEO | `02-workstreams/17-g1-seo-meta-jsonld.md` … `20-g4-seo-errors-robots.md` |
+| 21 | H — images and media | `02-workstreams/21-h-images-media.md` |
+| 22 | I — tracking and CookieBanner | `02-workstreams/22-i-tracking-cookie-banner.md` |
+| 23–28 | IB1–IB6 — inline blocks | `02-workstreams/23-ib1-tagrecord.md` … `28-ib6-megaheadingrecord.md` |
+| 29 | J — deployment and QA | `02-workstreams/29-j-deployment-qa.md` |
 
-Use these as Linear ticket templates:
-- `03-implementation/03-tickets/a1-service-dato-client-types.md`
-- `03-implementation/03-tickets/a2-service-dato-gql-fragments.md`
-- `03-implementation/03-tickets/a3-service-dato-models.md`
-- `03-implementation/03-tickets/a4-service-dato-getters-exports.md`
-- `03-implementation/03-tickets/b-app-container.md`
-- `03-implementation/03-tickets/e-dynamic-routes.md`
-- `03-implementation/03-tickets/f1-content-blocks-core-modules.md`
-- `03-implementation/03-tickets/f2-content-blocks-structured-text.md`
-- `03-implementation/03-tickets/f3-content-island-below-fold.md`
-- `03-implementation/03-tickets/g1-seo-meta-jsonld.md`
-- `03-implementation/03-tickets/g2-seo-sitemap.md`
-- `03-implementation/03-tickets/g3-seo-redirects-build.md`
-- `03-implementation/03-tickets/g4-seo-errors-robots.md`
-- `03-implementation/03-tickets/h-images-media.md`
-- `03-implementation/03-tickets/i-tracking-cookie-banner.md`
-- `03-implementation/03-tickets/j-deployment-qa.md`
+## Tickets = linear, no AI context (29)
 
-## Block tickets
+Each ticket points to its workstream. Same count as workstreams (29 and 29). **Read the workstream for full context before implementing.**
 
-Content blocks:
-- `03-implementation/03-tickets/fb1-media-single.md`
-- `03-implementation/03-tickets/fb2-media-multiple.md`
-- `03-implementation/03-tickets/fb3-text-half.md`
-- `03-implementation/03-tickets/fb4-text-lead.md`
-- `03-implementation/03-tickets/fb5-quote.md`
-- `03-implementation/03-tickets/fb6-card-slider.md`
-- `03-implementation/03-tickets/fb7-stats-block.md`
+| Ticket | Workstream |
+|--------|------------|
+| a1–a4 | 01-a1-client-types … 04-a4-getters-exports |
+| b | 05-b-app-container |
+| e | 06-e-dynamic-routes |
+| f1–f3 | 07-f1-content-blocks-core … 09-f3-content-island |
+| fb1–fb7 | 10-fb1-media-single … 16-fb7-stats-block |
+| g1–g4 | 17-g1-seo-meta-jsonld … 20-g4-seo-errors-robots |
+| h | 21-h-images-media |
+| i | 22-i-tracking-cookie-banner |
+| ib1–ib6 | 23-ib1-tagrecord … 28-ib6-megaheadingrecord |
+| j | 29-j-deployment-qa |
 
-Inline blocks:
-- `03-implementation/03-tickets/ib1-tagrecord.md`
-- `03-implementation/03-tickets/ib2-emojirecord.md`
-- `03-implementation/03-tickets/ib3-workrecord.md`
-- `03-implementation/03-tickets/ib4-thinkingrecord.md`
-- `03-implementation/03-tickets/ib5-studiorecord.md`
-- `03-implementation/03-tickets/ib6-megaheadingrecord.md`
+## Archive
+
+Previous detailed ticket content (before linear conversion): `03-tickets/archive/`. TASK-TEMPLATE: `03-tickets/archive/TASK-TEMPLATE.md`.

@@ -1,145 +1,64 @@
 ---
-title: Task J — Vercel deployment + pre-launch + Playwright + design-matching
+title: Ticket J — deployment and QA
 phase: implementation
-status: in-review
+status: approved
 owner: solutions-engineering
-last_updated: 2026-02-03
-depends_on: []
-related_docs: []
-tags: [implementation, ticket]
+last_updated: 2026-02-04
+depends_on: [app container, dynamic routes, core content block modules, SEO (meta/sitemap/redirects/errors), images/media, tracking + CookieBanner]
+tags: [implementation, ticket, deployment, qa]
 ---
 
-# Task J — Vercel deployment + pre-launch + Playwright + design-matching
+# Ticket J — deployment and QA
 
-**Ticket:** J  
-**Phase:** 6  
-**Scope (files/dirs you may edit):** `apps/website/` (config for Vercel, build, env); repo root or apps/website for Playwright config and e2e tests; documentation (e.g. DEPLOYMENT or pre-launch checklist). No edits to packages/service-dato/ beyond what’s already there; 2022-site read-only for comparison.
+---
 
-**Dependencies (blocking):** B (b-app-container) — at least homepage exists. E (dynamic routes) — full route set. F (content blocks) — content behaviour. G (SEO, sitemap, redirects, 404/500). H (images/media). I (tracking, CookieBanner, .env.example).  
-**Unblocks:** Cutover; no further task dependency.
+## Description, Value & ACs
 
+**Scope:** Edit `apps/website/` (Vercel config, build, env); repo root or apps/website for Playwright; documentation/ (DEPLOYMENT, pre-launch checklist). No edits to packages/service-dato beyond existing; 2022-site read-only. **Vercel:** Build and env documented; @astrojs/vercel adapter; getRedirects at build → Vercel config (redirects ticket). **Pre-launch checklist:** Doc covering: all routes 200, meta/JSON-LD present, tracking fires, conversion fires, sitemap valid, redirects tested, 404 and 500 work. **Playwright:** E2e for key flows (homepage, category, article, 404). **Design-matching:** Optional screenshot diff vs 2022-site or designs. Out of scope: change host; migrate Netlify functions; 2022-site code edits.
 
-## 1. Outcome & Business Value (why)
+**Outcome:** Deployment documented; pre-launch checklist exists and is completed before cutover; Playwright e2e runnable; optional design-matching documented.
 
-### Description
-Document and enable deployment to **Vercel**; add **pre-launch checklist**; implement **Playwright e2e tests** for key flows; add **design-matching tests** (e.g. screenshot diff vs old site). In scope: Vercel config (build, env in CI), redirect/sitemap handling in deploy; pre-launch checklist doc; Playwright e2e; design-matching tests. Out of scope: changing host; migrating Netlify functions.
-
-### Outcome we expect
-App deploys to Vercel; build and env are documented; pre-launch checklist exists (all routes 200, meta/JSON-LD present, tracking fires, conversion fires, sitemap valid, redirects tested, 404 and 500 work); Playwright e2e covers key flows; design-matching tests (e.g. screenshot diff) run. Aligns with [vue-to-astro-migration.md](../vue-to-astro-migration.md) §7 and [01-discovery/00-index.md](../01-discovery/00-index.md) §7.
-
-### Value (user / business)
-Safe cutover; regression coverage; design parity check before go-live. Required for launch.
-
-### Acceptance criteria
-
-| # | Criterion | Done |
-|---|-----------|------|
-| AC1 | Deployment to Vercel documented (build command, env in CI, redirect/sitemap handling) | e.g. DEPLOYMENT.md or README |
-| AC2 | Pre-launch checklist exists and covers: all routes 200, meta/JSON-LD present, tracking fires, conversion fires, sitemap valid, redirects tested, 404 and 500 work | |
-| AC3 | Playwright e2e tests for key flows (e.g. homepage, one category, one article, 404) | |
-| AC4 | Design-matching tests (e.g. screenshot diff vs 2022-site or designs) using Playwright or similar | |
-| AC5 | getRedirects() at build → Vercel config (or already done in G); documented in deployment doc | |
-
-
-## 2. Context & Scope (what/where)
-
-**Scope:** `apps/website/` (config for Vercel, build, env); repo root or apps/website for Playwright config and e2e tests; documentation (e.g. DEPLOYMENT or pre-launch checklist). No edits to packages/service-dato/ beyond what’s already there; 2022-site read-only for comparison.
-
-**Dependencies:** B (b-app-container) — at least homepage exists. E (dynamic routes) — full route set. F (content blocks) — content behaviour. G (SEO, sitemap, redirects, 404/500). H (images/media). I (tracking, CookieBanner, .env.example).
-
-**Unblocks:** Cutover; no further task dependency.
-
-## 3. Delivery Plan (how)
-
-**Steps:**
-1. 
-2. 
-3. 
+**Value:** Repeatable deploy and QA; confidence before cutover.
 
 **Acceptance criteria:**
 
-**Confirm as a team:**  
-Achievable. Depends on B, E, F, G, H, I being complete so the app is full-featured for e2e and pre-launch.
+| # | Criterion | Done |
+|---|-----------|------|
+| AC1 | Deployment to Vercel documented (build, env, redirect/sitemap). | |
+| AC2 | Pre-launch checklist exists and covers routes, meta, tracking, sitemap, redirects, 404/500. | |
+| AC3 | Playwright e2e for key flows. | |
+| AC4 | Design-matching tests (optional) documented and runnable. | |
+| AC5 | getRedirects at build → Vercel config documented. | |
 
-**Timelines / assumptions:**  
-Assume all previous tasks (B, E, F, G, H, I) are done. Vercel project exists or is created; env in CI per .env.example.
+---
 
-**Dependencies (upstream):**  
-B (homepage); E (dynamic routes); F (content blocks); G (SEO, redirects, 404/500); H (media); I (tracking, .env.example).
+## Feasibility & Dependencies
 
-**Blockers (if any):**  
-None if B, E, F, G, H, I are complete. If any is missing, pre-launch checklist will show gaps.
+**Blocking:** App container; dynamic routes; core content block modules; SEO (meta, sitemap, redirects, errors); images/media; tracking + CookieBanner. Ideally all feature work done.  
+**Unblocks:** Cutover; no further task dependency.
 
-**Downstream impact:**  
-None — this is the final implementation task before cutover.
+**Dependencies / risks:** Env from .env.example; Vercel project config.
 
+---
 
-## 3. Analytics & Measurement
+## Analytics & Measurement
 
-**Success metrics:**  
-Pre-launch checklist passed; e2e green; design-matching tests run (and any failures documented or fixed). Deployment doc and checklist are the “measurement” for go/no-go.
+N/A — deployment/QA task. Success = ACs met; checklist completed before cutover.
 
-**Testing hypothesis:**  
-Playwright e2e and design-matching tests will catch regressions and design drift before cutover.
+---
 
-**Rollout method:**  
-Deploy to Vercel (staging/preview); run checklist and tests; then production cutover per product process.
+## Testing
 
+Deploy to staging; run e2e; complete checklist; validate redirects and sitemap.
 
-## 4. Testing
+---
 
-**In scope for this task:**
+## Design & References
 
-| Type | Scope | Notes |
-|------|--------|--------|
-| Unit | N/A (deployment/QA task) | |
-| Integration | Build and deploy pipeline | Ensure build + env work in CI |
-| E2E | Playwright e2e for key flows | Homepage, category, article, 404 |
-| Design-matching | Screenshot or visual diff vs 2022-site/designs | 80/20: key pages |
+**Figma / design:** [Add when available for design-matching]
 
-## 4. Validation & Testing
+---
 
-**Success metrics:**  
-Pre-launch checklist passed; e2e green; design-matching tests run (and any failures documented or fixed). Deployment doc and checklist are the “measurement” for go/no-go.
+## Notes
 
-**Testing hypothesis:**  
-Playwright e2e and design-matching tests will catch regressions and design drift before cutover.
-
-**Rollout method:**  
-Deploy to Vercel (staging/preview); run checklist and tests; then production cutover per product process.
-
-
-**In scope for this task:**
-
-| Type | Scope | Notes |
-|------|--------|--------|
-| Unit | N/A (deployment/QA task) | |
-| Integration | Build and deploy pipeline | Ensure build + env work in CI |
-| E2E | Playwright e2e for key flows | Homepage, category, article, 404 |
-| Design-matching | Screenshot or visual diff vs 2022-site/designs | 80/20: key pages |
-
-**Code coverage:**  
-E2E and design-matching coverage per project standard. 80/20: critical paths and key pages.
-
-**80/20 focus:**  
-Critical user flows and key page visuals; not every route in e2e.
-
-
-## 5. References
-
-**Product / design handover:**  
-Design-matching tests compare to 2022-site or approved designs. Link design assets if needed.
-
-**Reference docs / artwork:**  
-- [vue-to-astro-migration.md](../vue-to-astro-migration.md) §7  
-- [01-discovery/00-index.md](../01-discovery/00-index.md) §7.2, §7.3  
-- [implementation-coverage-checklist.md](../implementation-coverage-checklist.md) §10  
-- [seo-sitemap-redirects-error-pages-plan.md](../seo-sitemap-redirects-error-pages-plan.md) (redirects at build)  
-
-
-## 6. Notes
-
-- Vercel: build command, env in CI (Dato, PUBLIC_*, ENABLE_TRACKING); redirect config from getRedirects() at build (G). Document in DEPLOYMENT.md or apps/website README.
-- Pre-launch checklist: all routes 200, meta/JSON-LD present, tracking fires, conversion fires, sitemap valid, redirects tested, 404 and 500 work.
-- Design-matching: e.g. Playwright screenshot comparison to 2022-site or Figma; document how to run and what “pass” means.
-
+Steps: (1) Document Vercel deployment (build command, env in CI, redirect/sitemap handling). (2) Define pre-launch checklist; document in documentation/. (3) Add Playwright e2e; document how to run and what “pass” means. (4) Optional: design-matching tests (screenshot diff vs 2022-site or Figma).

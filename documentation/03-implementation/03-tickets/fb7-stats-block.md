@@ -1,69 +1,61 @@
 ---
-title: Block — Stats
+title: Ticket FB7 — block stats
 phase: implementation
-status: in-review
+status: approved
 owner: solutions-engineering
-last_updated: 2026-02-03
-depends_on: [A4, B, F1]
-related_docs: [02-solution/content-blocks-and-inline-blocks-plan.md]
+last_updated: 2026-02-04
+depends_on: [CMS getters + exports, app container, core content block modules]
 tags: [implementation, ticket, content-blocks]
 ---
 
-# Block — Stats
+# Ticket FB7 — block stats
 
-**Ticket:** FB7
-**Phase:** 3
-**Scope (files/dirs you may edit):** `apps/website/src/components/modules/`
+---
 
-**Dependencies (blocking):** A4, B, F1
-**Unblocks:** —
+## Description, Value & ACs
 
-## 1. Outcome & Business Value (why)
+**Scope:** Edit `apps/website/src/components/modules/`. Implement **stats** block (_modelApiKey). Props only; design-system. No fetch. Wire into block mapping by _modelApiKey.
 
-**Description:**
-Implement the `stats_block` block module mapped by `_modelApiKey`.
+**Outcome:** Block renders with props only.
 
-**Outcome we expect:**
-The `stats_block` block renders with props only and matches design intent.
-
-**Value (user / business):**
-Ensures CMS-driven pages render all required blocks consistently.
-
-## 2. Context & Scope (what/where)
-
-**Scope:** `apps/website/src/components/modules/`
-
-**Legacy component:** `2022-site/components/Content/Stats.vue`
-
-**Design system:** Use `@rotate/design-system` tokens for typography, spacing, and layout.
-
-**Figma:** TODO — add Figma URL for `Block — Stats`.
-
-## 3. Delivery Plan (how)
-
-**Steps:**
-1. Create module component for `stats_block`.
-2. Map props to match legacy behavior.
-3. Ensure module is used via block mapping by `_modelApiKey`.
+**Value:** Stats block.
 
 **Acceptance criteria:**
 
 | # | Criterion | Done |
-|---|---|---|
-| AC1 | `stats_block` module renders without data fetching. | |
-| AC2 | Props align with legacy component behavior. | |
-| AC3 | Module uses design-system tokens (no ad-hoc styling). | |
+|---|-----------|------|
+| AC1 | Module renders without data fetching. | |
+| AC2 | Props align with legacy; design-system tokens. | |
 
-## 4. Validation & Testing
+---
 
-- Render the block in a page with mock CMS data.
-- Compare output to legacy component and Figma design.
+## Feasibility & Dependencies
 
-## 5. References
+**Blocking:** CMS getters + exports; app container; core content block modules.  
+**Unblocks:** —
 
-- `02-solution/content-blocks-and-inline-blocks-plan.md`
-- Legacy: `2022-site/components/Content/Stats.vue`
+**Dependencies / risks:** None.
 
-## 6. Notes
+---
 
-- Stats list with value, unit, label.
+## Analytics & Measurement
+
+N/A — implementation task. Success = ACs met.
+
+---
+
+## Testing
+
+Render with mock data.
+
+---
+
+## Design & References
+
+**Figma / design:** [Add when available]
+
+---
+
+## Notes
+
+Steps: (1) Create module for stats. (2) Map props; wire into block mapping.

@@ -15,11 +15,13 @@ Use this skill when a new agent has no context and needs to understand what job 
    - `documentation/02-solution/00-index.md`
    - `documentation/03-implementation/00-index.md`
 3. Identify the current phase and the next actionable tickets from `03-implementation/03-tickets/`.
-4. Output a **brief** with:
+4. **Coordination:** Before recommending a ticket, note that **another agent may already be working on it**. In the brief, tell the agent to confirm the ticket (or its workstream) is not in progress elsewhere before starting — e.g. check assignment or status in Linear — and to pick a different ticket if it is.
+5. Output a **brief** with:
    - Current phase
    - What is in scope now
    - Top 3 next tickets to pick up
-   - Links to the exact docs to read first
+   - Reminder to confirm no other agent is on the chosen ticket before starting
+   - Links to the exact docs to read first (workstream for full context)
 
 ## Output format
 

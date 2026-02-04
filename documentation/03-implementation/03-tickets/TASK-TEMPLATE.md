@@ -1,61 +1,31 @@
 ---
-title: Task: [Task ID] — [Short title]
+title: Ticket [ID] — [Short title]
 phase: implementation
-status: in-review
+status: draft
 owner: solutions-engineering
-last_updated: 2026-02-03
+last_updated: YYYY-MM-DD
 depends_on: []
-related_docs: []
-tags: [implementation, tickets]
+tags: [implementation, ticket]
 ---
 
-# Ticket: [ID] — [Short title]
+# Ticket [ID] — [Short title]
 
-**Ticket:** [A–J]
-**Phase:** [1–6]
-**Scope (files/dirs you may edit):** [Exact allowed paths — see `02-workstreams/00-implementation-context-requirements.md`]
-
-**Dependencies (blocking):** [Ticket IDs or None]
-**Unblocks:** [Ticket IDs]
+Tickets are **self-contained**: all scope, acceptance criteria, and validation are inlined here. Do not reference internal documentation paths (workstreams, solution, discovery). For design, link only to direct artifacts (e.g. Figma).
 
 ---
 
-## 1. Outcome & Business Value (why)
+## Description, Value & ACs
 
-**Description:**
+**Scope (simple terms):**  
+Outline the scope in simple terms, including the reason(s) for its existence.
 
-**Outcome we expect:**
+**What we're trying to achieve / outcome we expect:**  
+What are we trying to achieve, what is the outcome we expect?
 
-**Value (user / business):**
+**Value (user / client's business):**  
+What value does this provide the user and/or client's business? This should align with the value rating.
 
----
-
-## 2. Context & Scope (what/where)
-
-**Scope:** [Same as header; exact paths.]
-
-**Dependencies:** [Blocking ticket IDs.]
-
-**Unblocks:** [Ticket IDs.]
-
-**Contract / API:** [Function names, exports, types, or props to implement — enough that an agent can implement without guessing.]
-
-**Data source & shape:** [Where data comes from and expected type/shape.]
-
-**Out of scope / Don’t do:** [Explicit list of what not to do.]
-
-**Risks & mitigations:**
-
----
-
-## 3. Delivery Plan (how)
-
-**Steps:**
-1.
-2.
-3.
-
-**Acceptance criteria:** [Testable; each verifiable.]
+**Acceptance criteria:**
 
 | # | Criterion | Done |
 |---|-----------|------|
@@ -64,20 +34,38 @@ tags: [implementation, tickets]
 
 ---
 
-## 4. Validation & Testing
+## Feasibility & Dependencies
 
-**Validation:** [Command(s) or manual steps to verify — e.g. `pnpm codegen`, run tests, smoke check.]
+Confirm as a team what is being proposed is achievable and we have considered timelines and all dependencies. If no, state any dependencies blocking.
 
-**Tests:** [If any.]
+**Blocking:** [Descriptive names of blocking work, or None]  
+**Unblocks:** [Descriptive names of work this unblocks]
 
----
-
-## 5. References
-
-- [Link to solution or discovery doc — required for strict context.]
+**Dependencies / risks:**  
+[Any blockers, timeline considerations, or risks.]
 
 ---
 
-## 6. Notes
+## Analytics & Measurement
 
-- 
+How are we going to measure the success of the task? This should connect with the goal. Include a clear testing hypothesis and the method for rollout (e.g. A/B testing) where applicable.
+
+---
+
+## Testing
+
+What testing will be included as part of this task? E.g. automated testing (unit, integration, E2E). Meet the agreed code coverage of the project; focus on the 80/20 rule to trade time and risk effectively.
+
+---
+
+## Design & References
+
+Direct links to design artifacts only (e.g. Figma). No internal doc paths.
+
+**Figma / design:** [Add links when available]
+
+---
+
+## Notes
+
+Any misc information or documentation.

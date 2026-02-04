@@ -18,7 +18,9 @@ tags: [discovery, index]
 
 # Discovery index
 
-Use this index to find the final discovery decisions by feature.
+Discovery docs contain **why** (outcome & business value), **what/where** (context & scope), and **ideas, options & references** (information sources, alternatives considered, further reading). They do **not** contain solution design or delivery; they do **not** reference solution docs in front matter. Solution docs in `02-solution/` reference discovery via `depends_on` and contain the **exact how** (approach, decisions, delivery).
+
+Use this index to find discovery by feature.
 
 | Feature | Document |
 |---|---|

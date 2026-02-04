@@ -1,65 +1,61 @@
 ---
-title: Task G2 — sitemap generation
+title: Ticket G2 — SEO sitemap
 phase: implementation
-status: in-review
+status: approved
 owner: solutions-engineering
-last_updated: 2026-02-03
-depends_on: [A4]
-related_docs: [02-solution/seo-sitemap-redirects-error-pages-plan.md]
+last_updated: 2026-02-04
+depends_on: [CMS getters + exports]
 tags: [implementation, ticket, seo]
 ---
 
-# Task G2 — sitemap generation
+# Ticket G2 — SEO sitemap
 
-**Ticket:** G2
-**Phase:** 4
-**Scope (files/dirs you may edit):** `apps/website/src/` (sitemap generation)
+---
 
-**Dependencies (blocking):** A4
-**Unblocks:** G3, G4
+## Description, Value & ACs
 
-## 1. Outcome & Business Value (why)
+**Scope:** Edit `apps/website/public/sitemap.xml` or Astro endpoint; build script that calls getRoutes(). Generate sitemap at build from getRoutes(). Use allCategories, allThinkings, allWorks, allStudios, infoPage to build URL list. Output sitemap.xml (static or endpoint). Out of scope: meta, redirects, error pages.
 
-**Description:**
-Generate sitemap.xml from getRoutes().
+**Outcome:** sitemap.xml generated from getRoutes(); all expected paths included.
 
-**Outcome we expect:**
-Sitemap includes all routes from CMS.
-
-**Value (user / business):**
-Maintains indexing coverage.
-
-## 2. Context & Scope (what/where)
-
-**Scope:** `apps/website/src/` (sitemap generation)
-
-**Dependencies:** A4
-
-**Unblocks:** G3, G4
-
-## 3. Delivery Plan (how)
-
-**Steps:**
-1. Generate sitemap at build time.
-2. Validate sitemap output.
+**Value:** Sitemap for search engines.
 
 **Acceptance criteria:**
 
 | # | Criterion | Done |
-|---|---|---|
-| AC1 | Sitemap contains all CMS routes. | |
-| AC2 | Sitemap passes validation. | |
+|---|-----------|------|
+| AC1 | sitemap.xml exists and is generated from getRoutes(). | |
+| AC2 | All route paths from getRoutes() included. | |
 
+---
 
-## 4. Validation & Testing
+## Feasibility & Dependencies
 
-Validate sitemap with standard tools.
+**Blocking:** CMS getters + exports (getRoutes()). Dynamic routes implemented recommended.  
+**Unblocks:** Deployment + QA (validate sitemap); error pages + robots (robots.txt can reference sitemap).
 
-## 5. References
+**Dependencies / risks:** None.
 
-- 02-solution/seo-sitemap-redirects-error-pages-plan.md
+---
 
+## Analytics & Measurement
 
-## 6. Notes
+N/A — implementation task. Success = ACs met.
 
-Use base URL from config/env.
+---
+
+## Testing
+
+Fetch sitemap; validate URLs; check coverage.
+
+---
+
+## Design & References
+
+**Figma / design:** N/A
+
+---
+
+## Notes
+
+Steps: (1) At build, call getRoutes(). (2) Build sitemap XML from path list; write to public/sitemap.xml or serve via endpoint.

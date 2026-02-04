@@ -3,7 +3,7 @@ title: Discovery — Coverage checklist by feature
 phase: discovery
 status: in-review
 owner: solutions-engineering
-last_updated: 2026-02-03
+last_updated: 2026-02-04
 depends_on:
   - 01-discovery/01-cms-and-data.md
   - 01-discovery/02-content-blocks-and-rendering.md
@@ -11,14 +11,7 @@ depends_on:
   - 01-discovery/04-seo-and-routing.md
   - 01-discovery/05-images-and-media.md
   - 01-discovery/06-deployment-and-qa.md
-related_docs:
-  - 02-solution/cms-service-pattern-and-dato-centralisation.md
-  - 02-solution/content-blocks-and-inline-blocks-plan.md
-  - 02-solution/external-services-and-tracking-plan.md
-  - 02-solution/seo-sitemap-redirects-error-pages-plan.md
-  - 05-reference/dato-vue-to-service-review.md
-  - 03-implementation/vue-to-astro-migration.md
-  - 03-implementation/03-tickets/
+related_docs: []
 tags: [coverage, discovery, feature-map]
 ---
 
@@ -43,12 +36,23 @@ tags: [coverage, discovery, feature-map]
 
 **Assumptions:** Discovery docs are final unless updated.
 
-**Dependencies:** `02-solution/` docs.
-
 **Risks & mitigations:**
 - Risk: solution doc missing for a feature. Mitigation: flag as a gap below.
 
-## 3. Solution Design (coverage map)
+## 3. Ideas, options & references
+
+**Ideas / options explored:**
+- Single coverage table (this doc) vs. task-level mapping (out of scope; kept in archive).
+- Keeping this table updated when discovery or solution docs change.
+
+**References & further reading:**
+- All discovery docs in `01-discovery/` (01–06); solution docs in `02-solution/` (solution references discovery via `depends_on`).
+- Legacy source: 2022-site (each discovery doc 01–06 lists **Old code (2022-site)** paths for that feature).
+
+**Key information:**
+- Feature list derived from discovery scope; solution doc names and paths.
+
+**Coverage map (discovery → solution):**
 
 | Feature | Discovery doc | Solution doc | Covered? | Gap / action |
 |---|---|---|---|---|
@@ -56,13 +60,5 @@ tags: [coverage, discovery, feature-map]
 | Content blocks | `01-discovery/02-content-blocks-and-rendering.md` | `02-solution/content-blocks-and-inline-blocks-plan.md` | ✅ | — |
 | Tracking and consent | `01-discovery/03-tracking-and-consent.md` | `02-solution/external-services-and-tracking-plan.md` | ✅ | — |
 | SEO and routing | `01-discovery/04-seo-and-routing.md` | `02-solution/seo-sitemap-redirects-error-pages-plan.md` | ✅ | — |
-| Images and media | `01-discovery/05-images-and-media.md` | `02-solution/content-blocks-and-inline-blocks-plan.md` | ✅ | — |
-| Deployment and QA | `01-discovery/06-deployment-and-qa.md` | `03-implementation/vue-to-astro-migration.md` | ✅ | — |
-
-## 4. Delivery Plan (how)
-
-- Keep this table updated when discovery or solution docs change.
-- Promote out‑of‑phase docs when Implementation begins.
-
-**Open questions / TBD:**
-- None.
+| Images and media | `01-discovery/05-images-and-media.md` | `02-solution/images-and-media.md` | ✅ | — |
+| Deployment and QA | `01-discovery/06-deployment-and-qa.md` | `02-solution/deployment-and-qa.md` | ✅ | — |

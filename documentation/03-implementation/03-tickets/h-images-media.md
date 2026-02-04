@@ -1,141 +1,62 @@
 ---
-title: Task H — Images and media (Dato CDN + Bunny CDN)
+title: Ticket H — images and media
 phase: implementation
-status: in-review
+status: approved
 owner: solutions-engineering
-last_updated: 2026-02-03
-depends_on: []
-related_docs: []
-tags: [implementation, ticket]
+last_updated: 2026-02-04
+depends_on: [CMS getters + exports]
+tags: [implementation, ticket, images]
 ---
 
-# Task H — Images and media (Dato CDN + Bunny CDN)
+# Ticket H — images and media
 
-**Ticket:** H  
-**Phase:** 4  
-**Scope (files/dirs you may edit):** `apps/website/src/lib/` (e.g. images.ts or similar for building image/video URLs). Components/modules that use images or video (Media, Picture, Video modules). No edits to packages/service-dato/ beyond consuming existing Dato URLs; no 2022-site edits.
+---
 
-**Dependencies (blocking):** A (a-service-dato) — getters return Dato CDN URLs for media. B or F (containers/modules that render media).  
-**Unblocks:** F (Media/Picture/Video modules can use URL builder); J (pre-launch checks media).
+## Description, Value & ACs
 
+**Scope:** Edit `apps/website/src/lib/` (images.ts or media.ts); optionally `apps/website/src/components/modules/` so media block modules use the helper. **Single URL helper:** getMediaUrl(asset, params?) in src/lib/images.ts or media.ts. Accepts Dato asset (or url + params); returns full URL for src. Dato CDN + query params; Bunny in front. All media modules must use helper; no raw asset.url in templates. Params per Dato CDN (w, h, fit, auto=format etc.); document in implementation. Core and media block modules should exist so they can use the helper. Out of scope: imgix/Cloudinary or new pipeline; no per-module URL logic.
 
-## 1. Outcome & Business Value (why)
+**Outcome:** One shared URL helper; every media render path uses it; media loads via Dato + Bunny.
 
-### Description
-Implement image and video URL building so the app uses **Dato CDN + query params** with **Bunny CDN in front** (no imgix/Cloudinary). In scope: app utility (e.g. `src/lib/images.ts`) that builds image/video URLs; Media, Picture, Video modules use this utility. Out of scope: changing Dato schema; alternative CDNs.
-
-### Outcome we expect
-One place in the app (e.g. `src/lib/images.ts`) that builds image and video URLs from Dato CDN with query params; Bunny CDN in front. Media/Picture/Video modules use this utility. Aligns with [01-discovery/00-index.md](../01-discovery/00-index.md) §6 and [implementation-coverage-checklist.md](../implementation-coverage-checklist.md) §6.
-
-### Value (user / business)
-Consistent, optimised media delivery; same behaviour as 2022-site (Dato + Bunny). Required for content blocks (F) that render images/video and for pre-launch (J).
-
-### Acceptance criteria
-
-| # | Criterion | Done |
-|---|-----------|------|
-| AC1 | App utility exists (e.g. src/lib/images.ts) that builds image URLs from Dato CDN + query params | |
-| AC2 | Bunny CDN in front of Dato CDN (config or URL shape documented) | |
-| AC3 | Video URLs built the same way (Dato CDN + params; Bunny in front) | |
-| AC4 | Media, Picture, Video modules use this utility (no raw Dato URLs in modules) | |
-| AC5 | No imgix/Cloudinary in front of Dato (per decision) | |
-
-
-## 2. Context & Scope (what/where)
-
-**Scope:** `apps/website/src/lib/` (e.g. images.ts or similar for building image/video URLs). Components/modules that use images or video (Media, Picture, Video modules). No edits to packages/service-dato/ beyond consuming existing Dato URLs; no 2022-site edits.
-
-**Dependencies:** A (a-service-dato) — getters return Dato CDN URLs for media. B or F (containers/modules that render media).
-
-**Unblocks:** F (Media/Picture/Video modules can use URL builder); J (pre-launch checks media).
-
-## 3. Delivery Plan (how)
-
-**Steps:**
-1. 
-2. 
-3. 
+**Value:** Consistent, optimised media URLs; single place for CDN params.
 
 **Acceptance criteria:**
 
-**Confirm as a team:**  
-Achievable. Depends on A (getters return Dato media URLs) and on containers/modules that render media (B or F). No blockers if A is done.
+| # | Criterion | Done |
+|---|-----------|------|
+| AC1 | getMediaUrl exists; accepts asset and optional params. | |
+| AC2 | All image/video modules use helper; no raw asset.url in templates. | |
+| AC3 | Rendered media uses correct URL and params. | |
 
-**Timelines / assumptions:**  
-Assume Dato CDN URLs are available from getters. Bunny CDN config (domain, query params) from env or app config.
+---
 
-**Dependencies (upstream):**  
-A (getters return media URLs). B or F (modules that need image/video URLs).
+## Feasibility & Dependencies
 
-**Blockers (if any):**  
-None if A is complete. If F defines Media modules first, H can provide the utility and F uses it.
+**Blocking:** CMS getters + exports.  
+**Unblocks:** Block modules (media_single, media multiple); deployment + QA.
 
-**Downstream impact:**  
-F (content blocks) uses this for Media/Picture/Video. J (pre-launch) checks media loads.
+**Dependencies / risks:** None.
 
+---
 
-## 3. Analytics & Measurement
+## Analytics & Measurement
 
-**Success metrics:**  
-All media on key pages loads from correct CDN; no broken images/video. No user analytics in this task.
+N/A — implementation task. Success = ACs met.
 
-**Testing hypothesis:**  
-Using Dato CDN + query params with Bunny in front will deliver media correctly and match 2022-site behaviour.
+---
 
-**Rollout method:**  
-N/A — deliver when ACs are met. Rollout is part of J (deployment).
+## Testing
 
+Render page with media; confirm src uses helper; media loads.
 
-## 4. Testing
+---
 
-**In scope for this task:**
+## Design & References
 
-| Type | Scope | Notes |
-|------|--------|--------|
-| Unit | URL builder (inputs → output URL shape) | 80/20: focus on builder and CDN params |
-| Integration | Optional: one Media module using builder | |
-| E2E | N/A in this task | J adds media checks if needed |
+**Figma / design:** N/A
 
-## 4. Validation & Testing
+---
 
-**Success metrics:**  
-All media on key pages loads from correct CDN; no broken images/video. No user analytics in this task.
+## Notes
 
-**Testing hypothesis:**  
-Using Dato CDN + query params with Bunny in front will deliver media correctly and match 2022-site behaviour.
-
-**Rollout method:**  
-N/A — deliver when ACs are met. Rollout is part of J (deployment).
-
-
-**In scope for this task:**
-
-| Type | Scope | Notes |
-|------|--------|--------|
-| Unit | URL builder (inputs → output URL shape) | 80/20: focus on builder and CDN params |
-| Integration | Optional: one Media module using builder | |
-| E2E | N/A in this task | J adds media checks if needed |
-
-**Code coverage:**  
-Align with project. 80/20: URL builder and one module integration.
-
-**80/20 focus:**  
-Builder logic and CDN params; skip exhaustive asset coverage.
-
-
-## 5. References
-
-**Product / design handover:**  
-Per migration-map and 2022-site media behaviour. Link design when available.
-
-**Reference docs / artwork:**  
-- [vue-to-astro-migration.md](../vue-to-astro-migration.md) §8  
-- [implementation-coverage-checklist.md](../implementation-coverage-checklist.md) §6  
-- [01-discovery/00-index.md](../01-discovery/00-index.md) §6.1  
-
-
-## 6. Notes
-
-- Decided: Dato CDN + query params; Bunny CDN in front (no imgix/Cloudinary). Document URL shape and env (e.g. Bunny domain) in README or .env.example if needed.
-- If F (content blocks) is done first, Media modules may use placeholder URLs until H is done; then switch to H utility.
-
+Steps: (1) Implement getMediaUrl in src/lib/images.ts (or media.ts); signature and params per solution. (2) Update all modules that render images/video to use getMediaUrl; remove raw URL usage.

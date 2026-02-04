@@ -1,69 +1,61 @@
 ---
-title: Inline Block — Thinking
+title: Ticket IB4 — inline block ThinkingRecord
 phase: implementation
-status: in-review
+status: approved
 owner: solutions-engineering
-last_updated: 2026-02-03
-depends_on: [A4, F2]
-related_docs: [02-solution/content-blocks-and-inline-blocks-plan.md]
+last_updated: 2026-02-04
+depends_on: [CMS getters + exports, structured text]
 tags: [implementation, ticket, content-blocks]
 ---
 
-# Inline Block — Thinking
+# Ticket IB4 — inline block ThinkingRecord
 
-**Ticket:** IB4
-**Phase:** 3
-**Scope (files/dirs you may edit):** `apps/website/src/components/modules/` (StructuredText inline)
+---
 
-**Dependencies (blocking):** A4, F2
-**Unblocks:** —
+## Description, Value & ACs
 
-## 1. Outcome & Business Value (why)
+**Scope:** Edit `apps/website/src/components/modules/` (StructuredText inline). Implement **ThinkingRecord** inline block. Props only; design-system. No fetch. Inline block props; GQL onThinkingRecord. Wire into the structured-text renderer.
 
-**Description:**
-Implement the `ThinkingRecord` block module mapped by `_modelApiKey`.
+**Outcome:** ThinkingRecord renders inside structured text.
 
-**Outcome we expect:**
-The `ThinkingRecord` block renders with props only and matches design intent.
-
-**Value (user / business):**
-Ensures CMS-driven pages render all required blocks consistently.
-
-## 2. Context & Scope (what/where)
-
-**Scope:** `apps/website/src/components/modules/` (StructuredText inline)
-
-**Legacy component:** `2022-site/gql/fragments/inline-blocks.gql.js (onThinkingRecord)`
-
-**Design system:** Use `@rotate/design-system` tokens for typography, spacing, and layout.
-
-**Figma:** TODO — add Figma URL for `Inline Block — Thinking`.
-
-## 3. Delivery Plan (how)
-
-**Steps:**
-1. Create module component for `ThinkingRecord`.
-2. Map props to match legacy behavior.
-3. Ensure module is used via block mapping by `_modelApiKey`.
+**Value:** Thinking reference inline in rich text.
 
 **Acceptance criteria:**
 
 | # | Criterion | Done |
-|---|---|---|
-| AC1 | `ThinkingRecord` module renders without data fetching. | |
-| AC2 | Props align with legacy component behavior. | |
-| AC3 | Module uses design-system tokens (no ad-hoc styling). | |
+|---|-----------|------|
+| AC1 | Module renders without data fetching. | |
+| AC2 | Props align with legacy; design-system tokens. | |
 
-## 4. Validation & Testing
+---
 
-- Render the block in a page with mock CMS data.
-- Compare output to legacy component and Figma design.
+## Feasibility & Dependencies
 
-## 5. References
+**Blocking:** CMS getters + exports; structured text.  
+**Unblocks:** —
 
-- `02-solution/content-blocks-and-inline-blocks-plan.md`
-- Legacy: `2022-site/gql/fragments/inline-blocks.gql.js (onThinkingRecord)`
+**Dependencies / risks:** None.
 
-## 6. Notes
+---
 
-- Inline link to thinking record (slug + title).
+## Analytics & Measurement
+
+N/A — implementation task. Success = ACs met.
+
+---
+
+## Testing
+
+Render with mock data.
+
+---
+
+## Design & References
+
+**Figma / design:** [Add when available]
+
+---
+
+## Notes
+
+Steps: (1) Create inline component for ThinkingRecord; wire into the structured-text renderer. (2) Map props; design-system tokens.

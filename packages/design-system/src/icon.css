@@ -10,78 +10,76 @@
 
 /* Fallback when no size is set (defaults to 200) */
 :root {
-  --icon-dimension-height: 20px;
-  --icon-dimension-width: 20px;
+	--icon-dimension-height: 20px;
+	--icon-dimension-width: 20px;
 
-  --icon-radius-icon-radius-100: 2px;
-  --icon-radius-icon-radius-200: 2px;
-  --icon-radius-icon-radius-300: 3px;
-  --icon-radius-icon-radius-400: 4px;
+	--icon-radius-icon-radius-100: 2px;
+	--icon-radius-icon-radius-200: 2px;
+	--icon-radius-icon-radius-300: 3px;
+	--icon-radius-icon-radius-400: 4px;
 
-  --icon-weight-primary: 1.25px;
-  --icon-weight-strikethrough: 3.75px;
+	--icon-weight-primary: 1.25px;
+	--icon-weight-strikethrough: 3.75px;
 }
 
-[data-icon-size="100"] {
-  --icon-dimension-height: 16px;
-  --icon-dimension-width: 16px;
+[data-icon-size='100'] {
+	--icon-dimension-height: 16px;
+	--icon-dimension-width: 16px;
 
-  --icon-radius-icon-radius-100: 1px;
-  --icon-radius-icon-radius-200: 2px;
-  --icon-radius-icon-radius-300: 3px;
-  --icon-radius-icon-radius-400: 4px;
+	--icon-radius-icon-radius-100: 1px;
+	--icon-radius-icon-radius-200: 2px;
+	--icon-radius-icon-radius-300: 3px;
+	--icon-radius-icon-radius-400: 4px;
 
-  --icon-weight-primary: 1.100000023841858px;
-  --icon-weight-strikethrough: 3px;
+	--icon-weight-primary: 1.100000023841858px;
+	--icon-weight-strikethrough: 3px;
 }
 
-[data-icon-size="200"] {
-  --icon-dimension-height: 20px;
-  --icon-dimension-width: 20px;
+[data-icon-size='200'] {
+	--icon-dimension-height: 20px;
+	--icon-dimension-width: 20px;
 
-  --icon-radius-icon-radius-100: 2px;
-  --icon-radius-icon-radius-200: 2px;
-  --icon-radius-icon-radius-300: 3px;
-  --icon-radius-icon-radius-400: 4px;
+	--icon-radius-icon-radius-100: 2px;
+	--icon-radius-icon-radius-200: 2px;
+	--icon-radius-icon-radius-300: 3px;
+	--icon-radius-icon-radius-400: 4px;
 
-  --icon-weight-primary: 1.25px;
-  --icon-weight-strikethrough: 3.75px;
+	--icon-weight-primary: 1.25px;
+	--icon-weight-strikethrough: 3.75px;
 }
 
-[data-icon-size="300"] {
-  --icon-dimension-height: 24px;
-  --icon-dimension-width: 24px;
+[data-icon-size='300'] {
+	--icon-dimension-height: 24px;
+	--icon-dimension-width: 24px;
 
-  --icon-radius-icon-radius-100: 2px;
-  --icon-radius-icon-radius-200: 2px;
-  --icon-radius-icon-radius-300: 3px;
-  --icon-radius-icon-radius-400: 4px;
+	--icon-radius-icon-radius-100: 2px;
+	--icon-radius-icon-radius-200: 2px;
+	--icon-radius-icon-radius-300: 3px;
+	--icon-radius-icon-radius-400: 4px;
 
-  --icon-weight-primary: 1.5px;
-  --icon-weight-strikethrough: 4.5px;
+	--icon-weight-primary: 1.5px;
+	--icon-weight-strikethrough: 4.5px;
 }
 
-[data-icon-size="400"] {
-  --icon-dimension-height: 32px;
-  --icon-dimension-width: 32px;
+[data-icon-size='400'] {
+	--icon-dimension-height: 32px;
+	--icon-dimension-width: 32px;
 
-  --icon-radius-icon-radius-100: 2px;
-  --icon-radius-icon-radius-200: 4px;
-  --icon-radius-icon-radius-300: 6px;
-  --icon-radius-icon-radius-400: 8px;
+	--icon-radius-icon-radius-100: 2px;
+	--icon-radius-icon-radius-200: 4px;
+	--icon-radius-icon-radius-300: 6px;
+	--icon-radius-icon-radius-400: 8px;
 
-  --icon-weight-primary: 2px;
-  --icon-weight-strikethrough: 6px;
+	--icon-weight-primary: 2px;
+	--icon-weight-strikethrough: 6px;
 }
 
-@layer utility {
-  .icon {
-    width: var(--icon-dimension-width);
-    height: var(--icon-dimension-height);
-    flex-shrink: 0;
-  }
+@utility icon {
+	width: var(--icon-dimension-width);
+	height: var(--icon-dimension-height);
+	flex-shrink: 0;
+}
 
-  .icon-stroke {
-    stroke-width: var(--icon-weight-primary);
-  }
+@utility icon-stroke {
+	stroke-width: var(--icon-weight-primary);
 }

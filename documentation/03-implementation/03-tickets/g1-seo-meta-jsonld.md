@@ -1,65 +1,61 @@
 ---
-title: Task G1 — SEO meta + JSON-LD utilities
+title: Ticket G1 — SEO meta + JSON-LD
 phase: implementation
-status: in-review
+status: approved
 owner: solutions-engineering
-last_updated: 2026-02-03
-depends_on: [A4]
-related_docs: [02-solution/seo-sitemap-redirects-error-pages-plan.md]
+last_updated: 2026-02-04
+depends_on: [CMS getters + exports]
 tags: [implementation, ticket, seo]
 ---
 
-# Task G1 — SEO meta + JSON-LD utilities
+# Ticket G1 — SEO meta + JSON-LD
 
-**Ticket:** G1
-**Phase:** 4
-**Scope (files/dirs you may edit):** `apps/website/src/` (layouts, lib)
+---
 
-**Dependencies (blocking):** A4
-**Unblocks:** G2, G3, G4
+## Description, Value & ACs
 
-## 1. Outcome & Business Value (why)
+**Scope:** Edit `apps/website/src/layouts/` and `apps/website/src/lib/` (e.g. meta.ts, jsonld.ts). **Meta:** Utilities to build title, description, og tags from page data. Layout renders `<title>`, `<meta name="description">`, `<meta property="og:...">`; page passes data to layout. **JSON-LD:** Utility to build structured data; layout renders `<script type="application/ld+json">` in head. Page provides title, description, og, structured data; layout consumes and renders in head. Out of scope: sitemap, redirects, 404/500 pages.
 
-**Description:**
-Implement meta and structured-data utilities and layout injection.
+**Outcome:** Meta and JSON-LD render from page data in layout.
 
-**Outcome we expect:**
-Meta and JSON-LD render from page data.
-
-**Value (user / business):**
-Preserves SEO and rich snippets.
-
-## 2. Context & Scope (what/where)
-
-**Scope:** `apps/website/src/` (layouts, lib)
-
-**Dependencies:** A4
-
-**Unblocks:** G2, G3, G4
-
-## 3. Delivery Plan (how)
-
-**Steps:**
-1. Add utilities for meta + JSON-LD.
-2. Render in layout.
+**Value:** SEO meta and structured data for search and social.
 
 **Acceptance criteria:**
 
 | # | Criterion | Done |
-|---|---|---|
-| AC1 | Meta tags render on key pages. | |
-| AC2 | JSON-LD scripts render with correct data. | |
+|---|-----------|------|
+| AC1 | Meta utilities exist; layout renders title, description, og. | |
+| AC2 | JSON-LD utility exists; layout renders ld+json script. | |
 
+---
 
-## 4. Validation & Testing
+## Feasibility & Dependencies
 
-Inspect rendered head for meta and JSON-LD.
+**Blocking:** CMS getters + exports.  
+**Unblocks:** Sitemap; redirects; error pages + robots.
 
-## 5. References
+**Dependencies / risks:** None.
 
-- 02-solution/seo-sitemap-redirects-error-pages-plan.md
+---
 
+## Analytics & Measurement
 
-## 6. Notes
+N/A — implementation task. Success = ACs met.
 
-Keep utilities in lib; pages supply data.
+---
+
+## Testing
+
+Inspect head on a page; meta and ld+json present.
+
+---
+
+## Design & References
+
+**Figma / design:** N/A
+
+---
+
+## Notes
+
+Steps: (1) Add utilities for meta + JSON-LD in src/lib (or utils). (2) Layout consumes page-provided meta and JSON-LD; render in head.

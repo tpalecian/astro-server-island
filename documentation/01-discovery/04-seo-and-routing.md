@@ -3,10 +3,9 @@ title: Discovery — SEO and routing
 phase: discovery
 status: approved
 owner: solutions-engineering
-last_updated: 2026-02-03
+last_updated: 2026-02-04
 depends_on: []
-related_docs:
-  - 02-solution/seo-sitemap-redirects-error-pages-plan.md
+related_docs: []
 tags: [discovery, seo, routing, redirects]
 ---
 
@@ -34,28 +33,34 @@ tags: [discovery, seo, routing, redirects]
 **Assumptions:**
 - Redirect data comes from Dato.
 
-**Dependencies:** `02-solution/seo-sitemap-redirects-error-pages-plan.md`.
-
 **Risks & mitigations:**
 - Risk: SEO regressions. Mitigation: keep meta and JSON‑LD in layout and verify in QA.
 
-## 3. Solution Design (final decisions)
+## 3. Ideas, options & references
 
-- **Meta + JSON‑LD:** Rendered in the layout; page provides data via utilities.
-- **Redirects:** Build‑time redirect config sourced from `getRedirects()`.
-- **Error pages:** Custom 404 and 500.
+**Ideas / options explored:**
+- Build-time vs. runtime redirects (build-time preferred for platform/caching).
+- Meta and JSON‑LD in layout vs. per-page (layout with page-provided data for consistency).
+- Custom 404/500 vs. default host pages (custom for branding and UX).
 
-**Alternatives considered:**
-- Runtime redirects only. Rejected due to platform constraints and caching.
+**References & further reading:**
+- 2022-site meta, JSON‑LD, redirect config, and error pages.
+- Astro metadata and redirects; sitemap and robots patterns.
 
-**Non‑goals:**
-- Changing URL structure beyond required redirects.
+**Old code (2022-site) — current state / prior art:**
 
-## 4. Delivery Plan (how)
+| What | Path (2022-site) |
+|------|-------------------|
+| Route list (sitemap source) | `2022-site/services/routes.js` |
+| Pages (meta, head) | `2022-site/pages/` (e.g. `index.vue`, `_category/_slug.vue` — where meta/JSON-LD are set) |
+| Nuxt config (redirects, head defaults) | `2022-site/nuxt.config.js` (or equivalent) |
+| Error pages | 2022-site error layout or `error.vue` (404/500) |
 
-- Document meta and JSON‑LD utilities in solution doc.
-- Define build‑time redirect output format for host.
-- Add 404/500 design expectations during implementation.
+Use these paths when auditing how the 2022-site handles meta, redirects, and error pages; the new solution uses getters `getRoutes()` and `getRedirects()` and layout-based meta/JSON-LD.
 
-**Open questions / TBD:**
-- Redirect `redirectType` mapping details (301/302 and host syntax).
+**Key information:**
+- Redirect source (Dato); `redirectType` mapping (301/302) and host syntax; sitemap path list source.
+
+---
+
+For the exact approach, meta/redirects/error pages, and delivery → see `02-solution/seo-sitemap-redirects-error-pages-plan.md`.

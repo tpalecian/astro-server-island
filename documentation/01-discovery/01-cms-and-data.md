@@ -3,10 +3,9 @@ title: Discovery — CMS and data access
 phase: discovery
 status: approved
 owner: solutions-engineering
-last_updated: 2026-02-03
+last_updated: 2026-02-04
 depends_on: []
 related_docs:
-  - 02-solution/cms-service-pattern-and-dato-centralisation.md
   - 05-reference/dato-vue-to-service-review.md
 tags: [discovery, cms, dato, data-access, getters]
 ---
@@ -35,28 +34,35 @@ tags: [discovery, cms, dato, data-access, getters]
 - App consumes CMS via alias only (`@rotate/cms`).
 - Containers call getters; modules receive props only.
 
-**Dependencies:** `02-solution/cms-service-pattern-and-dato-centralisation.md`.
-
 **Risks & mitigations:**
 - Risk: direct CMS usage in app. Mitigation: enforce alias-only usage in solution docs.
 
-## 3. Solution Design (final decisions)
+## 3. Ideas, options & references
 
-- All Dato implementation lives in `packages/service-dato`.
-- The app imports from `@rotate/cms` (alias) and calls **direct getters** only (no cms object).
-- Getter API includes: `getHomepage`, `getPageBySlug(category, slug)`, `getRoutes`, `getNavigation`, `getGlobals`, `getCategoryBySlug`, `getCategoryCards`, `getRedirects`.
-- Optional `preview?: boolean` supported on getters for draft content.
+**Ideas / options explored:**
+- Centralised service layer vs. app importing CMS directly (latter rejected for coupling and future CMS swap risk).
+- Getter-based API vs. exposing a CMS client object (getters preferred for explicit, stable contract).
 
-**Alternatives considered:**
-- App importing Dato directly. Rejected due to coupling and future CMS swap risk.
+**References & further reading:**
+- `05-reference/dato-vue-to-service-review.md` — prior Dato/Vue usage and service consolidation notes.
+- DatoCMS GraphQL API and project schema (source of truth for models and fields).
 
-**Non‑goals:**
-- CMS migration beyond aliasing.
+**Old code (2022-site) — current state / prior art:**
 
-## 4. Delivery Plan (how)
+Discovery can point to the legacy codebase for context. Relevant paths in the `2022-site/` folder:
 
-- Finalize getter list and surface in solution design.
-- Ensure alias and getter‑only contract is documented and enforced in future implementation.
+| What | Path (2022-site) |
+|------|-------------------|
+| Dynamic route list from Dato | `2022-site/services/routes.js` |
+| GraphQL fragments (blocks, inline blocks) | `2022-site/gql/fragments/` (e.g. `inline-blocks.gql.js`) |
+| GQL / Dato usage | `2022-site/gql/` |
+| Pages that fetch from Dato | `2022-site/pages/` (e.g. `index.vue`, `_category/_slug.vue`) |
 
-**Open questions / TBD:**
-- None.
+Use these paths when auditing how the 2022-site sources content; the new solution centralises this in `packages/service-dato` and exposes getters only.
+
+**Key information:**
+- 2022-site data access patterns; alias `@rotate/cms` and package boundaries.
+
+---
+
+For the exact approach, getter API, and delivery → see `02-solution/cms-service-pattern-and-dato-centralisation.md`.

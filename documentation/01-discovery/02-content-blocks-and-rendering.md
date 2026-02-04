@@ -3,10 +3,9 @@ title: Discovery — Content blocks and rendering
 phase: discovery
 status: approved
 owner: solutions-engineering
-last_updated: 2026-02-03
+last_updated: 2026-02-04
 depends_on: []
-related_docs:
-  - 02-solution/content-blocks-and-inline-blocks-plan.md
+related_docs: []
 tags: [discovery, content-blocks, rendering, content-island]
 ---
 
@@ -38,22 +37,29 @@ tags: [discovery, content-blocks, rendering, content-island]
 **Risks & mitigations:**
 - Risk: performance regressions. Mitigation: server render first block only.
 
-## 3. Solution Design (final decisions)
+## 3. Ideas, options & references
 
-- **Viewport rule:** First content block above the fold (server). Remaining blocks below‑fold via ContentIsland.
-- **ContentIsland:** Client island performs a separate fetch for below‑fold blocks.
-- **Block mapping:** Use `_modelApiKey` to map blocks to modules (same as 2022-site).
+**Ideas / options explored:**
+- Server-render all blocks vs. first block server + below-fold via client island (latter for performance and streaming).
+- Block mapping by Dato `_modelApiKey` (same as 2022-site) vs. custom mapping (reuse existing key).
 
-**Alternatives considered:**
-- Render all blocks server‑side. Rejected due to performance and streaming goals.
+**References & further reading:**
+- Astro islands and partial hydration; streaming / below-fold patterns.
+- 2022-site block modules and `_modelApiKey` usage.
 
-**Non‑goals:**
-- Building new block types outside current CMS schema.
+**Old code (2022-site) — current state / prior art:**
 
-## 4. Delivery Plan (how)
+| What | Path (2022-site) |
+|------|-------------------|
+| Block components (Content) | `2022-site/components/Content/` (e.g. `MediaCaption.vue`, `MediaCarousel.vue`, `TextHalf.vue`, `TextLead.vue`, `TextQuote.vue`, `CardSlider.vue`, `Stats.vue`) |
+| Inline block fragments (GQL) | `2022-site/gql/fragments/inline-blocks.gql.js` (e.g. `onTagRecord`, `onEmojiRecord`, `onWorkRecord`, `onThinkingRecord`, `onStudioRecord`, `onMegaHeadingRecord`) |
+| Block fragments (GQL) | `2022-site/gql/fragments/` (blocks used in page queries) |
 
-- Document mapping and island behavior in the solution doc.
-- Confirm any additional block types during implementation discovery.
+Use these paths when auditing how the 2022-site renders blocks; the new solution maps by `_modelApiKey` and uses first-block SSR + ContentIsland for below-fold.
 
-**Open questions / TBD:**
-- None.
+**Key information:**
+- Dato block types and `_modelApiKey` values; above/below-fold behaviour requirements.
+
+---
+
+For the exact approach, block mapping, and delivery → see `02-solution/content-blocks-and-inline-blocks-plan.md`.

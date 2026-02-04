@@ -40,20 +40,28 @@ tags: [keyword, keyword, keyword]
    - **Current state**: What exists today.  
    - **In scope / out of scope**: Explicit boundaries (table or list).  
    - **Assumptions**: What must be true.  
-   - **Dependencies**: Upstream/downstream systems, teams, or milestones.  
    - **Risks & mitigations**: Top 1–3 risks and how we reduce them.
 
-3. **Solution Design (how, at a high level)**  
+3. **Ideas, options & references** (discovery only)  
+   - **Ideas / options explored**: Alternatives, patterns, or directions considered (not the final decision).  
+   - **References & further reading**: Internal docs (`05-reference/`), external specs, vendor docs, prior art.  
+   - **Key information**: Sources of truth, constraints, or data that informed scope.
+
+4. **Solution Design (how, at a high level)**  
    - **Proposed approach**: Architecture, patterns, or flow.  
    - **Interfaces & data**: Key integrations, data sources, contracts.  
    - **Alternatives considered**: Briefly list 1–2 and why not chosen.  
    - **Non‑goals**: What we explicitly won’t do.
 
-4. **Delivery Plan (how, at a practical level)**  
+5. **Delivery Plan (how, at a practical level)**  
    - **Phases / steps**: Ordered breakdown; each step testable or demonstrable.  
    - **Deliverables**: Concrete list (features, docs, configs) with acceptance criteria where useful.  
    - **Validation**: Tests, checks, or demos to prove success.  
    - **Open questions / TBD**: Anything that blocks or needs decision.
+
+**Solution-phase docs** must also include:
+- **References (exact):** Only **informational** sources and **planned** locations: discovery doc paths (`01-discovery/…`), implementation ticket paths (`03-implementation/…`), and external documentation URLs (vendor docs, Astro, Vercel, etc.). Include **planned** file/directory paths (where implementation will go). Do **not** reference already-implemented code as the source of truth — the solution is the blueprint used *before* implementation.
+- **Code examples:** Contract or pattern snippets (imports, config, API shape) that define **what to implement**; they are spec, not pointers to existing code.
 
 ### SEL quality bar
 
@@ -78,6 +86,8 @@ Default to this structure. If the user asks for “just a summary” or “just 
 | Start here / entry point | `/documentation/00-start-here` |
 | Discovery | `/documentation/01-discovery` |
 | Solution design | `/documentation/02-solution` |
+
+**Discovery-phase docs** use sections 1–3 only: **Outcome & Business Value (why)** and **Context & Scope (what/where)**, and **Ideas, options & references**. They do **not** contain Solution Design or Delivery Plan — those belong in `02-solution/`. Discovery gathers *why*, *what’s in scope*, and *ideas, options, and information sources*; solution docs contain the definitive *how* (approach, decisions, delivery).
 | Implementation (future) | `/documentation/03-implementation` |
 | Operations & QA (future) | `/documentation/04-operations` |
 | Reference (supporting) | `/documentation/05-reference` |

@@ -1,65 +1,61 @@
 ---
-title: Task F2 — structured text + inline blocks
+title: Ticket F2 — content blocks structured text
 phase: implementation
-status: in-review
+status: approved
 owner: solutions-engineering
-last_updated: 2026-02-03
-depends_on: [A4, F1]
-related_docs: [02-solution/content-blocks-and-inline-blocks-plan.md]
+last_updated: 2026-02-04
+depends_on: [CMS getters + exports, core content block modules]
 tags: [implementation, ticket, content-blocks]
 ---
 
-# Task F2 — structured text + inline blocks
+# Ticket F2 — content blocks structured text
 
-**Ticket:** F2
-**Phase:** 3
-**Scope (files/dirs you may edit):** `apps/website/src/components/modules/`
+---
 
-**Dependencies (blocking):** A4, F1
-**Unblocks:** F3
+## Description, Value & ACs
 
-## 1. Outcome & Business Value (why)
+**Scope:** Edit `apps/website/src/components/modules/` (StructuredText inline renderers). Implement structured text rendering with inline block support. Map inline record types (Tag, Emoji, Work, Thinking, Studio, MegaHeading) to components. Use @datocms/structured-text or equivalent; custom renderers for inline blocks. Data: structured text field from GQL; inline blocks have _modelApiKey (e.g. TagRecord, EmojiRecord). No block-level rendering (core blocks or ContentIsland); inline only within structured text. No data fetching inside inline components; props only.
 
-**Description:**
-Implement structured text rendering and inline blocks.
+**Outcome:** Structured text renders with inline blocks correctly mapped.
 
-**Outcome we expect:**
-Structured text supports inline block components.
-
-**Value (user / business):**
-Completes rich-text rendering for CMS content.
-
-## 2. Context & Scope (what/where)
-
-**Scope:** `apps/website/src/components/modules/`
-
-**Dependencies:** A4, F1
-
-**Unblocks:** F3
-
-## 3. Delivery Plan (how)
-
-**Steps:**
-1. Implement StructuredText module.
-2. Map inline blocks to components.
+**Value:** Rich text with custom inline blocks (tags, emoji, work, thinking, studio, mega heading).
 
 **Acceptance criteria:**
 
 | # | Criterion | Done |
-|---|---|---|
-| AC1 | Structured text renders with inline blocks. | |
-| AC2 | Inline block mapping matches CMS schema. | |
+|---|-----------|------|
+| AC1 | Structured text renders; inline blocks use correct component per type. | |
+| AC2 | No data fetching inside inline components; props only. | |
 
+---
 
-## 4. Validation & Testing
+## Feasibility & Dependencies
 
-Render sample structured text from CMS data.
+**Blocking:** CMS getters + exports; core content block modules.  
+**Unblocks:** Inline block modules (Tag, Emoji, Work, Thinking, Studio, MegaHeading).
 
-## 5. References
+**Dependencies / risks:** None.
 
-- 02-solution/content-blocks-and-inline-blocks-plan.md
+---
 
+## Analytics & Measurement
 
-## 6. Notes
+N/A — implementation task. Success = ACs met.
 
-Keep inline blocks within StructuredText module.
+---
+
+## Testing
+
+Render page with structured text + inline blocks; compare to 2022-site behaviour.
+
+---
+
+## Design & References
+
+**Figma / design:** [Add when available]
+
+---
+
+## Notes
+
+Steps: (1) Wire structured text renderer; support inline blocks. (2) Map inline record types to small components (or shared renderer).

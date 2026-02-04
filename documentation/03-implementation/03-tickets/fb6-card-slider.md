@@ -1,69 +1,61 @@
 ---
-title: Block — Card Slider
+title: Ticket FB6 — block card_slider
 phase: implementation
-status: in-review
+status: approved
 owner: solutions-engineering
-last_updated: 2026-02-03
-depends_on: [A4, B, F1]
-related_docs: [02-solution/content-blocks-and-inline-blocks-plan.md]
+last_updated: 2026-02-04
+depends_on: [CMS getters + exports, app container, core content block modules]
 tags: [implementation, ticket, content-blocks]
 ---
 
-# Block — Card Slider
+# Ticket FB6 — block card_slider
 
-**Ticket:** FB6
-**Phase:** 3
-**Scope (files/dirs you may edit):** `apps/website/src/components/modules/`
+---
 
-**Dependencies (blocking):** A4, B, F1
-**Unblocks:** —
+## Description, Value & ACs
 
-## 1. Outcome & Business Value (why)
+**Scope:** Edit `apps/website/src/components/modules/`. Implement **card_slider** block (_modelApiKey). Props only (e.g. cards array); design-system. No fetch. Wire into block mapping by _modelApiKey.
 
-**Description:**
-Implement the `card_slider` block module mapped by `_modelApiKey`.
+**Outcome:** Block renders with props only.
 
-**Outcome we expect:**
-The `card_slider` block renders with props only and matches design intent.
-
-**Value (user / business):**
-Ensures CMS-driven pages render all required blocks consistently.
-
-## 2. Context & Scope (what/where)
-
-**Scope:** `apps/website/src/components/modules/`
-
-**Legacy component:** `2022-site/components/Content/CardSlider.vue`
-
-**Design system:** Use `@rotate/design-system` tokens for typography, spacing, and layout.
-
-**Figma:** TODO — add Figma URL for `Block — Card Slider`.
-
-## 3. Delivery Plan (how)
-
-**Steps:**
-1. Create module component for `card_slider`.
-2. Map props to match legacy behavior.
-3. Ensure module is used via block mapping by `_modelApiKey`.
+**Value:** Card slider block.
 
 **Acceptance criteria:**
 
 | # | Criterion | Done |
-|---|---|---|
-| AC1 | `card_slider` module renders without data fetching. | |
-| AC2 | Props align with legacy component behavior. | |
-| AC3 | Module uses design-system tokens (no ad-hoc styling). | |
+|---|-----------|------|
+| AC1 | Module renders without data fetching. | |
+| AC2 | Props align with legacy; design-system tokens. | |
 
-## 4. Validation & Testing
+---
 
-- Render the block in a page with mock CMS data.
-- Compare output to legacy component and Figma design.
+## Feasibility & Dependencies
 
-## 5. References
+**Blocking:** CMS getters + exports; app container; core content block modules.  
+**Unblocks:** —
 
-- `02-solution/content-blocks-and-inline-blocks-plan.md`
-- Legacy: `2022-site/components/Content/CardSlider.vue`
+**Dependencies / risks:** None.
 
-## 6. Notes
+---
 
-- CardSet with speed + initialDirection; sliding cards.
+## Analytics & Measurement
+
+N/A — implementation task. Success = ACs met.
+
+---
+
+## Testing
+
+Render with mock data.
+
+---
+
+## Design & References
+
+**Figma / design:** [Add when available]
+
+---
+
+## Notes
+
+Steps: (1) Create module for card_slider. (2) Map props; wire into block mapping.

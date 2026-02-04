@@ -3,10 +3,9 @@ title: Discovery — Tracking and consent
 phase: discovery
 status: approved
 owner: solutions-engineering
-last_updated: 2026-02-03
+last_updated: 2026-02-04
 depends_on: []
-related_docs:
-  - 02-solution/external-services-and-tracking-plan.md
+related_docs: []
 tags: [discovery, tracking, consent, analytics]
 ---
 
@@ -33,28 +32,32 @@ tags: [discovery, tracking, consent, analytics]
 **Assumptions:**
 - Consent precedes any analytics script execution.
 
-**Dependencies:** `02-solution/external-services-and-tracking-plan.md`.
-
 **Risks & mitigations:**
 - Risk: scripts firing before consent. Mitigation: gate in layout and use ENABLE_TRACKING.
 
-## 3. Solution Design (final decisions)
+## 3. Ideas, options & references
 
-- Replicate CookieBanner behavior from 2022-site.
-- Gate scripts until consent is given.
-- Use `ENABLE_TRACKING` env to toggle tracking in dev/prod.
-- Include Lead Feeder and Apollo for now.
+**Ideas / options explored:**
+- Always-on tracking in production vs. consent-gated (consent required for compliance).
+- CookieBanner behaviour from 2022-site as reference for UX and gating.
 
-**Alternatives considered:**
-- Always-on tracking in production. Rejected due to consent requirements.
+**References & further reading:**
+- 2022-site CookieBanner and script gating; env toggles for tracking.
+- GDPR / consent best practices; vendor docs (Lead Feeder, Apollo if applicable).
 
-**Non‑goals:**
-- Vendor selection changes beyond current list.
+**Old code (2022-site) — current state / prior art:**
 
-## 4. Delivery Plan (how)
+| What | Path (2022-site) |
+|------|-------------------|
+| CookieBanner component | `2022-site/components/CookieBanner.vue` (or equivalent; cookie name `cookies`, Accept button, policy link) |
+| Layout / scripts gate | 2022-site layout that loads HubSpot, gtag, Meta, LinkedIn, Lead Feeder, Apollo; gate until consent |
+| Scripts inventory | Audit 2022-site layout and any plugin for tracking script inclusion |
 
-- Document vendor list and consent gating in the solution doc.
-- Ensure `PUBLIC_*` env vars and `ENABLE_TRACKING` are defined in `.env.example` during implementation.
+Use these paths when replicating consent behaviour and script gating in the new app.
 
-**Open questions / TBD:**
-- None.
+**Key information:**
+- Current vendors and script inclusion; `ENABLE_TRACKING` and `PUBLIC_*` env usage.
+
+---
+
+For the exact approach, vendor list, and delivery → see `02-solution/external-services-and-tracking-plan.md`.

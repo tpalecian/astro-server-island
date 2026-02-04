@@ -18,6 +18,8 @@ tags: [solution, index]
 
 # Solution design index
 
+Solution docs contain the **exact final solution planned**: references only to **informational** sources (discovery, external docs) and **planned** locations (where to implement). Code examples define the **contract to implement**, not the already-implemented codebase.
+
 Use this index to find the final solution design by feature.
 
 | Feature | Document |

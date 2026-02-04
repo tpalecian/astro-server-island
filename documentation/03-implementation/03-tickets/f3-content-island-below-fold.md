@@ -1,65 +1,61 @@
 ---
-title: Task F3 — ContentIsland and below-fold fetch
+title: Ticket F3 — ContentIsland (below-fold blocks)
 phase: implementation
-status: in-review
+status: approved
 owner: solutions-engineering
-last_updated: 2026-02-03
-depends_on: [A4, B, F1]
-related_docs: [02-solution/content-blocks-and-inline-blocks-plan.md]
+last_updated: 2026-02-04
+depends_on: [CMS getters + exports, app container, core content block modules]
 tags: [implementation, ticket, content-blocks]
 ---
 
-# Task F3 — ContentIsland and below-fold fetch
+# Ticket F3 — ContentIsland (below-fold blocks)
 
-**Ticket:** F3
-**Phase:** 3
-**Scope (files/dirs you may edit):** `apps/website/src/components/islands/`
+---
 
-**Dependencies (blocking):** A4, B, F1
-**Unblocks:** G, H
+## Description, Value & ACs
 
-## 1. Outcome & Business Value (why)
+**Scope:** Edit `apps/website/src/components/` (ContentIsland: client island) and `apps/website/src/components/modules/` (same block mapping as the core content block modules). **ContentIsland:** Client island that receives page id/slug or block list; fetches or receives below-fold blocks; renders using same _modelApiKey → component mapping as first block. First block server-rendered; remaining blocks loaded via this island. Do not fetch in block modules; fetch in island or page. First block stays server-rendered (not in island).
 
-**Description:**
-Implement ContentIsland to fetch and render below-fold blocks.
+**Outcome:** First block SSR; remaining blocks load via ContentIsland; same mapping used.
 
-**Outcome we expect:**
-Below-fold blocks load client-side with a separate fetch.
-
-**Value (user / business):**
-Enables streaming-like behavior and performance gains.
-
-## 2. Context & Scope (what/where)
-
-**Scope:** `apps/website/src/components/islands/`
-
-**Dependencies:** A4, B, F1
-
-**Unblocks:** G, H
-
-## 3. Delivery Plan (how)
-
-**Steps:**
-1. Implement ContentIsland.
-2. Add endpoint or API for below-fold content.
+**Value:** Performance: first block fast; rest loaded client-side without blocking.
 
 **Acceptance criteria:**
 
 | # | Criterion | Done |
-|---|---|---|
-| AC1 | Below-fold blocks render after client fetch. | |
-| AC2 | First block remains server-rendered. | |
+|---|-----------|------|
+| AC1 | First block server-rendered; remaining blocks via ContentIsland. | |
+| AC2 | ContentIsland uses same _modelApiKey mapping as core content block modules. | |
 
+---
 
-## 4. Validation & Testing
+## Feasibility & Dependencies
 
-Verify network call and rendered output in browser.
+**Blocking:** CMS getters + exports; app container; core content block modules.  
+**Unblocks:** Block modules (media_single, media multiple, text_half, text_lead, quote, card_slider, stats) can be used in island.
 
-## 5. References
+**Dependencies / risks:** None.
 
-- 02-solution/content-blocks-and-inline-blocks-plan.md
+---
 
+## Analytics & Measurement
 
-## 6. Notes
+N/A — implementation task. Success = ACs met.
 
-Ensure island fetch only requests below-fold blocks.
+---
+
+## Testing
+
+Page with multiple blocks: first SSR, rest client-loaded; no hydration errors.
+
+---
+
+## Design & References
+
+**Figma / design:** [Add when available]
+
+---
+
+## Notes
+
+Steps: (1) Implement ContentIsland (client component) that receives page identifier or blocks. (2) Island fetches below-fold blocks (or receives from parent); renders with same block mapping as core content block modules. (3) Page/layout: render first block server-side; pass rest to ContentIsland or trigger island fetch.

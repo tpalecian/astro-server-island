@@ -1,44 +1,37 @@
 ---
-title: Ticket templates (Linear)
+title: Tickets (linear)
 phase: implementation
 status: in-review
-owner: solutions-ownering
-last_updated: 2026-02-03
-depends_on:
-  - 03-implementation/01-plan-of-attack.md
-related_docs:
-  - 02-solution/00-index.md
-  - 01-discovery/00-index.md
+owner: solutions-engineering
+last_updated: 2026-02-04
+depends_on: []
 tags: [implementation, tickets, linear]
 ---
 
-# Ticket templates (Linear)
+# Tickets (linear)
 
-Use these files as **Linear ticket templates**. Each ticket is written to be self‑contained and execution‑ready.
+There are **29 tickets**. Each ticket is **self-contained** for use in Linear (or similar): no references to other documents; scope, acceptance criteria, and validation are inlined in the ticket. Workstreams in `02-workstreams/` hold the same context in repo for AI/agents that have access to the repo.
 
-## Contents
+## Ticket list (29)
 
-- **** — recommended sequence and dependencies
-- **TASK-TEMPLATE.md** — structure for new tickets
-- **A–J tickets** — feature‑level templates
-
-## Ticket list
-
-| Ticket | Template |
-|---|---|
+| ID | Ticket |
+|----|--------|
 | A1 | `a1-service-dato-client-types.md` |
 | A2 | `a2-service-dato-gql-fragments.md` |
-| A3 | `a3-service-dato-models.md` (superseded — no normaliser) |
+| A3 | `a3-service-dato-models.md` (superseded) |
 | A4 | `a4-service-dato-getters-exports.md` |
 | B | `b-app-container.md` |
 | E | `e-dynamic-routes.md` |
-| F | `f-content-blocks-content-island.md` |
-| G | `g-seo-sitemap-redirects-errors.md` |
+| F1 | `f1-content-blocks-core-modules.md` |
+| F2 | `f2-content-blocks-structured-text.md` |
+| F3 | `f3-content-island-below-fold.md` |
+| FB1–FB7 | `fb1-media-single.md` … `fb7-stats-block.md` |
+| G1–G4 | `g1-seo-meta-jsonld.md` … `g4-seo-errors-robots.md` |
 | H | `h-images-media.md` |
 | I | `i-tracking-cookie-banner.md` |
+| IB1–IB6 | `ib1-tagrecord.md` … `ib6-megaheadingrecord.md` |
 | J | `j-deployment-qa.md` |
 
-## Notes
+## Archive
 
-- These templates intentionally omit multi‑owner rules.
-- Use the Solution docs for design intent and Discovery docs for decisions.
+Previous ticket content (before self-contained conversion): `03-tickets/archive/`.

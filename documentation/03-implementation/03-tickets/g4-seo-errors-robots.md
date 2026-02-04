@@ -1,65 +1,61 @@
 ---
-title: Task G4 — 404/500 + robots.txt
+title: Ticket G4 — SEO error pages + robots
 phase: implementation
-status: in-review
+status: approved
 owner: solutions-engineering
-last_updated: 2026-02-03
-depends_on: []
-related_docs: [02-solution/seo-sitemap-redirects-error-pages-plan.md]
+last_updated: 2026-02-04
+depends_on: [CMS getters + exports]
 tags: [implementation, ticket, seo]
 ---
 
-# Task G4 — 404/500 + robots.txt
+# Ticket G4 — SEO error pages + robots
 
-**Ticket:** G4
-**Phase:** 4
-**Scope (files/dirs you may edit):** `apps/website/src/pages/` and `public/`
+---
 
-**Dependencies (blocking):** None.
-**Unblocks:** —
+## Description, Value & ACs
 
-## 1. Outcome & Business Value (why)
+**Scope:** Edit `apps/website/src/pages/404.astro`, `500.astro`; `apps/website/public/robots.txt`. **404/500:** Custom Astro pages; styled to match design. **robots.txt:** In public/; reference sitemap URL (e.g. https://site.com/sitemap.xml). Sitemap URL for robots.txt recommended (sitemap ticket). Out of scope: meta, sitemap, redirects.
 
-**Description:**
-Add custom error pages and robots.txt.
+**Outcome:** 404 and 500 pages render; robots.txt exists and references sitemap.
 
-**Outcome we expect:**
-Error pages and robots.txt are present and styled.
-
-**Value (user / business):**
-Completes SEO baseline and UX.
-
-## 2. Context & Scope (what/where)
-
-**Scope:** `apps/website/src/pages/` and `public/`
-
-**Dependencies:** None.
-
-**Unblocks:** —
-
-## 3. Delivery Plan (how)
-
-**Steps:**
-1. Add 404 and 500 pages.
-2. Add robots.txt referencing sitemap.
+**Value:** User-friendly errors and crawler guidance.
 
 **Acceptance criteria:**
 
 | # | Criterion | Done |
-|---|---|---|
-| AC1 | 404 and 500 pages render with styling. | |
-| AC2 | robots.txt references sitemap. | |
+|---|-----------|------|
+| AC1 | 404.astro and 500.astro exist and render. | |
+| AC2 | robots.txt in public/; references sitemap. | |
 
+---
 
-## 4. Validation & Testing
+## Feasibility & Dependencies
 
-Verify error pages in dev/staging.
+**Blocking:** CMS getters + exports. Sitemap (sitemap URL for robots.txt) recommended.  
+**Unblocks:** Deployment + QA (404/500 and robots validated).
 
-## 5. References
+**Dependencies / risks:** None.
 
-- 02-solution/seo-sitemap-redirects-error-pages-plan.md
+---
 
+## Analytics & Measurement
 
-## 6. Notes
+N/A — implementation task. Success = ACs met.
 
-Align error page styling with layout shell.
+---
+
+## Testing
+
+Hit /nonexistent (404); trigger 500 if possible; fetch /robots.txt.
+
+---
+
+## Design & References
+
+**Figma / design:** [Add when available for 404/500 styling]
+
+---
+
+## Notes
+
+Steps: (1) Add 404.astro and 500.astro in src/pages/; style per design. (2) Add public/robots.txt; include Sitemap: <sitemap URL>.

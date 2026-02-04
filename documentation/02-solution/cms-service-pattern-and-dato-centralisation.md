@@ -3,7 +3,7 @@ title: Solution — CMS service pattern and Dato centralisation
 phase: solution-design
 status: in-review
 owner: solutions-engineering
-last_updated: 2026-02-03
+last_updated: 2026-02-04
 depends_on:
   - 01-discovery/01-cms-and-data.md
 related_docs:
@@ -54,6 +54,64 @@ tags: [solution, cms, dato, service-layer, getters]
 
 **Non‑goals:**
 - CMS migration beyond aliasing.
+
+### References (exact)
+
+**Informational (read before / during implementation):**
+
+| What | Path or URL |
+|------|--------------|
+| Discovery (scope, constraints) | `documentation/01-discovery/01-cms-and-data.md` |
+| Prior Dato/Vue notes (if present) | `documentation/05-reference/dato-vue-to-service-review.md` |
+| Dato CDA client API | [@datocms/cda-client](https://github.com/datocms/js-client) |
+| GraphQL codegen | [@graphql-codegen/cli](https://the-guild.dev/graphql/codegen) |
+
+**Planned locations (where to implement):**
+
+| What | Path |
+|------|------|
+| CMS package (implement here) | `packages/service-dato/` |
+| Package public API (export getters + types only) | `packages/service-dato/src/index.ts` |
+| Getters (one file per getter) | `packages/service-dato/src/handlers/` |
+| GQL queries and fragments | `packages/service-dato/src/gql/**/*.gql.ts` |
+| Base types (GetterOptions, etc.) | `packages/service-dato/src/types.ts` |
+| Codegen output types | `packages/service-dato/src/types-dato.ts` |
+| Client (executeQuery) | `packages/service-dato/src/client.ts` |
+| App alias (wire here) | `apps/website/astro.config.mjs`, `apps/website/tsconfig.json` |
+
+### Code examples (contract to implement)
+
+**App import — only allowed pattern. Implement app code to use:**
+
+```ts
+import { getHomepage, getPageBySlug, getRoutes } from '@rotate/cms'
+```
+
+**App alias — implement in `apps/website/astro.config.mjs` (and tsconfig):**
+
+```js
+resolve: {
+  alias: {
+    "@rotate/cms": path.resolve(__dirname, "../../packages/service-dato/src/index.ts"),
+  },
+},
+```
+
+**Getter contract — implement each getter under `packages/service-dato/src/handlers/` in this shape:**
+
+```ts
+import { executeQuery } from '../client'
+import { homeQuery } from '../gql'
+import type { HomeQuery } from '../types-dato'
+import type { GetterOptions } from '../types'
+
+export async function getHomepage(options: GetterOptions): Promise<HomeQuery['homepage']> {
+  const data = await executeQuery<HomeQuery>(homeQuery, options)
+  return data.homepage ?? null
+}
+```
+
+Define `GetterOptions` in `packages/service-dato/src/types.ts` with `preview?: boolean` for draft content.
 
 ## 4. Delivery Plan (how, at a practical level)
 

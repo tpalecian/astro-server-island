@@ -1,65 +1,61 @@
 ---
-title: Task F1 — content block core modules
+title: Ticket F1 — content block core modules
 phase: implementation
-status: in-review
+status: approved
 owner: solutions-engineering
-last_updated: 2026-02-03
-depends_on: [A4, B]
-related_docs: [02-solution/content-blocks-and-inline-blocks-plan.md]
+last_updated: 2026-02-04
+depends_on: [CMS getters + exports, app container]
 tags: [implementation, ticket, content-blocks]
 ---
 
-# Task F1 — content block core modules
+# Ticket F1 — content block core modules
 
-**Ticket:** F1
-**Phase:** 3
-**Scope (files/dirs you may edit):** `apps/website/src/components/modules/`
+---
 
-**Dependencies (blocking):** A4, B
-**Unblocks:** F2, F3
+## Description, Value & ACs
 
-## 1. Outcome & Business Value (why)
+**Scope:** Edit `apps/website/src/components/modules/` only. Implement core block modules (Text, Quote, Media basics) mapped by `_modelApiKey`. Props only; no data fetching. Use design-system tokens. Block mapping: _modelApiKey → component. Block data comes from page getter (blocks array); each block has _modelApiKey and block-specific fields. Do not add CMS/fetch in modules; ContentIsland (below-fold blocks) and structured-text inline blocks are out of scope here.
 
-**Description:**
-Implement core content block modules (Text, Quote, Media).
+**Outcome:** Core blocks render with props only; match block mapping.
 
-**Outcome we expect:**
-Core blocks render with props only.
-
-**Value (user / business):**
-Enables pages to render above-fold and basic content.
-
-## 2. Context & Scope (what/where)
-
-**Scope:** `apps/website/src/components/modules/`
-
-**Dependencies:** A4, B
-
-**Unblocks:** F2, F3
-
-## 3. Delivery Plan (how)
-
-**Steps:**
-1. Implement core module components.
-2. Wire props from containers.
+**Value:** Reusable block components for all content; consistent mapping.
 
 **Acceptance criteria:**
 
 | # | Criterion | Done |
-|---|---|---|
+|---|-----------|------|
 | AC1 | Core modules exist and render without data fetching. | |
 | AC2 | Modules match block mapping by _modelApiKey. | |
 
+---
 
-## 4. Validation & Testing
+## Feasibility & Dependencies
 
-Render sample blocks locally and verify no data fetch in modules.
+**Blocking:** CMS getters + exports; app container.  
+**Unblocks:** Structured text; ContentIsland (below-fold).
 
-## 5. References
+**Dependencies / risks:** None.
 
-- 02-solution/content-blocks-and-inline-blocks-plan.md
+---
 
+## Analytics & Measurement
 
-## 6. Notes
+N/A — implementation task. Success = ACs met.
 
-Keep modules pure; no CMS imports.
+---
+
+## Testing
+
+Render block in page with mock CMS data.
+
+---
+
+## Design & References
+
+**Figma / design:** [Add when available]
+
+---
+
+## Notes
+
+Steps: (1) Implement core module components for basic blocks. (2) Wire props from containers; ensure block mapping by _modelApiKey.

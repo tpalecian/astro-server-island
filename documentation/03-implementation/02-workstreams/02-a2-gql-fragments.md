@@ -3,7 +3,7 @@ title: Workstream A2 — service-dato GQL + fragments
 phase: implementation
 status: in-review
 owner: solutions-engineering
-last_updated: 2026-02-04
+last_updated: 2026-02-24
 depends_on: []
 related_docs:
   - 01-discovery/01-cms-and-data.md
@@ -64,3 +64,5 @@ tags: [implementation, workstream, cms]
 
 ## 12. Old code (2022-site)
 - `2022-site/gql/`, `2022-site/gql/fragments/` (e.g. inline-blocks.gql.js) — migrate into service-dato.
+
+**Query parity:** See `05-reference/service-dato-2022-site-query-parity.md` for validation that service-dato queries match 2022-site field coverage.

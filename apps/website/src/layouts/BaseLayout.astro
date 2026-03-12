@@ -1,0 +1,20 @@
+---
+import '@rotate/design-system/design-system.css'
+
+import BreakpointsViewer from '@rotate/devtools/components/BreakpointsViewer.astro'
+import GridViewer from '@rotate/devtools/components/GridViewer.astro'
+---
+
+<html lang="en" data-theme="dark">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Home</title>
+	</head>
+  <body>
+    <slot/>
+
+    <BreakpointsViewer/>
+    <GridViewer/>
+  </body>
+</html>

@@ -1,24 +1,18 @@
 ---
-import { getHomepage } from '@rotate/cms'
-import HomeHero from '@/components/modules/HomeHero.astro'
 
-const token = import.meta.env.DATOCMS_API_KEY ?? ''
-const homepage = await getHomepage({ token })
+import HomeHero from '@/components/modules/HomeHero.astro'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+
+// const token = import.meta.env.DATOCMS_API_KEY ?? ''
+// const homepage = await getHomepage({ token })
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<title>Home</title>
-	</head>
-	<body>
-		{homepage && (
+<BaseLayout>
+		<!-- {homepage && (
 			<HomeHero
-				title={homepage.title ?? undefined}
-				heroWords={homepage.heroWords ?? []}
-				heroVideo={homepage.heroVideo ?? undefined}
+			title={homepage.title ?? undefined}
+			heroWords={homepage.heroWords ?? []}
+			heroVideo={homepage.heroVideo ?? undefined}
 			/>
-		)}
-	</body>
-</html>
+		)} -->
+</BaseLayout>

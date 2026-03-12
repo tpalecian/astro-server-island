@@ -1,0 +1,32 @@
+{
+	"name": "@rotate/devtools",
+	"version": "0.0.0",
+	"private": true,
+	"sideEffects": false,
+	"type": "module",
+	"exports": {
+		"./*": "./src/*"
+	},
+	"scripts": {
+		"check:format": "prettier --check .",
+		"check:types": "tsc -p . --noEmit",
+		"format": "prettier --write ."
+	},
+	"dependencies": {
+		"@rotate/design-system": "workspace:*"
+	},
+	"devDependencies": {
+		"@build/eslint-config": "workspace:*",
+		"@build/prettier-config": "workspace:*",
+		"@build/tsconfig": "workspace:*",
+		"@ianvs/prettier-plugin-sort-imports": "4.7.0",
+		"astro": "^5.17.1",
+		"prettier": "^3.4.2",
+		"prettier-plugin-astro": "^0.14.1",
+		"prettier-plugin-packagejson": "^3.0.0",
+		"typescript": "^5.9.3"
+	},
+	"peerDependencies": {
+		"astro": "^5.0.0"
+	}
+}

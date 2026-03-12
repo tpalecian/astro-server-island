@@ -67,7 +67,7 @@ tags: [solution, content-blocks, content-island, rendering]
 | What | Path |
 |------|------|
 | Block data (GQL, getters) | `packages/service-dato/src/gql/` (fragments e.g. blocks, inline-blocks), `packages/service-dato/src/handlers/` (page getter and per-type queries) |
-| App block modules (one per block type) | `apps/website/src/components/modules/` (e.g. `MediaSingle.astro`, `CardSlider.astro`) |
+| App block modules (one per block type) | `apps/website/src/components/modules/` (e.g. `MediaSingle.astro`, `CardSlider.astro`). Modules import core UI from `packages/ui`; website = logic binding only. |
 | ContentIsland (client island, below-fold fetch) | `apps/website/src/components/` (e.g. `ContentIsland.tsx` or `.astro` + client fetch) |
 
 ### Code examples (contract to implement)

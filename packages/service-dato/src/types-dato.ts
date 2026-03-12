@@ -5041,7 +5041,7 @@ export type CategoryBySlugQueryVariables = Exact<{
 }>;
 
 
-export type CategoryBySlugQuery = { category?: { id: any, slug?: string | null, filterText?: string | null, seoMetaTags: Array<{ attributes?: any | null, tag: string, content?: string | null }> } | null };
+export type CategoryBySlugQuery = { category?: { id: any, slug?: string | null, filterText?: string | null, seo?: { title?: string | null, description?: string | null, image?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null } | null, seoMetaTags: Array<{ attributes?: any | null, tag: string, content?: string | null }> } | null };
 
 export type OnQuoteRecordFragment = { name?: string | null, id: any, info?: string | null, type: string, copy?: { value: any, links: Array<
       | { id: any, title?: string | null, type: 'EmojiRecord', media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null, link?: { text?: string | null, url?: string | null, record?:
@@ -5262,7 +5262,88 @@ export type GlobalsQuery = { homepage?: { backgroundColor?: { hex: string } | nu
 export type HomeQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type HomeQuery = { homepage?: { slug?: string | null, title?: string | null, heroCursor?: string | null, backgroundColor?: { hex: string } | null, heroWords: Array<{ word?: string | null }>, heroVideo?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null, seo?: { title?: string | null, description?: string | null, image?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null } | null, seoMetaTags: Array<{ attributes?: any | null, tag: string, content?: string | null }> } | null };
+export type HomeQuery = { homepage?: { slug?: string | null, title?: string | null, heroCursor?: string | null, backgroundColor?: { hex: string } | null, heroWords: Array<{ word?: string | null }>, heroVideo?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null, heroVideoLink?: { text?: string | null, url?: string | null, record?:
+        | { slug?: string | null }
+        | { slug?: string | null }
+        | { slug?: string | null, category?: { slug?: string | null } | null }
+        | { slug?: string | null, category?: { slug?: string | null } | null }
+        | { slug?: string | null, category?: { slug?: string | null } | null }
+       | null } | null, heroLink?: { value: any, links: Array<
+        | { id: any, slug?: string | null, title?: string | null, type: 'StudioRecord' }
+        | { id: any, slug?: string | null, title?: string | null, type: 'ThinkingRecord' }
+        | { id: any, slug?: string | null, title?: string | null, type: 'WorkRecord' }
+      > } | null, content: Array<
+      | { speed?: any | null, initialDirection?: string | null, id: any, type: string, cardSlides?: { id: any, title?: string | null, cards: Array<{ id: any, cardType?: string | null, doubleWidth?: any | null, useHeroImage?: any | null, copy?: string | null, hasDarkText?: any | null, type: string, category?: { slug?: string | null } | null, title?: { value: any, links: Array<{ id: any, title?: string | null, type: 'EmojiRecord', media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null }> } | null, subtitle?: { value: any, links: Array<{ id: any, title?: string | null, type: 'EmojiRecord', media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null }> } | null, media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null, mediaHover?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null, link?: { text?: string | null, url?: string | null, record?:
+                | { slug?: string | null }
+                | { slug?: string | null }
+                | { slug?: string | null, category?: { slug?: string | null } | null }
+                | { slug?: string | null, category?: { slug?: string | null } | null }
+                | { slug?: string | null, category?: { slug?: string | null } | null }
+               | null } | null }> } | null }
+      | { ratio?: string | null, slideSize?: string | null, caption?: string | null, id: any, type: string, mediaSlides: Array<{ url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string }> }
+      | { ratio?: string | null, displayType?: string | null, caption?: string | null, id: any, isFullscreen?: any | null, type: string, media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null }
+      | { name?: string | null, id: any, info?: string | null, type: string, copy?: { value: any, links: Array<
+            | { id: any, title?: string | null, type: 'EmojiRecord', media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null, link?: { text?: string | null, url?: string | null, record?:
+                  | { slug?: string | null }
+                  | { slug?: string | null }
+                  | { slug?: string | null, category?: { slug?: string | null } | null }
+                  | { slug?: string | null, category?: { slug?: string | null } | null }
+                  | { slug?: string | null, category?: { slug?: string | null } | null }
+                 | null } | null }
+            | { id: any, title?: string | null, type: 'MegaHeadingRecord' }
+            | { id: any, slug?: string | null, title?: string | null, type: 'StudioRecord' }
+            | { id: any, name?: string | null, type: 'TagRecord', cards: Array<{ id: any, cardType?: string | null, doubleWidth?: any | null, useHeroImage?: any | null, copy?: string | null, hasDarkText?: any | null, type: string, category?: { slug?: string | null } | null, title?: { value: any, links: Array<{ id: any, title?: string | null, type: 'EmojiRecord', media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null }> } | null, subtitle?: { value: any, links: Array<{ id: any, title?: string | null, type: 'EmojiRecord', media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null }> } | null, media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null, mediaHover?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null, link?: { text?: string | null, url?: string | null, record?:
+                    | { slug?: string | null }
+                    | { slug?: string | null }
+                    | { slug?: string | null, category?: { slug?: string | null } | null }
+                    | { slug?: string | null, category?: { slug?: string | null } | null }
+                    | { slug?: string | null, category?: { slug?: string | null } | null }
+                   | null } | null }> }
+            | { id: any, slug?: string | null, title?: string | null, type: 'ThinkingRecord' }
+            | { id: any, slug?: string | null, title?: string | null, type: 'WorkRecord' }
+          > } | null }
+      | { id: any, type: string, stats: Array<{ value?: string | null, unit?: string | null, label?: string | null }> }
+      | { id: any, type: string, copy?: { value: any, links: Array<
+            | { id: any, title?: string | null, type: 'EmojiRecord', media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null, link?: { text?: string | null, url?: string | null, record?:
+                  | { slug?: string | null }
+                  | { slug?: string | null }
+                  | { slug?: string | null, category?: { slug?: string | null } | null }
+                  | { slug?: string | null, category?: { slug?: string | null } | null }
+                  | { slug?: string | null, category?: { slug?: string | null } | null }
+                 | null } | null }
+            | { id: any, title?: string | null, type: 'MegaHeadingRecord' }
+            | { id: any, slug?: string | null, title?: string | null, type: 'StudioRecord' }
+            | { id: any, name?: string | null, type: 'TagRecord', cards: Array<{ id: any, cardType?: string | null, doubleWidth?: any | null, useHeroImage?: any | null, copy?: string | null, hasDarkText?: any | null, type: string, category?: { slug?: string | null } | null, title?: { value: any, links: Array<{ id: any, title?: string | null, type: 'EmojiRecord', media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null }> } | null, subtitle?: { value: any, links: Array<{ id: any, title?: string | null, type: 'EmojiRecord', media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null }> } | null, media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null, mediaHover?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null, link?: { text?: string | null, url?: string | null, record?:
+                    | { slug?: string | null }
+                    | { slug?: string | null }
+                    | { slug?: string | null, category?: { slug?: string | null } | null }
+                    | { slug?: string | null, category?: { slug?: string | null } | null }
+                    | { slug?: string | null, category?: { slug?: string | null } | null }
+                   | null } | null }> }
+            | { id: any, slug?: string | null, title?: string | null, type: 'ThinkingRecord' }
+            | { id: any, slug?: string | null, title?: string | null, type: 'WorkRecord' }
+          > } | null }
+      | { pretitle?: string | null, size?: string | null, id: any, type: string, copy?: { value: any, links: Array<
+            | { id: any, title?: string | null, type: 'EmojiRecord', media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null, link?: { text?: string | null, url?: string | null, record?:
+                  | { slug?: string | null }
+                  | { slug?: string | null }
+                  | { slug?: string | null, category?: { slug?: string | null } | null }
+                  | { slug?: string | null, category?: { slug?: string | null } | null }
+                  | { slug?: string | null, category?: { slug?: string | null } | null }
+                 | null } | null }
+            | { id: any, title?: string | null, type: 'MegaHeadingRecord' }
+            | { id: any, slug?: string | null, title?: string | null, type: 'StudioRecord' }
+            | { id: any, name?: string | null, type: 'TagRecord', cards: Array<{ id: any, cardType?: string | null, doubleWidth?: any | null, useHeroImage?: any | null, copy?: string | null, hasDarkText?: any | null, type: string, category?: { slug?: string | null } | null, title?: { value: any, links: Array<{ id: any, title?: string | null, type: 'EmojiRecord', media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null }> } | null, subtitle?: { value: any, links: Array<{ id: any, title?: string | null, type: 'EmojiRecord', media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null }> } | null, media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null, mediaHover?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null, link?: { text?: string | null, url?: string | null, record?:
+                    | { slug?: string | null }
+                    | { slug?: string | null }
+                    | { slug?: string | null, category?: { slug?: string | null } | null }
+                    | { slug?: string | null, category?: { slug?: string | null } | null }
+                    | { slug?: string | null, category?: { slug?: string | null } | null }
+                   | null } | null }> }
+            | { id: any, slug?: string | null, title?: string | null, type: 'ThinkingRecord' }
+            | { id: any, slug?: string | null, title?: string | null, type: 'WorkRecord' }
+          > } | null }
+    >, seo?: { title?: string | null, description?: string | null, image?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null } | null, seoMetaTags: Array<{ attributes?: any | null, tag: string, content?: string | null }> } | null };
 
 export type HomepageCardSliderQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -5281,7 +5362,84 @@ export type HomepageCardSliderQuery = { homepage?: { slug?: string | null, title
 export type InfoQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type InfoQuery = { infoPage?: { title?: string | null, slug?: string | null, seoMetaTags: Array<{ attributes?: any | null, tag: string, content?: string | null }>, heroTitle?: { value: any } | null } | null };
+export type InfoQuery = { infoPage?: { title?: string | null, slug?: string | null, seo?: { title?: string | null, description?: string | null, image?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null } | null, seoMetaTags: Array<{ attributes?: any | null, tag: string, content?: string | null }>, heroTitle?: { value: any, links: Array<{ id: any, title?: string | null, type: 'EmojiRecord', media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null, link?: { text?: string | null, url?: string | null, record?:
+            | { slug?: string | null }
+            | { slug?: string | null }
+            | { slug?: string | null, category?: { slug?: string | null } | null }
+            | { slug?: string | null, category?: { slug?: string | null } | null }
+            | { slug?: string | null, category?: { slug?: string | null } | null }
+           | null } | null }> } | null, content: Array<
+      | { speed?: any | null, initialDirection?: string | null, id: any, type: string, cardSlides?: { id: any, title?: string | null, cards: Array<{ id: any, cardType?: string | null, doubleWidth?: any | null, useHeroImage?: any | null, copy?: string | null, hasDarkText?: any | null, type: string, category?: { slug?: string | null } | null, title?: { value: any, links: Array<{ id: any, title?: string | null, type: 'EmojiRecord', media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null }> } | null, subtitle?: { value: any, links: Array<{ id: any, title?: string | null, type: 'EmojiRecord', media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null }> } | null, media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null, mediaHover?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null, link?: { text?: string | null, url?: string | null, record?:
+                | { slug?: string | null }
+                | { slug?: string | null }
+                | { slug?: string | null, category?: { slug?: string | null } | null }
+                | { slug?: string | null, category?: { slug?: string | null } | null }
+                | { slug?: string | null, category?: { slug?: string | null } | null }
+               | null } | null }> } | null }
+      | { ratio?: string | null, slideSize?: string | null, caption?: string | null, id: any, type: string, mediaSlides: Array<{ url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string }> }
+      | { ratio?: string | null, displayType?: string | null, caption?: string | null, id: any, isFullscreen?: any | null, type: string, media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null }
+      | { name?: string | null, id: any, info?: string | null, type: string, copy?: { value: any, links: Array<
+            | { id: any, title?: string | null, type: 'EmojiRecord', media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null, link?: { text?: string | null, url?: string | null, record?:
+                  | { slug?: string | null }
+                  | { slug?: string | null }
+                  | { slug?: string | null, category?: { slug?: string | null } | null }
+                  | { slug?: string | null, category?: { slug?: string | null } | null }
+                  | { slug?: string | null, category?: { slug?: string | null } | null }
+                 | null } | null }
+            | { id: any, title?: string | null, type: 'MegaHeadingRecord' }
+            | { id: any, slug?: string | null, title?: string | null, type: 'StudioRecord' }
+            | { id: any, name?: string | null, type: 'TagRecord', cards: Array<{ id: any, cardType?: string | null, doubleWidth?: any | null, useHeroImage?: any | null, copy?: string | null, hasDarkText?: any | null, type: string, category?: { slug?: string | null } | null, title?: { value: any, links: Array<{ id: any, title?: string | null, type: 'EmojiRecord', media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null }> } | null, subtitle?: { value: any, links: Array<{ id: any, title?: string | null, type: 'EmojiRecord', media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null }> } | null, media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null, mediaHover?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null, link?: { text?: string | null, url?: string | null, record?:
+                    | { slug?: string | null }
+                    | { slug?: string | null }
+                    | { slug?: string | null, category?: { slug?: string | null } | null }
+                    | { slug?: string | null, category?: { slug?: string | null } | null }
+                    | { slug?: string | null, category?: { slug?: string | null } | null }
+                   | null } | null }> }
+            | { id: any, slug?: string | null, title?: string | null, type: 'ThinkingRecord' }
+            | { id: any, slug?: string | null, title?: string | null, type: 'WorkRecord' }
+          > } | null }
+      | { id: any, type: string, stats: Array<{ value?: string | null, unit?: string | null, label?: string | null }> }
+      | { id: any, type: string, copy?: { value: any, links: Array<
+            | { id: any, title?: string | null, type: 'EmojiRecord', media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null, link?: { text?: string | null, url?: string | null, record?:
+                  | { slug?: string | null }
+                  | { slug?: string | null }
+                  | { slug?: string | null, category?: { slug?: string | null } | null }
+                  | { slug?: string | null, category?: { slug?: string | null } | null }
+                  | { slug?: string | null, category?: { slug?: string | null } | null }
+                 | null } | null }
+            | { id: any, title?: string | null, type: 'MegaHeadingRecord' }
+            | { id: any, slug?: string | null, title?: string | null, type: 'StudioRecord' }
+            | { id: any, name?: string | null, type: 'TagRecord', cards: Array<{ id: any, cardType?: string | null, doubleWidth?: any | null, useHeroImage?: any | null, copy?: string | null, hasDarkText?: any | null, type: string, category?: { slug?: string | null } | null, title?: { value: any, links: Array<{ id: any, title?: string | null, type: 'EmojiRecord', media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null }> } | null, subtitle?: { value: any, links: Array<{ id: any, title?: string | null, type: 'EmojiRecord', media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null }> } | null, media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null, mediaHover?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null, link?: { text?: string | null, url?: string | null, record?:
+                    | { slug?: string | null }
+                    | { slug?: string | null }
+                    | { slug?: string | null, category?: { slug?: string | null } | null }
+                    | { slug?: string | null, category?: { slug?: string | null } | null }
+                    | { slug?: string | null, category?: { slug?: string | null } | null }
+                   | null } | null }> }
+            | { id: any, slug?: string | null, title?: string | null, type: 'ThinkingRecord' }
+            | { id: any, slug?: string | null, title?: string | null, type: 'WorkRecord' }
+          > } | null }
+      | { pretitle?: string | null, size?: string | null, id: any, type: string, copy?: { value: any, links: Array<
+            | { id: any, title?: string | null, type: 'EmojiRecord', media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null, link?: { text?: string | null, url?: string | null, record?:
+                  | { slug?: string | null }
+                  | { slug?: string | null }
+                  | { slug?: string | null, category?: { slug?: string | null } | null }
+                  | { slug?: string | null, category?: { slug?: string | null } | null }
+                  | { slug?: string | null, category?: { slug?: string | null } | null }
+                 | null } | null }
+            | { id: any, title?: string | null, type: 'MegaHeadingRecord' }
+            | { id: any, slug?: string | null, title?: string | null, type: 'StudioRecord' }
+            | { id: any, name?: string | null, type: 'TagRecord', cards: Array<{ id: any, cardType?: string | null, doubleWidth?: any | null, useHeroImage?: any | null, copy?: string | null, hasDarkText?: any | null, type: string, category?: { slug?: string | null } | null, title?: { value: any, links: Array<{ id: any, title?: string | null, type: 'EmojiRecord', media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null }> } | null, subtitle?: { value: any, links: Array<{ id: any, title?: string | null, type: 'EmojiRecord', media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null }> } | null, media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null, mediaHover?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null, link?: { text?: string | null, url?: string | null, record?:
+                    | { slug?: string | null }
+                    | { slug?: string | null }
+                    | { slug?: string | null, category?: { slug?: string | null } | null }
+                    | { slug?: string | null, category?: { slug?: string | null } | null }
+                    | { slug?: string | null, category?: { slug?: string | null } | null }
+                   | null } | null }> }
+            | { id: any, slug?: string | null, title?: string | null, type: 'ThinkingRecord' }
+            | { id: any, slug?: string | null, title?: string | null, type: 'WorkRecord' }
+          > } | null }
+    > } | null };
 
 export type NavigationFooterQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -5338,18 +5496,279 @@ export type StudioBySlugQueryVariables = Exact<{
 }>;
 
 
-export type StudioBySlugQuery = { studio?: { slug?: string | null, title?: string | null } | null };
+export type StudioBySlugQuery = { studio?: { title?: string | null, slug?: string | null, id: any, publishDate: any, type: string, introduction?: { value: any, links: Array<{ id: any, title?: string | null, type: 'EmojiRecord', media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null, link?: { text?: string | null, url?: string | null, record?:
+            | { slug?: string | null }
+            | { slug?: string | null }
+            | { slug?: string | null, category?: { slug?: string | null } | null }
+            | { slug?: string | null, category?: { slug?: string | null } | null }
+            | { slug?: string | null, category?: { slug?: string | null } | null }
+           | null } | null }> } | null, client?: { name?: string | null, site?: string | null } | null, heroTitle?: { value: any, links: Array<{ id: any, title?: string | null, type: 'EmojiRecord', media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null, link?: { text?: string | null, url?: string | null, record?:
+            | { slug?: string | null }
+            | { slug?: string | null }
+            | { slug?: string | null, category?: { slug?: string | null } | null }
+            | { slug?: string | null, category?: { slug?: string | null } | null }
+            | { slug?: string | null, category?: { slug?: string | null } | null }
+           | null } | null }> } | null, heroImage?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null, tags: Array<{ name?: string | null, cards: Array<{ id: any, cardType?: string | null, doubleWidth?: any | null, useHeroImage?: any | null, copy?: string | null, hasDarkText?: any | null, type: string, category?: { slug?: string | null } | null, title?: { value: any, links: Array<{ id: any, title?: string | null, type: 'EmojiRecord', media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null }> } | null, subtitle?: { value: any, links: Array<{ id: any, title?: string | null, type: 'EmojiRecord', media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null }> } | null, media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null, mediaHover?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null, link?: { text?: string | null, url?: string | null, record?:
+            | { slug?: string | null }
+            | { slug?: string | null }
+            | { slug?: string | null, category?: { slug?: string | null } | null }
+            | { slug?: string | null, category?: { slug?: string | null } | null }
+            | { slug?: string | null, category?: { slug?: string | null } | null }
+           | null } | null }> }>, seo?: { title?: string | null, description?: string | null, image?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null } | null, seoMetaTags: Array<{ attributes?: any | null, tag: string, content?: string | null }>, content: Array<
+      | { speed?: any | null, initialDirection?: string | null, id: any, type: string, cardSlides?: { id: any, title?: string | null, cards: Array<{ id: any, cardType?: string | null, doubleWidth?: any | null, useHeroImage?: any | null, copy?: string | null, hasDarkText?: any | null, type: string, category?: { slug?: string | null } | null, title?: { value: any, links: Array<{ id: any, title?: string | null, type: 'EmojiRecord', media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null }> } | null, subtitle?: { value: any, links: Array<{ id: any, title?: string | null, type: 'EmojiRecord', media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null }> } | null, media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null, mediaHover?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null, link?: { text?: string | null, url?: string | null, record?:
+                | { slug?: string | null }
+                | { slug?: string | null }
+                | { slug?: string | null, category?: { slug?: string | null } | null }
+                | { slug?: string | null, category?: { slug?: string | null } | null }
+                | { slug?: string | null, category?: { slug?: string | null } | null }
+               | null } | null }> } | null }
+      | { ratio?: string | null, slideSize?: string | null, caption?: string | null, id: any, type: string, mediaSlides: Array<{ url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string }> }
+      | { ratio?: string | null, displayType?: string | null, caption?: string | null, id: any, isFullscreen?: any | null, type: string, media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null }
+      | { name?: string | null, id: any, info?: string | null, type: string, copy?: { value: any, links: Array<
+            | { id: any, title?: string | null, type: 'EmojiRecord', media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null, link?: { text?: string | null, url?: string | null, record?:
+                  | { slug?: string | null }
+                  | { slug?: string | null }
+                  | { slug?: string | null, category?: { slug?: string | null } | null }
+                  | { slug?: string | null, category?: { slug?: string | null } | null }
+                  | { slug?: string | null, category?: { slug?: string | null } | null }
+                 | null } | null }
+            | { id: any, title?: string | null, type: 'MegaHeadingRecord' }
+            | { id: any, slug?: string | null, title?: string | null, type: 'StudioRecord' }
+            | { id: any, name?: string | null, type: 'TagRecord', cards: Array<{ id: any, cardType?: string | null, doubleWidth?: any | null, useHeroImage?: any | null, copy?: string | null, hasDarkText?: any | null, type: string, category?: { slug?: string | null } | null, title?: { value: any, links: Array<{ id: any, title?: string | null, type: 'EmojiRecord', media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null }> } | null, subtitle?: { value: any, links: Array<{ id: any, title?: string | null, type: 'EmojiRecord', media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null }> } | null, media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null, mediaHover?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null, link?: { text?: string | null, url?: string | null, record?:
+                    | { slug?: string | null }
+                    | { slug?: string | null }
+                    | { slug?: string | null, category?: { slug?: string | null } | null }
+                    | { slug?: string | null, category?: { slug?: string | null } | null }
+                    | { slug?: string | null, category?: { slug?: string | null } | null }
+                   | null } | null }> }
+            | { id: any, slug?: string | null, title?: string | null, type: 'ThinkingRecord' }
+            | { id: any, slug?: string | null, title?: string | null, type: 'WorkRecord' }
+          > } | null }
+      | { id: any, type: string, stats: Array<{ value?: string | null, unit?: string | null, label?: string | null }> }
+      | { id: any, type: string, copy?: { value: any, links: Array<
+            | { id: any, title?: string | null, type: 'EmojiRecord', media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null, link?: { text?: string | null, url?: string | null, record?:
+                  | { slug?: string | null }
+                  | { slug?: string | null }
+                  | { slug?: string | null, category?: { slug?: string | null } | null }
+                  | { slug?: string | null, category?: { slug?: string | null } | null }
+                  | { slug?: string | null, category?: { slug?: string | null } | null }
+                 | null } | null }
+            | { id: any, title?: string | null, type: 'MegaHeadingRecord' }
+            | { id: any, slug?: string | null, title?: string | null, type: 'StudioRecord' }
+            | { id: any, name?: string | null, type: 'TagRecord', cards: Array<{ id: any, cardType?: string | null, doubleWidth?: any | null, useHeroImage?: any | null, copy?: string | null, hasDarkText?: any | null, type: string, category?: { slug?: string | null } | null, title?: { value: any, links: Array<{ id: any, title?: string | null, type: 'EmojiRecord', media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null }> } | null, subtitle?: { value: any, links: Array<{ id: any, title?: string | null, type: 'EmojiRecord', media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null }> } | null, media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null, mediaHover?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null, link?: { text?: string | null, url?: string | null, record?:
+                    | { slug?: string | null }
+                    | { slug?: string | null }
+                    | { slug?: string | null, category?: { slug?: string | null } | null }
+                    | { slug?: string | null, category?: { slug?: string | null } | null }
+                    | { slug?: string | null, category?: { slug?: string | null } | null }
+                   | null } | null }> }
+            | { id: any, slug?: string | null, title?: string | null, type: 'ThinkingRecord' }
+            | { id: any, slug?: string | null, title?: string | null, type: 'WorkRecord' }
+          > } | null }
+      | { pretitle?: string | null, size?: string | null, id: any, type: string, copy?: { value: any, links: Array<
+            | { id: any, title?: string | null, type: 'EmojiRecord', media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null, link?: { text?: string | null, url?: string | null, record?:
+                  | { slug?: string | null }
+                  | { slug?: string | null }
+                  | { slug?: string | null, category?: { slug?: string | null } | null }
+                  | { slug?: string | null, category?: { slug?: string | null } | null }
+                  | { slug?: string | null, category?: { slug?: string | null } | null }
+                 | null } | null }
+            | { id: any, title?: string | null, type: 'MegaHeadingRecord' }
+            | { id: any, slug?: string | null, title?: string | null, type: 'StudioRecord' }
+            | { id: any, name?: string | null, type: 'TagRecord', cards: Array<{ id: any, cardType?: string | null, doubleWidth?: any | null, useHeroImage?: any | null, copy?: string | null, hasDarkText?: any | null, type: string, category?: { slug?: string | null } | null, title?: { value: any, links: Array<{ id: any, title?: string | null, type: 'EmojiRecord', media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null }> } | null, subtitle?: { value: any, links: Array<{ id: any, title?: string | null, type: 'EmojiRecord', media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null }> } | null, media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null, mediaHover?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null, link?: { text?: string | null, url?: string | null, record?:
+                    | { slug?: string | null }
+                    | { slug?: string | null }
+                    | { slug?: string | null, category?: { slug?: string | null } | null }
+                    | { slug?: string | null, category?: { slug?: string | null } | null }
+                    | { slug?: string | null, category?: { slug?: string | null } | null }
+                   | null } | null }> }
+            | { id: any, slug?: string | null, title?: string | null, type: 'ThinkingRecord' }
+            | { id: any, slug?: string | null, title?: string | null, type: 'WorkRecord' }
+          > } | null }
+    > } | null };
 
 export type ThinkingBySlugQueryVariables = Exact<{
   slug: Scalars['String']['input'];
 }>;
 
 
-export type ThinkingBySlugQuery = { thinking?: { slug?: string | null, title?: string | null } | null };
+export type ThinkingBySlugQuery = { thinking?: { title?: string | null, publishDate?: any | null, slug?: string | null, id: any, type: string, author?: { name?: string | null } | null, heroTitle?: { value: any, links: Array<{ id: any, title?: string | null, type: 'EmojiRecord', media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null, link?: { text?: string | null, url?: string | null, record?:
+            | { slug?: string | null }
+            | { slug?: string | null }
+            | { slug?: string | null, category?: { slug?: string | null } | null }
+            | { slug?: string | null, category?: { slug?: string | null } | null }
+            | { slug?: string | null, category?: { slug?: string | null } | null }
+           | null } | null }> } | null, tags: Array<{ name?: string | null, cards: Array<{ id: any, cardType?: string | null, doubleWidth?: any | null, useHeroImage?: any | null, copy?: string | null, hasDarkText?: any | null, type: string, category?: { slug?: string | null } | null, title?: { value: any, links: Array<{ id: any, title?: string | null, type: 'EmojiRecord', media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null }> } | null, subtitle?: { value: any, links: Array<{ id: any, title?: string | null, type: 'EmojiRecord', media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null }> } | null, media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null, mediaHover?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null, link?: { text?: string | null, url?: string | null, record?:
+            | { slug?: string | null }
+            | { slug?: string | null }
+            | { slug?: string | null, category?: { slug?: string | null } | null }
+            | { slug?: string | null, category?: { slug?: string | null } | null }
+            | { slug?: string | null, category?: { slug?: string | null } | null }
+           | null } | null }> }>, seo?: { title?: string | null, description?: string | null, image?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null } | null, seoMetaTags: Array<{ attributes?: any | null, tag: string, content?: string | null }>, content: Array<
+      | { speed?: any | null, initialDirection?: string | null, id: any, type: string, cardSlides?: { id: any, title?: string | null, cards: Array<{ id: any, cardType?: string | null, doubleWidth?: any | null, useHeroImage?: any | null, copy?: string | null, hasDarkText?: any | null, type: string, category?: { slug?: string | null } | null, title?: { value: any, links: Array<{ id: any, title?: string | null, type: 'EmojiRecord', media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null }> } | null, subtitle?: { value: any, links: Array<{ id: any, title?: string | null, type: 'EmojiRecord', media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null }> } | null, media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null, mediaHover?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null, link?: { text?: string | null, url?: string | null, record?:
+                | { slug?: string | null }
+                | { slug?: string | null }
+                | { slug?: string | null, category?: { slug?: string | null } | null }
+                | { slug?: string | null, category?: { slug?: string | null } | null }
+                | { slug?: string | null, category?: { slug?: string | null } | null }
+               | null } | null }> } | null }
+      | { ratio?: string | null, slideSize?: string | null, caption?: string | null, id: any, type: string, mediaSlides: Array<{ url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string }> }
+      | { ratio?: string | null, displayType?: string | null, caption?: string | null, id: any, isFullscreen?: any | null, type: string, media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null }
+      | { name?: string | null, id: any, info?: string | null, type: string, copy?: { value: any, links: Array<
+            | { id: any, title?: string | null, type: 'EmojiRecord', media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null, link?: { text?: string | null, url?: string | null, record?:
+                  | { slug?: string | null }
+                  | { slug?: string | null }
+                  | { slug?: string | null, category?: { slug?: string | null } | null }
+                  | { slug?: string | null, category?: { slug?: string | null } | null }
+                  | { slug?: string | null, category?: { slug?: string | null } | null }
+                 | null } | null }
+            | { id: any, title?: string | null, type: 'MegaHeadingRecord' }
+            | { id: any, slug?: string | null, title?: string | null, type: 'StudioRecord' }
+            | { id: any, name?: string | null, type: 'TagRecord', cards: Array<{ id: any, cardType?: string | null, doubleWidth?: any | null, useHeroImage?: any | null, copy?: string | null, hasDarkText?: any | null, type: string, category?: { slug?: string | null } | null, title?: { value: any, links: Array<{ id: any, title?: string | null, type: 'EmojiRecord', media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null }> } | null, subtitle?: { value: any, links: Array<{ id: any, title?: string | null, type: 'EmojiRecord', media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null }> } | null, media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null, mediaHover?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null, link?: { text?: string | null, url?: string | null, record?:
+                    | { slug?: string | null }
+                    | { slug?: string | null }
+                    | { slug?: string | null, category?: { slug?: string | null } | null }
+                    | { slug?: string | null, category?: { slug?: string | null } | null }
+                    | { slug?: string | null, category?: { slug?: string | null } | null }
+                   | null } | null }> }
+            | { id: any, slug?: string | null, title?: string | null, type: 'ThinkingRecord' }
+            | { id: any, slug?: string | null, title?: string | null, type: 'WorkRecord' }
+          > } | null }
+      | { id: any, type: string, stats: Array<{ value?: string | null, unit?: string | null, label?: string | null }> }
+      | { id: any, type: string, copy?: { value: any, links: Array<
+            | { id: any, title?: string | null, type: 'EmojiRecord', media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null, link?: { text?: string | null, url?: string | null, record?:
+                  | { slug?: string | null }
+                  | { slug?: string | null }
+                  | { slug?: string | null, category?: { slug?: string | null } | null }
+                  | { slug?: string | null, category?: { slug?: string | null } | null }
+                  | { slug?: string | null, category?: { slug?: string | null } | null }
+                 | null } | null }
+            | { id: any, title?: string | null, type: 'MegaHeadingRecord' }
+            | { id: any, slug?: string | null, title?: string | null, type: 'StudioRecord' }
+            | { id: any, name?: string | null, type: 'TagRecord', cards: Array<{ id: any, cardType?: string | null, doubleWidth?: any | null, useHeroImage?: any | null, copy?: string | null, hasDarkText?: any | null, type: string, category?: { slug?: string | null } | null, title?: { value: any, links: Array<{ id: any, title?: string | null, type: 'EmojiRecord', media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null }> } | null, subtitle?: { value: any, links: Array<{ id: any, title?: string | null, type: 'EmojiRecord', media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null }> } | null, media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null, mediaHover?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null, link?: { text?: string | null, url?: string | null, record?:
+                    | { slug?: string | null }
+                    | { slug?: string | null }
+                    | { slug?: string | null, category?: { slug?: string | null } | null }
+                    | { slug?: string | null, category?: { slug?: string | null } | null }
+                    | { slug?: string | null, category?: { slug?: string | null } | null }
+                   | null } | null }> }
+            | { id: any, slug?: string | null, title?: string | null, type: 'ThinkingRecord' }
+            | { id: any, slug?: string | null, title?: string | null, type: 'WorkRecord' }
+          > } | null }
+      | { pretitle?: string | null, size?: string | null, id: any, type: string, copy?: { value: any, links: Array<
+            | { id: any, title?: string | null, type: 'EmojiRecord', media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null, link?: { text?: string | null, url?: string | null, record?:
+                  | { slug?: string | null }
+                  | { slug?: string | null }
+                  | { slug?: string | null, category?: { slug?: string | null } | null }
+                  | { slug?: string | null, category?: { slug?: string | null } | null }
+                  | { slug?: string | null, category?: { slug?: string | null } | null }
+                 | null } | null }
+            | { id: any, title?: string | null, type: 'MegaHeadingRecord' }
+            | { id: any, slug?: string | null, title?: string | null, type: 'StudioRecord' }
+            | { id: any, name?: string | null, type: 'TagRecord', cards: Array<{ id: any, cardType?: string | null, doubleWidth?: any | null, useHeroImage?: any | null, copy?: string | null, hasDarkText?: any | null, type: string, category?: { slug?: string | null } | null, title?: { value: any, links: Array<{ id: any, title?: string | null, type: 'EmojiRecord', media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null }> } | null, subtitle?: { value: any, links: Array<{ id: any, title?: string | null, type: 'EmojiRecord', media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null }> } | null, media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null, mediaHover?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null, link?: { text?: string | null, url?: string | null, record?:
+                    | { slug?: string | null }
+                    | { slug?: string | null }
+                    | { slug?: string | null, category?: { slug?: string | null } | null }
+                    | { slug?: string | null, category?: { slug?: string | null } | null }
+                    | { slug?: string | null, category?: { slug?: string | null } | null }
+                   | null } | null }> }
+            | { id: any, slug?: string | null, title?: string | null, type: 'ThinkingRecord' }
+            | { id: any, slug?: string | null, title?: string | null, type: 'WorkRecord' }
+          > } | null }
+    > } | null };
 
 export type WorkBySlugQueryVariables = Exact<{
   slug: Scalars['String']['input'];
 }>;
 
 
-export type WorkBySlugQuery = { work?: { slug?: string | null, title?: string | null } | null };
+export type WorkBySlugQuery = { work?: { title?: string | null, slug?: string | null, id: any, publishDate: any, type: string, introduction?: { value: any, links: Array<{ id: any, title?: string | null, type: 'EmojiRecord', media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null, link?: { text?: string | null, url?: string | null, record?:
+            | { slug?: string | null }
+            | { slug?: string | null }
+            | { slug?: string | null, category?: { slug?: string | null } | null }
+            | { slug?: string | null, category?: { slug?: string | null } | null }
+            | { slug?: string | null, category?: { slug?: string | null } | null }
+           | null } | null }> } | null, client?: { name?: string | null, site?: string | null } | null, heroTitle?: { value: any, links: Array<{ id: any, title?: string | null, type: 'EmojiRecord', media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null, link?: { text?: string | null, url?: string | null, record?:
+            | { slug?: string | null }
+            | { slug?: string | null }
+            | { slug?: string | null, category?: { slug?: string | null } | null }
+            | { slug?: string | null, category?: { slug?: string | null } | null }
+            | { slug?: string | null, category?: { slug?: string | null } | null }
+           | null } | null }> } | null, heroImage?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null, tags: Array<{ name?: string | null, cards: Array<{ id: any, cardType?: string | null, doubleWidth?: any | null, useHeroImage?: any | null, copy?: string | null, hasDarkText?: any | null, type: string, category?: { slug?: string | null } | null, title?: { value: any, links: Array<{ id: any, title?: string | null, type: 'EmojiRecord', media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null }> } | null, subtitle?: { value: any, links: Array<{ id: any, title?: string | null, type: 'EmojiRecord', media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null }> } | null, media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null, mediaHover?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null, link?: { text?: string | null, url?: string | null, record?:
+            | { slug?: string | null }
+            | { slug?: string | null }
+            | { slug?: string | null, category?: { slug?: string | null } | null }
+            | { slug?: string | null, category?: { slug?: string | null } | null }
+            | { slug?: string | null, category?: { slug?: string | null } | null }
+           | null } | null }> }>, seo?: { title?: string | null, description?: string | null, image?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null } | null, seoMetaTags: Array<{ attributes?: any | null, tag: string, content?: string | null }>, content: Array<
+      | { speed?: any | null, initialDirection?: string | null, id: any, type: string, cardSlides?: { id: any, title?: string | null, cards: Array<{ id: any, cardType?: string | null, doubleWidth?: any | null, useHeroImage?: any | null, copy?: string | null, hasDarkText?: any | null, type: string, category?: { slug?: string | null } | null, title?: { value: any, links: Array<{ id: any, title?: string | null, type: 'EmojiRecord', media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null }> } | null, subtitle?: { value: any, links: Array<{ id: any, title?: string | null, type: 'EmojiRecord', media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null }> } | null, media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null, mediaHover?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null, link?: { text?: string | null, url?: string | null, record?:
+                | { slug?: string | null }
+                | { slug?: string | null }
+                | { slug?: string | null, category?: { slug?: string | null } | null }
+                | { slug?: string | null, category?: { slug?: string | null } | null }
+                | { slug?: string | null, category?: { slug?: string | null } | null }
+               | null } | null }> } | null }
+      | { ratio?: string | null, slideSize?: string | null, caption?: string | null, id: any, type: string, mediaSlides: Array<{ url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string }> }
+      | { ratio?: string | null, displayType?: string | null, caption?: string | null, id: any, isFullscreen?: any | null, type: string, media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null }
+      | { name?: string | null, id: any, info?: string | null, type: string, copy?: { value: any, links: Array<
+            | { id: any, title?: string | null, type: 'EmojiRecord', media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null, link?: { text?: string | null, url?: string | null, record?:
+                  | { slug?: string | null }
+                  | { slug?: string | null }
+                  | { slug?: string | null, category?: { slug?: string | null } | null }
+                  | { slug?: string | null, category?: { slug?: string | null } | null }
+                  | { slug?: string | null, category?: { slug?: string | null } | null }
+                 | null } | null }
+            | { id: any, title?: string | null, type: 'MegaHeadingRecord' }
+            | { id: any, slug?: string | null, title?: string | null, type: 'StudioRecord' }
+            | { id: any, name?: string | null, type: 'TagRecord', cards: Array<{ id: any, cardType?: string | null, doubleWidth?: any | null, useHeroImage?: any | null, copy?: string | null, hasDarkText?: any | null, type: string, category?: { slug?: string | null } | null, title?: { value: any, links: Array<{ id: any, title?: string | null, type: 'EmojiRecord', media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null }> } | null, subtitle?: { value: any, links: Array<{ id: any, title?: string | null, type: 'EmojiRecord', media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null }> } | null, media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null, mediaHover?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null, link?: { text?: string | null, url?: string | null, record?:
+                    | { slug?: string | null }
+                    | { slug?: string | null }
+                    | { slug?: string | null, category?: { slug?: string | null } | null }
+                    | { slug?: string | null, category?: { slug?: string | null } | null }
+                    | { slug?: string | null, category?: { slug?: string | null } | null }
+                   | null } | null }> }
+            | { id: any, slug?: string | null, title?: string | null, type: 'ThinkingRecord' }
+            | { id: any, slug?: string | null, title?: string | null, type: 'WorkRecord' }
+          > } | null }
+      | { id: any, type: string, stats: Array<{ value?: string | null, unit?: string | null, label?: string | null }> }
+      | { id: any, type: string, copy?: { value: any, links: Array<
+            | { id: any, title?: string | null, type: 'EmojiRecord', media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null, link?: { text?: string | null, url?: string | null, record?:
+                  | { slug?: string | null }
+                  | { slug?: string | null }
+                  | { slug?: string | null, category?: { slug?: string | null } | null }
+                  | { slug?: string | null, category?: { slug?: string | null } | null }
+                  | { slug?: string | null, category?: { slug?: string | null } | null }
+                 | null } | null }
+            | { id: any, title?: string | null, type: 'MegaHeadingRecord' }
+            | { id: any, slug?: string | null, title?: string | null, type: 'StudioRecord' }
+            | { id: any, name?: string | null, type: 'TagRecord', cards: Array<{ id: any, cardType?: string | null, doubleWidth?: any | null, useHeroImage?: any | null, copy?: string | null, hasDarkText?: any | null, type: string, category?: { slug?: string | null } | null, title?: { value: any, links: Array<{ id: any, title?: string | null, type: 'EmojiRecord', media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null }> } | null, subtitle?: { value: any, links: Array<{ id: any, title?: string | null, type: 'EmojiRecord', media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null }> } | null, media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null, mediaHover?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null, link?: { text?: string | null, url?: string | null, record?:
+                    | { slug?: string | null }
+                    | { slug?: string | null }
+                    | { slug?: string | null, category?: { slug?: string | null } | null }
+                    | { slug?: string | null, category?: { slug?: string | null } | null }
+                    | { slug?: string | null, category?: { slug?: string | null } | null }
+                   | null } | null }> }
+            | { id: any, slug?: string | null, title?: string | null, type: 'ThinkingRecord' }
+            | { id: any, slug?: string | null, title?: string | null, type: 'WorkRecord' }
+          > } | null }
+      | { pretitle?: string | null, size?: string | null, id: any, type: string, copy?: { value: any, links: Array<
+            | { id: any, title?: string | null, type: 'EmojiRecord', media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null, link?: { text?: string | null, url?: string | null, record?:
+                  | { slug?: string | null }
+                  | { slug?: string | null }
+                  | { slug?: string | null, category?: { slug?: string | null } | null }
+                  | { slug?: string | null, category?: { slug?: string | null } | null }
+                  | { slug?: string | null, category?: { slug?: string | null } | null }
+                 | null } | null }
+            | { id: any, title?: string | null, type: 'MegaHeadingRecord' }
+            | { id: any, slug?: string | null, title?: string | null, type: 'StudioRecord' }
+            | { id: any, name?: string | null, type: 'TagRecord', cards: Array<{ id: any, cardType?: string | null, doubleWidth?: any | null, useHeroImage?: any | null, copy?: string | null, hasDarkText?: any | null, type: string, category?: { slug?: string | null } | null, title?: { value: any, links: Array<{ id: any, title?: string | null, type: 'EmojiRecord', media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null }> } | null, subtitle?: { value: any, links: Array<{ id: any, title?: string | null, type: 'EmojiRecord', media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null }> } | null, media?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null, mediaHover?: { url: string, alt?: string | null, width?: any | null, height?: any | null, format: string, customData: any, type: string } | null, link?: { text?: string | null, url?: string | null, record?:
+                    | { slug?: string | null }
+                    | { slug?: string | null }
+                    | { slug?: string | null, category?: { slug?: string | null } | null }
+                    | { slug?: string | null, category?: { slug?: string | null } | null }
+                    | { slug?: string | null, category?: { slug?: string | null } | null }
+                   | null } | null }> }
+            | { id: any, slug?: string | null, title?: string | null, type: 'ThinkingRecord' }
+            | { id: any, slug?: string | null, title?: string | null, type: 'WorkRecord' }
+          > } | null }
+    > } | null };

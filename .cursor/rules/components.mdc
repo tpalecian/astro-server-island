@@ -1,0 +1,76 @@
+---
+description: How to build Astro components — design system, styling, Figma, subcomponents
+globs: apps/website/src/**/*.astro, packages/devtools/src/**/*.astro, packages/ui/**/*.astro
+alwaysApply: false
+---
+
+# Component Building Rules
+
+**Scope:** Astro components in `apps/website`, `packages/devtools`, and `packages/ui`. Works with `.cursor/rules/architecture.mdc` and `.cursor/rules/behaviour-escalation.mdc`.
+
+## packages/ui vs apps/website
+
+- **`packages/ui`** — All core UI components, grouped correctly. Buttons, inputs, NavLink, cards, icon wrappers, etc. No app logic, no CMS, no data fetching. Stateless primitives only.
+- **`apps/website`** — Layout, containers, modules, and logic binding only. Follows behaviour-escalation (server first, islands, minimal JS, Alpine last). Modules compose from `packages/ui` and receive props from containers. Layout (BaseLayout) lives in website — it binds composition.
+
+**Rule:** Website contains no core UI — it imports from `packages/ui` and binds data. Core UI lives in `packages/ui`.
+
+## Design system usage
+
+- **Import:** Layouts import `@rotate/design-system/design-system.css`. Components do not import CSS directly.
+- **Colors:** Use semantic tokens via `var(--color-*)`. Examples:
+  - `--color-background-default-primary`, `--color-content-default-primary`
+  - `--color-border-default-primary`, `--color-action-brand`
+- **Typography:** Use `@utility` classes from design-system:
+  - `title-style1-*` … `title-style4-*` (100–1000)
+  - `body-style1-*` … `body-style3-*`, `longform-style1-*`
+  - `thumbnail-title`, `thumbnail-description`
+- **Spacing:** Use `--spacing-*` (100–1300) or `--spacer-spacer-*` (100–800) for layout.
+- **Grid:** Use `--grid-default-gutter`, `--grid-default-margin`, `grid-cols-12`, `gap-x-[var(--grid-default-gutter)]`, `px-[var(--grid-default-margin)]`.
+
+## Styling conventions
+
+1. **Tailwind + design tokens:** Prefer Tailwind utilities that map to design-system vars (e.g. `text-[var(--color-content-default-primary)]`, `bg-[var(--color-background-default-primary)]`).
+2. **No arbitrary values for design tokens:** Do not hardcode colors, fonts, or spacing that exist in the design system.
+3. **Responsive:** Breakpoints are `--breakpoint-tablet` (768px), `--breakpoint-desktop` (1024px). Use `theme(--breakpoint-*)` or Tailwind `tablet:` / `desktop:`.
+4. **Theming:** Root uses `data-theme="light"` or `data-theme="dark"`. Colors use `light-dark()` for automatic switching.
+
+## Component patterns
+
+- **Module components** (`*.astro`): HTML + styling only. Props from container. No data fetching, no domain logic. Referentially transparent.
+- **Containers** (`*.container.astro`): Server-only. Fetch data via `@rotate/cms`, validate, pass props to module.
+- **Base components:** Stateless UI primitives. No app/domain logic. Minimal JS only for essential interactions.
+
+## HTML & accessibility
+
+- Use semantic elements (`<section>`, `<article>`, `<nav>`, `<header>`, `<footer>`, `<main>`).
+- Provide `alt` for images. Use `aria-label` for icon-only controls.
+- Form controls: associate labels, support keyboard navigation.
+
+## CSS-first
+
+- Prefer CSS solutions (e.g. `:has()`, `peer`, `group`, `@media`) over JavaScript.
+- Transitions: use `transition-*` with `duration-*` and `ease-out` / `ease-in-out` from design system where applicable.
+
+## Zero-JS default
+
+- Components ship zero JavaScript unless essential (e.g. form validation, modals). Prefer native HTML (`<details>`, `<dialog>`) and CSS where possible.
+- **Behaviour escalation:** See `.cursor/rules/behaviour-escalation.mdc` — server first, then Server Island, then minimal JS, then Alpine only as last resort.
+
+---
+
+## Figma MCP (design-to-code)
+
+When using Figma MCP for implementation:
+
+- **Fetch all component variables** — Use `get_design_context` (and `get_metadata` if needed) to retrieve the full structured representation, including all variables, tokens, and design tokens for the component.
+- **SVGs:** If a component includes an SVG, **ask for it from Figma** — use the Figma MCP assets endpoint or localhost source. **Do not** try to recreate or hand-code SVGs. Use the provided asset directly.
+- Follow the Figma skill flow: `get_design_context` → `get_screenshot` → download assets → implement. Map Figma output to design-system tokens.
+
+---
+
+## Subcomponents & packages/ui
+
+- **Core UI lives in `packages/ui`** — All primitives (buttons, inputs, NavLink, cards, etc.) go here. Group by domain (e.g. `button/`, `nav/`, `card/`).
+- **Website imports from packages/ui** — Modules in `apps/website` compose `packages/ui` components and bind props from containers. No core UI in website.
+- **Reuse, don't duplicate** — Before creating a new component, check if it exists in `packages/ui`. If it does, import and use it.

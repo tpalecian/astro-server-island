@@ -1,6 +1,6 @@
 @theme {
-	--color-core-black: oklch(0% 0 0);
-	--color-core-white: oklch(100% 0 0);
+	--color-core-black: #000000;
+	--color-core-white: #ffffff;
 
 	--color-cobalt-100: #f1f7fd;
 	--color-cobalt-200: #cde1f9;

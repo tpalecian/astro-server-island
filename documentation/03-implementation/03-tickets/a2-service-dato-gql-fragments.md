@@ -24,8 +24,8 @@ tags: [implementation, ticket, cms]
 
 | # | Criterion | Done |
 |---|-----------|------|
-| AC1 | Queries/fragments exist for all getters; codegen runs. | |
-| AC2 | types-dato.ts generated; types match query shapes. | |
+| AC1 | Queries/fragments exist for all getters; codegen runs. | ✅ |
+| AC2 | types-dato.ts generated; types match query shapes. | ✅ |
 
 ---
 
@@ -59,3 +59,5 @@ Run `pnpm codegen` from root; run `pnpm check:types` in package.
 ## Notes
 
 Migrate fragments (meta, content blocks, inline-blocks, models) from 2022-site; link/structured-text inlined. Add queries for homepage, page, routes, navigation, globals, categories, redirects, info.
+
+**2026-02-24:** Query parity with 2022-site completed. Home, info, work-by-slug, thinking-by-slug, studio-by-slug, and category-by-slug updated to include all fields (heroVideoLink, heroLink, content blocks, seo, tags, client/author, etc.). See `05-reference/service-dato-2022-site-query-parity.md`.

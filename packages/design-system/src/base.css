@@ -35,5 +35,8 @@
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
 		text-rendering: optimizeLegibility;
+		background: var(--color-background-default-primary-lightest);
+		color: var(--color-content-default-primary);
+		font-family: var(--font-body-style1);
 	}
 }

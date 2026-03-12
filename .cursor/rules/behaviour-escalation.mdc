@@ -1,0 +1,109 @@
+---
+description: Behaviour escalation model — when to use server, islands, JS, or Alpine
+globs: apps/website/src/**/*.astro
+alwaysApply: false
+---
+
+# Behaviour Escalation Model
+
+**Principle:** Behaviour must always start **as close to the server as possible** and escalate **only when required**. Builds on the ModuleContainer → Module → Base Component architecture.
+
+---
+
+## Escalation levels (in order)
+
+### 1. Server-Rendered (default)
+
+**First choice. Always.**
+
+- Data resolved in the ModuleContainer
+- HTML complete and correct at render
+- Fully cacheable
+- Ships **zero JavaScript**
+
+**Use when:** Data is known at build or request time; output does not depend on user interaction; content can be cached safely.
+
+---
+
+### 2. Server Island (dynamic, still server-driven)
+
+**Second choice when pure server rendering is insufficient.**
+
+- Data must be fresh per request or cache-controlled independently
+- Still renders **HTML** on the server
+- Streams into the page
+- Ships **zero client JS**
+
+**Use when:** Per-request freshness (e.g. pricing, inventory), auth-dependent UI, or scoped cache rules.
+
+**Rules:**
+- Add a short justification comment when introducing a Server Island
+- Prefer multiple small islands over one large island
+- This is *not* client state — it is server-rendered HTML with scoped cache rules
+
+---
+
+### 3. Minimal JavaScript (behaviour without state)
+
+**Only when server approaches cannot solve the problem.**
+
+- Enhances already-correct HTML
+- No long-lived state
+- Lazy-loaded where possible
+- UI-only behaviour (toggles, scroll, focus)
+
+**Use when:** Toggle visibility, scroll positioning, focus management, simple interactions.
+
+**Rules:**
+- JS must **not** correct data
+- HTML must remain meaningful without JS
+- Behaviour must be optional (progressive enhancement)
+- Prefer native HTML (`<details>`, `<dialog>`) and CSS first
+
+---
+
+### 4. Alpine (stateful client logic — last resort)
+
+**Only when state must live on the client.**
+
+Permitted **only** when all are true:
+- Interaction is multi-step or long-lived
+- State persists across multiple user actions
+- State cannot be expressed at render-time
+- Correctness does **not** depend on Alpine executing
+
+**Alpine must never:**
+- Fetch or correct data
+- Override server-rendered output
+- Be required for first-paint correctness
+
+**Use when:** Multi-step forms (UI state only), wizards, tab panels with complex coordination.
+
+---
+
+## How it fits the architecture
+
+| Layer | Behaviour rules |
+|-------|-----------------|
+| **ModuleContainer** | Fetches data. Chooses which components to render (including Server Islands). Ships zero JS. |
+| **Module Component** | Deterministic HTML only. No state, no fetching, no behaviour. Same props → same HTML. |
+| **Base Components** | May include optional minimal JS or Alpine for UI-only behaviour. |
+| **Server Islands** | Server-rendered components used inside Modules for dynamic HTML and cache control. |
+
+---
+
+## Decision flow
+
+1. Can it be fully server-rendered? → **Do that.**
+2. Does it need per-request freshness or scoped cache? → **Server Island.**
+3. Does it need UI-only behaviour (toggle, scroll, focus)? → **Minimal JS** (or native HTML/CSS).
+4. Does it need multi-step client state? → **Alpine**, only in Base Components.
+
+---
+
+## Hard rules
+
+- **Never** introduce JS before confirming server approaches are insufficient
+- **Never** use Alpine for data correctness
+- **Never** add logic or state to Module Components
+- **Always** add a justification comment when introducing a Server Island

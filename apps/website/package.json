@@ -15,6 +15,7 @@
   "dependencies": {
     "@astrojs/vercel": "^9.0.4",
     "@rotate/design-system": "workspace:*",
+    "@rotate/devtools": "workspace:*",
     "@rotate/service-dato": "workspace:*",
     "@tailwindcss/vite": "^4.1.18",
     "astro": "^5.17.1",

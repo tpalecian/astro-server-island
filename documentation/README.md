@@ -26,6 +26,7 @@ Plans use the SEL format: Outcome & Business Value → Context & Scope → Solut
 ## Start here
 
 - **Handover — next steps**: `00-start-here/handover-next-steps.md`
+- **Cursor rules / agent guide**: `AGENTS.md` (project root), `.cursor/rules/`
 
 ## Discovery
 

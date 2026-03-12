@@ -1,0 +1,51 @@
+---
+description: Project structure, packages, and documentation layout
+alwaysApply: true
+---
+
+# Project Overview
+
+**Monorepo:** pnpm workspaces + Turbo. Root `package.json` has `pnpm codegen` for Dato GraphQL codegen.
+
+## Package layout
+
+| Package | Purpose |
+|---------|---------|
+| `apps/website` | Astro app (SSR via Vercel). Layout, containers, modules, logic binding only. Core UI imported from `packages/ui`. Follows behaviour-escalation. |
+| `packages/design-system` | Tailwind v4, CSS variables, typography, colors, grid, spacing. Import via `@rotate/design-system/design-system.css`. |
+| `packages/ui` | All core UI components (buttons, inputs, NavLink, cards, etc.). Grouped by domain. No app logic, no CMS. Website imports from here. |
+| `packages/service-dato` | CMS layer. All Dato logic. App imports via `@rotate/cms` alias only. |
+| `packages/devtools` | Dev-only components (GridViewer, BreakpointsViewer). Used in layouts. |
+| `packages/build-*` | Shared configs (eslint, prettier, tsconfig). |
+
+## Documentation (`/documentation`)
+
+- **00-start-here** — Entry point. `handover-next-steps.md` for implementation handover.
+- **01-discovery** — Final decisions, scope, constraints.
+- **02-solution** — Architecture, integration plans.
+- **03-implementation** — Tasks, workstreams, tickets.
+- **05-reference** — Supporting material.
+- **wip** — Drafts. Move to lifecycle folders when approved.
+- **99-archive** — Out-of-phase material.
+
+## Key conventions
+
+- **CMS:** All Dato in `packages/service-dato`. Getters in `src/handlers/`. GQL in `src/gql/*.gql.ts`. Types in `types-dato.ts` (codegen).
+- **App alias:** `@rotate/cms` → `packages/service-dato/src/index.ts`.
+- **Design system:** Tailwind v4 with `@theme` and `@utility`. Uses `@source` to scan `apps/website` and `devtools` for class usage.
+- **Layout:** `BaseLayout.astro` in website — binds composition, imports design-system and devtools. Layout stays in website; core UI in `packages/ui`.
+
+## packages/ui vs apps/website
+
+| Layer | Location | Responsibility |
+|-------|----------|----------------|
+| Core UI | `packages/ui` | Buttons, inputs, NavLink, cards, etc. Grouped by domain. No app logic, no CMS. |
+| Layout, containers, modules | `apps/website` | Logic binding only. Layout binds composition; containers fetch; modules compose from packages/ui. Follows behaviour-escalation. |
+
+## Related rules
+
+- `.cursor/rules/architecture.mdc` — Strict rules for website Astro (containers, modules, base components).
+- `.cursor/rules/behaviour-escalation.mdc` — Server first, then islands, minimal JS, Alpine last.
+- `.cursor/rules/components.mdc` — packages/ui vs website; design system; Figma.
+- `.cursor/rules/functional-style.mdc` — Pure functions, immutability, composition (TypeScript and Astro).
+- `.cursor/rules/planning.mdc` — Documentation and planning structure (SEL format).

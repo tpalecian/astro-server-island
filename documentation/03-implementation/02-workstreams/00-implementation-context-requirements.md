@@ -18,7 +18,7 @@ tags: [implementation, workstreams, agents, context]
 
 ## Workstreams = full context for AI
 
-Each workstream doc in `02-workstreams/` (01–29) must contain **all** information needed to implement — **exactly** the following — so an agent can implement **without guessing** or opening solution/discovery docs:
+Each workstream doc in `02-workstreams/` (01–30) must contain **all** information needed to implement — **exactly** the following — so an agent can implement **without guessing** or opening solution/discovery docs:
 
 | # | Required | What |
 |---|----------|------|
@@ -41,10 +41,10 @@ Each workstream doc in `02-workstreams/` (01–29) must contain **all** informat
 - Each ticket in `03-tickets/` is **self-contained** for Linear: scope, acceptance criteria, and validation are inlined; no references to other documents.
 - **Do not reference other tickets by ID anywhere in the ticket.** Use **descriptive names** in description, scope, notes, **Blocking**, **Unblocks**, and **depends_on** (e.g. "CMS getters + exports", "core content block modules", "structured text"). Linear tickets are self-contained; no internal ticket IDs.
 - **Ticket scoping:** Scope each ticket so it **does not conflict** with others: strict allowed paths, explicit out-of-scope, no overlapping edit areas. Two agents on two different tickets must not touch the same files or responsibilities.
-- Ticket count = workstream count (29 and 29).
+- Ticket count = workstream count (30 and 30).
 
 ## Agent behaviour
 
-- **Before implementing:** Read the **workstream** for the ticket (e.g. a1 → `02-workstreams/01-a1-client-types.md`). Confirm the workstream satisfies the checklist above.
-- **During implementation:** Stay within allowed paths; follow the stated contract; do not do anything listed under "Out of scope".
+- **Before implementing:** Read the **workstream** for the ticket (e.g. a1 → `02-workstreams/01-a1-client-types.md`). Confirm the workstream satisfies the checklist above. Follow **Cursor rules** — see `AGENTS.md` for index: architecture, behaviour-escalation, components, functional-style.
+- **During implementation:** Stay within allowed paths; follow the stated contract; do not do anything listed under "Out of scope". Compose getters in containers (functional style). Core UI in `packages/ui`; website = logic binding only (layout, containers, modules that import from packages/ui).
 - **After implementation:** Run the validation steps from the workstream and tick acceptance criteria.

@@ -1,4 +1,7 @@
+import { print } from 'graphql'
 import { gql } from 'graphql-tag'
+
+import { MediaFragment } from './fragments'
 
 export const categoryBySlugQuery = gql(/* GraphQL */ `
 	query CategoryBySlug($slug: String!) {
@@ -6,6 +9,13 @@ export const categoryBySlugQuery = gql(/* GraphQL */ `
 			id
 			slug
 			filterText
+			seo {
+				title
+				description
+				image {
+					...Media
+				}
+			}
 			seoMetaTags: _seoMetaTags {
 				attributes
 				tag
@@ -13,6 +23,7 @@ export const categoryBySlugQuery = gql(/* GraphQL */ `
 			}
 		}
 	}
+	${print(MediaFragment)}
 `)
 
 export default categoryBySlugQuery

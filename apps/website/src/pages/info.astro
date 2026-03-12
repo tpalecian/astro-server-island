@@ -3,26 +3,26 @@ import { getInfo } from '@rotate/cms'
 
 export const prerender = false
 // Server-rendered; cache at Bunny.
-const token = import.meta.env.DATOCMS_API_KEY ?? ''
-const info = await getInfo({ token })
+// const token = import.meta.env.DATOCMS_API_KEY ?? ''
+// const info = await getInfo({ token })
 ---
 
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width" />
-		<title>{info?.slug ?? 'Info'} | Info</title>
+		<!-- <title>{info?.slug ?? 'Info'} | Info</title> -->
 	</head>
 	<body>
 		<main>
-			{info ? (
+			<!-- {info ? (
 				<article>
 					<h1>Info</h1>
 					<p>Info page content (blocks in Task F)</p>
 				</article>
 			) : (
 				<p>Not found</p>
-			)}
+			)} -->
 		</main>
 	</body>
 </html>

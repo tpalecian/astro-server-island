@@ -14,7 +14,7 @@ tags: [discovery, routes, migration, 2022-site, nuxt]
 
 ## 1. Outcome & Business Value (why)
 
-**Purpose:** Single source of truth for which legacy Nuxt routes map to which Astro pages, so implementation (Task E, getStaticPaths, sitemap) can proceed without guessing.
+**Purpose:** Single source of truth for which legacy Nuxt routes map to which Astro pages, so implementation (Task E, sitemap G2) can proceed without guessing.
 
 **Value:** Reduces re-work and keeps route behaviour consistent during migration.
 
@@ -32,7 +32,7 @@ tags: [discovery, routes, migration, 2022-site, nuxt]
 
 **Ideas / options explored:**
 - Single handover map (this doc) vs. embedding route list in implementation only (map preferred for discoverability and sitemap/SEO alignment).
-- Path list from `getRoutes()` (from `@rotate/cms`) for sitemap (G2) and getStaticPaths.
+- Path list from `getRoutes()` (from `@rotate/cms`) for sitemap (G2).
 
 **References & further reading:**
 - Nuxt 2 [directory structure](https://v2.nuxt.com/docs/directory-structure/pages); 2022-site `pages/` and `services/routes.js`.
@@ -63,7 +63,7 @@ Routes are retrieved from the **legacy Nuxt project (2022-site)** using the path
    - `pages/_category/_slug.vue` → `/[category]/[slug]` (article/project)
    - `pages/styleguide/*.vue` → `/styleguide/*`
 3. **Optionally inspect** `services/routes.js` (or equivalent) for the exact list of paths fed to the static generator.
-4. **Update the table below** and the Astro file paths so Task E and getStaticPaths stay in sync.
+4. **Update the table below** and the Astro file paths so Task E stays in sync.
 
 ## Route → Astro page mapping
 
@@ -75,7 +75,7 @@ Routes are retrieved from the **legacy Nuxt project (2022-site)** using the path
 | `/[category]/[slug]` | `apps/website/src/pages/[category]/[slug].astro` | `getPageBySlug(category, slug)` — category is `work` \| `thinking` \| `studio` (handler switch) |
 | `/styleguide/*` | TBD (migrate or drop) | — |
 
-**Note:** Styleguide reflects the new design-system; decision to migrate or drop is documented in [vue-to-astro-migration.md](../03-implementation/vue-to-astro-migration.md). If dropped, exclude from getStaticPaths.
+**Note:** Styleguide reflects the new design-system; decision to migrate or drop is documented in [vue-to-astro-migration.md](../03-implementation/vue-to-astro-migration.md). If dropped, exclude from sitemap (G2).
 
 **Implementation notes:** `getCategoryCards(slug)` expects `slug` in `{ thinkings, works, studios }` or `everything` (see `packages/service-dato/src/handlers/category.ts`). If Dato category slugs differ (e.g. singular), the page/container must map. `getPageBySlug(category, slug)` expects `category` to be one of `work`, `thinking`, `studio`.
 

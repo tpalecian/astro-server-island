@@ -26,7 +26,7 @@ tags: [implementation, migration]
 - **Purpose:** Migrate the existing Nuxt 2 site (2022-site) into the Astro app and shared packages so we run one stack, reuse the design-system and service-dato, and retire the Vue app.
 - **Key decisions:**
   - Migration is phased: discovery/audit → layout/shell → homepage → static/list → dynamic routes → islands → redirects/SEO.
-  - Data lives in containers only; UI in modules. All CMS access via `@rotate/service-dato`; no inline fetch in containers.
+  - Data lives in containers only; UI in modules. All CMS access via `@rotate/cms` (alias to service-dato); no inline fetch in containers.
   - Styling aligns with `@rotate/design-system`; extend tokens only when the Vue design requires something new.
   - Client JS only where justified; prefer CSS-first and server-rendered content.
 - **Impact & risks:** One codebase and one deploy; risk of regressions or missing routes — mitigated by a migration map, phased rollout, and visual/regression checks before cutover.
@@ -58,7 +58,7 @@ The Vue app lives at **2022-site/** (repo root). Nuxt 2, `target: 'static'`, Dat
 ### 1. Discovery: audit 2022-site
 
 - **Routes:** Map each Nuxt route to `apps/website/src/pages/`: e.g. `index.astro`, `info.astro` or `[slug].astro`, `[category]/index.astro`, `[category]/[slug].astro`, `styleguide/*.astro`.
-- **Components:** Layout/global → ui/ or layout slots; page-level/feature → container + module; shared primitives → ui/ or design-system only.
+- **Components:** Layout (BaseLayout) in website — binds composition. Core UI (buttons, NavLink, cards, etc.) in `packages/ui`, grouped by domain. Page-level/feature → container + module in website; modules import from `packages/ui` and bind props from containers. Website = logic binding only; core UI = `packages/ui`.
 - **State and data:** Per store — server-only (containers + service-dato) or client-only (small islands with justification). API/CMS → service-dato or app data layer; callers = containers only.
 - **Styling:** List global CSS, variables, Tailwind usage; map Vue styles to design-system tokens or “new token”.
 
@@ -66,7 +66,7 @@ The Vue app lives at **2022-site/** (repo root). Nuxt 2, `target: 'static'`, Dat
 
 ### 2. Design-system alignment
 
-- Import design-system in main layout (e.g. `global.css` or Base.astro): `@import "@rotate/design-system/design-system.css";`
+- Import design-system in main layout (BaseLayout.astro): `@import "@rotate/design-system/design-system.css";`
 - Add or extend tokens only when Vue design needs something not in base, color, dimension, grid, text, ddd.
 - Keep Tailwind v4 + `@tailwindcss/vite` in the website; single pipeline that consumes design-system CSS.
 
@@ -77,8 +77,8 @@ The Vue app lives at **2022-site/** (repo root). Nuxt 2, `target: 'static'`, Dat
 | Route                  | File under `src/pages/`                                                       | Static or dynamic route |
 | Page view              | Page composes **containers**; containers fetch and pass props to **modules**  | architecture.mdc: containers = data, modules = UI only |
 | Component with data    | `*.container.astro` (fetch, validate, normalise) → `*.astro` module           | No data inside modules |
-| Component without data | Single `*.astro` in `components/ui/` or `components/modules/`                | Zero JS by default |
-| Client-only behaviour  | Minimal islands; comment justification                                       | Server islands: exceptional, audited |
+| Component without data | Core UI in `packages/ui`; modules in website compose from `packages/ui` | Zero JS by default |
+| Client-only behaviour  | Minimal islands; comment justification                                       | See `.cursor/rules/behaviour-escalation.mdc` |
 | Global state           | Prefer server-driven; if client-only, one small island                        | Avoid broad client state |
 
 ### 4. Data and CMS
@@ -88,7 +88,7 @@ The Vue app lives at **2022-site/** (repo root). Nuxt 2, `target: 'static'`, Dat
 
 ### 5. Phased migration execution
 
-1. **Layout and shell** — Header, footer, nav → `components/ui/`; design-system tokens; Base.astro + design-system import.
+1. **Layout and shell** — Header, Footer, Navigation → containers + modules in website; modules import core UI (NavLink, Button, etc.) from `packages/ui`; BaseLayout.astro binds composition. See **Workstream C** (`02-workstreams/05b-c-layout-shell.md`). Core UI lives in `packages/ui`; website = logic binding only.
 2. **Homepage** — `/` → `index.astro`; data-driven sections = container + module; static sections = fragments or single modules.
 3. **Static and list pages** — About, contact, list pages → `src/pages/`; containers only where data is needed.
 4. **Dynamic routes** — e.g. `[category]/[slug]` following existing product page pattern: page → container(s) → modules.
@@ -104,9 +104,12 @@ The Vue app lives at **2022-site/** (repo root). Nuxt 2, `target: 'static'`, Dat
 ### Key files and references
 
 - **Architecture:** [.cursor/rules/architecture.mdc](../../.cursor/rules/architecture.mdc)
+- **Behaviour escalation:** [.cursor/rules/behaviour-escalation.mdc](../../.cursor/rules/behaviour-escalation.mdc) — server → islands → minimal JS → Alpine
+- **Components (design system, Figma, packages/ui):** [.cursor/rules/components.mdc](../../.cursor/rules/components.mdc) — core UI in `packages/ui`; website = logic binding only; Figma: fetch variables, ask for SVGs
+- **Functional style:** [.cursor/rules/functional-style.mdc](../../.cursor/rules/functional-style.mdc) — pure functions, immutability, composition
 - **Design-system entry:** `packages/design-system/src/design-system.css`
-- **Layout:** `apps/website/src/layouts/Base.astro`
-- **Data layer:** `packages/service-dato`; see [documentation/05-reference/dato-vue-to-service-review.md](../05-reference/dato-vue-to-service-review.md)
+- **Layout:** `apps/website/src/layouts/BaseLayout.astro`
+- **Data layer:** `packages/service-dato`; app imports via `@rotate/cms`; see [documentation/05-reference/dato-vue-to-service-review.md](../05-reference/dato-vue-to-service-review.md)
 
 ### Decisions (from discovery)
 
@@ -117,7 +120,7 @@ The Vue app lives at **2022-site/** (repo root). Nuxt 2, `target: 'static'`, Dat
 ### 7. Deployment and cutover (Vercel)
 
 - **Host:** Vercel. Document in DEPLOYMENT.md or README: build command, env vars in CI (Dato, tracking, ENABLE_TRACKING, etc.), how redirects and sitemap are produced at build.
-- **getStaticPaths:** Astro dynamic routes (e.g. `[category]/[slug].astro`) use **getRoutes()** from `@rotate/cms` to drive getStaticPaths so all pages are pre-rendered.
+- **Rendering:** Pages are server-rendered; no getStaticPaths. Caching at Bunny CDN. Sitemap (G2) uses **getRoutes()** from `@rotate/cms` when generating sitemap.xml.
 - **Pre-launch checklist:** A short checklist before cutover: all routes 200, meta/JSON-LD present, tracking fires (when ENABLE_TRACKING + consent), conversion fires, sitemap valid, redirects tested, 404 and 500 work.
 - **Playwright e2e tests:** Implement **Playwright e2e tests** for key flows (e.g. homepage, navigation, key pages, footer CTA).
 - **Design-matching tests:** Run tests to see how the new website matches the designs based on the old website; use **browser/Playwright** for visual or design comparison (e.g. screenshot diff, layout checks) so we can catch regressions before cutover.

@@ -1,0 +1,108 @@
+---
+description: Functional programming style — pure functions, immutability, composition
+globs: packages/**/*.ts, apps/**/*.ts, apps/**/*.astro
+alwaysApply: false
+---
+
+# Functional Programming Style
+
+**Principle:** Code is data-in, data-out. Prefer pure functions, immutability, and composition. Aligns with the architecture (containers compose getters; modules are referentially transparent).
+
+---
+
+## Pure functions
+
+- **Input → output:** Functions take arguments and return values. No hidden inputs (globals, module state) or hidden outputs (mutations, side effects).
+- **Side effects at boundaries only:** I/O (fetch, `executeQuery`, `import.meta.env`) happens in getters or at the top of pages/containers. Keep transformation logic pure.
+- **Same input → same output:** For the same arguments, a function returns the same result (except async I/O, which is a boundary).
+
+---
+
+## Immutability
+
+- **Never mutate arguments or shared data.** Use spread, `map`, `filter`, `reduce` to produce new values.
+- **Prefer `const`.** Use `let` only when reassignment is unavoidable.
+- **No `push`, `splice`, or direct property assignment** on objects/arrays you intend to keep. Create new structures instead.
+
+```ts
+// ✅ GOOD
+const options = { ...baseOptions, variables: { slug } }
+const items = items.map((i) => ({ ...i, normalized: normalize(i) }))
+
+// ❌ BAD
+options.variables = { slug }
+items.push(newItem)
+```
+
+---
+
+## Types
+
+- **Explicit return types** on exported functions and getters.
+- **Explicit parameter types.** Avoid `any`.
+- **Use `type` for aliases**, `interface` only when extending or for object shapes that need declaration merging.
+
+```ts
+// ✅ GOOD
+export async function getHomepage(options: GetterOptions): Promise<HomeQuery['homepage']> {
+	const data = await executeQuery<HomeQuery>(homeQuery, options)
+	return data.homepage ?? null
+}
+```
+
+---
+
+## Composition
+
+- **Compose small functions.** Containers call getters; getters call `executeQuery`. No inline business logic in containers.
+- **Single responsibility.** One function does one thing. Split when a function does more than fetch + minimal extraction.
+- **Avoid nesting.** Prefer early returns, `switch`, or small helper functions over deep conditionals.
+
+---
+
+## Declarative over imperative
+
+- **Prefer `map`, `filter`, `reduce`** over `for` loops when transforming collections.
+- **Prefer `?.` and `??`** over explicit null checks when the intent is "use fallback."
+- **Prefer expressions** over statements where it improves readability.
+
+```ts
+// ✅ GOOD
+const slugs = items.map((i) => i.slug)
+const first = items.find((i) => i.id === id) ?? defaultItem
+
+// ⚠️ Use for when you need early exit or non-array iteration
+for (const item of items) {
+	if (item.invalid) continue
+	// ...
+}
+```
+
+---
+
+## Avoid
+
+- **Classes and `this`:** Use plain functions and data.
+- **Mutable module state:** No `let` at module scope that gets reassigned.
+- **Implicit mutation:** No functions that change their arguments or close over mutable state.
+- **Unnecessary abstraction:** Don't introduce helpers "for flexibility" — add them when duplication appears.
+
+---
+
+## Astro frontmatter
+
+- **Declarative data flow:** `const x = await getter(options)` then pass `x` as props. No imperative mutation of props.
+- **Compose getters:** Call multiple getters, combine results into a single props object. No inline fetch logic.
+- **Early binding:** Resolve `token`, `params` once at the top; pass through.
+
+---
+
+## Summary
+
+| Do | Don't |
+|----|-------|
+| Pure functions, explicit types | Mutate arguments or shared data |
+| `const`, spread, map/filter/reduce | `let` without need; `push`/`splice` |
+| Compose getters in containers | Inline business logic in containers |
+| Early returns, small functions | Deep nesting, large functions |
+| Side effects at I/O boundaries | Side effects inside pure-looking code |

@@ -38,6 +38,9 @@ importers:
       '@rotate/design-system':
         specifier: workspace:*
         version: link:../../packages/design-system
+      '@rotate/devtools':
+        specifier: workspace:*
+        version: link:../../packages/devtools
       '@rotate/service-dato':
         specifier: workspace:*
         version: link:../../packages/service-dato
@@ -163,6 +166,74 @@ importers:
         specifier: ^0.7.1
         version: 0.7.2(@ianvs/prettier-plugin-sort-imports@4.7.0(prettier@3.8.1))(prettier-plugin-astro@0.14.1)(prettier@3.8.1)
 
+  packages/dev-overlay:
+    dependencies:
+      '@rotate/design-system':
+        specifier: workspace:*
+        version: link:../design-system
+    devDependencies:
+      '@build/eslint-config':
+        specifier: workspace:*
+        version: link:../build-eslint-config
+      '@build/prettier-config':
+        specifier: workspace:*
+        version: link:../build-prettier-config
+      '@build/tsconfig':
+        specifier: workspace:*
+        version: link:../build-tsconfig
+      '@ianvs/prettier-plugin-sort-imports':
+        specifier: 4.7.0
+        version: 4.7.0(prettier@3.8.1)
+      astro:
+        specifier: ^5.17.1
+        version: 5.17.1(@types/node@25.0.10)(@vercel/functions@2.2.13)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.56.0)(typescript@5.9.3)(yaml@2.8.2)
+      prettier:
+        specifier: ^3.4.2
+        version: 3.8.1
+      prettier-plugin-astro:
+        specifier: ^0.14.1
+        version: 0.14.1
+      prettier-plugin-packagejson:
+        specifier: ^3.0.0
+        version: 3.0.0(prettier@3.8.1)
+      typescript:
+        specifier: ^5.9.3
+        version: 5.9.3
+
+  packages/devtools:
+    dependencies:
+      '@rotate/design-system':
+        specifier: workspace:*
+        version: link:../design-system
+    devDependencies:
+      '@build/eslint-config':
+        specifier: workspace:*
+        version: link:../build-eslint-config
+      '@build/prettier-config':
+        specifier: workspace:*
+        version: link:../build-prettier-config
+      '@build/tsconfig':
+        specifier: workspace:*
+        version: link:../build-tsconfig
+      '@ianvs/prettier-plugin-sort-imports':
+        specifier: 4.7.0
+        version: 4.7.0(prettier@3.8.1)
+      astro:
+        specifier: ^5.17.1
+        version: 5.17.1(@types/node@25.0.10)(@vercel/functions@2.2.13)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.56.0)(typescript@5.9.3)(yaml@2.8.2)
+      prettier:
+        specifier: ^3.4.2
+        version: 3.8.1
+      prettier-plugin-astro:
+        specifier: ^0.14.1
+        version: 0.14.1
+      prettier-plugin-packagejson:
+        specifier: ^3.0.0
+        version: 3.0.0(prettier@3.8.1)
+      typescript:
+        specifier: ^5.9.3
+        version: 5.9.3
+
   packages/service-dato:
     dependencies:
       '@datocms/cda-client':
@@ -187,9 +258,6 @@ importers:
       '@graphql-codegen/typescript-operations':
         specifier: ^5.0.7
         version: 5.0.7(graphql@16.12.0)
-      '@rollup/plugin-graphql':
-        specifier: ^2.0.5
-        version: 2.0.5(graphql@16.12.0)(rollup@4.56.0)
       dotenv:
         specifier: ^17.2.3
         version: 17.2.3
@@ -1264,16 +1332,6 @@ packages:
 
   '@repeaterjs/repeater@3.0.6':
     resolution: {integrity: sha512-Javneu5lsuhwNCryN+pXH93VPQ8g0dBX7wItHFgYiwQmzE1sVdg5tWHiOgHywzL2W21XQopa7IwIEnNbmeUJYA==}
-
-  '@rollup/plugin-graphql@2.0.5':
-    resolution: {integrity: sha512-NMx9uVIheYMOQHV9Aann0sk/2+henT8T5JUbHneOvbD3iUrVUC7AaZ1B1ELJ/1vhqUe2OQIkRtGHzOQwBLoCvg==}
-    engines: {node: '>=14.0.0'}
-    peerDependencies:
-      graphql: '>=0.9.0'
-      rollup: ^1.20.0||^2.0.0||^3.0.0||^4.0.0
-    peerDependenciesMeta:
-      rollup:
-        optional: true
 
   '@rollup/pluginutils@5.3.0':
     resolution: {integrity: sha512-5EdhGZtnu3V88ces7s53hhfK5KSASnJZv8Lulpc04cWO3REESroJXg73DFsOmgbU2BhwV0E20bu2IDZb3VKW4Q==}
@@ -4725,8 +4783,8 @@ snapshots:
 
   '@babel/generator@7.28.6':
     dependencies:
-      '@babel/parser': 7.28.6
-      '@babel/types': 7.28.6
+      '@babel/parser': 7.29.0
+      '@babel/types': 7.29.0
       '@jridgewell/gen-mapping': 0.3.13
       '@jridgewell/trace-mapping': 0.3.31
       jsesc: 3.1.0
@@ -4780,7 +4838,7 @@ snapshots:
 
   '@babel/parser@7.28.6':
     dependencies:
-      '@babel/types': 7.28.6
+      '@babel/types': 7.29.0
 
   '@babel/parser@7.29.0':
     dependencies:
@@ -4796,17 +4854,17 @@ snapshots:
   '@babel/template@7.28.6':
     dependencies:
       '@babel/code-frame': 7.28.6
-      '@babel/parser': 7.28.6
-      '@babel/types': 7.28.6
+      '@babel/parser': 7.29.0
+      '@babel/types': 7.29.0
 
   '@babel/traverse@7.28.6':
     dependencies:
       '@babel/code-frame': 7.28.6
-      '@babel/generator': 7.28.6
+      '@babel/generator': 7.29.0
       '@babel/helper-globals': 7.28.0
-      '@babel/parser': 7.28.6
+      '@babel/parser': 7.29.0
       '@babel/template': 7.28.6
-      '@babel/types': 7.28.6
+      '@babel/types': 7.29.0
       debug: 4.4.3
     transitivePeerDependencies:
       - supports-color
@@ -5855,14 +5913,6 @@ snapshots:
   '@pkgr/core@0.2.9': {}
 
   '@repeaterjs/repeater@3.0.6': {}
-
-  '@rollup/plugin-graphql@2.0.5(graphql@16.12.0)(rollup@4.56.0)':
-    dependencies:
-      '@rollup/pluginutils': 5.3.0(rollup@4.56.0)
-      graphql: 16.12.0
-      graphql-tag: 2.12.6(graphql@16.12.0)
-    optionalDependencies:
-      rollup: 4.56.0
 
   '@rollup/pluginutils@5.3.0(rollup@4.56.0)':
     dependencies:

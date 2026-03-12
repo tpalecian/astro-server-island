@@ -53,7 +53,11 @@ We are executing the approved solution design. The outcome is a working implemen
 
 - Validate that tasks align with discovery decisions in `01-discovery/00-index.md`.
 - Confirm scope boundaries and assumptions in the solution docs under `02-solution/`.
-- Ensure work follows `.cursor/rules/architecture.mdc`.
+- **Follow Cursor rules** — see `AGENTS.md` for index. Key rules:
+  - `.cursor/rules/architecture.mdc` — containers, modules, base components
+  - `.cursor/rules/behaviour-escalation.mdc` — server first, then islands, minimal JS, Alpine last
+  - `.cursor/rules/components.mdc` — design system, Figma, packages/ui (core UI) vs website (logic binding)
+  - `.cursor/rules/functional-style.mdc` — pure functions, immutability, composition
 - Keep new implementation notes linked back to solution docs.
 
 ## 5. Where to find things (index)
@@ -70,7 +74,7 @@ We are executing the approved solution design. The outcome is a working implemen
 | Coverage checklist | `01-discovery/07-coverage-checklist.md` |
 | Solution design index | `02-solution/00-index.md` |
 | Implementation index | `03-implementation/00-index.md` |
-| Workstreams | `03-implementation/02-workstreams/` |
+| Workstreams | `03-implementation/02-workstreams/` (incl. C — layout shell: Header, Footer, Nav) |
 | Ticket templates | `03-implementation/03-tickets/` |
 | Migration plan | `03-implementation/vue-to-astro-migration.md` |
 | CMS service pattern and alias | `02-solution/cms-service-pattern-and-dato-centralisation.md` |
@@ -78,6 +82,7 @@ We are executing the approved solution design. The outcome is a working implemen
 | External services + tracking | `02-solution/external-services-and-tracking-plan.md` |
 | SEO, sitemap, redirects, error pages | `02-solution/seo-sitemap-redirects-error-pages-plan.md` |
 | Background review (reference) | `05-reference/dato-vue-to-service-review.md` |
+| Cursor rules / agent guide | `AGENTS.md`, `.cursor/rules/` |
 
 ## 6. Out of phase (archive)
 

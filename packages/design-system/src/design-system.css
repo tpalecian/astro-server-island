@@ -1,4 +1,9 @@
 @import 'tailwindcss';
+
+@source "../../../apps/website/src/**/*.{astro}";
+@source "../../devtools/src/**/*.{astro}";
+
+@import './fonts.css';
 @import './base.css';
 @import './color-base.css';
 @import './color-functions.css';
@@ -8,4 +13,5 @@
 @import './icon.css';
 @import './opacity.css';
 @import './radius.css';
+
 @import './text.css';

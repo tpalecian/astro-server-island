@@ -48,9 +48,10 @@ If a module cannot be rendered with static props, it violates this rule.
 
 ## 3. Base Components
 
-- Stateless UI primitives
+- Stateless UI primitives — live in **`packages/ui`** (grouped by domain)
 - No app-specific or domain logic, no data fetching
 - Optional **minimal JS for essential UI interactions only**
+- Website modules **import** from `packages/ui`; they do not define core UI
 
 ---
 
@@ -94,3 +95,9 @@ Allowed **only** for essential UI interactions. Establish a JS budget per module
 - **Compliant** → confirm compliance concisely
 
 Violations must be explained in terms of: **Architecture**, **Performance**, **Maintainability**.
+
+---
+
+**Related:**
+- `.cursor/rules/behaviour-escalation.mdc` — when to use Server Islands, minimal JS, or Alpine (escalation model).
+- `.cursor/rules/functional-style.mdc` — pure functions, immutability, composition (how containers compose getters).

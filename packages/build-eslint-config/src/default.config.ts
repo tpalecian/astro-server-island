@@ -134,6 +134,7 @@ export function getConfig(importMetaUrl: string): Array<Linter.Config<Linter.Rul
 							// Workspace packages with subpath exports
 							'^@build/',
 							'^@rotate/design-system/',
+							'^@rotate/devtools/',
 							'^@rotate/service-dato/',
 							'^@rotate/testing/',
 						],

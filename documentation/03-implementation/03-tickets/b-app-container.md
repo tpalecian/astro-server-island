@@ -1,7 +1,7 @@
 ---
 title: Ticket B — app alias and one page + module (homepage)
 phase: implementation
-status: approved
+status: completed
 owner: solutions-engineering
 last_updated: 2026-02-04
 depends_on: [CMS getters + exports]
@@ -24,10 +24,10 @@ tags: [implementation, ticket, app-shell]
 
 | # | Criterion | Done |
 |---|-----------|------|
-| AC1 | @rotate/cms resolves; no direct service-dato path imports in app. | |
-| AC2 | index.astro calls getHomepage() in frontmatter and passes props to module(s). | |
-| AC3 | One module receives homepage props only; no data fetch in module. | |
-| AC4 | No imports of client/gql/handlers in app; only getHomepage and types from @rotate/cms. | |
+| AC1 | @rotate/cms resolves; no direct service-dato path imports in app. | ✓ |
+| AC2 | index.astro calls getHomepage() in frontmatter and passes props to module(s). | ✓ |
+| AC3 | One module receives homepage props only; no data fetch in module. | ✓ |
+| AC4 | No imports of client/gql/handlers in app; only getHomepage and types from @rotate/cms. | ✓ |
 
 ---
 

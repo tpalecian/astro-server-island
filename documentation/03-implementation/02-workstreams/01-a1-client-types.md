@@ -1,9 +1,9 @@
 ---
 title: Workstream A1 — service-dato client + base types
 phase: implementation
-status: in-review
+status: completed
 owner: solutions-engineering
-last_updated: 2026-02-04
+last_updated: 2026-03-12
 depends_on: []
 related_docs:
   - 01-discovery/01-cms-and-data.md

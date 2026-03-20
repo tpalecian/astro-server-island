@@ -1,6 +1,6 @@
 import type { NavigationHeaderQuery } from '@rotate/cms'
 
-import { buildSiteHrefFromDatoLink } from '@/lib/build-site-href-from-dato-link'
+import { buildSiteHrefFromDatoLink } from '@/lib/dato'
 
 export function formatHeaderNav(nav: NavigationHeaderQuery['navigation']) {
 	const pillLink = nav?.pillButtonLink

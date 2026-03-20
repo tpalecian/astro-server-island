@@ -2,8 +2,7 @@ import type { HomeQuery } from '@rotate/cms'
 
 import type { HeroInlineVideo, HeroWord } from '@rotate/ui/hero/types'
 
-import { buildSiteHrefFromDatoLink } from '@/lib/build-site-href-from-dato-link'
-import { extractFirstCtaFromDatoHeroLink } from '@/lib/extract-first-cta-from-dato-hero-link'
+import { buildSiteHrefFromDatoLink, extractFirstCtaFromDatoHeroLink } from '@/lib/dato'
 
 const INLINE_VIDEO_FORMATS = ['mp4', 'webm', 'ogg', 'mov'] as const
 

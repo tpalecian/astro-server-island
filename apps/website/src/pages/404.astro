@@ -1,0 +1,23 @@
+---
+import BaseLayout from '@/layouts/base-layout.astro'
+
+export const prerender = false
+
+Astro.response.status = 404
+---
+
+<BaseLayout title="Page not found" headerStyle="default">
+	<main
+		class="[margin-inline:auto] w-full max-w-[var(--breakpoint-maxwidth)] px-[var(--grid-default-margin)] py-800"
+	>
+		<h1 class="title-style1-700 text-content-default-primary mb-300">Page not found</h1>
+		<p class="body-style1-400 text-content-default-secondary">
+			The page you are looking for does not exist or has been moved.
+		</p>
+		<p class="mt-500">
+			<a href="/" class="link link-underline title-style1-300 text-content-default-primary"
+				>Back to home</a
+			>
+		</p>
+	</main>
+</BaseLayout>

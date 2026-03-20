@@ -11,7 +11,7 @@
  * 6. `@rotate/*` — fallback for new workspace packages
  *
  * **@/*** (app alias — low-level → shell → features → anything else, e.g. pages):
- * 1. `@/lib/*` — pure helpers
+ * 1. `@/lib` / `@/lib/*` — pure helpers (barrel + subpaths)
  * 2. `@/layouts/*` — layout entrypoints
  * 3. `@/components/*` — containers & local composition
  * 4. `@/*` — remaining app paths
@@ -33,7 +33,7 @@ const rotatePackagesPrettier = [
 ]
 
 const appAliasPrettier = [
-	'^@\\/lib\\/',
+	'^@\\/lib(/|$)',
 	'',
 	'^@\\/layouts\\/',
 	'',

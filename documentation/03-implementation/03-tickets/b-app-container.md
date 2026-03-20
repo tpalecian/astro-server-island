@@ -3,7 +3,7 @@ title: Ticket B — app alias and one page + module (homepage)
 phase: implementation
 status: completed
 owner: solutions-engineering
-last_updated: 2026-02-04
+last_updated: 2026-03-21
 depends_on: [CMS getters + exports]
 tags: [implementation, ticket, app-shell]
 ---
@@ -60,4 +60,4 @@ Run `pnpm build` in apps/website; run `pnpm dev`, open `/` — page loads with g
 
 ## Notes
 
-Steps: (1) Add @rotate/cms alias in app (if not already done when wiring the app); ensure token in env. (2) Add `hero-container` + `format-hero.ts` and `packages/ui` Hero — props only in UI. (3) Create index.astro — compose `HeroContainer` with token.
+**Implementation (completed):** `@rotate/cms` alias in `apps/website` (Vite + TS paths); `src/pages/index.astro` calls `getHomepage()` and composes `hero-container`; `hero-container` + `format-hero.ts` map CMS → props; `packages/ui` hero is props-only, no CMS. Env: `DATOCMS_API_KEY`. All ACs above remain the definition of done.

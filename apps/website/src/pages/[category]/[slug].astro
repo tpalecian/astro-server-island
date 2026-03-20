@@ -1,34 +1,39 @@
 ---
 import { getPageBySlug } from '@rotate/cms'
 
+import { isSiteCategory } from '@/lib'
+
+import BaseLayout from '@/layouts/base-layout.astro'
+
 export const prerender = false
 
 const token = import.meta.env.DATOCMS_API_KEY ?? ''
 const category = Astro.params.category ?? ''
 const slug = Astro.params.slug ?? ''
+
+if (!isSiteCategory(category)) {
+	return Astro.rewrite('/404')
+}
+
 const page = await getPageBySlug(category, slug, { token })
+
+if (!page) {
+	return Astro.rewrite('/404')
+}
+
+const titleText = page.title?.trim() || slug
+const pageTitle = `${titleText} | ${category}`
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<title>{page ? `${slug} | ${category}` : 'Not found'}</title>
-	</head>
-	<body>
-		<main>
-			{
-				page ? (
-					<article>
-						<h1>
-							{category} / {slug}
-						</h1>
-						<p>Page content (blocks in Task F)</p>
-					</article>
-				) : (
-					<p>Not found</p>
-				)
-			}
-		</main>
-	</body>
-</html>
+<BaseLayout title={pageTitle} headerStyle="default">
+	<main
+		class="[margin-inline:auto] w-full max-w-[var(--breakpoint-maxwidth)] px-[var(--grid-default-margin)] py-800"
+	>
+		<article>
+			<h1 class="title-style1-700 text-content-default-primary mb-300">{titleText}</h1>
+			<p class="body-style1-400 text-content-default-secondary">
+				{category} / {slug} — content blocks (ticket F).
+			</p>
+		</article>
+	</main>
+</BaseLayout>

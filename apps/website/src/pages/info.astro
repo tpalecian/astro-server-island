@@ -1,26 +1,30 @@
 ---
+import { getInfo } from '@rotate/cms'
+
+import BaseLayout from '@/layouts/base-layout.astro'
+
 export const prerender = false
-// Server-rendered; cache at Bunny.
-// const token = import.meta.env.DATOCMS_API_KEY ?? ''
-// const info = await getInfo({ token })
+
+const token = import.meta.env.DATOCMS_API_KEY ?? ''
+const info = await getInfo({ token })
+
+if (!info) {
+	return Astro.rewrite('/404')
+}
+
+const heading = info.title?.trim() || 'Info'
+const pageTitle = `${heading} | Info`
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<!-- <title>{info?.slug ?? 'Info'} | Info</title> -->
-	</head>
-	<body>
-		<main>
-			<!-- {info ? (
-				<article>
-					<h1>Info</h1>
-					<p>Info page content (blocks in Task F)</p>
-				</article>
-			) : (
-				<p>Not found</p>
-			)} -->
-		</main>
-	</body>
-</html>
+<BaseLayout title={pageTitle} headerStyle="default">
+	<main
+		class="[margin-inline:auto] w-full max-w-[var(--breakpoint-maxwidth)] px-[var(--grid-default-margin)] py-800"
+	>
+		<article>
+			<h1 class="title-style1-700 text-content-default-primary mb-300">{heading}</h1>
+			<p class="body-style1-400 text-content-default-secondary">
+				Slug: {info.slug ?? '—'} — content blocks (ticket F).
+			</p>
+		</article>
+	</main>
+</BaseLayout>

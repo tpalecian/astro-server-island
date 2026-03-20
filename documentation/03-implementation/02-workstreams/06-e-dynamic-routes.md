@@ -1,9 +1,9 @@
 ---
 title: Workstream E — Dynamic routes
 phase: implementation
-status: in-review
+status: completed
 owner: solutions-engineering
-last_updated: 2026-02-04
+last_updated: 2026-03-21
 depends_on: []
 related_docs:
   - 01-discovery/migration-map.md

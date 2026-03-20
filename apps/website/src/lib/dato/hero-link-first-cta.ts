@@ -1,4 +1,4 @@
-import { buildSitePathFromDatoRecord } from '@/lib/build-site-href-from-dato-link'
+import { buildSitePathFromDatoRecord } from './link-to-site-href'
 
 export type DatoHeroLinkCta = { text: string; href: string }
 

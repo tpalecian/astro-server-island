@@ -20,7 +20,7 @@ tags: [header, figma, validation, design-system]
 | UI | `packages/ui/src/header.astro` |
 | Container | `apps/website/src/components/header-container/index.astro` |
 | CMS → props | `apps/website/src/components/header-container/format-header-nav.ts` |
-| Site href helper | `apps/website/src/lib/build-site-href-from-dato-link.ts` |
+| Site href helper | `apps/website/src/lib/dato/link-to-site-href.ts` (import via `@/lib/dato`) |
 | Layout wiring | `apps/website/src/layouts/base-layout.astro` (`HeaderContainer`, `style`) |
 
 **Signed off:** 2026-03-20 — implementation matches design-system and agreed Figma parity; optional follow-ups remain in §10. Move this file out of `documentation/wip` when you consolidate approved validation reports with the footer doc.

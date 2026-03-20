@@ -2,35 +2,35 @@
 > astro-server-island@1.0.0 build /Users/tamaspalecian/Documents/private/astro-server-island/apps/website
 > astro build
 
-[2m17:58:40[22m [34m[vite][39m Re-optimizing dependencies because lockfile has changed
-[2m17:58:41[22m [34m[content][39m Syncing content
-[2m17:58:41[22m [34m[content][39m Synced content
-[2m17:58:41[22m [34m[types][39m Generated [2m393ms[22m
-[2m17:58:41[22m [34m[build][39m output: [34m"server"[39m
-[2m17:58:41[22m [34m[build][39m mode: [34m"server"[39m
-[2m17:58:41[22m [34m[build][39m directory: [34m/Users/tamaspalecian/Documents/private/astro-server-island/apps/website/dist/[39m
-[2m17:58:41[22m [34m[build][39m adapter: [32m@astrojs/vercel[39m
-[2m17:58:41[22m [34m[build][39m Collecting build info...
-[2m17:58:41[22m [34m[build][39m [32m✓ Completed in 421ms.[39m
-[2m17:58:41[22m [34m[build][39m Building server entrypoints...
-[2m17:58:42[22m [34m[vite][39m [32m✓ built in 1.05s[39m
-[2m17:58:42[22m [34m[build][39m [32m✓ Completed in 1.08s.[39m
+[2m19:20:15[22m [34m[vite][39m Re-optimizing dependencies because vite config has changed
+[2m19:20:15[22m [34m[content][39m Syncing content
+[2m19:20:15[22m [34m[content][39m Synced content
+[2m19:20:15[22m [34m[types][39m Generated [2m108ms[22m
+[2m19:20:15[22m [34m[build][39m output: [34m"server"[39m
+[2m19:20:15[22m [34m[build][39m mode: [34m"server"[39m
+[2m19:20:15[22m [34m[build][39m directory: [34m/Users/tamaspalecian/Documents/private/astro-server-island/apps/website/dist/[39m
+[2m19:20:15[22m [34m[build][39m adapter: [32m@astrojs/vercel[39m
+[2m19:20:15[22m [34m[build][39m Collecting build info...
+[2m19:20:15[22m [34m[build][39m [32m✓ Completed in 130ms.[39m
+[2m19:20:15[22m [34m[build][39m Building server entrypoints...
+[2m19:20:17[22m [34m[vite][39m [32m✓ built in 1.05s[39m
+[2m19:20:17[22m [34m[build][39m [32m✓ Completed in 1.07s.[39m
 
 [42m[30m building client (vite) [39m[49m
-[2m17:58:42[22m [34m[vite][39m transforming...
-[2m17:58:42[22m [34m[vite][39m [32m✓[39m 290 modules transformed.
-[33m[1m17:58:42[22m [WARN] [vite][39m [33mGenerated an empty chunk: "hero-wrapper.astro_astro_type_script_index_0_lang".[39m
-[33m[1m17:58:42[22m [WARN] [vite][39m [33mGenerated an empty chunk: "typeform-popup.astro_astro_type_script_index_0_lang".[39m
-[33m[1m17:58:42[22m [WARN] [vite][39m [33mGenerated an empty chunk: "animated-logo.astro_astro_type_script_index_0_lang".[39m
-[33m[1m17:58:42[22m [WARN] [vite][39m [33mGenerated an empty chunk: "dialog.astro_astro_type_script_index_0_lang".[39m
-[2m17:58:42[22m [34m[vite][39m rendering chunks...
-[2m17:58:42[22m [34m[vite][39m [32m✓ built in 153ms[39m
+[2m19:20:17[22m [34m[vite][39m transforming...
+[2m19:20:17[22m [34m[vite][39m [32m✓[39m 290 modules transformed.
+[33m[1m19:20:17[22m [WARN] [vite][39m [33mGenerated an empty chunk: "hero-wrapper.astro_astro_type_script_index_0_lang".[39m
+[33m[1m19:20:17[22m [WARN] [vite][39m [33mGenerated an empty chunk: "typeform-popup.astro_astro_type_script_index_0_lang".[39m
+[33m[1m19:20:17[22m [WARN] [vite][39m [33mGenerated an empty chunk: "animated-logo.astro_astro_type_script_index_0_lang".[39m
+[33m[1m19:20:17[22m [WARN] [vite][39m [33mGenerated an empty chunk: "dialog.astro_astro_type_script_index_0_lang".[39m
+[2m19:20:17[22m [34m[vite][39m rendering chunks...
+[2m19:20:17[22m [34m[vite][39m [32m✓ built in 181ms[39m
 
 [42m[30m prerendering static routes [39m[49m
-[2m17:58:42[22m [32m✓ Completed in 7ms.
+[2m19:20:17[22m [32m✓ Completed in 8ms.
 [39m
-[2m17:58:42[22m [34m[build][39m Rearranging server assets...
-[2m17:58:42[22m [34m[@astrojs/vercel][39m Bundling function ../../../../dist/server/entry.mjs
-[2m17:58:42[22m [34m[@astrojs/vercel][39m Copying static files to .vercel/output/static
-[2m17:58:42[22m [34m[build][39m Server built in [1m2.05s[22m
-[2m17:58:42[22m [34m[build][39m [1mComplete![22m
+[2m19:20:17[22m [34m[build][39m Rearranging server assets...
+[2m19:20:17[22m [34m[@astrojs/vercel][39m Bundling function ../../../../dist/server/entry.mjs
+[2m19:20:17[22m [34m[@astrojs/vercel][39m Copying static files to .vercel/output/static
+[2m19:20:17[22m [34m[build][39m Server built in [1m1.79s[22m
+[2m19:20:17[22m [34m[build][39m [1mComplete![22m

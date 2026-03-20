@@ -103,3 +103,11 @@ Default to this structure. If the user asks for “just a summary” or “just 
 - **Out of current phase** → **`/documentation/99-archive`**
 
 When creating or editing docs, put new or in-progress items in `/documentation/wip`; when something is finalized, move it to the appropriate lifecycle folder. If it is no longer relevant for the current phase, move it to `/documentation/99-archive`.
+
+### Implementation tickets (`03-implementation/03-tickets`)
+
+Linear-style tickets use YAML front matter like other docs. **Status workflow:** `draft` → `in-review` → `approved` (scoped and ready to implement) → **`completed`** once the work is delivered and acceptance criteria are met.
+
+**After implementation:** Do not leave a ticket on `approved` indefinitely. Set **`status: completed`**, update **`last_updated`**, and add or refresh a short **implementation / completion** summary in **Notes** (what shipped, key file areas). If a matching **`02-workstreams/`** file exists for that ticket, set its **`status: completed`** and bump **`last_updated`** there too.
+
+Use **`superseded`** (or ticket-specific wording) only when a ticket doc is explicitly replaced or retired — not as a substitute for **`completed`** when work was actually delivered.

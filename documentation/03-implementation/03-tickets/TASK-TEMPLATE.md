@@ -1,6 +1,7 @@
 ---
 title: Ticket [ID] — [Short title]
 phase: implementation
+# status: draft | in-review | approved | completed (set after delivery; do not stay on approved)
 status: draft
 owner: solutions-engineering
 last_updated: YYYY-MM-DD
@@ -69,3 +70,5 @@ Direct links to design artifacts only (e.g. Figma). No internal doc paths.
 ## Notes
 
 Any misc information or documentation.
+
+When the ticket is **delivered**, set front matter **`status: completed`**, update **`last_updated`**, and add a brief **Implementation (completed …)** summary here. See `README.md` (Ticket status lifecycle) and `.cursor/rules/planning.mdc`.

@@ -1,28 +1,56 @@
 ---
 import { getCategoryBySlug, getCategoryCards } from '@rotate/cms'
 
+import { isSiteCategory, siteCategoryToCardsSlug } from '@/lib'
+import { categoryCardsToListItems } from '@/lib/dato'
+
+import BaseLayout from '@/layouts/base-layout.astro'
+
 export const prerender = false
-// Server-rendered; cache at Bunny. No getStaticPaths (sitemap uses getRoutes() in G2).
+
 const token = import.meta.env.DATOCMS_API_KEY ?? ''
-const category = Astro.params.category ?? ''
+const categoryParam = Astro.params.category ?? ''
 const getterOptions = { token }
 
-const categoryData = await getCategoryBySlug(category, getterOptions)
-const cardsSlug = { work: 'works', thinking: 'thinkings', studio: 'studios' }[category] ?? category
-await getCategoryCards(cardsSlug, getterOptions)
+if (!isSiteCategory(categoryParam)) {
+	return Astro.rewrite('/404')
+}
+
+const categoryData = await getCategoryBySlug(categoryParam, getterOptions)
+
+if (!categoryData) {
+	return Astro.rewrite('/404')
+}
+
+const cardsPayload = await getCategoryCards(siteCategoryToCardsSlug(categoryParam), getterOptions)
+const listItems = categoryCardsToListItems(categoryParam, cardsPayload)
+
+const heading = categoryData.filterText ?? categoryParam
+const pageTitle = `${heading} | Category`
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<title>{categoryData?.filterText ?? category} | Category</title>
-	</head>
-	<body>
-		<main>
-			<h1>{categoryData?.filterText ?? category}</h1>
-			{categoryData && <p>Category: {category}</p>}
-			{!categoryData && <p>Not found</p>}
-		</main>
-	</body>
-</html>
+<BaseLayout title={pageTitle} headerStyle="default">
+	<main
+		class="[margin-inline:auto] w-full max-w-[var(--breakpoint-maxwidth)] px-[var(--grid-default-margin)] py-800"
+	>
+		<h1 class="title-style1-700 text-content-default-primary mb-300">{heading}</h1>
+		<p class="body-style1-400 text-content-default-secondary mb-500">
+			{listItems.length}
+			{listItems.length === 1 ? 'item' : 'items'}
+		</p>
+		<ul class="flex flex-col gap-200">
+			{
+				listItems.map((item) => (
+					<li>
+						<a
+							href={item.href}
+							class="link link-underline title-style1-300 text-content-default-primary"
+						>
+							{item.label}
+						</a>
+					</li>
+				))
+			}
+		</ul>
+	</main>
+</BaseLayout>

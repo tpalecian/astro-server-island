@@ -19,7 +19,7 @@ Quick reference for AI agents. **Full rule index:** `.cursor/rules/README.md` (s
 ## Start here
 
 - **Implementation handover:** `documentation/00-start-here/handover-next-steps.md`
-- **Current tickets:** `documentation/03-implementation/03-tickets/`
+- **Current tickets:** `documentation/03-implementation/03-tickets/` — when work is done, set ticket (and matching workstream) **`status: completed`** and update **`last_updated`**; do not leave tickets on **`approved`** (`planning.mdc`).
 - **Solution design:** `documentation/02-solution/`
 
 ## Key constraints

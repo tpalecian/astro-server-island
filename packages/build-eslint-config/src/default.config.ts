@@ -37,6 +37,7 @@ const importOrderOptions = {
 		{ pattern: '@rotate/utilities/**', group: 'external', position: 'after' },
 		{ pattern: '@rotate/devtools/**', group: 'external', position: 'after' },
 		{ pattern: '@rotate/**', group: 'external', position: 'after' },
+		{ pattern: '@/lib', group: 'internal', position: 'before' },
 		{ pattern: '@/lib/**', group: 'internal', position: 'before' },
 		{ pattern: '@/layouts/**', group: 'internal', position: 'after' },
 		{ pattern: '@/components/**', group: 'internal', position: 'after' },
@@ -200,8 +201,15 @@ export function getConfig(importMetaUrl: string): Array<Linter.Config<Linter.Rul
 		},
 
 		// Astro: import resolver does not always map TS paths / Vite aliases in frontmatter.
+		// `ecmaVersion: 'latest'` — frontmatter uses `import.meta.env`; older ecma misparses `import` and breaks ESLint.
 		{
 			files: ['**/*.astro'],
+			languageOptions: {
+				parserOptions: {
+					ecmaVersion: 'latest',
+					sourceType: 'module',
+				},
+			},
 			rules: {
 				'import/no-unresolved': 'off',
 			},

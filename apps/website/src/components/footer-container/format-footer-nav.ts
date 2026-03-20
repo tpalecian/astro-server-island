@@ -1,6 +1,6 @@
 import type { NavigationFooterQuery } from '@rotate/cms'
 
-import { buildSiteHrefFromDatoLink } from '@/lib/build-site-href-from-dato-link'
+import { buildSiteHrefFromDatoLink } from '@/lib/dato'
 
 /**
  * Parses CMS Typeform values into what the embed accepts: `form.typeform.com/to/{id}`,

@@ -34,7 +34,7 @@ tags: [implementation, ticket, app-shell]
 ## Feasibility & Dependencies
 
 **Blocking:** CMS getters + exports (getHomepage from @rotate/cms).  
-**Unblocks:** Dynamic routes; core content block modules; structured text; ContentIsland (below-fold).
+**Unblocks:** Dynamic routes; core content block modules; structured text.
 
 **Dependencies / risks:** None.
 

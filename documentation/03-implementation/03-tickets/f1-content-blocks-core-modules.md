@@ -14,7 +14,7 @@ tags: [implementation, ticket, content-blocks]
 
 ## Description, Value & ACs
 
-**Scope:** Edit `apps/website/src/components/modules/` only. Implement core block modules (Text, Quote, Media basics) mapped by `_modelApiKey`. Props only; no data fetching. Use design-system tokens. Block mapping: \_modelApiKey → component. Block data comes from page getter (blocks array); each block has \_modelApiKey and block-specific fields. Do not add CMS/fetch in modules; ContentIsland (below-fold blocks) and structured-text inline blocks are out of scope here.
+**Scope:** Edit `apps/website/src/components/modules/` only. Implement core block modules (Text, Quote, Media basics) mapped by `_modelApiKey`. Props only; no data fetching. Use design-system tokens. Block mapping: \_modelApiKey → component. Block data comes from page getter (blocks array); each block has \_modelApiKey and block-specific fields. Do not add CMS/fetch in modules; structured-text inline blocks (F2) are out of scope here. **All blocks are server-rendered** (F3 ContentIsland superseded).
 
 **Outcome:** Core blocks render with props only; match block mapping.
 
@@ -32,7 +32,7 @@ tags: [implementation, ticket, content-blocks]
 ## Feasibility & Dependencies
 
 **Blocking:** CMS getters + exports; app container.  
-**Unblocks:** Structured text; ContentIsland (below-fold).
+**Unblocks:** Structured text (F2); full-page block rendering uses the same map (no separate F3).
 
 **Dependencies / risks:** None.
 

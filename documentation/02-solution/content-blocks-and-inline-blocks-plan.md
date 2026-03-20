@@ -3,20 +3,20 @@ title: Solution — Content blocks and inline blocks
 phase: solution-design
 status: in-review
 owner: solutions-engineering
-last_updated: 2026-02-04
+last_updated: 2026-03-20
 depends_on:
   - 01-discovery/02-content-blocks-and-rendering.md
 related_docs:
   - 02-solution/cms-service-pattern-and-dato-centralisation.md
   - 03-implementation/vue-to-astro-migration.md
-tags: [solution, content-blocks, content-island, rendering]
+tags: [solution, content-blocks, rendering, full-ssr]
 ---
 
 # Solution — Content blocks and inline blocks
 
 ## 1. Outcome & Business Value (why)
 
-**Source:** Decisions and outcomes are defined in `01-discovery/02-content-blocks-and-rendering.md`.
+**Source:** Decisions and outcomes are defined in `01-discovery/02-content-blocks-and-rendering.md` (including **amendment 2026-03-20** — full SSR for all blocks).
 
 **This doc focuses on:** the **solution approach** and delivery shape for block rendering.
 
@@ -30,14 +30,14 @@ tags: [solution, content-blocks, content-island, rendering]
 
 **Success criteria:**
 
-- First content block renders server‑side.
-- Remaining blocks load via ContentIsland.
+- **All** content blocks for a page are server-rendered in the initial response (same `_modelApiKey` map for every block).
 - Block mapping is deterministic via `_modelApiKey`.
+- Pages are cache-friendly; no second client fetch for block HTML.
 
 **Proposed approach:**
 
-- Server render the first content block.
-- Render remaining blocks via **ContentIsland** (client island) with a separate fetch.
+- Page or **`*-container`** loads the document from `@rotate/cms` once (blocks array already in the getter response).
+- Map each block with a shared **Record** (or equivalent) `_modelApiKey` → Astro module; render in order on the server.
 
 **System boundaries:**
 
@@ -47,15 +47,16 @@ tags: [solution, content-blocks, content-island, rendering]
 **Interfaces & data:**
 
 - Block type discriminator is Dato `_modelApiKey`.
-- ContentIsland receives a page identifier and fetches below‑fold blocks.
+- No separate below-fold block API is required for v1.
 
 **Alternatives considered:**
 
-- Server render all blocks. Rejected in discovery; recorded here for context.
+- **Client-deferred blocks (ContentIsland):** Explored in discovery; **cancelled for this phase** (2026-03-20). Rationale: modest content depth, ~99% cached responses, simpler ops and one code path. **May be revisited** only if product or metrics justify a second fetch/hydration pipeline.
 
 **Non‑goals:**
 
 - Changing Dato schema or introducing new block types outside current CMS.
+- Implementing ContentIsland unless explicitly rescoped in a future ticket.
 
 ### References (exact)
 
@@ -64,8 +65,8 @@ tags: [solution, content-blocks, content-island, rendering]
 | What                           | Path or URL                                                                                                     |
 | ------------------------------ | --------------------------------------------------------------------------------------------------------------- |
 | Discovery (scope, constraints) | `documentation/01-discovery/02-content-blocks-and-rendering.md`                                                 |
-| Implementation tickets         | `documentation/03-implementation/03-tickets/f1-content-blocks-core-modules.md`, `f2-*`, `f3-*`, `fb1-*`–`fb7-*` |
-| Astro islands                  | [Astro: Client-side Islands](https://docs.astro.build/en/guides/client-side-rendering/)                         |
+| Implementation tickets         | `documentation/03-implementation/03-tickets/f1-content-blocks-core-modules.md`, `f2-*`, `fb1-*`–`fb7-*` (F3 superseded — see ticket) |
+| Astro (SSR / islands — optional future) | [Astro: Client-side Islands](https://docs.astro.build/en/guides/client-side-rendering/)                         |
 
 **Planned locations (where to implement):**
 
@@ -73,11 +74,11 @@ tags: [solution, content-blocks, content-island, rendering]
 | ----------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Block data (GQL, getters)                       | `packages/service-dato/src/gql/` (fragments e.g. blocks, inline-blocks), `packages/service-dato/src/handlers/` (page getter and per-type queries)               |
 | App block modules (one per block type)          | `apps/website/src/components/modules/` (e.g. `MediaSingle.astro`, `CardSlider.astro`). Modules import core UI from `packages/ui`; website = logic binding only. |
-| ContentIsland (client island, below-fold fetch) | `apps/website/src/components/` (e.g. `ContentIsland.tsx` or `.astro` + client fetch)                                                                            |
+| Block list render (server)                      | Page or `*-container`: iterate `blocks`, resolve component from map, pass props (no client fetch for block HTML).                                                |
 
 ### Code examples (contract to implement)
 
-**Block mapping — implement in app container or island.** Each block in the page content array has Dato `_modelApiKey` (e.g. `media_single`, `card_slider`). Map it to the component:
+**Block mapping — implement in page or container.** Each block in the page content array has Dato `_modelApiKey` (e.g. `media_single`, `card_slider`). Map it to the component:
 
 ```ts
 // _modelApiKey → component; implement this mapping
@@ -90,7 +91,7 @@ const blockComponents: Record<string, Component> = {
 const Block = blockComponents[block._modelApiKey]
 ```
 
-**Rendering rule:** First block server-rendered; remaining blocks loaded via ContentIsland (client island fetches below-fold blocks by page id/slug and renders using the same mapping).
+**Rendering rule:** **All** blocks server-rendered in order using the same map. No ContentIsland in the default architecture.
 
 **Block data:** Implement block selection in service-dato GQL (fragments and page queries). Page getter returns blocks array; each item has `_modelApiKey`. Exact field list per block type is defined in implementation tickets.
 
@@ -100,17 +101,17 @@ const Block = blockComponents[block._modelApiKey]
 
 1. Define block gql and models in `service-dato`.
 2. Implement block modules in the app.
-3. Implement ContentIsland fetch and rendering.
+3. Wire page/container to **map and render the full blocks array** on the server.
 
 **Deliverables:**
 
 - Block mapping by `_modelApiKey`.
-- ContentIsland and below‑fold fetch.
+- Server-side rendering for the full block list per page.
 
 **Validation:**
 
-- First block SSR renders and remaining blocks render client‑side.
+- Multi-block pages render complete HTML on first response; correct mapping for each `_modelApiKey`.
 
 **Open questions / TBD:**
 
-- None.
+- Revisit client-deferred blocks only if a future initiative reopens F3 (superseded ticket) with new requirements.

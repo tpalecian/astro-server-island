@@ -53,7 +53,7 @@ tags: [implementation, workstream, app-shell, layout, header, footer, navigation
 
 ## 6. Out of scope / Don't do
 
-- No CMS/fetch in `packages/ui` (props only). No ContentIsland or below-fold logic. No tracking or cookie banner (I). Mobile menu / hamburger behaviour is in scope only if required for minimal layout; prefer CSS-first.
+- No CMS/fetch in `packages/ui` (props only). No client-deferred block loading. No tracking or cookie banner (I). Mobile menu / hamburger behaviour is in scope only if required for minimal layout; prefer CSS-first.
 
 ## 7. Steps (ordered)
 

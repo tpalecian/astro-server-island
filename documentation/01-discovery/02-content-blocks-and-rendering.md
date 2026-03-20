@@ -3,10 +3,10 @@ title: Discovery — Content blocks and rendering
 phase: discovery
 status: approved
 owner: solutions-engineering
-last_updated: 2026-02-04
+last_updated: 2026-03-20
 depends_on: []
 related_docs: []
-tags: [discovery, content-blocks, rendering, content-island]
+tags: [discovery, content-blocks, rendering, full-ssr]
 ---
 
 # Discovery — Content blocks and rendering
@@ -19,14 +19,16 @@ tags: [discovery, content-blocks, rendering, content-island]
 
 **Success criteria:**
 
-- First content block is server‑rendered.
-- Remaining content loads via a client island.
+- **All** content blocks for a page are server‑rendered in the initial response.
+- Block mapping by Dato `_modelApiKey` is deterministic.
+
+**Amendment (2026-03-20):** Original discovery favoured **first block SSR + remaining blocks via a client island** for below‑fold streaming. **Implementation choice:** render **the full block list on the server** (one getter, one HTML response). Rationale: modest page size, aggressive edge caching, simpler architecture. A client **ContentIsland** (or equivalent) is **out of scope until explicitly reopened**; see `02-solution/content-blocks-and-inline-blocks-plan.md`.
 
 ## 2. Context & Scope (what/where)
 
-**Current state:** 2022-site renders blocks server‑side; we want streaming for below‑fold content.
+**Current state:** 2022-site renders blocks server‑side; the new site matches that model (full SSR block list), without a separate below‑fold client fetch for v1.
 
-**In scope:** Rendering strategy, block mapping, and ContentIsland behavior.
+**In scope:** Rendering strategy and block mapping (`_modelApiKey`).
 
 **Out of scope:** Implementation details of each block module.
 
@@ -38,13 +40,13 @@ tags: [discovery, content-blocks, rendering, content-island]
 
 **Risks & mitigations:**
 
-- Risk: performance regressions. Mitigation: server render first block only.
+- Risk: large HTML payload. Mitigation: modest content set + CDN/cache; revisit deferred loading only if metrics require it.
 
 ## 3. Ideas, options & references
 
 **Ideas / options explored:**
 
-- Server-render all blocks vs. first block server + below-fold via client island (latter for performance and streaming).
+- Server-render all blocks vs. first block server + below-fold via client island (island path **not** pursued for v1; see amendment above).
 - Block mapping by Dato `_modelApiKey` (same as 2022-site) vs. custom mapping (reuse existing key).
 
 **References & further reading:**
@@ -60,11 +62,11 @@ tags: [discovery, content-blocks, rendering, content-island]
 | Inline block fragments (GQL) | `2022-site/gql/fragments/inline-blocks.gql.js` (e.g. `onTagRecord`, `onEmojiRecord`, `onWorkRecord`, `onThinkingRecord`, `onStudioRecord`, `onMegaHeadingRecord`) |
 | Block fragments (GQL)        | `2022-site/gql/fragments/` (blocks used in page queries)                                                                                                          |
 
-Use these paths when auditing how the 2022-site renders blocks; the new solution maps by `_modelApiKey` and uses first-block SSR + ContentIsland for below-fold.
+Use these paths when auditing how the 2022-site renders blocks; the new solution maps by `_modelApiKey` and server-renders **all** blocks (see amendment).
 
 **Key information:**
 
-- Dato block types and `_modelApiKey` values; above/below-fold behaviour requirements.
+- Dato block types and `_modelApiKey` values; full SSR block list for v1.
 
 ---
 

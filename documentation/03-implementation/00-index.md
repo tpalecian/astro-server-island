@@ -3,7 +3,7 @@ title: Implementation index
 phase: implementation
 status: in-review
 owner: solutions-engineering
-last_updated: 2026-02-04
+last_updated: 2026-03-20
 depends_on:
   - 01-discovery/00-index.md
   - 02-solution/00-index.md
@@ -39,7 +39,7 @@ Workstreams contain **all** rules and context for AI: allowed paths, contract, d
 | 6     | E — dynamic routes                     | `02-workstreams/06-e-dynamic-routes.md`                                  |
 | 7     | F1 — content blocks core               | `02-workstreams/07-f1-content-blocks-core.md`                            |
 | 8     | F2 — structured text                   | `02-workstreams/08-f2-structured-text.md`                                |
-| 9     | F3 — ContentIsland                     | `02-workstreams/09-f3-content-island.md`                                 |
+| 9     | F3 — ContentIsland (**superseded**)    | `02-workstreams/09-f3-content-island.md`                                 |
 | 10–16 | FB1–FB7 — block modules                | `02-workstreams/10-fb1-media-single.md` … `16-fb7-stats-block.md`        |
 | 17–20 | G1–G4 — SEO                            | `02-workstreams/17-g1-seo-meta-jsonld.md` … `20-g4-seo-errors-robots.md` |
 | 21    | H — images and media                   | `02-workstreams/21-h-images-media.md`                                    |
@@ -57,7 +57,7 @@ Each ticket points to its workstream. Same count as workstreams (30 and 30). **R
 | b       | 05-b-app-container                               |
 | c       | 05b-c-layout-shell                               |
 | e       | 06-e-dynamic-routes                              |
-| f1–f3   | 07-f1-content-blocks-core … 09-f3-content-island |
+| f1–f3   | 07-f1-content-blocks-core … 09-f3-content-island (**F3 superseded**)    |
 | fb1–fb7 | 10-fb1-media-single … 16-fb7-stats-block         |
 | g1–g4   | 17-g1-seo-meta-jsonld … 20-g4-seo-errors-robots  |
 | h       | 21-h-images-media                                |

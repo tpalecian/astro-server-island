@@ -3,7 +3,7 @@ title: Workstream F1 — content block core modules
 phase: implementation
 status: in-review
 owner: solutions-engineering
-last_updated: 2026-02-04
+last_updated: 2026-03-20
 depends_on: []
 related_docs:
   - 01-discovery/02-content-blocks-and-rendering.md
@@ -20,7 +20,7 @@ tags: [implementation, workstream, content-blocks]
 - **Approach (one sentence):** Add core block modules (Text, Quote, Media basics) in `apps/website/src/components/modules/`, each receiving block props only and mapped by `_modelApiKey`; implement the block map (e.g. Record<\_modelApiKey, Component>) so the first block can be server-rendered; no fetch in modules; design-system tokens only.
 - **Exact file name(s) and paths:** Create modules under `apps/website/src/components/modules/` (e.g. MediaSingle.astro, Quote.astro, TextLead.astro). Modules import core UI from `packages/ui`; website = logic binding only. One place (container or shared map) that maps `block._modelApiKey` → component.
 - **Exact props/API/types:** Each module receives the block as props (shape from GQL fragment / types-dato, e.g. OnMediaSingleRecordFragment, QuoteRecord). No data fetching; props only. Block map: `Record<string, Component>` keyed by `_modelApiKey` (e.g. `media_single`, `quote`, `text_lead`).
-- **Exact mapping/key:** `_modelApiKey` → component; same mapping used for first block (SSR) and later by ContentIsland (F3). Keys: per CMS block types (media_single, text_half, text_lead, quote, card_slider, stats, etc.).
+- **Exact mapping/key:** `_modelApiKey` → component; **same mapping for every block** on the server (F3 ContentIsland superseded). Keys: per CMS block types (media_single, text_half, text_lead, quote, card_slider, stats, etc.).
 - **Legacy/reference behaviour:** Match patterns from `2022-site/components/Content/` (MediaCaption, MediaCarousel, TextHalf, TextLead, TextQuote, CardSlider, Stats); props-only; design-system.
 
 ## 1. Allowed paths
@@ -34,7 +34,7 @@ tags: [implementation, workstream, content-blocks]
 
 ## 3. Unblocks
 
-- F2, F3.
+- F2 (structured text). F3 superseded — full SSR block list uses this map.
 
 ## 4. Contract / API
 
@@ -46,7 +46,7 @@ tags: [implementation, workstream, content-blocks]
 
 ## 6. Out of scope / Don't do
 
-- No CMS/fetch in modules. No ContentIsland or below-fold fetch (F3). No structured-text inline blocks (F2).
+- No CMS/fetch in modules. No structured-text inline blocks (F2). No client-deferred block fetch (F3 superseded).
 
 ## 7. Steps (ordered)
 

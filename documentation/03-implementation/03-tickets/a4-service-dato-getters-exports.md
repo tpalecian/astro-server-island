@@ -32,7 +32,7 @@ tags: [implementation, ticket, cms]
 ## Feasibility & Dependencies
 
 **Blocking:** CMS client + base types; GQL fragments + codegen.  
-**Unblocks:** App container (homepage + module); dynamic routes; core content block modules; structured text; ContentIsland; SEO (meta, sitemap, redirects, errors); images/media.
+**Unblocks:** App container (homepage + module); dynamic routes; core content block modules; structured text; SEO (meta, sitemap, redirects, errors); images/media.
 
 **Dependencies / risks:** Do not export gql, client, or handlers from package index. App must use `@rotate/cms` only.
 

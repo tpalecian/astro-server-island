@@ -45,7 +45,7 @@ tags: [implementation, workstream, content-blocks]
 
 ## 6. Out of scope / Don't do
 
-- No block-level rendering (F1/F3). Inline only within structured text.
+- No page-level block rendering in F2 (that is F1/FB). Inline only within structured text.
 
 ## 7. Steps (ordered)
 

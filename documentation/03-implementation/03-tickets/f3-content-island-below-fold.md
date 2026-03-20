@@ -1,61 +1,32 @@
 ---
-title: Ticket F3 — ContentIsland (below-fold blocks)
+title: Ticket F3 — ContentIsland (below-fold blocks) — superseded
 phase: implementation
-status: approved
+status: superseded
 owner: solutions-engineering
-last_updated: 2026-02-04
+last_updated: 2026-03-20
 depends_on: [CMS getters + exports, app container, core content block modules]
-tags: [implementation, ticket, content-blocks]
+tags: [implementation, ticket, content-blocks, superseded]
 ---
 
-# Ticket F3 — ContentIsland (below-fold blocks)
+# Ticket F3 — ContentIsland (below-fold blocks) — **superseded**
+
+**Status:** **Superseded / cancelled (2026-03-20).** Do not implement. All content blocks are **server-rendered** in one response; see `02-solution/content-blocks-and-inline-blocks-plan.md` and discovery amendment in `01-discovery/02-content-blocks-and-rendering.md`. Reopen only if a future ticket explicitly rescopes deferred client block loading.
 
 ---
 
-## Description, Value & ACs
+## Historical description (not in scope)
 
-**Scope:** Edit `apps/website/src/components/` (ContentIsland: client island) and `apps/website/src/components/modules/` (same block mapping as the core content block modules). **ContentIsland:** Client island that receives page id/slug or block list; fetches or receives below-fold blocks; renders using same \_modelApiKey → component mapping as first block. First block server-rendered; remaining blocks loaded via this island. Do not fetch in block modules; fetch in island or page. First block stays server-rendered (not in island).
+Previously scoped: client island for below-fold blocks, first block SSR, shared `_modelApiKey` map with F1.
 
-**Outcome:** First block SSR; remaining blocks load via ContentIsland; same mapping used.
-
-**Value:** Performance: first block fast; rest loaded client-side without blocking.
-
-**Acceptance criteria:**
+**Original acceptance criteria (void):**
 
 | #   | Criterion                                                                    | Done |
 | --- | ---------------------------------------------------------------------------- | ---- |
-| AC1 | First block server-rendered; remaining blocks via ContentIsland.             |      |
-| AC2 | ContentIsland uses same \_modelApiKey mapping as core content block modules. |      |
-
----
-
-## Feasibility & Dependencies
-
-**Blocking:** CMS getters + exports; app container; core content block modules.  
-**Unblocks:** Block modules (media_single, media multiple, text_half, text_lead, quote, card_slider, stats) can be used in island.
-
-**Dependencies / risks:** None.
-
----
-
-## Analytics & Measurement
-
-N/A — implementation task. Success = ACs met.
-
----
-
-## Testing
-
-Page with multiple blocks: first SSR, rest client-loaded; no hydration errors.
-
----
-
-## Design & References
-
-**Figma / design:** [Add when available]
+| AC1 | First block server-rendered; remaining blocks via ContentIsland.             | N/A  |
+| AC2 | ContentIsland uses same \_modelApiKey mapping as core content block modules. | N/A  |
 
 ---
 
 ## Notes
 
-Steps: (1) Implement ContentIsland (client component) that receives page identifier or blocks. (2) Island fetches below-fold blocks (or receives from parent); renders with same block mapping as core content block modules. (3) Page/layout: render first block server-side; pass rest to ContentIsland or trigger island fetch.
+**Superseded:** Product/architecture choice — modest content, heavy cache; single SSR path preferred. Workstream `02-workstreams/09-f3-content-island.md` marked superseded.

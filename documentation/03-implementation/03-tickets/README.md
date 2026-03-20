@@ -3,7 +3,7 @@ title: Tickets (linear)
 phase: implementation
 status: in-review
 owner: solutions-engineering
-last_updated: 2026-03-21
+last_updated: 2026-03-20
 depends_on: []
 tags: [implementation, tickets, linear]
 ---
@@ -30,7 +30,7 @@ When work is done, set **`status: completed`**, update **`last_updated`**, and r
 | E       | `e-dynamic-routes.md`                               |
 | F1      | `f1-content-blocks-core-modules.md`                 |
 | F2      | `f2-content-blocks-structured-text.md`              |
-| F3      | `f3-content-island-below-fold.md`                   |
+| F3      | `f3-content-island-below-fold.md` (**superseded** — full SSR; do not implement) |
 | FB1–FB7 | `fb1-media-single.md` … `fb7-stats-block.md`        |
 | G1–G4   | `g1-seo-meta-jsonld.md` … `g4-seo-errors-robots.md` |
 | H       | `h-images-media.md`                                 |

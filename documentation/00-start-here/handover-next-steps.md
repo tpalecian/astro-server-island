@@ -3,7 +3,7 @@ title: Start here — implementation handover
 phase: implementation
 status: in-review
 owner: solutions-engineering
-last_updated: 2026-02-03
+last_updated: 2026-03-20
 depends_on: []
 related_docs:
   - 03-implementation/00-index.md
@@ -42,7 +42,7 @@ We are executing the approved solution design. The outcome is a working implemen
 ## 3. Fixed decisions (do not change)
 
 - **CMS:** All Dato implementation lives in `packages/service-dato`. The app imports from `@rotate/cms` (alias). Use DatoCMS Astro: `@datocms/cda-client` + `executeQuery`.
-- **Content blocks:** First content block above the fold (server); the rest loaded via ContentIsland (client) from a separate fetch. Map blocks by `_modelApiKey`.
+- **Content blocks:** **All** blocks for a page server-rendered in one response; map by `_modelApiKey`. Client **ContentIsland** for below-fold blocks is **cancelled** for this phase (see `02-solution/content-blocks-and-inline-blocks-plan.md`; ticket F3 superseded).
 - **Tracking:** Cookie consent gate. `ENABLE_TRACKING` env toggle. Lead Feeder + Apollo included for now.
 - **SEO/redirects:** Meta + JSON-LD in layout; redirects via `getRedirects()` at build. Custom 404 + 500.
 - **Images:** Dato CDN + query params, Bunny CDN in front (no imgix/Cloudinary).
@@ -81,7 +81,7 @@ We are executing the approved solution design. The outcome is a working implemen
 | Ticket templates                     | `03-implementation/03-tickets/`                                                   |
 | Migration plan                       | `03-implementation/vue-to-astro-migration.md`                                     |
 | CMS service pattern and alias        | `02-solution/cms-service-pattern-and-dato-centralisation.md`                      |
-| Content blocks + ContentIsland       | `02-solution/content-blocks-and-inline-blocks-plan.md`                            |
+| Content blocks (full SSR)            | `02-solution/content-blocks-and-inline-blocks-plan.md`                            |
 | External services + tracking         | `02-solution/external-services-and-tracking-plan.md`                              |
 | SEO, sitemap, redirects, error pages | `02-solution/seo-sitemap-redirects-error-pages-plan.md`                           |
 | Background review (reference)        | `05-reference/dato-vue-to-service-review.md`                                      |

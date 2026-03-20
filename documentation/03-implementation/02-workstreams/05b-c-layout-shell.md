@@ -1,9 +1,9 @@
 ---
 title: Workstream C — layout shell (Header, Footer, Navigation)
 phase: implementation
-status: in-review
+status: completed
 owner: solutions-engineering
-last_updated: 2026-03-19
+last_updated: 2026-03-20
 depends_on: []
 related_docs:
   - 01-discovery/migration-map.md

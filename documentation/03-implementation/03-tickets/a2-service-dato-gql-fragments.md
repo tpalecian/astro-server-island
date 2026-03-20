@@ -1,9 +1,9 @@
 ---
 title: Ticket A2 — service-dato GQL + fragments
 phase: implementation
-status: approved
+status: completed
 owner: solutions-engineering
-last_updated: 2026-02-04
+last_updated: 2026-03-20
 depends_on: [CMS client + base types]
 tags: [implementation, ticket, cms]
 ---
@@ -57,6 +57,8 @@ Run `pnpm codegen` from root; run `pnpm check:types` in package.
 ---
 
 ## Notes
+
+**Implementation (completed):** GQL in `packages/service-dato/src/gql/` (`*.gql.ts`), fragments under `gql/fragments/`; codegen → `types-dato.ts`; `pnpm codegen` from root. Workstream `02-workstreams/02-a2-gql-fragments.md` already completed.
 
 Migrate fragments (meta, content blocks, inline-blocks, models) from 2022-site; link/structured-text inlined. Add queries for homepage, page, routes, navigation, globals, categories, redirects, info.
 

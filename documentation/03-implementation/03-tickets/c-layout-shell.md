@@ -1,7 +1,7 @@
 ---
 title: Ticket C — layout shell (Header, Footer, Navigation)
 phase: implementation
-status: approved
+status: completed
 owner: solutions-engineering
 last_updated: 2026-03-20
 depends_on: [CMS getters + exports]
@@ -30,7 +30,7 @@ tags: [implementation, ticket, app-shell, layout]
 | AC4 | Core UI in packages/ui; Header/Footer modules import from packages/ui.                | ✅ (`header.astro` / `footer.astro` — primitives from design-system utilities)                                                       |
 | AC5 | Figma links added for each component; designs updated; implementation matches design. | ✅ Footer (`documentation/wip/footer-figma-validation.md`). ✅ Header (`documentation/wip/header-figma-validation.md`). |
 
-**Progress (2026-03-20):** Header and footer signed off (validation docs **approved**). Ticket C **approved**.
+**Completed (2026-03-20):** All ACs met; header and footer signed off (validation docs approved). Workstream `02-workstreams/05b-c-layout-shell.md` marked completed.
 
 ---
 
@@ -76,4 +76,4 @@ Use Figma MCP: fetch variables and assets. Match design except documented deviat
 
 ## Notes
 
-Steps: (1) Add core UI (NavLink, Button) to packages/ui. (2) Create `header-container/index.astro` and `footer-container/index.astro`; Header/Footer live in `packages/ui`. (3) Edit base-layout.astro to compose Header + slot + Footer.
+**Implementation (completed):** `header-container` / `footer-container` under `apps/website/src/components/`; `packages/ui/header.astro` and `footer.astro`; `base-layout.astro` composes Header + slot + Footer; navigation via `getNavigationHeader` / `getNavigationFooter` from `@rotate/cms`. Figma validation: `documentation/wip/header-figma-validation.md`, `documentation/wip/footer-figma-validation.md`.

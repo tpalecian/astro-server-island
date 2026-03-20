@@ -1,9 +1,9 @@
 ---
 title: Ticket A4 — service-dato getters + exports
 phase: implementation
-status: approved
+status: completed
 owner: solutions-engineering
-last_updated: 2026-02-04
+last_updated: 2026-03-20
 depends_on: [CMS client + base types, GQL fragments + codegen]
 tags: [implementation, ticket, cms]
 ---
@@ -24,8 +24,8 @@ tags: [implementation, ticket, cms]
 
 | #   | Criterion                                                  | Done |
 | --- | ---------------------------------------------------------- | ---- |
-| AC1 | Getters list implemented; all work when called from app.   |      |
-| AC2 | No gql/client exported; only getters and types from index. |      |
+| AC1 | Getters list implemented; all work when called from app.   | ✅   |
+| AC2 | No gql/client exported; only getters and types from index. | ✅   |
 
 ---
 
@@ -58,4 +58,4 @@ Verify app imports only from `@rotate/cms`; no direct service-dato path imports.
 
 ## Notes
 
-Steps: (1) Implement one handler per getter in `src/handlers/`; use client + gql; return typed result. (2) Export only getters and types from `src/index.ts`. (3) Wire app alias `@rotate/cms` in apps/website.
+**Implementation (completed):** Getters in `packages/service-dato/src/handlers/`; public API in `src/index.ts` exports getters and types only (no client/gql/handlers). App alias `@rotate/cms` → `packages/service-dato/src/index.ts` in `apps/website`. Workstream `02-workstreams/04-a4-getters-exports.md` already completed.

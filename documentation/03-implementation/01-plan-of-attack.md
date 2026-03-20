@@ -39,7 +39,7 @@ Deliver the approved solution design in a predictable sequence with clear owners
 ## 4. Done definition
 
 Implementation is done when:
+
 - All workstreams are completed.
 - QA checklist passes.
 - Deployment notes are documented.
-

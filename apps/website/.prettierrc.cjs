@@ -1,3 +1,3 @@
-const config = require("@build/prettier-config/astro");
+const config = require('@build/prettier-config/astro')
 
-module.exports = config;
+module.exports = config

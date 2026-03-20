@@ -1,12 +1,16 @@
 {
-    "extends": "@build/tsconfig/astro.json",
-    "include": ["src/**/*"],
-    "exclude": ["dist", "node_modules", ".astro"],
-    "compilerOptions": {
-        "baseUrl": ".",
-        "paths": {
-            "@/*": ["src/*"],
-            "@rotate/cms": ["../../packages/service-dato/src/index.ts"]
-        }
-    }
+	"extends": "@build/tsconfig/astro.json",
+	"include": ["src/**/*"],
+	"exclude": ["dist", "node_modules", ".astro"],
+	"compilerOptions": {
+		"baseUrl": ".",
+		"paths": {
+			"@/*": ["src/*"],
+			"@rotate/cms": ["../../packages/service-dato/src/index.ts"],
+			"@rotate/design-system/*": ["../../packages/design-system/src/*"],
+			"@rotate/devtools/*": ["../../packages/devtools/src/*"],
+			"@rotate/ui/*": ["../../packages/ui/src/*"],
+			"@rotate/utilities/*": ["../../packages/utilities/src/*"]
+		}
+	}
 }

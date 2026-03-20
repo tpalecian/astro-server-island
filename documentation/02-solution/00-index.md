@@ -22,11 +22,11 @@ Solution docs contain the **exact final solution planned**: references only to *
 
 Use this index to find the final solution design by feature.
 
-| Feature | Document |
-|---|---|
-| CMS and data | `02-solution/cms-service-pattern-and-dato-centralisation.md` |
-| Content blocks and rendering | `02-solution/content-blocks-and-inline-blocks-plan.md` |
-| Tracking and consent | `02-solution/external-services-and-tracking-plan.md` |
-| SEO and routing | `02-solution/seo-sitemap-redirects-error-pages-plan.md` |
-| Images and media | `02-solution/images-and-media.md` |
-| Deployment and QA | `02-solution/deployment-and-qa.md` |
+| Feature                      | Document                                                     |
+| ---------------------------- | ------------------------------------------------------------ |
+| CMS and data                 | `02-solution/cms-service-pattern-and-dato-centralisation.md` |
+| Content blocks and rendering | `02-solution/content-blocks-and-inline-blocks-plan.md`       |
+| Tracking and consent         | `02-solution/external-services-and-tracking-plan.md`         |
+| SEO and routing              | `02-solution/seo-sitemap-redirects-error-pages-plan.md`      |
+| Images and media             | `02-solution/images-and-media.md`                            |
+| Deployment and QA            | `02-solution/deployment-and-qa.md`                           |

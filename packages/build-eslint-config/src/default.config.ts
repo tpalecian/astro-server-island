@@ -2,19 +2,53 @@ import { FlatCompat } from '@eslint/eslintrc'
 import eslint from '@eslint/js'
 import tsEslintPlugin from '@typescript-eslint/eslint-plugin'
 import tsEslintParser from '@typescript-eslint/parser'
+import type { Linter } from 'eslint'
 import eslintConfigPrettier from 'eslint-config-prettier'
 import turboConfig from 'eslint-config-turbo/flat'
+import eslintPluginAstro from 'eslint-plugin-astro'
 import importPlugin from 'eslint-plugin-import'
 import { defineConfig } from 'eslint/config'
 import * as tseslint from 'typescript-eslint'
 
 import { getDirname, getGitIgnoreFiles, getTsconfigRootDir } from './helpers'
 
-import type { Linter } from 'eslint'
-
 export type { ConfigObject as Config } from '@eslint/core'
 
 export { defineConfig }
+
+/**
+ * Mirrors Prettier (`import-order-workspace.cjs` + `astro.cjs` / `library.cjs`).
+ * `distinctGroup: true` + `newlines-between: 'always'` → blank lines between pathGroup sub-blocks.
+ *
+ * @rotate/* order: cms → design-system → ui → utilities → devtools → other
+ * @/* order: lib → layouts → components → other
+ */
+const importOrderOptions = {
+	groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index'],
+	pathGroupsExcludedImportTypes: ['builtin', 'object'],
+	pathGroups: [
+		{ pattern: '@astrojs/**', group: 'external', position: 'before' },
+		{ pattern: 'astro', group: 'external', position: 'before' },
+		{ pattern: 'astro/**', group: 'external', position: 'before' },
+		{ pattern: '@rotate/cms', group: 'external', position: 'after' },
+		{ pattern: '@rotate/cms/**', group: 'external', position: 'after' },
+		{ pattern: '@rotate/design-system/**', group: 'external', position: 'after' },
+		{ pattern: '@rotate/ui/**', group: 'external', position: 'after' },
+		{ pattern: '@rotate/utilities/**', group: 'external', position: 'after' },
+		{ pattern: '@rotate/devtools/**', group: 'external', position: 'after' },
+		{ pattern: '@rotate/**', group: 'external', position: 'after' },
+		{ pattern: '@/lib/**', group: 'internal', position: 'before' },
+		{ pattern: '@/layouts/**', group: 'internal', position: 'after' },
+		{ pattern: '@/components/**', group: 'internal', position: 'after' },
+		{ pattern: '@/**', group: 'internal', position: 'after' },
+	],
+	distinctGroup: true,
+	'newlines-between': 'always',
+	alphabetize: {
+		order: 'asc' as const,
+		caseInsensitive: true,
+	},
+}
 
 const compat = new FlatCompat({
 	// This helps FlatCompat resolve plugins relative to this config file
@@ -30,6 +64,8 @@ export function getConfig(importMetaUrl: string): Array<Linter.Config<Linter.Rul
 				'**/*.{js,cjs}',
 				'**/node_modules/**',
 				'**/dist/**',
+				'**/.vercel/**',
+				'**/astro.config.mjs',
 				'eslint.config.ts',
 				'**/eslint.config.ts',
 				'**/worker-configuration.d.ts',
@@ -42,6 +78,8 @@ export function getConfig(importMetaUrl: string): Array<Linter.Config<Linter.Rul
 		tseslint.configs.recommended,
 		importPlugin.flatConfigs.recommended,
 		turboConfig,
+
+		...eslintPluginAstro.configs.recommended,
 
 		// TypeScript Configuration
 		{
@@ -92,6 +130,7 @@ export function getConfig(importMetaUrl: string): Array<Linter.Config<Linter.Rul
 				'@typescript-eslint/no-explicit-any': 'off',
 				'import/no-named-as-default': 'off',
 				'import/no-named-as-default-member': 'off',
+				'import/order': ['warn', importOrderOptions],
 				'prefer-const': 'warn',
 				'no-mixed-spaces-and-tabs': ['error', 'smart-tabs'],
 				'no-empty': 'warn',
@@ -137,6 +176,11 @@ export function getConfig(importMetaUrl: string): Array<Linter.Config<Linter.Rul
 							'^@rotate/devtools/',
 							'^@rotate/service-dato/',
 							'^@rotate/testing/',
+							'^@rotate/ui/',
+							'^@rotate/utilities/',
+							'^@rotate/cms',
+							// App path alias (see apps/website/tsconfig paths)
+							'^@/',
 						],
 					},
 				],
@@ -150,6 +194,14 @@ export function getConfig(importMetaUrl: string): Array<Linter.Config<Linter.Rul
 		},
 		{
 			files: ['**/test/fixtures/**/*'],
+			rules: {
+				'import/no-unresolved': 'off',
+			},
+		},
+
+		// Astro: import resolver does not always map TS paths / Vite aliases in frontmatter.
+		{
+			files: ['**/*.astro'],
 			rules: {
 				'import/no-unresolved': 'off',
 			},

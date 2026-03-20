@@ -1,19 +1,11 @@
 ---
-import { getHomepage } from '@rotate/cms'
+import BaseLayout from '@/layouts/base-layout.astro'
 
-import HomeHero from '@/components/modules/HomeHero.astro'
-import BaseLayout from '@/layouts/BaseLayout.astro'
+import HeroContainer from '@/components/hero-container/index.astro'
 
 const token = import.meta.env.DATOCMS_API_KEY ?? ''
-const homepage = await getHomepage({ token })
 ---
 
 <BaseLayout>
-	{homepage && (
-		<HomeHero
-			title={homepage.title ?? undefined}
-			heroWords={homepage.heroWords ?? []}
-			heroVideo={homepage.heroVideo ?? undefined}
-		/>
-	)}
+	<HeroContainer token={token} />
 </BaseLayout>

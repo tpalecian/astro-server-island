@@ -22,10 +22,10 @@ tags: [implementation, ticket, seo]
 
 **Acceptance criteria:**
 
-| # | Criterion | Done |
-|---|-----------|------|
-| AC1 | getRedirects() at build produces redirect config. | |
-| AC2 | Vercel (or host) redirects applied; 301/302 correct. | |
+| #   | Criterion                                            | Done |
+| --- | ---------------------------------------------------- | ---- |
+| AC1 | getRedirects() at build produces redirect config.    |      |
+| AC2 | Vercel (or host) redirects applied; 301/302 correct. |      |
 
 ---
 

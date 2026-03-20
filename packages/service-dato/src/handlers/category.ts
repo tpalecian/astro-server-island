@@ -7,7 +7,7 @@ import {
 	categoryBySlugQuery,
 	homepageCardSliderQuery,
 } from '../gql'
-
+import type { GetterOptions } from '../types'
 import type {
 	AllCategoriesQuery,
 	AllStudiosCategoryCardsQuery,
@@ -16,7 +16,6 @@ import type {
 	CategoryBySlugQuery,
 	HomepageCardSliderQuery,
 } from '../types-dato'
-import type { GetterOptions } from '../types'
 
 export async function getCategoryBySlug(
 	slug: string,
@@ -68,12 +67,8 @@ export async function getCategoryCards(
 			)
 		case 'studios':
 			return (
-				(
-					await executeQuery<AllStudiosCategoryCardsQuery>(
-						allStudiosCategoryCardsQuery,
-						options
-					)
-				).allStudios ?? []
+				(await executeQuery<AllStudiosCategoryCardsQuery>(allStudiosCategoryCardsQuery, options))
+					.allStudios ?? []
 			)
 		default:
 			return null

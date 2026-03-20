@@ -1,0 +1,35 @@
+---
+/**
+ * Typeform dialog using Dialog. Loads Typeform only when dialog opens.
+ *
+ * @see https://www.typeform.com/developers/embed/vanilla/
+ */
+import Dialog from '../dialog/dialog.astro'
+
+interface Props {
+	target: string
+	label: string
+	text?: string
+	class?: string
+}
+
+const { target, label, text = label, class: className } = Astro.props
+---
+
+<Dialog
+	triggerClass={['btn btn-primary btn-size-200 title-style1-300 btn-press', className]
+		.filter(Boolean)
+		.join(' ')}
+	triggerAriaLabel={label}
+>
+	<span slot="trigger">{text}</span>
+	<div
+		slot="content"
+		data-tf-widget={target}
+		data-typeform-container
+		class="min-h-[400px] w-full max-w-[640px]"
+	>
+	</div>
+</Dialog>
+
+<script src="./typeform-popup.ts"></script>

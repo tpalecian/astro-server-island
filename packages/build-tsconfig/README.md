@@ -5,9 +5,11 @@ Shared TypeScript configurations for modern monorepo projects
 ## 📦 Available Configurations
 
 ### `base.json` - Base Configuration
+
 **Use for:** Foundation config that other configs extend from.
 
 **Features:**
+
 - ES2022 target with modern DOM APIs
 - Node.js ESM support (`NodeNext` module resolution)
 - Strict type checking enabled
@@ -19,9 +21,11 @@ Shared TypeScript configurations for modern monorepo projects
 ---
 
 ### `astro.json` - Astro Projects
+
 **Use for:** Astro 5/6 applications and websites.
 
 **Features:**
+
 - ESNext modules with bundler resolution (Vite-optimized)
 - JSX support with React (`jsx: "preserve"`)
 - Modern ES2022 target
@@ -29,6 +33,7 @@ Shared TypeScript configurations for modern monorepo projects
 - Verbatim module syntax for better ESM handling
 
 **Example usage:**
+
 ```json
 // apps/website/tsconfig.json
 {
@@ -39,6 +44,7 @@ Shared TypeScript configurations for modern monorepo projects
 ```
 
 **When to use:**
+
 - ✅ Astro applications
 - ✅ Astro websites
 - ✅ Projects using Vite-based bundlers
@@ -47,15 +53,18 @@ Shared TypeScript configurations for modern monorepo projects
 ---
 
 ### `lib.json` - Library Packages
+
 **Use for:** Shared libraries, utilities, and packages that emit compiled code.
 
 **Features:**
+
 - ESNext modules with bundler resolution
 - Declaration files (`.d.ts`) generation
 - ES2022 target
 - Emits compiled output to `dist/`
 
 **Example usage:**
+
 ```json
 // packages/my-library/tsconfig.json
 {
@@ -66,6 +75,7 @@ Shared TypeScript configurations for modern monorepo projects
 ```
 
 **When to use:**
+
 - ✅ Shared utility packages
 - ✅ Component libraries
 - ✅ Packages that need to be compiled and published
@@ -75,9 +85,11 @@ Shared TypeScript configurations for modern monorepo projects
 ---
 
 ### `tools.json` - Build Tools & Scripts
+
 **Use for:** Build scripts, tooling, and development utilities.
 
 **Features:**
+
 - ESNext target (latest JavaScript features)
 - Bundler module resolution
 - TypeScript extension imports
@@ -85,6 +97,7 @@ Shared TypeScript configurations for modern monorepo projects
 - JSON module imports enabled
 
 **Example usage:**
+
 ```json
 // packages/build-eslint-config/tsconfig.json
 {
@@ -95,6 +108,7 @@ Shared TypeScript configurations for modern monorepo projects
 ```
 
 **When to use:**
+
 - ✅ ESLint configs
 - ✅ Build scripts
 - ✅ Development tools
@@ -102,16 +116,16 @@ Shared TypeScript configurations for modern monorepo projects
 - ✅ Type-checking only projects
 - ❌ Don't use for applications or libraries that need compilation
 
-
-
 ## 🚀 Quick Start
 
 1. **Install the package** (if not already in your monorepo):
+
    ```bash
    pnpm add -D @build/tsconfig
    ```
 
 2. **Create a `tsconfig.json`** in your project:
+
    ```json
    {
      "extends": "@build/tsconfig/[config-name].json",
@@ -125,16 +139,17 @@ Shared TypeScript configurations for modern monorepo projects
    - `lib` - For library packages
    - `tools` - For build tools and scripts
 
-
 ## 📚 Configuration Details
 
 ### Module Systems
+
 - **`astro.json`**: `ESNext` + `bundler` resolution (Vite-optimized)
 - **`lib.json`**: `ESNext` + `bundler` resolution (modern libraries)
 - **`tools.json`**: `ESNext` + `bundler` resolution (tooling)
 - **`base.json`**: `NodeNext` + `NodeNext` resolution (Node.js ESM)
 
 ### Targets
+
 - **`astro.json`**: ES2022 (modern browsers)
 - **`lib.json`**: ES2022 (broad compatibility)
 - **`tools.json`**: ESNext (latest features)

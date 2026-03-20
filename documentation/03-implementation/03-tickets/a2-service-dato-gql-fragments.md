@@ -22,10 +22,10 @@ tags: [implementation, ticket, cms]
 
 **Acceptance criteria:**
 
-| # | Criterion | Done |
-|---|-----------|------|
-| AC1 | Queries/fragments exist for all getters; codegen runs. | ✅ |
-| AC2 | types-dato.ts generated; types match query shapes. | ✅ |
+| #   | Criterion                                              | Done |
+| --- | ------------------------------------------------------ | ---- |
+| AC1 | Queries/fragments exist for all getters; codegen runs. | ✅   |
+| AC2 | types-dato.ts generated; types match query shapes.     | ✅   |
 
 ---
 

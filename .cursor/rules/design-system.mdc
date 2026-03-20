@@ -1,0 +1,193 @@
+---
+description: >
+  Tailwind + tokens for Astro components and design-system CSS: tablet/desktop breakpoints (never md/lg),
+  semantic colors, typography utilities, spacing, grid, radius, icons, button/link utilities.
+  When editing class or class:list on components, apply Class grouping (6+ utilities, layout→state order).
+  Use for styling, Figma-to-code token mapping, or changes under packages/design-system.
+globs: apps/website/src/**/*.astro, packages/devtools/src/**/*.astro, packages/ui/**/*.astro, packages/design-system/**/*.css
+alwaysApply: false
+---
+
+# Design System Rules
+
+**Source of truth:** `packages/design-system/`. Import via `@rotate/design-system/design-system.css` in layouts only. Components do not import CSS directly.
+
+**Rule index:** `.cursor/rules/README.md`.
+
+---
+
+## Breakpoints (critical)
+
+**Do NOT use `md:` or `lg:`.** This project uses custom breakpoint names.
+
+| Tailwind variant | Value | Use for |
+|------------------|-------|---------|
+| `tablet:` | 768px | `min-width: 768px` |
+| `desktop:` | 1024px | `min-width: 1024px` |
+
+- **Correct:** `tablet:flex`, `desktop:grid-cols-3`, `tablet:px-[var(--grid-default-margin)]`
+- **Wrong:** `md:flex`, `lg:grid-cols-3`, `sm:px-4`
+
+In raw CSS: `@media (min-width: theme(--breakpoint-tablet))` or `theme(--breakpoint-desktop)`.
+
+---
+
+## Colors
+
+Use semantic tokens. **Prefer utility classes** when Tailwind generates them from `--color-*`:
+- `bg-background-default-primary`, `bg-background-default-primary-lightest`, `text-content-default-primary`, `border-border-default-primary`, etc.
+- Format: `{utility}-{key}` from `--color-{key}` (e.g. `--color-content-default-primary` → `text-content-default-primary`).
+
+Fall back to arbitrary values when no utility exists: `bg-[var(--color-background-default-primary)]`. Do not hardcode hex values.
+
+**Theming:** Root uses `data-theme="light"` or `data-theme="dark"`. Colors use `light-dark()` for automatic switching.
+
+---
+
+## Typography
+
+Use `@utility` classes from design-system. Do not hardcode font-size, font-family, or letter-spacing.
+
+**Title styles:** `title-style1-*` … `title-style4-*` (100–1000)  
+**Body styles:** `body-style1-*` … `body-style3-*` (100–1000)  
+**Longform:** `longform-style1-*` (100–1000)  
+**Thumbnails:** `thumbnail-title`, `thumbnail-description`
+
+Example: `title-style1-600`, `body-style1-400`, `longform-style1-500`.
+
+---
+
+## Spacing
+
+Use `--spacing-*` (0, 25, 50, 75, 100–1300) or `--spacer-spacer-*` (100–800).
+
+**Prefer utility classes** when Tailwind generates them: `p-200`, `gap-300`, `mb-100`, etc. (format: `p-{key}` from `--spacing-{key}`). Fall back to arbitrary values when no utility exists: `p-[var(--spacing-200)]`.
+
+---
+
+## Grid
+
+- **Gutter:** `--grid-default-gutter`, `--grid-fullwidth-gutter`
+- **Margin:** `--grid-default-margin`, `--grid-default-margin-offset`
+- **Layout:** `grid-cols-12`, `gap-x-[var(--grid-default-gutter)]`, `px-[var(--grid-default-margin)]`
+- **Colspans:** `--grid-default-colspan-1` … `--grid-default-colspan-12`, `--grid-default-colspan-fullwidth`
+
+---
+
+## Radius
+
+**Prefer utility classes:** `rounded-radius-primary-smallest`, `rounded-radius-primary-small`, etc. (from `--radius-*`).
+
+- **Primary:** `--radius-radius-primary`, `--radius-radius-primary-smallest` (4px), `--radius-radius-primary-small` (8px), `--radius-radius-primary-large` (16px), `--radius-radius-primary-largest` (32px)
+- **Button:** `--radius-radius-button-100` … `--radius-radius-button-400` (all 999px)
+- **Full:** `--radius-radius-full` (999px)
+
+---
+
+## Opacity
+
+`--opacity-opacity-0` … `--opacity-opacity-1000` (0–1).
+
+---
+
+## Icons
+
+**Source:** `packages/design-system/src/icon.css` (`@utility icon`, `icon-stroke`, `[data-icon-size]`).
+
+### Scale (set on a **parent** of the SVG)
+
+| `data-icon-size` | `--icon-dimension-width` / `height` (typical) |
+|------------------|--------------------------------------------------|
+| `100` | 16px |
+| `200` | 20px |
+| `300` | 24px |
+| `400` | 32px |
+
+`:root` defaults to **20px** if no `data-icon-size` is set (same as `200`).
+
+### Inline / decorative SVG
+
+1. Put **`data-icon-size="100"` … `"400"`** on the **nearest ancestor** that should own the scale (often the `<a>`, `<button>`, or a wrapper).
+2. On the **`<svg>`**, use **`class="icon"`** so width/height resolve from `--icon-dimension-*`.
+
+### Icon-only control (button, toggle) — **no arbitrary `size-[Npx]`**
+
+Spacing tokens (`h-200` = 16px, `h-300` = 24px) **do not** cover every icon pixel size (e.g. **20px**). **Do not** invent `size-[20px]`, `h-[20px]`, etc.
+
+**Do this instead:**
+
+- Set **`data-icon-size="200"`** (or `100` / `300` / `400` per Figma) on the **same element** that needs the hit box (or its wrapper).
+- Size the control with **`size-[var(--icon-dimension-width)]`** (square) or **`h-[var(--icon-dimension-height)] w-[var(--icon-dimension-width)]`** so it tracks the icon tokens.
+- Put **`class="size-full"`** (or equivalent) on the inner `<svg>` if it should fill that box; keep **`viewBox`** as authored — **viewBox is vector geometry, not a layout token** and may be 20×20 while the control still uses vars.
+
+**Example (menu toggle):** `data-icon-size="200"` + `size-[var(--icon-dimension-width)]` + `inline-flex items-center justify-center` — not `size-[20px]`.
+
+### Stroke icons
+
+- **`icon-stroke`** on stroke-based SVGs for `stroke-width` from `--icon-weight-*`.
+
+### Buttons that include an icon
+
+Prefer **`btn btn-icon`** (and `btn-icon-padded` when Figma shows header-style padding). Set **`data-icon-size`** on the control so the inner **`icon`** SVG matches; avoid duplicating pixel sizes outside `icon.css`.
+
+---
+
+## Component utilities
+
+**Buttons** — Figma: ActionButton (pill), ActionButtonIcon (circle), ActionButtonSection (large pill).
+- ActionButton: `btn btn-primary btn-size-200`
+- ActionButtonIcon: `btn btn-primary btn-icon btn-size-200` (add `btn-icon-padded` for header-style padding)
+- ActionButtonSection: `btn btn-primary btn-section`
+
+See `packages/design-system/src/components/button.css` for full API.
+
+**Links** — Figma: Action Default (https://www.figma.com/design/FlWyqUG6r50kdIZjUQ160i?node-id=4246-184).
+- Base: `link`
+- Animated underline (reveals on hover): `link link-underline`
+- Trim variant (shorter underline): `link link-underline-trim`
+- Thick (1.5px for larger sizes): `link link-underline link-underline-thick`
+- Combine with typography: `link link-underline title-style1-300 text-content-default-primary`
+
+See `packages/design-system/src/components/link.css` for full API.
+
+---
+
+## Class grouping
+
+When `class` or `class:list` has **6+ classes**, group by concern for readability. Use `class:list` with objects for conditional classes.
+
+**Group order (within each line):**
+
+| Order | Group | Examples |
+|-------|-------|----------|
+| 1 | Layout | `flex`, `grid`, `items-center`, `justify-between`, `shrink-0` |
+| 2 | Sizing | `h-700`, `w-full`, `size-[var(--icon-dimension-width)]`, `max-w-[...]` |
+| 3 | Spacing | `p-200`, `px-[var(--grid-default-margin)]`, `gap-300`, `mb-100` |
+| 4 | Typography | `title-style1-200`, `body-style1-400` |
+| 5 | Visual | `bg-*`, `border-*`, `text-content-*` |
+| 6 | Responsive | `tablet:h-1000`, `tablet:inline-flex`, `tablet:hidden` |
+| 7 | State / variant | `hidden`, `btn-press`, `btn-disabled` |
+
+**When to group:**
+- **1–3 classes:** Single line, no grouping.
+- **4–5 classes:** Optional: split into 2 lines if clearly different concerns.
+- **6+ classes:** Group by concern; use multiple strings in `class:list` or line breaks.
+
+**Conditional classes:** Use object syntax in `class:list`:
+```html
+<header class:list={['w-full', { 'bg-background-default-primary-lightest': style === 'default' }]}>
+```
+
+**Container pattern:** `max-w-[var(--breakpoint-maxwidth)] w-full [margin-inline:auto]` — keep together as one group.
+
+**Tooling:** Class *sorting* is handled by Prettier + `prettier-plugin-tailwindcss` where enabled (`repo-tooling.mdc`). Grouping across lines remains a human/agent convention.
+
+---
+
+## Styling conventions
+
+1. **Tailwind + design tokens:** Prefer Tailwind utilities that map to design-system vars (e.g. `text-[var(--color-content-default-primary)]`, `bg-[var(--color-background-default-primary)]`).
+2. **No arbitrary values for design tokens:** Do not hardcode colors, fonts, spacing, or radii that exist in the design system. **Icon hit boxes:** use `data-icon-size` + `var(--icon-dimension-*)` — not raw `size-[20px]` (see **Icons**).
+3. **Responsive:** Use `tablet:` and `desktop:` — never `md:` or `lg:`.
+4. **Transitions:** Use `transition-*` with `duration-*` and `ease-out` / `ease-in-out` from design system where applicable.
+5. **CSS-first:** Prefer CSS (`:has()`, `peer`, `group`, `@media`) over JavaScript.

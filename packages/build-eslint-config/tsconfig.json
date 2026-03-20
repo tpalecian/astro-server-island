@@ -1,5 +1,5 @@
 {
-  "extends": "@build/tsconfig/tools.json",
-  "include": ["*.ts", "src/**/*.ts"],
-  "exclude": ["node_modules/"]
+	"extends": "@build/tsconfig/tools.json",
+	"include": ["*.ts", "src/**/*.ts"],
+	"exclude": ["node_modules/"]
 }

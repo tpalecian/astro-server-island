@@ -1,6 +1,6 @@
 # @rotate/service-dato
 
-DatoCMS GraphQL client for server-side use. Consumed **only by Astro containers** in the website app; no UI or framework code. The package exposes **getters** and **types** only; queries and client are internal.
+DatoCMS GraphQL client for server-side use. Consumed **only by website `*-container`** components (`apps/website/src/components/<feature>-container/index.astro`); no UI or framework code in this package. The package exposes **getters** and **types** only; queries and client are internal.
 
 ## How to use
 
@@ -13,12 +13,12 @@ Resolve `@rotate/cms` to this package (e.g. Vite `resolve.alias` or tsconfig `pa
 Import getters and types from `@rotate/cms`. Every getter requires `{ token }` (and optional `preview`). The app is responsible for reading the token from env and passing it in.
 
 ```ts
-// apps/website/src/containers/HomePage.container.astro
+// apps/website/src/components/hero-container/index.astro (frontmatter)
 import { getHomepage, type HomeQuery } from '@rotate/cms'
 
 const token = import.meta.env.DATOCMS_API_KEY
 const homepage = await getHomepage({ token })
-// homepage: HomeQuery['homepage'] | null — pass as props to modules
+// homepage: HomeQuery['homepage'] | null — pass as props to @rotate/ui components
 ```
 
 ```ts
@@ -32,7 +32,7 @@ const page = await getPageBySlug(Astro.params.category, Astro.params.slug, { tok
 
 ```ts
 // Category landing or cards
-import { getCategoryBySlug, getAllCategories, getCategoryCards } from '@rotate/cms'
+import { getAllCategories, getCategoryBySlug, getCategoryCards } from '@rotate/cms'
 
 const token = import.meta.env.DATOCMS_API_KEY
 const category = await getCategoryBySlug('thinkings', { token })
@@ -43,12 +43,12 @@ const cards = await getCategoryCards('thinkings', { token }) // 'thinkings' | 'w
 ```ts
 // Routes, redirects, navigation, globals, info
 import {
-  getRoutes,
-  getRedirects,
-  getNavigationHeader,
-  getNavigationFooter,
   getGlobals,
   getInfo,
+  getNavigationFooter,
+  getNavigationHeader,
+  getRedirects,
+  getRoutes,
 } from '@rotate/cms'
 
 const token = import.meta.env.DATOCMS_API_KEY
@@ -70,19 +70,19 @@ const homepage = await getHomepage({ token, preview: true })
 
 ## Public API
 
-| Getter | Returns | Use |
-|--------|--------|-----|
-| `getHomepage(options)` | `HomeQuery['homepage'] \| null` | Homepage hero, SEO, content |
-| `getPageBySlug(category, slug, options)` | Work / Thinking / Studio record or null | Article pages |
-| `getCategoryBySlug(slug, options)` | `CategoryBySlugQuery['category']` | Category meta (e.g. filter text) |
-| `getAllCategories(options)` | `AllCategoriesQuery['allCategories']` | List of categories |
-| `getCategoryCards(slug, options)` | Cards for thinkings / works / studios / everything | Category card grids |
-| `getRoutes(options)` | `RoutesQuery` | All slugs for routing/sitemap |
-| `getRedirects(options)` | `RedirectsQuery['allRedirects']` | Redirect rules |
-| `getNavigationHeader(options)` | `NavigationHeaderQuery['navigation']` | Header nav |
-| `getNavigationFooter(options)` | `NavigationFooterQuery['navigation']` | Footer nav |
-| `getGlobals(options)` | `GlobalsQuery` | Globals (e.g. popup, homepage bg) |
-| `getInfo(options)` | `InfoQuery['infoPage']` | Info page |
+| Getter                                   | Returns                                            | Use                               |
+| ---------------------------------------- | -------------------------------------------------- | --------------------------------- |
+| `getHomepage(options)`                   | `HomeQuery['homepage'] \| null`                    | Homepage hero, SEO, content       |
+| `getPageBySlug(category, slug, options)` | Work / Thinking / Studio record or null            | Article pages                     |
+| `getCategoryBySlug(slug, options)`       | `CategoryBySlugQuery['category']`                  | Category meta (e.g. filter text)  |
+| `getAllCategories(options)`              | `AllCategoriesQuery['allCategories']`              | List of categories                |
+| `getCategoryCards(slug, options)`        | Cards for thinkings / works / studios / everything | Category card grids               |
+| `getRoutes(options)`                     | `RoutesQuery`                                      | All slugs for routing/sitemap     |
+| `getRedirects(options)`                  | `RedirectsQuery['allRedirects']`                   | Redirect rules                    |
+| `getNavigationHeader(options)`           | `NavigationHeaderQuery['navigation']`              | Header nav                        |
+| `getNavigationFooter(options)`           | `NavigationFooterQuery['navigation']`              | Footer nav                        |
+| `getGlobals(options)`                    | `GlobalsQuery`                                     | Globals (e.g. popup, homepage bg) |
+| `getInfo(options)`                       | `InfoQuery['infoPage']`                            | Info page                         |
 
 **Options:** `GetterOptions = { token: string; preview?: boolean }`
 

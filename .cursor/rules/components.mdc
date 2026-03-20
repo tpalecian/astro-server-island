@@ -1,76 +1,138 @@
 ---
-description: How to build Astro components — design system, styling, Figma, subcomponents
+description: >
+  Astro components (website, ui, devtools): packages/ui vs website, *-container pattern,
+  wrappers, Tailwind class grouping (`design-system.mdc`), Figma, colocated TS scripts.
 globs: apps/website/src/**/*.astro, packages/devtools/src/**/*.astro, packages/ui/**/*.astro
 alwaysApply: false
 ---
 
-# Component Building Rules
+# Components (Astro)
 
-**Scope:** Astro components in `apps/website`, `packages/devtools`, and `packages/ui`. Works with `.cursor/rules/architecture.mdc` and `.cursor/rules/behaviour-escalation.mdc`.
+**Scope:** `apps/website`, `packages/ui`, `packages/devtools` — `.astro` files.
+
+**Rule index:** `.cursor/rules/README.md`.
+
+Works with **`website-architecture.mdc`** and **`website-behaviour.mdc`**.
+
+---
 
 ## packages/ui vs apps/website
 
-- **`packages/ui`** — All core UI components, grouped correctly. Buttons, inputs, NavLink, cards, icon wrappers, etc. No app logic, no CMS, no data fetching. Stateless primitives only.
-- **`apps/website`** — Layout, containers, modules, and logic binding only. Follows behaviour-escalation (server first, islands, minimal JS, Alpine last). Modules compose from `packages/ui` and receive props from containers. Layout (BaseLayout) lives in website — it binds composition.
+- **`packages/ui`** — Core UI: Header, Footer, buttons, hero, dialogs, etc. Grouped by domain folders. **No** app logic, **no** CMS, **no** `@rotate/cms`. May contain **approved** client JS per **When to use JS** below.
+- **`apps/website`** — Layout, **`*-container`** folders, and thin **wrappers** only. Containers fetch and pass props to `packages/ui`. Layout (`base-layout.astro`) binds design-system + devtools.
 
-**Rule:** Website contains no core UI — it imports from `packages/ui` and binds data. Core UI lives in `packages/ui`.
+**Rule:** Website `src/components/` holds **`*-container`** (and optional wrappers). **Do not** grow ad-hoc “smart” components in website that duplicate `packages/ui`.
 
-## Design system usage
+---
 
-- **Import:** Layouts import `@rotate/design-system/design-system.css`. Components do not import CSS directly.
-- **Colors:** Use semantic tokens via `var(--color-*)`. Examples:
-  - `--color-background-default-primary`, `--color-content-default-primary`
-  - `--color-border-default-primary`, `--color-action-brand`
-- **Typography:** Use `@utility` classes from design-system:
-  - `title-style1-*` … `title-style4-*` (100–1000)
-  - `body-style1-*` … `body-style3-*`, `longform-style1-*`
-  - `thumbnail-title`, `thumbnail-description`
-- **Spacing:** Use `--spacing-*` (100–1300) or `--spacer-spacer-*` (100–800) for layout.
-- **Grid:** Use `--grid-default-gutter`, `--grid-default-margin`, `grid-cols-12`, `gap-x-[var(--grid-default-gutter)]`, `px-[var(--grid-default-margin)]`.
+## Folder grouping: container, wrapper, core
 
-## Styling conventions
+| Kind | Folder / file | Data? | Client JS? |
+|------|----------------|-------|------------|
+| **Container** | `components/<name>-container/index.astro` + optional `format-<name>.ts` | Yes — `@rotate/cms` getters | **No** |
+| **Wrapper** | Optional `components/<name>/` or shared shell in `packages/ui` | **No** | Only if the wrapped **core** component requires it |
+| **Core** | `packages/ui/src/<domain>/…` | **No** | Only per escalation (`website-behaviour.mdc`) |
 
-1. **Tailwind + design tokens:** Prefer Tailwind utilities that map to design-system vars (e.g. `text-[var(--color-content-default-primary)]`, `bg-[var(--color-background-default-primary)]`).
-2. **No arbitrary values for design tokens:** Do not hardcode colors, fonts, or spacing that exist in the design system.
-3. **Responsive:** Breakpoints are `--breakpoint-tablet` (768px), `--breakpoint-desktop` (1024px). Use `theme(--breakpoint-*)` or Tailwind `tablet:` / `desktop:`.
-4. **Theming:** Root uses `data-theme="light"` or `data-theme="dark"`. Colors use `light-dark()` for automatic switching.
+**Example:**
 
-## Component patterns
+```text
+apps/website/src/components/
+  hero-container/
+    index.astro     ← server: getters + format → props
+    format-hero.ts  ← pure CMS shape → UI props (optional)
 
-- **Module components** (`*.astro`): HTML + styling only. Props from container. No data fetching, no domain logic. Referentially transparent.
-- **Containers** (`*.container.astro`): Server-only. Fetch data via `@rotate/cms`, validate, pass props to module.
-- **Base components:** Stateless UI primitives. No app/domain logic. Minimal JS only for essential interactions.
+packages/ui/src/hero/
+  hero.astro
+  hero-wrapper.astro     ← optional: `<script src="./hero-client.ts">` (one module load; listeners attach at module evaluation)
+  hero-client.ts         ← client lifecycle: init, visibility, intersection, word cycling
+```
+
+**Comments on `format-*.ts` and colocated `*.ts`:** Follow **`functional-style.mdc` — Comments** (minimal inline; JSDoc on functions that encode non-obvious or heavy logic).
+
+---
+
+## When to use JavaScript
+
+1. **Default:** **No** client JS. Server HTML + CSS (`design-system.mdc`: `tablet:` / `desktop:`, tokens).
+2. **Need per-request HTML?** Server Island — **`website-behaviour.mdc`** (comment why).
+3. **Need toggle / scroll / focus only?** Minimal JS in **`packages/ui`** (or native `<details>` / `<dialog>` first).
+4. **Need multi-step client UI state?** Alpine **last**, only in core components — **`website-behaviour.mdc`**.
+
+**Forbidden:** Client `<script>` in **`*-container/index.astro`** for interactivity — move behaviour into `packages/ui` or use CSS/native elements.
+
+---
+
+## How to add JavaScript (core components)
+
+When a **core** component needs TypeScript on the client:
+
+- **Folder:** Component lives in its own folder under `packages/ui/src/…`
+- **Files:** `name.astro` + colocated **`name.ts`**
+- **Shared helpers:** `@rotate/utilities` — workspace package; group UI-facing helpers under `src/ui/` (e.g. `prefers-reduced-motion.ts`) and re-export from `src/ui/index.ts`. Import **`@rotate/utilities/ui`** (barrel). Keep browser/SSR-safe (`typeof window`) where relevant.
+- **Wire-up:** `<script src="./name.ts" />` in the `.astro` file — **no** large inline scripts. Prefer **one** `src` entry so the client module is not pulled in as separate inline chunks; bootstrapping (listeners, etc.) can live at the end of that module — it runs once per module evaluation (see `hero-client.ts`).
+- **Progressive enhancement:** Markup must stay usable if JS fails
+
+```
+packages/ui/src/dialog/
+  dialog.astro
+  dialog.ts
+```
+
+```astro
+<div data-dialog>...</div>
+<script src="./dialog.ts" />
+```
+
+Islands / `client:*` directives: use **only** with the same justification as other client JS, and prefer keeping logic in colocated modules.
+
+---
+
+## Design system
+
+- **Import:** Layouts import `@rotate/design-system/design-system.css`. Components do not import that CSS directly.
+- **Full reference:** `design-system.mdc` — tokens, breakpoints, typography, grid, radius, icons, buttons/links.
+- **Tailwind `class` / `class:list`:** **Class grouping** (layout → … → state; **6+** utilities = group; `class:list` objects for conditionals).
+- **Breakpoints:** `tablet:` and `desktop:` — **never** `md:` / `lg:`.
+
+---
+
+## Component patterns (recap)
+
+- **Container `index.astro`:** Server frontmatter → render `@rotate/ui/...` (and optional wrappers). No client scripts.
+- **Core `*.astro`:** Props (+ slots) → HTML/CSS; JS only when escalated.
+- **Devtools:** Same Astro + design-system rules; dev-only.
+
+---
 
 ## HTML & accessibility
 
-- Use semantic elements (`<section>`, `<article>`, `<nav>`, `<header>`, `<footer>`, `<main>`).
-- Provide `alt` for images. Use `aria-label` for icon-only controls.
-- Form controls: associate labels, support keyboard navigation.
+- Semantic elements (`<section>`, `<article>`, `<nav>`, `<header>`, `<footer>`, `<main>`).
+- `alt` on images; `aria-label` on icon-only controls.
+- Forms: labels, keyboard support.
+
+---
 
 ## CSS-first
 
-- Prefer CSS solutions (e.g. `:has()`, `peer`, `group`, `@media`) over JavaScript.
-- Transitions: use `transition-*` with `duration-*` and `ease-out` / `ease-in-out` from design system where applicable.
-
-## Zero-JS default
-
-- Components ship zero JavaScript unless essential (e.g. form validation, modals). Prefer native HTML (`<details>`, `<dialog>`) and CSS where possible.
-- **Behaviour escalation:** See `.cursor/rules/behaviour-escalation.mdc` — server first, then Server Island, then minimal JS, then Alpine only as last resort.
+- Prefer `:has()`, `peer`, `group`, `@media` over JS.
+- Transitions: `design-system.mdc`.
 
 ---
 
 ## Figma MCP (design-to-code)
 
-When using Figma MCP for implementation:
-
-- **Fetch all component variables** — Use `get_design_context` (and `get_metadata` if needed) to retrieve the full structured representation, including all variables, tokens, and design tokens for the component.
-- **SVGs:** If a component includes an SVG, **ask for it from Figma** — use the Figma MCP assets endpoint or localhost source. **Do not** try to recreate or hand-code SVGs. Use the provided asset directly.
-- Follow the Figma skill flow: `get_design_context` → `get_screenshot` → download assets → implement. Map Figma output to design-system tokens.
+- **Variables:** Use `get_design_context` (and `get_metadata` if needed) for tokens and structure.
+- **SVGs:** Take assets from Figma MCP / provided exports — **do not** hand-trace SVGs.
+- Map output to **design-system** tokens (`design-system.mdc`).
 
 ---
 
-## Subcomponents & packages/ui
+## Subcomponents & reuse
 
-- **Core UI lives in `packages/ui`** — All primitives (buttons, inputs, NavLink, cards, etc.) go here. Group by domain (e.g. `button/`, `nav/`, `card/`).
-- **Website imports from packages/ui** — Modules in `apps/website` compose `packages/ui` components and bind props from containers. No core UI in website.
-- **Reuse, don't duplicate** — Before creating a new component, check if it exists in `packages/ui`. If it does, import and use it.
+- Primitives and composites live in **`packages/ui`** by domain (`hero/`, `dialog/`, …).
+- Website **imports** from `@rotate/ui/*`.
+- Before adding a component, check for an existing one.
+
+---
+
+**Related:** `design-system.mdc`, `website-architecture.mdc`, `website-behaviour.mdc`, `service-dato.mdc`.

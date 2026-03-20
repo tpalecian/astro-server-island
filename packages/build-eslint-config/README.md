@@ -23,8 +23,7 @@ This package is part of the monorepo workspace. No additional installation is re
 Create an `eslint.config.ts` file in your project root:
 
 ```typescript
-import { defineConfig, getConfig } from '@build/eslint-config'
-import type { Config } from '@build/eslint-config'
+import { defineConfig, getConfig, type Config } from '@build/eslint-config'
 
 const config = getConfig(import.meta.url)
 
@@ -34,6 +33,7 @@ export default defineConfig([config]) as Config
 ### How It Works
 
 The `getConfig()` function accepts an `import.meta.url` parameter to:
+
 - Automatically detect the project's root directory
 - Resolve TypeScript configuration files
 - Include relevant `.gitignore` files for ignore patterns
@@ -95,8 +95,7 @@ The following patterns are automatically ignored:
 To extend or override the configuration:
 
 ```typescript
-import { defineConfig, getConfig } from '@build/eslint-config'
-import type { Config } from '@build/eslint-config'
+import { defineConfig, getConfig, type Config } from '@build/eslint-config'
 
 const baseConfig = getConfig(import.meta.url)
 

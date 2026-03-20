@@ -1,0 +1,74 @@
+---
+description: >
+  Monorepo tooling: pnpm workspaces only, Turbo tasks, Prettier (shared @build/prettier-config),
+  ESLint (@build/eslint-config), Husky. Use when editing package.json, turbo.json, pnpm config,
+  or packages/build-*; when adding scripts; or when the user asks about format/lint/build.
+globs: package.json, turbo.json, pnpm-workspace.yaml, pnpm-lock.yaml, packages/build-eslint-config/**, packages/build-prettier-config/**, packages/build-tsconfig/**
+alwaysApply: false
+---
+
+# Repository tooling
+
+**Principle:** Use the **workspace toolchain** only. Do not introduce npm, yarn, or ad-hoc formatters/linters per package unless the repo already does.
+
+## Package manager
+
+- **pnpm** only (`packageManager` in root `package.json`). Install with `pnpm install` from repo root.
+- Add dependencies with `pnpm add` / `pnpm add -D` from the **package directory** or `pnpm --filter <name> add …`.
+
+## Monorepo orchestration
+
+- **Turbo** (`turbo.json`): defines `build`, `dev`, `check`, `check:types`, `check:lint`, `check:ci`, etc. Prefer **`pnpm exec turbo run <task>`** (or your team’s documented shortcut) when running tasks across packages.
+- Respect task `dependsOn` and caching; do not bypass Turbo for CI-style checks without reason.
+
+## Codegen (Dato)
+
+- Root script: **`pnpm codegen`** → runs `pnpm --filter @rotate/service-dato codegen`.
+- After changing GraphQL documents under `packages/service-dato`, run codegen and commit updated `types-dato` / generated artifacts as required by that package.
+
+## Formatting (Prettier)
+
+- Shared config: **`@build/prettier-config`** (`packages/build-prettier-config`). Apps (e.g. `apps/website`) extend it and add Astro/Tailwind plugins where configured.
+- **Root:** `pnpm format` / `pnpm check:format` run Prettier from the repo root (respects each package’s nearest `.prettierrc` and root `.prettierignore`).
+- **Per package:** same scripts exist in e.g. `apps/website`, `packages/ui` — do not assume a global Prettier install.
+- **Tailwind class order** in Astro: when `prettier-plugin-tailwindcss` is enabled for the app, run format so utilities stay sorted (complements manual **Class grouping** in `design-system.mdc`).
+- **Import order:** `@build/prettier-config` (`import-order-workspace.cjs`) defines blank-line-separated groups for `@rotate/*` (cms → design-system → ui → devtools → rest) and `@/*` (lib → layouts → components → rest); `@build/eslint-config` mirrors this in `import/order` with `distinctGroup: true`.
+
+## Lint (ESLint)
+
+- Shared config: **`@build/eslint-config`** (`packages/build-eslint-config`). Consume via **`eslint.config.ts`** at the package/app root — same pattern as the config README:
+
+  ```ts
+  import type { Config } from '@build/eslint-config'
+  import { defineConfig, getConfig } from '@build/eslint-config'
+
+  const config = getConfig(import.meta.url)
+
+  export default defineConfig([config]) as Config
+  ```
+
+- Add **`eslint`** and **`@build/eslint-config`** as **devDependencies**, script **`check:lint`: `eslint .`** (see **`apps/website`**).
+- **`FIX_ESLINT=1`** (or project-documented env) may be used for write mode where the repo supports it.
+
+## TypeScript
+
+- Shared bases: **`@build/tsconfig`** (`packages/build-tsconfig`). Extend `astro.json` / `lib.json` / `base.json` as existing packages do.
+
+### Astro-only packages (e.g. `@rotate/devtools`)
+
+Plain **`tsc`** does **not** typecheck **`.astro`** files; `include: ["src"]` with only `.astro` sources yields **no inputs** and fails (`TS18003`).
+
+**Recommended (current `@rotate/devtools` pattern):** keep **`check:types`** in the package and add a tiny **`src/tsc-input.d.ts`** with only `export {}` (plus a one-line comment). That satisfies `tsc` and documents that real `.astro` checking happens when the app builds (e.g. `apps/website` imports devtools).
+
+**Alternatives:**
+
+- **Drop `check:types`** for that package and remove it from Turbo’s graph for that workspace — fine if you accept no standalone type step for the package.
+- **`astro check`** in the package — only if you add a minimal **`astro.config.mjs`** (and usually treat devtools as part of the app’s check instead).
+
+## Git hooks
+
+- **Husky** is wired via root `prepare`. If `.husky/` hooks exist, keep them fast (format/lint/typecheck as configured). Do not disable hooks in docs or scripts unless the team explicitly allows it.
+
+## Aliases and config drift
+
+- When changing path aliases for `apps/website`, update **`tsconfig.json` paths** and **`astro.config.mjs` Vite `resolve.alias`** together (`project-overview.mdc`).

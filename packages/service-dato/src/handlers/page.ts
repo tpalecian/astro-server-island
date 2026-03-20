@@ -1,12 +1,7 @@
 import { executeQuery } from '../client'
 import { studioBySlugQuery, thinkingBySlugQuery, workBySlugQuery } from '../gql'
-
-import type {
-	StudioBySlugQuery,
-	ThinkingBySlugQuery,
-	WorkBySlugQuery,
-} from '../types-dato'
 import type { GetterOptions } from '../types'
+import type { StudioBySlugQuery, ThinkingBySlugQuery, WorkBySlugQuery } from '../types-dato'
 
 type PageBySlugResult =
 	| WorkBySlugQuery['work']

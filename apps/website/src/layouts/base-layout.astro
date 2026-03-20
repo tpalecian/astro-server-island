@@ -1,0 +1,30 @@
+---
+import '@rotate/design-system/design-system.css'
+
+import BreakpointsViewer from '@rotate/devtools/components/breakpoints-viewer.astro'
+import GridViewer from '@rotate/devtools/components/grid-viewer.astro'
+
+import FooterContainer from '@/components/footer-container/index.astro'
+import HeaderContainer from '@/components/header-container/index.astro'
+
+const token = import.meta.env.DATOCMS_API_KEY ?? ''
+---
+
+<html lang="en" data-theme="dark">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Home</title>
+	</head>
+	<body>
+		<HeaderContainer token={token} style="overlay" />
+
+		<slot />
+
+		<FooterContainer token={token} />
+
+		<!-- Devtools -->
+		<BreakpointsViewer />
+		<GridViewer />
+	</body>
+</html>

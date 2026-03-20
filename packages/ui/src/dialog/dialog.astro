@@ -1,0 +1,61 @@
+---
+/**
+ * Dialog — Astro component using the native <dialog> element and Invoker Commands API.
+ *
+ * Uses declarative commandfor/command for open/close (no JS required for basic behaviour).
+ * Esc closes modal; focus is trapped and returned by the browser.
+ *
+ * Slots:
+ * - "trigger" — Content for the invoker button (text, icon, etc). Rendered inside our button.
+ * - "content" — Dialog body.
+ * - "close" — Optional close button content (default: ×). Rendered inside our close button.
+ *
+ * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog
+ * @see https://developer.mozilla.org/en-US/docs/Web/API/Invoker_Commands_API
+ */
+
+interface Props {
+	triggerClass?: string
+	triggerAriaLabel?: string
+	showClose?: boolean
+}
+
+const { triggerClass = '', triggerAriaLabel, showClose = true } = Astro.props
+const dialogId = `dialog-${crypto.randomUUID().replace(/-/g, '').slice(0, 8)}`
+---
+
+<div class="dialog" data-dialog>
+	<button
+		command="show-modal"
+		commandfor={dialogId}
+		type="button"
+		class={triggerClass}
+		aria-label={triggerAriaLabel}
+		data-dialog-invoker
+	>
+		<slot name="trigger" />
+	</button>
+
+	<dialog
+		id={dialogId}
+		part="dialog"
+		class="bg-background-default-primary-lightest relative max-w-[min(640px,90vw)] border-none p-0 [&::backdrop]:bg-black/50"
+	>
+		<slot name="content" />
+		{
+			showClose && (
+				<button
+					commandfor={dialogId}
+					command="close"
+					type="button"
+					class="rounded-radius-primary-small absolute top-200 right-200 p-100 hover:bg-black/5"
+					aria-label="Close"
+				>
+					<slot name="close">×</slot>
+				</button>
+			)
+		}
+	</dialog>
+</div>
+
+<script src="./dialog.ts"></script>

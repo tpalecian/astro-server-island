@@ -30,46 +30,50 @@ tags: [solution, deployment, qa, vercel, testing]
 ## 3. Solution Design (how, at a high level)
 
 **Success criteria:**
+
 - Deployment host is Vercel with documented env requirements.
 - Pre‑launch checklist is defined and used.
 - Playwright e2e and visual checks are part of release validation.
 
-
 **Proposed approach:**
+
 - **Host:** Vercel.
 - **Validation:** Pre‑launch checklist + automated tests.
 - **Testing:** Playwright e2e and visual comparison against old site.
 - **Env:** Single `.env.example` including Dato and all tracking vars.
 
 **Interfaces & data:**
+
 - Vercel build uses environment variables and build‑time outputs (sitemap, redirects).
 
 **Alternatives considered:**
+
 - Hosting elsewhere. Rejected in discovery; recorded here for context.
 
 **Non‑goals:**
+
 - Changing CI provider or build system beyond what Vercel requires.
 
 ### References (exact)
 
 **Informational (read before / during implementation):**
 
-| What | Path or URL |
-|------|--------------|
-| Discovery (scope, constraints) | `documentation/01-discovery/06-deployment-and-qa.md` |
-| Tracking env vars (align .env.example) | `documentation/02-solution/external-services-and-tracking-plan.md` |
-| Vercel build and env | [Vercel: Build configuration](https://vercel.com/docs/build-step), [Environment Variables](https://vercel.com/docs/projects/environment-variables) |
-| Playwright e2e | [Playwright](https://playwright.dev/) |
-| Implementation ticket | `documentation/03-implementation/03-tickets/j-deployment-qa.md` |
+| What                                   | Path or URL                                                                                                                                        |
+| -------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Discovery (scope, constraints)         | `documentation/01-discovery/06-deployment-and-qa.md`                                                                                               |
+| Tracking env vars (align .env.example) | `documentation/02-solution/external-services-and-tracking-plan.md`                                                                                 |
+| Vercel build and env                   | [Vercel: Build configuration](https://vercel.com/docs/build-step), [Environment Variables](https://vercel.com/docs/projects/environment-variables) |
+| Playwright e2e                         | [Playwright](https://playwright.dev/)                                                                                                              |
+| Implementation ticket                  | `documentation/03-implementation/03-tickets/j-deployment-qa.md`                                                                                    |
 
 **Planned locations (where to implement):**
 
-| What | Path |
-|------|------|
-| App config (output, adapter) | `apps/website/astro.config.mjs`, `apps/website/package.json` |
-| Env template (list all vars: Dato + tracking) | `apps/website/.env.example` |
-| E2e tests | `apps/website/e2e/` or `tests/` (per repo convention) |
-| Pre-launch checklist | Document in `documentation/03-implementation/` or `documentation/04-operations/` (e.g. `j-deployment-qa.md`) |
+| What                                          | Path                                                                                                         |
+| --------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| App config (output, adapter)                  | `apps/website/astro.config.mjs`, `apps/website/package.json`                                                 |
+| Env template (list all vars: Dato + tracking) | `apps/website/.env.example`                                                                                  |
+| E2e tests                                     | `apps/website/e2e/` or `tests/` (per repo convention)                                                        |
+| Pre-launch checklist                          | Document in `documentation/03-implementation/` or `documentation/04-operations/` (e.g. `j-deployment-qa.md`) |
 
 ### Code examples (contract to implement)
 
@@ -88,16 +92,20 @@ ENABLE_TRACKING="false"
 ## 4. Delivery Plan (how, at a practical level)
 
 **Phases / steps:**
+
 1. Document Vercel build and env requirements.
 2. Define pre‑launch checklist.
 3. Implement Playwright e2e and visual checks.
 
 **Deliverables:**
+
 - Deployment notes (host, env, build).
 - QA checklist and automated test plan.
 
 **Validation:**
+
 - Tests pass; checklist completed prior to cutover.
 
 **Open questions / TBD:**
+
 - None.

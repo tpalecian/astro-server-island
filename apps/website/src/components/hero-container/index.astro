@@ -1,0 +1,27 @@
+---
+import { getHomepage } from '@rotate/cms'
+
+import HeroWrapper from '@rotate/ui/hero/hero-wrapper.astro'
+
+import { formatHero } from './format-hero'
+
+interface Props {
+	token: string
+}
+
+const { token } = Astro.props
+const homepage = (await getHomepage({ token })) ?? null
+const { words, isInlineVideo, inlineVideo, videoLink, action } = formatHero(homepage)
+---
+
+{
+	(words.length > 0 || inlineVideo || action) && (
+		<HeroWrapper
+			words={words}
+			isInlineVideo={isInlineVideo}
+			inlineVideo={inlineVideo}
+			videoLink={videoLink}
+			action={action}
+		/>
+	)
+}

@@ -14,7 +14,7 @@ tags: [implementation, ticket, app-shell]
 
 ## Description, Value & ACs
 
-**Scope:** Edit `apps/website/` only. (1) **Alias:** Resolve `@rotate/cms` to packages/service-dato (Vite/TS). Import only getHomepage, GetterOptions, and types from `@rotate/cms`. (2) **Page:** `src/pages/index.astro` — frontmatter: `await getHomepage({ token })`, pass result as props to module(s). Token from `import.meta.env.DATOCMS_API_KEY` (or equivalent) in page. (3) **Module:** e.g. `src/components/modules/HomeHero.astro` — props only (title, heroWords, heroVideo, etc.); no fetch, no CMS imports. Do not add/change getters in service-dato; do not import from packages/service-dato internals in app; do not put data fetching in module.
+**Scope:** Edit `apps/website/` only. (1) **Alias:** Resolve `@rotate/cms` to packages/service-dato (Vite/TS). Import only getHomepage, GetterOptions, and types from `@rotate/cms`. (2) **Page:** `src/pages/index.astro` — composes `hero-container` with token from `import.meta.env.DATOCMS_API_KEY` (or equivalent). (3) **Container + UI:** `src/components/hero-container/` (getter + `format-hero.ts`); core hero UI in `packages/ui/src/hero/` — props only, no CMS. Do not add/change getters in service-dato; do not import from packages/service-dato internals in app; do not put data fetching in presentational UI.
 
 **Outcome:** Homepage loads with content from getHomepage(); page calls getter, module receives props only; no CMS imports in module.
 
@@ -22,12 +22,12 @@ tags: [implementation, ticket, app-shell]
 
 **Acceptance criteria:**
 
-| # | Criterion | Done |
-|---|-----------|------|
-| AC1 | @rotate/cms resolves; no direct service-dato path imports in app. | ✓ |
-| AC2 | index.astro calls getHomepage() in frontmatter and passes props to module(s). | ✓ |
-| AC3 | One module receives homepage props only; no data fetch in module. | ✓ |
-| AC4 | No imports of client/gql/handlers in app; only getHomepage and types from @rotate/cms. | ✓ |
+| #   | Criterion                                                                              | Done |
+| --- | -------------------------------------------------------------------------------------- | ---- |
+| AC1 | @rotate/cms resolves; no direct service-dato path imports in app.                      | ✓    |
+| AC2 | index.astro calls getHomepage() in frontmatter and passes props to module(s).          | ✓    |
+| AC3 | One module receives homepage props only; no data fetch in module.                      | ✓    |
+| AC4 | No imports of client/gql/handlers in app; only getHomepage and types from @rotate/cms. | ✓    |
 
 ---
 
@@ -60,4 +60,4 @@ Run `pnpm build` in apps/website; run `pnpm dev`, open `/` — page loads with g
 
 ## Notes
 
-Steps: (1) Add @rotate/cms alias in app (if not already done when wiring the app); ensure token in env. (2) Create module HomeHero.astro — props only; render minimal hero. (3) Create index.astro — call getHomepage in frontmatter; pass props to HomeHero.
+Steps: (1) Add @rotate/cms alias in app (if not already done when wiring the app); ensure token in env. (2) Add `hero-container` + `format-hero.ts` and `packages/ui` Hero — props only in UI. (3) Create index.astro — compose `HeroContainer` with token.

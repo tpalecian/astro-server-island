@@ -9,7 +9,7 @@
 .vscode/
 node_modules/
 old-website/
-2022-site/
 remotion-site/
-apps/webiste/.vercel/
+2022-site/
+apps/website/.vercel/
 apps/website/dist/

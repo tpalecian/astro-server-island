@@ -1,6 +1,5 @@
 import { executeQuery } from '../client'
 import { redirectsQuery } from '../gql'
-
 import type { GetterOptions } from '../types'
 import type { RedirectsQuery } from '../types-dato'
 

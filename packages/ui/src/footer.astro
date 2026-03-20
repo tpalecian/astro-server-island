@@ -1,0 +1,76 @@
+---
+import TypeformPopup from './typeform-popup/typeform-popup.astro'
+
+interface Props {
+	cta?: {
+		copy: string
+		link: { text: string; href: string }
+		typeformTarget?: string | null
+	} | null
+	primaryLinks?: { text: string; href: string }[]
+	secondaryLinks?: { text: string; href: string }[]
+}
+
+const { cta = null, primaryLinks = [], secondaryLinks = [] } = Astro.props as Props
+---
+
+<footer class="bg-background-default-primary-lightest w-full">
+	{
+		cta && (
+			<div
+				class:list={[
+					'flex flex-col items-center',
+					'gap-500 px-[var(--grid-default-margin)] pt-800 pb-500',
+					'[margin-inline:auto] w-full max-w-[var(--breakpoint-maxwidth)]',
+				]}
+			>
+				<p class="title-style1-700 text-content-default-primary text-center">{cta.copy}</p>
+				{cta.typeformTarget ? (
+					<TypeformPopup target={cta.typeformTarget} label={cta.link.text} text={cta.link.text} />
+				) : (
+					<a href={cta.link.href} class="btn btn-primary btn-size-200 title-style1-300 btn-press">
+						{cta.link.text}
+					</a>
+				)}
+			</div>
+		)
+	}
+	<div
+		class:list={[
+			'flex flex-row justify-between',
+			'gap-500 px-[var(--grid-default-margin)] pb-600',
+			'[margin-inline:auto] w-full max-w-[var(--breakpoint-maxwidth)]',
+			'tablet:flex-row tablet:h-1000 tablet:items-center tablet:justify-between tablet:gap-200 tablet:pt-0 tablet:pb-0',
+			cta ? 'pt-500' : 'pt-800',
+		]}
+	>
+		<div
+			class:list={[
+				'flex flex-col items-start gap-300',
+				'tablet:flex-row tablet:items-center tablet:gap-200',
+			]}
+		>
+			{
+				primaryLinks?.length > 0 &&
+					primaryLinks.map((link) => (
+						<a href={link.href} class="btn btn-secondary btn-size-100 title-style1-300 btn-press">
+							{link.text}
+						</a>
+					))
+			}
+		</div>
+		<div class:list={['flex flex-col items-end gap-300', 'tablet:flex-row tablet:items-center']}>
+			{
+				secondaryLinks?.length > 0 &&
+					secondaryLinks.map((link) => (
+						<a
+							href={link.href}
+							class="link link-underline title-style1-300 text-content-default-primary"
+						>
+							{link.text}
+						</a>
+					))
+			}
+		</div>
+	</div>
+</footer>

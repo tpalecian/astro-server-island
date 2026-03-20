@@ -29,13 +29,14 @@ tags: [solution, seo, routing, redirects, sitemap, errors]
 ## 3. Solution Design (how, at a high level)
 
 **Success criteria:**
+
 - Meta and JSON‑LD render in the layout for key pages.
 - Sitemap is generated from `getRoutes()`.
 - Redirects are sourced from `getRedirects()` and applied at build time.
 - Custom 404 and 500 pages are available.
 
-
 **Proposed approach:**
+
 - **Meta + JSON‑LD:** Render in layout; pages provide data via utilities.
 - **Sitemap:** Generate from `getRoutes()` at build time.
 - **Redirects:** Fetch from `getRedirects()` and output build‑time host config.
@@ -43,37 +44,40 @@ tags: [solution, seo, routing, redirects, sitemap, errors]
 - **robots.txt:** Provide in public/ and reference sitemap.
 
 **Interfaces & data:**
+
 - Requires getters: `getRoutes()` and `getRedirects()`.
 
 **Alternatives considered:**
+
 - Runtime redirects only. Rejected in discovery; recorded here for context.
 
 **Non‑goals:**
+
 - Changing URL structure beyond defined redirects.
 
 ### References (exact)
 
 **Informational (read before / during implementation):**
 
-| What | Path or URL |
-|------|--------------|
-| Discovery (scope, constraints) | `documentation/01-discovery/04-seo-and-routing.md` |
-| Route migration map (path list shape from getRoutes) | `documentation/01-discovery/migration-map.md` |
-| Implementation tickets | `documentation/03-implementation/03-tickets/g1-seo-meta-jsonld.md`, `g2-seo-sitemap.md`, `g3-seo-redirects-build.md`, `g4-seo-errors-robots.md` |
-| Astro metadata | [Astro: Metadata API](https://docs.astro.build/en/guides/integrations-guide/astro/) |
-| Vercel redirects | [Vercel: Redirects](https://vercel.com/docs/projects/configuration#redirects) |
+| What                                                 | Path or URL                                                                                                                                     |
+| ---------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| Discovery (scope, constraints)                       | `documentation/01-discovery/04-seo-and-routing.md`                                                                                              |
+| Route migration map (path list shape from getRoutes) | `documentation/01-discovery/migration-map.md`                                                                                                   |
+| Implementation tickets                               | `documentation/03-implementation/03-tickets/g1-seo-meta-jsonld.md`, `g2-seo-sitemap.md`, `g3-seo-redirects-build.md`, `g4-seo-errors-robots.md` |
+| Astro metadata                                       | [Astro: Metadata API](https://docs.astro.build/en/guides/integrations-guide/astro/)                                                             |
+| Vercel redirects                                     | [Vercel: Redirects](https://vercel.com/docs/projects/configuration#redirects)                                                                   |
 
 **Planned locations (where to implement):**
 
-| What | Path |
-|------|------|
+| What                                                    | Path                                                                                                                          |
+| ------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
 | getRoutes() / getRedirects() (implement in CMS package) | `packages/service-dato/src/handlers/` (routes, redirects), `packages/service-dato/src/gql/` (routes.gql.ts, redirects.gql.ts) |
-| Layout (meta, JSON-LD in head) | `apps/website/src/layouts/` (e.g. `BaseLayout.astro`) |
-| Meta/JSON-LD utilities | `apps/website/src/lib/` or `src/utils/` (e.g. `meta.ts`, `jsonld.ts`) |
-| Sitemap (generate from getRoutes()) | `apps/website/public/sitemap.xml` or Astro endpoint |
-| Redirect config for host | `apps/website/vercel.json` |
-| Error pages | `apps/website/src/pages/404.astro`, `500.astro` |
-| robots.txt | `apps/website/public/robots.txt` |
+| Layout (meta, JSON-LD in head)                          | `apps/website/src/layouts/` (e.g. `base-layout.astro`)                                                                        |
+| Meta/JSON-LD utilities                                  | `apps/website/src/lib/` or `src/utils/` (e.g. `meta.ts`, `jsonld.ts`)                                                         |
+| Sitemap (generate from getRoutes())                     | `apps/website/public/sitemap.xml` or Astro endpoint                                                                           |
+| Redirect config for host                                | `apps/website/vercel.json`                                                                                                    |
+| Error pages                                             | `apps/website/src/pages/404.astro`, `500.astro`                                                                               |
+| robots.txt                                              | `apps/website/public/robots.txt`                                                                                              |
 
 ### Code examples (contract to implement)
 
@@ -83,9 +87,7 @@ tags: [solution, seo, routing, redirects, sitemap, errors]
 
 ```json
 {
-  "redirects": [
-    { "source": "/old-path", "destination": "/new-path", "permanent": true }
-  ]
+  "redirects": [{ "source": "/old-path", "destination": "/new-path", "permanent": true }]
 }
 ```
 
@@ -96,20 +98,24 @@ Map Dato `redirectType` (301, 302) to `permanent: true/false`. Document exact fi
 ## 4. Delivery Plan (how, at a practical level)
 
 **Phases / steps:**
+
 1. Define meta and structured‑data utilities.
 2. Implement sitemap generation from `getRoutes()`.
 3. Implement build‑time redirect output from `getRedirects()`.
 4. Add 404/500 pages and robots.txt.
 
 **Deliverables:**
+
 - Layout head rendering logic.
 - sitemap.xml generation.
 - Redirect config output for host.
 
 **Validation:**
+
 - Meta and JSON‑LD present on key pages.
 - Redirects tested against legacy URLs.
 - Sitemap passes validation.
 
 **Open questions / TBD:**
+
 - Redirect `redirectType` mapping details (301/302 and host syntax).

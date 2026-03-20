@@ -4,7 +4,15 @@ phase: implementation
 status: approved
 owner: solutions-engineering
 last_updated: 2026-02-04
-depends_on: [app container, dynamic routes, core content block modules, SEO (meta/sitemap/redirects/errors), images/media, tracking + CookieBanner]
+depends_on:
+  [
+    app container,
+    dynamic routes,
+    core content block modules,
+    SEO (meta/sitemap/redirects/errors),
+    images/media,
+    tracking + CookieBanner,
+  ]
 tags: [implementation, ticket, deployment, qa]
 ---
 
@@ -22,13 +30,13 @@ tags: [implementation, ticket, deployment, qa]
 
 **Acceptance criteria:**
 
-| # | Criterion | Done |
-|---|-----------|------|
-| AC1 | Deployment to Vercel documented (build, env, redirect/sitemap). | |
-| AC2 | Pre-launch checklist exists and covers routes, meta, tracking, sitemap, redirects, 404/500. | |
-| AC3 | Playwright e2e for key flows. | |
-| AC4 | Design-matching tests (optional) documented and runnable. | |
-| AC5 | getRedirects at build → Vercel config documented. | |
+| #   | Criterion                                                                                   | Done |
+| --- | ------------------------------------------------------------------------------------------- | ---- |
+| AC1 | Deployment to Vercel documented (build, env, redirect/sitemap).                             |      |
+| AC2 | Pre-launch checklist exists and covers routes, meta, tracking, sitemap, redirects, 404/500. |      |
+| AC3 | Playwright e2e for key flows.                                                               |      |
+| AC4 | Design-matching tests (optional) documented and runnable.                                   |      |
+| AC5 | getRedirects at build → Vercel config documented.                                           |      |
 
 ---
 

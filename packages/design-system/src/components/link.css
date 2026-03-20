@@ -1,0 +1,113 @@
+/**
+ * Link utilities — Figma Action styles
+ *
+ * Action Default: https://www.figma.com/design/FlWyqUG6r50kdIZjUQ160i/Rotate-Library-CoreVariables?node-id=4246-184
+ *
+ * Usage:
+ *   link link-underline title-style1-300 text-content-default-primary
+ *   link link-underline-trim title-style1-300
+ *
+ * Underline animates on hover (scaleX). Uses transform for GPU acceleration.
+ * Duration 150ms, ease (hover transitions per web-animation-design).
+ */
+
+@utility link {
+	position: relative;
+	display: inline;
+	text-decoration: none;
+	color: inherit;
+}
+
+/* Full-width underline: base line (low opacity) + animated line drawn over on hover */
+@utility link-underline {
+	&::before {
+		content: '';
+		position: absolute;
+		inset-inline: 0;
+		bottom: 0;
+		height: 1px;
+		background-color: currentColor;
+		opacity: 0.3;
+	}
+
+	&::after {
+		content: '';
+		position: absolute;
+		inset-inline: 0;
+		bottom: 0;
+		height: 1px;
+		background-color: currentColor;
+		opacity: 1;
+		transform: scaleX(0);
+		transform-origin: left;
+		transition: transform 150ms ease;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		&:hover::after {
+			transform: scaleX(1);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		&::after {
+			transform: scaleX(1);
+			transition: none;
+		}
+	}
+}
+
+/* Trim variant: base line (low opacity) + animated line drawn over from center on hover */
+@utility link-underline-trim {
+	&::before {
+		content: '';
+		position: absolute;
+		inset-inline: 10%;
+		bottom: 0;
+		height: 1px;
+		background-color: currentColor;
+		opacity: 0.3;
+	}
+
+	&::after {
+		content: '';
+		position: absolute;
+		inset-inline: 10%;
+		bottom: 0;
+		height: 1px;
+		background-color: currentColor;
+		opacity: 1;
+		transform: scaleX(0);
+		transform-origin: center;
+		transition: transform 150ms ease;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		&:hover::after {
+			transform: scaleX(1);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		&::after {
+			transform: scaleX(1);
+			transition: none;
+		}
+	}
+}
+
+/* Thicker underline for larger sizes (Action 400: 1.5px) */
+@utility link-underline-thick {
+	&::before,
+	&::after {
+		height: 1.5px;
+	}
+}
+
+/* Static underline, no animation (e.g. when reduced-motion or always-visible) */
+@utility link-underline-static {
+	text-decoration: underline;
+	text-decoration-skip-ink: none;
+	text-underline-offset: 2px;
+	text-decoration-thickness: 1px;
+}

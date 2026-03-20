@@ -14,7 +14,7 @@ tags: [implementation, ticket, content-blocks]
 
 ## Description, Value & ACs
 
-**Scope:** Edit `apps/website/src/components/modules/` (StructuredText inline renderers). Implement structured text rendering with inline block support. Map inline record types (Tag, Emoji, Work, Thinking, Studio, MegaHeading) to components. Use @datocms/structured-text or equivalent; custom renderers for inline blocks. Data: structured text field from GQL; inline blocks have _modelApiKey (e.g. TagRecord, EmojiRecord). No block-level rendering (core blocks or ContentIsland); inline only within structured text. No data fetching inside inline components; props only.
+**Scope:** Edit `apps/website/src/components/modules/` (StructuredText inline renderers). Implement structured text rendering with inline block support. Map inline record types (Tag, Emoji, Work, Thinking, Studio, MegaHeading) to components. Use @datocms/structured-text or equivalent; custom renderers for inline blocks. Data: structured text field from GQL; inline blocks have \_modelApiKey (e.g. TagRecord, EmojiRecord). No block-level rendering (core blocks or ContentIsland); inline only within structured text. No data fetching inside inline components; props only.
 
 **Outcome:** Structured text renders with inline blocks correctly mapped.
 
@@ -22,10 +22,10 @@ tags: [implementation, ticket, content-blocks]
 
 **Acceptance criteria:**
 
-| # | Criterion | Done |
-|---|-----------|------|
-| AC1 | Structured text renders; inline blocks use correct component per type. | |
-| AC2 | No data fetching inside inline components; props only. | |
+| #   | Criterion                                                              | Done |
+| --- | ---------------------------------------------------------------------- | ---- |
+| AC1 | Structured text renders; inline blocks use correct component per type. |      |
+| AC2 | No data fetching inside inline components; props only.                 |      |
 
 ---
 

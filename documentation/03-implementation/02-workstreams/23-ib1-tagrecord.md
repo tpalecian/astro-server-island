@@ -23,41 +23,53 @@ tags: [implementation, workstream, content-blocks]
 - **Legacy/reference behaviour:** 2022-site gql/fragments/inline-blocks.gql.js onTagRecord; match tag/link behaviour.
 
 ## 1. Allowed paths
+
 - `apps/website/src/components/modules/` (StructuredText inline renderer)
 
 ## 2. Blocking dependencies
+
 - A4, F2.
 
 ## 3. Unblocks
+
 - —
 
 ## 4. Contract / API
-- **Inline block:** TagRecord (_modelApiKey). Renders inside structured text. Props only; design-system. No fetch.
+
+- **Inline block:** TagRecord (\_modelApiKey). Renders inside structured text. Props only; design-system. No fetch.
 
 ## 5. Data source & shape
+
 - Inline block props from structured text; shape from GQL onTagRecord.
 
 ## 6. Out of scope / Don't do
+
 - No fetch in component.
 
 ## 7. Steps (ordered)
+
 1. Create inline component for TagRecord.
 2. Map props to legacy behaviour; wire into F2 structured-text renderer.
 
 ## 8. Done criteria
+
 - TagRecord renders inside structured text with props only.
 
 ## 9. Acceptance criteria
-| # | Criterion |
-|---|-----------|
+
+| #   | Criterion                                       |
+| --- | ----------------------------------------------- |
 | AC1 | TagRecord module renders without data fetching. |
-| AC2 | Props align with legacy; design-system tokens. |
+| AC2 | Props align with legacy; design-system tokens.  |
 
 ## 10. Validation
+
 - Render structured text with TagRecord; compare to legacy.
 
 ## 11. Solution / discovery links
+
 - Solution: `documentation/02-solution/content-blocks-and-inline-blocks-plan.md`
 
 ## 12. Old code (2022-site)
+
 - `2022-site/gql/fragments/inline-blocks.gql.js` (onTagRecord)

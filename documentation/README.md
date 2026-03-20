@@ -11,22 +11,22 @@ We are in **Implementation**. This means:
 
 ## Structure (lifecycle)
 
-| Phase / Purpose | Location |
-|---|---|
-| Start here / entry point | `/documentation/00-start-here` |
-| Discovery | `/documentation/01-discovery` |
-| Solution design | `/documentation/02-solution` |
-| Implementation | `/documentation/03-implementation` |
-| Reference (supporting) | `/documentation/05-reference` |
-| Work in progress | `/documentation/wip` |
-| Archived / out of phase | `/documentation/99-archive` |
+| Phase / Purpose          | Location                           |
+| ------------------------ | ---------------------------------- |
+| Start here / entry point | `/documentation/00-start-here`     |
+| Discovery                | `/documentation/01-discovery`      |
+| Solution design          | `/documentation/02-solution`       |
+| Implementation           | `/documentation/03-implementation` |
+| Reference (supporting)   | `/documentation/05-reference`      |
+| Work in progress         | `/documentation/wip`               |
+| Archived / out of phase  | `/documentation/99-archive`        |
 
 Plans use the SEL format: Outcome & Business Value → Context & Scope → Solution Design → Delivery Plan.
 
 ## Start here
 
 - **Handover — next steps**: `00-start-here/handover-next-steps.md`
-- **Cursor rules / agent guide**: `AGENTS.md` (project root), `.cursor/rules/`
+- **Cursor rules / agent guide**: `AGENTS.md` (project root), `.cursor/rules/README.md` (rule index), `.cursor/rules/*.mdc`
 
 ## Discovery
 

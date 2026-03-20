@@ -1,0 +1,17 @@
+---
+import { getNavigationFooter } from '@rotate/cms'
+
+import Footer from '@rotate/ui/footer.astro'
+
+import { formatFooterNav } from './format-footer-nav'
+
+interface Props {
+	token: string
+}
+
+const { token } = Astro.props
+const nav = (await getNavigationFooter({ token })) ?? null
+const { cta, primaryLinks, secondaryLinks } = formatFooterNav(nav)
+---
+
+<Footer cta={cta} primaryLinks={primaryLinks} secondaryLinks={secondaryLinks} />

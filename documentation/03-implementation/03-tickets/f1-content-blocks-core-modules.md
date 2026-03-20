@@ -14,7 +14,7 @@ tags: [implementation, ticket, content-blocks]
 
 ## Description, Value & ACs
 
-**Scope:** Edit `apps/website/src/components/modules/` only. Implement core block modules (Text, Quote, Media basics) mapped by `_modelApiKey`. Props only; no data fetching. Use design-system tokens. Block mapping: _modelApiKey → component. Block data comes from page getter (blocks array); each block has _modelApiKey and block-specific fields. Do not add CMS/fetch in modules; ContentIsland (below-fold blocks) and structured-text inline blocks are out of scope here.
+**Scope:** Edit `apps/website/src/components/modules/` only. Implement core block modules (Text, Quote, Media basics) mapped by `_modelApiKey`. Props only; no data fetching. Use design-system tokens. Block mapping: \_modelApiKey → component. Block data comes from page getter (blocks array); each block has \_modelApiKey and block-specific fields. Do not add CMS/fetch in modules; ContentIsland (below-fold blocks) and structured-text inline blocks are out of scope here.
 
 **Outcome:** Core blocks render with props only; match block mapping.
 
@@ -22,10 +22,10 @@ tags: [implementation, ticket, content-blocks]
 
 **Acceptance criteria:**
 
-| # | Criterion | Done |
-|---|-----------|------|
-| AC1 | Core modules exist and render without data fetching. | |
-| AC2 | Modules match block mapping by _modelApiKey. | |
+| #   | Criterion                                            | Done |
+| --- | ---------------------------------------------------- | ---- |
+| AC1 | Core modules exist and render without data fetching. |      |
+| AC2 | Modules match block mapping by \_modelApiKey.        |      |
 
 ---
 
@@ -58,4 +58,4 @@ Render block in page with mock CMS data.
 
 ## Notes
 
-Steps: (1) Implement core module components for basic blocks. (2) Wire props from containers; ensure block mapping by _modelApiKey.
+Steps: (1) Implement core module components for basic blocks. (2) Wire props from containers; ensure block mapping by \_modelApiKey.

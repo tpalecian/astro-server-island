@@ -1,0 +1,22 @@
+{
+	"name": "@rotate/utilities",
+	"version": "0.0.0",
+	"private": true,
+	"sideEffects": false,
+	"type": "module",
+	"exports": {
+		"./*": "./src/*"
+	},
+	"scripts": {
+		"check:format": "prettier --check .",
+		"check:types": "tsc -p . --noEmit",
+		"format": "prettier --write ."
+	},
+	"devDependencies": {
+		"@build/eslint-config": "workspace:*",
+		"@build/prettier-config": "workspace:*",
+		"@build/tsconfig": "workspace:*",
+		"prettier": "^3.4.2",
+		"typescript": "^5.9.3"
+	}
+}

@@ -35,7 +35,6 @@ We are in **Implementation**. The source of truth is:
 - `02-solution/` for architecture and integration plans
 - `01-discovery/` for final decisions
 
-
 ## 2. Why we are doing this (outcome & value)
 
 We are executing the approved solution design. The outcome is a working implementation that matches discovery decisions and solution constraints.
@@ -54,35 +53,39 @@ We are executing the approved solution design. The outcome is a working implemen
 - Validate that tasks align with discovery decisions in `01-discovery/00-index.md`.
 - Confirm scope boundaries and assumptions in the solution docs under `02-solution/`.
 - **Follow Cursor rules** — see `AGENTS.md` for index. Key rules:
-  - `.cursor/rules/architecture.mdc` — containers, modules, base components
-  - `.cursor/rules/behaviour-escalation.mdc` — server first, then islands, minimal JS, Alpine last
-  - `.cursor/rules/components.mdc` — design system, Figma, packages/ui (core UI) vs website (logic binding)
+  - `.cursor/rules/README.md` — index of `.mdc` rule files
+  - `.cursor/rules/website-architecture.mdc` — `*-container`, wrappers, packages/ui boundaries
+  - `.cursor/rules/website-behaviour.mdc` — server first, then islands, minimal JS, Alpine last
+  - `.cursor/rules/components.mdc` — design system usage, Figma, scripts; packages/ui vs website
+  - `.cursor/rules/design-system.mdc` — tokens, Tailwind, class grouping
+  - `.cursor/rules/service-dato.mdc` — Dato layer, getters, codegen
+  - `.cursor/rules/repo-tooling.mdc` — pnpm, Turbo, format, lint
   - `.cursor/rules/functional-style.mdc` — pure functions, immutability, composition
 - Keep new implementation notes linked back to solution docs.
 
 ## 5. Where to find things (index)
 
-| Topic | Document |
-|---|---|
-| Discovery index | `01-discovery/00-index.md` |
-| CMS and data | `01-discovery/01-cms-and-data.md` |
-| Content blocks and rendering | `01-discovery/02-content-blocks-and-rendering.md` |
-| Tracking and consent | `01-discovery/03-tracking-and-consent.md` |
-| SEO and routing | `01-discovery/04-seo-and-routing.md` |
-| Images and media | `01-discovery/05-images-and-media.md` |
-| Deployment and QA | `01-discovery/06-deployment-and-qa.md` |
-| Coverage checklist | `01-discovery/07-coverage-checklist.md` |
-| Solution design index | `02-solution/00-index.md` |
-| Implementation index | `03-implementation/00-index.md` |
-| Workstreams | `03-implementation/02-workstreams/` (incl. C — layout shell: Header, Footer, Nav) |
-| Ticket templates | `03-implementation/03-tickets/` |
-| Migration plan | `03-implementation/vue-to-astro-migration.md` |
-| CMS service pattern and alias | `02-solution/cms-service-pattern-and-dato-centralisation.md` |
-| Content blocks + ContentIsland | `02-solution/content-blocks-and-inline-blocks-plan.md` |
-| External services + tracking | `02-solution/external-services-and-tracking-plan.md` |
-| SEO, sitemap, redirects, error pages | `02-solution/seo-sitemap-redirects-error-pages-plan.md` |
-| Background review (reference) | `05-reference/dato-vue-to-service-review.md` |
-| Cursor rules / agent guide | `AGENTS.md`, `.cursor/rules/` |
+| Topic                                | Document                                                                          |
+| ------------------------------------ | --------------------------------------------------------------------------------- |
+| Discovery index                      | `01-discovery/00-index.md`                                                        |
+| CMS and data                         | `01-discovery/01-cms-and-data.md`                                                 |
+| Content blocks and rendering         | `01-discovery/02-content-blocks-and-rendering.md`                                 |
+| Tracking and consent                 | `01-discovery/03-tracking-and-consent.md`                                         |
+| SEO and routing                      | `01-discovery/04-seo-and-routing.md`                                              |
+| Images and media                     | `01-discovery/05-images-and-media.md`                                             |
+| Deployment and QA                    | `01-discovery/06-deployment-and-qa.md`                                            |
+| Coverage checklist                   | `01-discovery/07-coverage-checklist.md`                                           |
+| Solution design index                | `02-solution/00-index.md`                                                         |
+| Implementation index                 | `03-implementation/00-index.md`                                                   |
+| Workstreams                          | `03-implementation/02-workstreams/` (incl. C — layout shell: Header, Footer, Nav) |
+| Ticket templates                     | `03-implementation/03-tickets/`                                                   |
+| Migration plan                       | `03-implementation/vue-to-astro-migration.md`                                     |
+| CMS service pattern and alias        | `02-solution/cms-service-pattern-and-dato-centralisation.md`                      |
+| Content blocks + ContentIsland       | `02-solution/content-blocks-and-inline-blocks-plan.md`                            |
+| External services + tracking         | `02-solution/external-services-and-tracking-plan.md`                              |
+| SEO, sitemap, redirects, error pages | `02-solution/seo-sitemap-redirects-error-pages-plan.md`                           |
+| Background review (reference)        | `05-reference/dato-vue-to-service-review.md`                                      |
+| Cursor rules / agent guide           | `AGENTS.md`, `.cursor/rules/`                                                     |
 
 ## 6. Out of phase (archive)
 

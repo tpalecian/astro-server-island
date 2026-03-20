@@ -24,43 +24,55 @@ tags: [implementation, workstream, content-blocks]
 - **Legacy/reference behaviour:** Match behaviour of `2022-site/components/Content/MediaCaption.vue`: caption, ratio, displayType, fullScreen, single asset; design-system tokens only.
 
 ## 1. Allowed paths
+
 - `apps/website/src/components/modules/`
 
 ## 2. Blocking dependencies
+
 - A4, B, F1.
 
 ## 3. Unblocks
+
 - —
 
 ## 4. Contract / API
-- **Block:** `media_single` (_modelApiKey). Component: props only (caption, ratio, displayType, fullScreen, single asset). Use design-system; use getMediaUrl (H) for image src when H is done. No data fetching.
+
+- **Block:** `media_single` (\_modelApiKey). Component: props only (caption, ratio, displayType, fullScreen, single asset). Use design-system; use getMediaUrl (H) for image src when H is done. No data fetching.
 
 ## 5. Data source & shape
+
 - Block props from page/container; single asset + caption etc. Shape from GQL block fragment.
 
 ## 6. Out of scope / Don't do
+
 - No fetch in component. No ad-hoc URL construction; use media helper when available (H).
 
 ## 7. Steps (ordered)
+
 1. Create module component for media_single.
 2. Map props to match legacy behaviour (caption, ratio, displayType, fullScreen, single asset).
-3. Ensure module is used via block mapping by _modelApiKey.
+3. Ensure module is used via block mapping by \_modelApiKey.
 
 ## 8. Done criteria
+
 - media_single block renders with props only; matches design intent.
 
 ## 9. Acceptance criteria
-| # | Criterion |
-|---|-----------|
-| AC1 | media_single module renders without data fetching. |
-| AC2 | Props align with legacy component behaviour. |
+
+| #   | Criterion                                             |
+| --- | ----------------------------------------------------- |
+| AC1 | media_single module renders without data fetching.    |
+| AC2 | Props align with legacy component behaviour.          |
 | AC3 | Module uses design-system tokens (no ad-hoc styling). |
 
 ## 10. Validation
+
 - Render block in page with mock CMS data; compare to legacy and Figma.
 
 ## 11. Solution / discovery links
+
 - Solution: `documentation/02-solution/content-blocks-and-inline-blocks-plan.md`, `documentation/02-solution/images-and-media.md`
 
 ## 12. Old code (2022-site)
+
 - `2022-site/components/Content/MediaCaption.vue`

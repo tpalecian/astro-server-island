@@ -1,7 +1,7 @@
 import { resolve } from 'path'
-import { config as loadEnv } from 'dotenv'
 
 import type { CodegenConfig } from '@graphql-codegen/cli'
+import { config as loadEnv } from 'dotenv'
 
 const cwd = process.cwd()
 loadEnv({ path: resolve(cwd, '.env') })

@@ -22,12 +22,12 @@ tags: [implementation, ticket, routing]
 
 **Acceptance criteria:**
 
-| # | Criterion | Done |
-|---|-----------|------|
-| AC1 | Dynamic routes [category], [category]/[slug], info exist per migration map; server-rendered. | |
-| AC2 | Category landing uses getCategoryBySlug + getCategoryCards; article uses getPageBySlug. | |
-| AC3 | Containers/server call getters only; modules receive props only. | |
-| AC4 | Styleguide route decision documented. | |
+| #   | Criterion                                                                                    | Done |
+| --- | -------------------------------------------------------------------------------------------- | ---- |
+| AC1 | Dynamic routes [category], [category]/[slug], info exist per migration map; server-rendered. |      |
+| AC2 | Category landing uses getCategoryBySlug + getCategoryCards; article uses getPageBySlug.      |      |
+| AC3 | Containers/server call getters only; modules receive props only.                             |      |
+| AC4 | Styleguide route decision documented.                                                        |      |
 
 ---
 

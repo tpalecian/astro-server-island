@@ -1,0 +1,12 @@
+{
+	"extends": "@build/tsconfig/astro.json",
+	"compilerOptions": {
+		"baseUrl": ".",
+		"paths": {
+			"@rotate/ui/*": ["./src/*"],
+			"@rotate/utilities/*": ["../utilities/src/*"]
+		}
+	},
+	"include": ["src"],
+	"exclude": ["node_modules", "dist"]
+}

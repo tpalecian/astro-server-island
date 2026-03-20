@@ -6,14 +6,16 @@ alwaysApply: false
 
 # Functional Programming Style
 
-**Principle:** Code is data-in, data-out. Prefer pure functions, immutability, and composition. Aligns with the architecture (containers compose getters; modules are referentially transparent).
+**Principle:** Code is data-in, data-out. Prefer pure functions, immutability, and composition. Aligns with `website-architecture.mdc` (containers compose getters; presentational components are referentially transparent).
+
+**Rule index:** `.cursor/rules/README.md`.
 
 ---
 
 ## Pure functions
 
 - **Input → output:** Functions take arguments and return values. No hidden inputs (globals, module state) or hidden outputs (mutations, side effects).
-- **Side effects at boundaries only:** I/O (fetch, `executeQuery`, `import.meta.env`) happens in getters or at the top of pages/containers. Keep transformation logic pure.
+- **Side effects at boundaries only:** I/O (`executeQuery`, `import.meta.env`, framework fetch) happens in getters, container frontmatter, or page top level. Keep transformation logic pure (e.g. colocated `format-*.ts` next to `*-container`).
 - **Same input → same output:** For the same arguments, a function returns the same result (except async I/O, which is a boundary).
 
 ---
@@ -54,9 +56,20 @@ export async function getHomepage(options: GetterOptions): Promise<HomeQuery['ho
 
 ## Composition
 
-- **Compose small functions.** Containers call getters; getters call `executeQuery`. No inline business logic in containers.
+- **Compose small functions.** Containers call getters; getters call `executeQuery` (`service-dato.mdc`). No inline CMS/query logic in containers—call exported getters or pure formatters.
 - **Single responsibility.** One function does one thing. Split when a function does more than fetch + minimal extraction.
 - **Avoid nesting.** Prefer early returns, `switch`, or small helper functions over deep conditionals.
+
+---
+
+## Comments
+
+**Applies to all TypeScript** — e.g. colocated `format-*.ts` next to `*-container`, `packages/ui` `*.ts`, `packages/service-dato`, `apps/website/src/lib`.
+
+- **Default:** Rely on **clear names** and **small, focused functions**. Do not narrate the code line-by-line.
+- **Inline (`//`):** Avoid routine inline comments. Use only when unavoidable (e.g. mandated external constraint, non-obvious workaround) — **one short line**.
+- **Function / block (`/** … */`):** When behaviour is **heavy or non-obvious** (e.g. parsing several CMS shapes, security or ordering invariants, integration quirks), add a **JSDoc comment on that function** describing the contract or *why* — not a step-by-step duplicate of the body.
+- **Exports:** Optional brief JSDoc on **public** helpers when the name alone is not enough; keep module-level essays out unless the file is a deliberate spec.
 
 ---
 
@@ -92,7 +105,7 @@ for (const item of items) {
 ## Astro frontmatter
 
 - **Declarative data flow:** `const x = await getter(options)` then pass `x` as props. No imperative mutation of props.
-- **Compose getters:** Call multiple getters, combine results into a single props object. No inline fetch logic.
+- **Compose getters:** Call multiple getters, combine results into a single props object. No inline fetch/query strings in website—use `@rotate/cms`.
 - **Early binding:** Resolve `token`, `params` once at the top; pass through.
 
 ---
@@ -103,6 +116,11 @@ for (const item of items) {
 |----|-------|
 | Pure functions, explicit types | Mutate arguments or shared data |
 | `const`, spread, map/filter/reduce | `let` without need; `push`/`splice` |
-| Compose getters in containers | Inline business logic in containers |
+| Compose getters in containers | Inline CMS/query logic in containers |
 | Early returns, small functions | Deep nesting, large functions |
 | Side effects at I/O boundaries | Side effects inside pure-looking code |
+| JSDoc on heavy / non-obvious functions | Inline comments that restate obvious code |
+
+---
+
+**Related:** `service-dato.mdc`, `website-architecture.mdc`, `repo-tooling.mdc`.

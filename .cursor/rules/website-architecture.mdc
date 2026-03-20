@@ -1,0 +1,119 @@
+---
+description: >
+  Website Astro architecture: *-container folders (server data), wrappers (presentational shells),
+  packages/ui core components. Strict layering; zero-JS containers. Works with behaviour escalation.
+globs: apps/website/src/**/*.astro
+alwaysApply: false
+---
+
+# Website architecture (strict)
+
+**Scope:** `apps/website` Astro layer (pages, layouts, `src/components`). Does **not** govern `packages/ui`, `packages/service-dato`, or `packages/design-system` beyond how the website consumes them.
+
+**Rule index:** `.cursor/rules/README.md`.
+
+This document is a **strict rule set**, not a design brief.
+
+When applying these rules, the AI MUST:
+
+- Act as a **rule enforcer**, not a designer
+- Prefer **errors or warnings** over creative shortcuts
+- Never invent abstractions unless explicitly requested
+- Never change runtime behaviour unless explicitly instructed
+- Ask for clarification instead of guessing when ambiguous
+
+---
+
+## How pieces group together
+
+| Layer | Name pattern / location | Responsibility |
+|-------|-------------------------|----------------|
+| **Container** | `apps/website/src/components/<feature>-container/` | Server-only. **`index.astro`** calls `@rotate/cms` getters, optional colocated **`format-*.ts`** for pure CMS → props mapping. Renders **`packages/ui`** components and/or **wrappers**. **No client JavaScript** (no interactive `<script>` bundles). Minimal markup only if needed to pass props/slots. |
+| **Wrapper** | Website or `packages/ui` | Presentational only: section chrome, grid, slots. **No** `@rotate/cms`, **no** getters. Props/slots in → markup out. Prefer **`packages/ui`** when the shell is reusable across pages. |
+| **Core component** | `packages/ui` | Reusable UI aligned to design system. **No** CMS. May ship **minimal JS** only as allowed in `website-behaviour.mdc` and `components.mdc`. |
+| **Layout** | e.g. `base-layout.astro` | Top-level composition: design-system import, devtools, page shell. |
+
+**Canonical container path:** `components/hero-container/index.astro` (folder name **must** end with `-container`).
+
+**Website `components/`:** Should contain **containers** (`*-container/`) and, only when necessary, thin **wrappers** that still do not fetch. **Avoid** duplicating core UI here—put it in `packages/ui`.
+
+---
+
+## 1. Container (`*-container`)
+
+- Server-only
+- Fetches via **exported getters** from `@rotate/cms` (never inline GraphQL in website)
+- Validates / normalises via **pure** helpers (`format-*.ts` or shared `@/lib` pure functions)
+- **Composes** getters and formatters only—no deep business logic in `.astro` frontmatter
+- Ships **zero client JavaScript** — **do not** add `<script src="…">` for interactive behaviour in container files
+
+❌ No heavy visual design in containers (compose `packages/ui` instead)  
+❌ No client-side state  
+❌ No Dato types or queries outside `@rotate/cms`
+
+---
+
+## 2. Presentational output
+
+- **Primary:** `packages/ui` components receive **props only** (and slots where designed)
+- **Wrapper:** optional thin Astro around UI for page-specific composition without new data
+- Same props → same HTML (**referentially transparent**)
+- **Zero JavaScript by default** at this layer unless the **core component** in `packages/ui` intentionally ships JS per escalation rules
+
+If a block needs CMS data, it **must** be fed from a **container**, not fetch internally.
+
+---
+
+## 3. Core components (`packages/ui`)
+
+- Stateless UI primitives and composed widgets — grouped by domain
+- No app-specific or CMS logic, no `getXxx` imports
+- Optional **minimal JS** for essential interactions — see `website-behaviour.mdc`
+- Website **imports** from `@rotate/ui/*`; website does not redefine the same primitives
+
+---
+
+## Global rules
+
+- **Static / server rendering by default** · **Zero client JS by default** in containers and pages except documented exceptions
+- **CMS and queries** only in `packages/service-dato` (`service-dato.mdc`)
+- Prefer **CSS-first** solutions over JavaScript (`design-system.mdc`, `website-behaviour.mdc`)
+
+---
+
+## Streaming (cache-safe)
+
+Streaming is **allowed and cacheable** (CDN, edge cache). It does **not** imply per-request execution or bypassing page cache.
+
+**Allowed:** Non-critical/slow/large data that can resolve later; progressive rendering of cache-safe content.
+
+**Rules:** No per-user or auth-dependent data; no request-specific context. If unsure, prefer static rendering.
+
+---
+
+## Server Islands (cache-busting)
+
+Allowed **only when** data must be dynamic relative to page cache (auth-dependent UI, per-request personalisation, truly dynamic pricing/inventory).
+
+**Rules:** Exceptional, never default; **explicit justification comment**; prefer multiple small islands; must be audited; must not bypass this architecture.
+
+---
+
+## Client-side JavaScript (where it may live)
+
+- **Not** in `*-container` (server-only).
+- **Decision order and patterns:** `website-behaviour.mdc` and `components.mdc` (colocated `component.ts`, islands, Alpine as last resort in base components).
+
+---
+
+## Output expectations (for AI)
+
+- **Refactor** → produce compliant folder/file splits (`*-container`, formatters, `packages/ui`)
+- **Audit** → list violations and minimal fixes
+- **Compliant** → confirm compliance concisely
+
+Explain violations in terms of **Architecture**, **Performance**, **Maintainability**.
+
+---
+
+**Related:** `website-behaviour.mdc`, `components.mdc`, `service-dato.mdc`, `functional-style.mdc`.

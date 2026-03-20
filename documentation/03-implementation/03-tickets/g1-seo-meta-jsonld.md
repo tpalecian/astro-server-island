@@ -22,10 +22,10 @@ tags: [implementation, ticket, seo]
 
 **Acceptance criteria:**
 
-| # | Criterion | Done |
-|---|-----------|------|
-| AC1 | Meta utilities exist; layout renders title, description, og. | |
-| AC2 | JSON-LD utility exists; layout renders ld+json script. | |
+| #   | Criterion                                                    | Done |
+| --- | ------------------------------------------------------------ | ---- |
+| AC1 | Meta utilities exist; layout renders title, description, og. |      |
+| AC2 | JSON-LD utility exists; layout renders ld+json script.       |      |
 
 ---
 

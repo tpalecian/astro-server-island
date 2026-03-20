@@ -1,0 +1,53 @@
+---
+description: >
+  Dato CMS package @rotate/service-dato: public API from src/index.ts only, getters in handlers/,
+  GraphQL in gql/*.gql.ts, executeQuery, codegen types. Use when editing packages/service-dato or
+  adding CMS-backed data; website must import @rotate/cms only.
+globs: packages/service-dato/**
+alwaysApply: false
+---
+
+# Service Dato (CMS layer)
+
+**Scope:** `packages/service-dato` (`@rotate/service-dato`). The website and other apps consume it **only** via the **`@rotate/cms`** alias → `src/index.ts` public exports.
+
+**Rule index:** `.cursor/rules/README.md`.
+
+---
+
+## Boundaries
+
+- **All Dato/CDA access** lives in this package. No `executeQuery`, Dato client usage, or `.gql.ts` files under `apps/website`.
+- **Website responsibility:** Read env (e.g. token), build `GetterOptions`, call exported getters, pass results to `*-container` / pages as props.
+- **Do not** re-export internal modules from ad-hoc paths; extend **`src/index.ts`** if a new getter is part of the public API.
+
+---
+
+## Layout inside the package
+
+| Area | Purpose |
+|------|---------|
+| `src/handlers/` | Async getters: call `executeQuery`, return typed slices of data. Explicit return types. |
+| `src/gql/` | GraphQL documents (`*.gql.ts`), fragments, query composition. |
+| `src/client.ts` | `executeQuery` wrapper around `@datocms/cda-client`; caller supplies `token`, optional `preview`. |
+| `src/types-dato.ts` | Generated types (GraphQL Code Generator). Do not hand-edit except via codegen. |
+| `src/types.ts` | Shared options (e.g. `GetterOptions`) and non-generated types. |
+| `codegen.ts` | Codegen pipeline configuration. |
+
+---
+
+## Patterns
+
+- **New query:** Add/update `.gql.ts`, run **`pnpm codegen`** from repo root (`repo-tooling.mdc`), implement handler that uses `executeQuery<YourQuery>(document, options)` and returns a narrow field (e.g. `data.homepage ?? null`).
+- **Composition:** Containers compose multiple getters in Astro frontmatter; keep **transforms** pure in colocated `format-*.ts` files in the website when mapping CMS shapes → UI props (`functional-style.mdc`).
+
+---
+
+## Types & naming
+
+- Prefer generated operation types from `types-dato.ts` for query results.
+- Export new getters and relevant types from `src/index.ts` for consumers.
+
+---
+
+**Related:** `project-overview.mdc` (aliases), `functional-style.mdc`, `repo-tooling.mdc`.

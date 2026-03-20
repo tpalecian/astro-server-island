@@ -25,42 +25,54 @@ tags: [implementation, workstream, seo]
 - **Legacy/reference behaviour:** `2022-site/services/routes.js` — path list source; sitemap contains all public routes.
 
 ## 1. Allowed paths
+
 - `apps/website/public/sitemap.xml` or Astro endpoint; build script that calls getRoutes().
 
 ## 2. Blocking dependencies
+
 - A4 (getRoutes()). E (routes implemented) recommended.
 
 ## 3. Unblocks
+
 - J (deployment/QA validate sitemap).
 
 ## 4. Contract / API
+
 - **Sitemap:** Generate at build from getRoutes(). Use allCategories, allThinkings, allWorks, allStudios, infoPage to build URL list. Output sitemap.xml (static or endpoint). See migration-map for getRoutes() output shape.
 
 ## 5. Data source & shape
+
 - getRoutes() from @rotate/cms; shape in discovery migration-map.
 
 ## 6. Out of scope / Don't do
+
 - Meta (G1), redirects (G3), errors (G4). Sitemap only.
 
 ## 7. Steps (ordered)
+
 1. At build, call getRoutes().
 2. Build sitemap XML from path list; write to public/sitemap.xml or serve via endpoint.
 
 ## 8. Done criteria
+
 - sitemap.xml generated from getRoutes(); all expected paths included.
 
 ## 9. Acceptance criteria
-| # | Criterion |
-|---|-----------|
+
+| #   | Criterion                                             |
+| --- | ----------------------------------------------------- |
 | AC1 | sitemap.xml exists and is generated from getRoutes(). |
-| AC2 | All route paths from getRoutes() included. |
+| AC2 | All route paths from getRoutes() included.            |
 
 ## 10. Validation
+
 - Fetch sitemap; validate URLs; check coverage.
 
 ## 11. Solution / discovery links
+
 - Discovery: `documentation/01-discovery/04-seo-and-routing.md`, `documentation/01-discovery/migration-map.md`
 - Solution: `documentation/02-solution/seo-sitemap-redirects-error-pages-plan.md`
 
 ## 12. Old code (2022-site)
+
 - `2022-site/services/routes.js` — path list source.

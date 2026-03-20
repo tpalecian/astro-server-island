@@ -22,10 +22,10 @@ tags: [implementation, ticket, cms]
 
 **Acceptance criteria:**
 
-| # | Criterion | Done |
-|---|-----------|------|
-| AC1 | Getters list implemented; all work when called from app. | |
-| AC2 | No gql/client exported; only getters and types from index. | |
+| #   | Criterion                                                  | Done |
+| --- | ---------------------------------------------------------- | ---- |
+| AC1 | Getters list implemented; all work when called from app.   |      |
+| AC2 | No gql/client exported; only getters and types from index. |      |
 
 ---
 

@@ -27,10 +27,10 @@ What value does this provide the user and/or client's business? This should alig
 
 **Acceptance criteria:**
 
-| # | Criterion | Done |
-|---|-----------|------|
-| AC1 |  | |
-| AC2 |  | |
+| #   | Criterion | Done |
+| --- | --------- | ---- |
+| AC1 |           |      |
+| AC2 |           |      |
 
 ---
 

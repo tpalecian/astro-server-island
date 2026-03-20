@@ -14,7 +14,7 @@ tags: [implementation, ticket, content-blocks]
 
 ## Description, Value & ACs
 
-**Scope:** Edit `apps/website/src/components/modules/`. Implement **stats** block (_modelApiKey). Props only; design-system. No fetch. Wire into block mapping by _modelApiKey.
+**Scope:** Edit `apps/website/src/components/modules/`. Implement **stats** block (\_modelApiKey). Props only; design-system. No fetch. Wire into block mapping by \_modelApiKey.
 
 **Outcome:** Block renders with props only.
 
@@ -22,10 +22,10 @@ tags: [implementation, ticket, content-blocks]
 
 **Acceptance criteria:**
 
-| # | Criterion | Done |
-|---|-----------|------|
-| AC1 | Module renders without data fetching. | |
-| AC2 | Props align with legacy; design-system tokens. | |
+| #   | Criterion                                      | Done |
+| --- | ---------------------------------------------- | ---- |
+| AC1 | Module renders without data fetching.          |      |
+| AC2 | Props align with legacy; design-system tokens. |      |
 
 ---
 

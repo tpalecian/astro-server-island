@@ -1,8 +1,7 @@
 import { executeQuery } from '../client'
 import { navigationFooterQuery, navigationHeaderQuery } from '../gql'
-
-import type { NavigationFooterQuery, NavigationHeaderQuery } from '../types-dato'
 import type { GetterOptions } from '../types'
+import type { NavigationFooterQuery, NavigationHeaderQuery } from '../types-dato'
 
 export async function getNavigationHeader(
 	options: GetterOptions

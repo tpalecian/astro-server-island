@@ -1,0 +1,4 @@
+
+> @rotate/devtools@0.0.0 check:types /Users/tamaspalecian/Documents/private/astro-server-island/packages/devtools
+> tsc -p . --noEmit
+

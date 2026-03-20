@@ -23,9 +23,18 @@ importers:
       husky:
         specifier: ^9.1.7
         version: 9.1.7
+      prettier:
+        specifier: ^3.4.2
+        version: 3.8.1
+      prettier-plugin-astro:
+        specifier: ^0.14.1
+        version: 0.14.1
       prettier-plugin-packagejson:
         specifier: ^3.0.0
         version: 3.0.0(prettier@3.8.1)
+      prettier-plugin-tailwindcss:
+        specifier: ^0.7.1
+        version: 0.7.2(@ianvs/prettier-plugin-sort-imports@4.7.0(prettier@3.8.1))(prettier-plugin-astro@0.14.1)(prettier@3.8.1)
       turbo:
         specifier: 2.8.2
         version: 2.8.2
@@ -44,6 +53,9 @@ importers:
       '@rotate/service-dato':
         specifier: workspace:*
         version: link:../../packages/service-dato
+      '@rotate/ui':
+        specifier: workspace:*
+        version: link:../../packages/ui
       '@tailwindcss/vite':
         specifier: ^4.1.18
         version: 4.1.18(vite@6.4.1(@types/node@25.0.10)(jiti@2.6.1)(lightningcss@1.30.2)(yaml@2.8.2))
@@ -69,9 +81,24 @@ importers:
       '@ianvs/prettier-plugin-sort-imports':
         specifier: 4.7.0
         version: 4.7.0(prettier@3.8.1)
+      eslint:
+        specifier: ^9.21.0
+        version: 9.39.2(jiti@2.6.1)
+      prettier:
+        specifier: ^3.4.2
+        version: 3.8.1
+      prettier-plugin-astro:
+        specifier: ^0.14.1
+        version: 0.14.1
       prettier-plugin-packagejson:
         specifier: ^3.0.0
         version: 3.0.0(prettier@3.8.1)
+      prettier-plugin-tailwindcss:
+        specifier: ^0.7.1
+        version: 0.7.2(@ianvs/prettier-plugin-sort-imports@4.7.0(prettier@3.8.1))(prettier-plugin-astro@0.14.1)(prettier@3.8.1)
+      typescript:
+        specifier: ^5.9.3
+        version: 5.9.3
 
   packages/build-eslint-config:
     devDependencies:
@@ -144,6 +171,9 @@ importers:
       prettier-plugin-packagejson:
         specifier: ^2.5.0
         version: 2.5.22(prettier@3.8.1)
+      prettier-plugin-tailwindcss:
+        specifier: ^0.7.1
+        version: 0.7.2(@ianvs/prettier-plugin-sort-imports@4.6.2(prettier@3.8.1))(prettier-plugin-astro@0.14.1)(prettier@3.8.1)
 
   packages/build-tsconfig: {}
 
@@ -165,40 +195,6 @@ importers:
       prettier-plugin-tailwindcss:
         specifier: ^0.7.1
         version: 0.7.2(@ianvs/prettier-plugin-sort-imports@4.7.0(prettier@3.8.1))(prettier-plugin-astro@0.14.1)(prettier@3.8.1)
-
-  packages/dev-overlay:
-    dependencies:
-      '@rotate/design-system':
-        specifier: workspace:*
-        version: link:../design-system
-    devDependencies:
-      '@build/eslint-config':
-        specifier: workspace:*
-        version: link:../build-eslint-config
-      '@build/prettier-config':
-        specifier: workspace:*
-        version: link:../build-prettier-config
-      '@build/tsconfig':
-        specifier: workspace:*
-        version: link:../build-tsconfig
-      '@ianvs/prettier-plugin-sort-imports':
-        specifier: 4.7.0
-        version: 4.7.0(prettier@3.8.1)
-      astro:
-        specifier: ^5.17.1
-        version: 5.17.1(@types/node@25.0.10)(@vercel/functions@2.2.13)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.56.0)(typescript@5.9.3)(yaml@2.8.2)
-      prettier:
-        specifier: ^3.4.2
-        version: 3.8.1
-      prettier-plugin-astro:
-        specifier: ^0.14.1
-        version: 0.14.1
-      prettier-plugin-packagejson:
-        specifier: ^3.0.0
-        version: 3.0.0(prettier@3.8.1)
-      typescript:
-        specifier: ^5.9.3
-        version: 5.9.3
 
   packages/devtools:
     dependencies:
@@ -230,6 +226,9 @@ importers:
       prettier-plugin-packagejson:
         specifier: ^3.0.0
         version: 3.0.0(prettier@3.8.1)
+      prettier-plugin-tailwindcss:
+        specifier: ^0.7.1
+        version: 0.7.2(@ianvs/prettier-plugin-sort-imports@4.7.0(prettier@3.8.1))(prettier-plugin-astro@0.14.1)(prettier@3.8.1)
       typescript:
         specifier: ^5.9.3
         version: 5.9.3
@@ -264,6 +263,61 @@ importers:
       graphql:
         specifier: ^16.12.0
         version: 16.12.0
+      typescript:
+        specifier: ^5.9.3
+        version: 5.9.3
+
+  packages/ui:
+    dependencies:
+      '@rotate/design-system':
+        specifier: workspace:*
+        version: link:../design-system
+      '@rotate/utilities':
+        specifier: workspace:*
+        version: link:../utilities
+      motion:
+        specifier: ^12.38.0
+        version: 12.38.0(react@18.3.1)
+    devDependencies:
+      '@build/eslint-config':
+        specifier: workspace:*
+        version: link:../build-eslint-config
+      '@build/prettier-config':
+        specifier: workspace:*
+        version: link:../build-prettier-config
+      '@build/tsconfig':
+        specifier: workspace:*
+        version: link:../build-tsconfig
+      astro:
+        specifier: ^5.17.1
+        version: 5.17.1(@types/node@25.0.10)(@vercel/functions@2.2.13)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.56.0)(typescript@5.9.3)(yaml@2.8.2)
+      prettier:
+        specifier: ^3.4.2
+        version: 3.8.1
+      prettier-plugin-astro:
+        specifier: ^0.14.1
+        version: 0.14.1
+      prettier-plugin-tailwindcss:
+        specifier: ^0.7.1
+        version: 0.7.2(@ianvs/prettier-plugin-sort-imports@4.7.0(prettier@3.8.1))(prettier-plugin-astro@0.14.1)(prettier@3.8.1)
+      typescript:
+        specifier: ^5.9.3
+        version: 5.9.3
+
+  packages/utilities:
+    devDependencies:
+      '@build/eslint-config':
+        specifier: workspace:*
+        version: link:../build-eslint-config
+      '@build/prettier-config':
+        specifier: workspace:*
+        version: link:../build-prettier-config
+      '@build/tsconfig':
+        specifier: workspace:*
+        version: link:../build-tsconfig
+      prettier:
+        specifier: ^3.4.2
+        version: 3.8.1
       typescript:
         specifier: ^5.9.3
         version: 5.9.3
@@ -2691,6 +2745,20 @@ packages:
     resolution: {integrity: sha512-buewHzMvYL29jdeQTVILecSaZKnt/RJWjoZCF5OW60Z67/GmSLBkOFM7qh1PI3zFNtJbaZL5eQu1vLfazOwj4g==}
     engines: {node: '>=12.20.0'}
 
+  framer-motion@12.38.0:
+    resolution: {integrity: sha512-rFYkY/pigbcswl1XQSb7q424kSTQ8q6eAC+YUsSKooHQYuLdzdHjrt6uxUC+PRAO++q5IS7+TamgIw1AphxR+g==}
+    peerDependencies:
+      '@emotion/is-prop-valid': '*'
+      react: ^18.0.0 || ^19.0.0
+      react-dom: ^18.0.0 || ^19.0.0
+    peerDependenciesMeta:
+      '@emotion/is-prop-valid':
+        optional: true
+      react:
+        optional: true
+      react-dom:
+        optional: true
+
   fsevents@2.3.3:
     resolution: {integrity: sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw==}
     engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
@@ -3474,6 +3542,26 @@ packages:
   minizlib@3.1.0:
     resolution: {integrity: sha512-KZxYo1BUkWD2TVFLr0MQoM8vUUigWD3LlD83a/75BqC+4qE0Hb1Vo5v1FgcfaNXvfXzr+5EhQ6ing/CaBijTlw==}
     engines: {node: '>= 18'}
+
+  motion-dom@12.38.0:
+    resolution: {integrity: sha512-pdkHLD8QYRp8VfiNLb8xIBJis1byQ9gPT3Jnh2jqfFtAsWUA3dEepDlsWe/xMpO8McV+VdpKVcp+E+TGJEtOoA==}
+
+  motion-utils@12.36.0:
+    resolution: {integrity: sha512-eHWisygbiwVvf6PZ1vhaHCLamvkSbPIeAYxWUuL3a2PD/TROgE7FvfHWTIH4vMl798QLfMw15nRqIaRDXTlYRg==}
+
+  motion@12.38.0:
+    resolution: {integrity: sha512-uYfXzeHlgThchzwz5Te47dlv5JOUC7OB4rjJ/7XTUgtBZD8CchMN8qEJ4ZVsUmTyYA44zjV0fBwsiktRuFnn+w==}
+    peerDependencies:
+      '@emotion/is-prop-valid': '*'
+      react: ^18.0.0 || ^19.0.0
+      react-dom: ^18.0.0 || ^19.0.0
+    peerDependenciesMeta:
+      '@emotion/is-prop-valid':
+        optional: true
+      react:
+        optional: true
+      react-dom:
+        optional: true
 
   mrmime@2.0.1:
     resolution: {integrity: sha512-Y3wQdFg2Va6etvQ5I82yUhGdsKrcYox6p7FfL1LbK2J4V01F9TGlepTIhnK24t7koZibmg82KGglhA1XK5IsLQ==}
@@ -7408,6 +7496,14 @@ snapshots:
     dependencies:
       fetch-blob: 3.2.0
 
+  framer-motion@12.38.0(react@18.3.1):
+    dependencies:
+      motion-dom: 12.38.0
+      motion-utils: 12.36.0
+      tslib: 2.8.1
+    optionalDependencies:
+      react: 18.3.1
+
   fsevents@2.3.3:
     optional: true
 
@@ -8394,6 +8490,19 @@ snapshots:
     dependencies:
       minipass: 7.1.2
 
+  motion-dom@12.38.0:
+    dependencies:
+      motion-utils: 12.36.0
+
+  motion-utils@12.36.0: {}
+
+  motion@12.38.0(react@18.3.1):
+    dependencies:
+      framer-motion: 12.38.0(react@18.3.1)
+      tslib: 2.8.1
+    optionalDependencies:
+      react: 18.3.1
+
   mrmime@2.0.1: {}
 
   ms@2.1.3: {}
@@ -8656,6 +8765,13 @@ snapshots:
       sort-package-json: 3.6.0
     optionalDependencies:
       prettier: 3.8.1
+
+  prettier-plugin-tailwindcss@0.7.2(@ianvs/prettier-plugin-sort-imports@4.6.2(prettier@3.8.1))(prettier-plugin-astro@0.14.1)(prettier@3.8.1):
+    dependencies:
+      prettier: 3.8.1
+    optionalDependencies:
+      '@ianvs/prettier-plugin-sort-imports': 4.6.2(prettier@3.8.1)
+      prettier-plugin-astro: 0.14.1
 
   prettier-plugin-tailwindcss@0.7.2(@ianvs/prettier-plugin-sort-imports@4.7.0(prettier@3.8.1))(prettier-plugin-astro@0.14.1)(prettier@3.8.1):
     dependencies:

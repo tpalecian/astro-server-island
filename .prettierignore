@@ -1,10 +1,12 @@
 .changeset
+.astro/
 .bun-build
 .claude/*.json
 .cursor/rules/
 .docs/migrations/*.md
 .docs/prompts/*.md
 .windsurf/rules/
+.vercel/
 AGENT.md
 AGENTS.md
 CLAUDE.md
@@ -15,3 +17,4 @@ pnpm-lock.yaml
 vite.config.ts.timestamp*
 vitest.config.ts.timestamp*
 worker-configuration.d.ts
+**/eslint.config.cjs

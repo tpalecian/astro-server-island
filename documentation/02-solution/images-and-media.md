@@ -33,7 +33,6 @@ tags: [solution, images, media, cdn]
 - Bunny CDN fronts all media delivery.
 - Media modules rely on a shared URL helper.
 
-
 **Proposed approach:**
 
 - Use **Dato CDN + query params**, with **Bunny CDN** in front.
@@ -55,19 +54,19 @@ tags: [solution, images, media, cdn]
 
 **Informational (read before / during implementation):**
 
-| What | Path or URL |
-|------|--------------|
-| Discovery (scope, constraints) | `documentation/01-discovery/05-images-and-media.md` |
-| Dato CDN / Image API (params, base URL) | [Dato: Assets / external URL](https://www.datocms.com/docs/content-management-api/assets#external-url) |
-| Bunny CDN | Document base URL and any rewrite rules in implementation ticket. |
-| Implementation tickets | `documentation/03-implementation/03-tickets/h-images-media.md`, `fb1-media-single.md`, `fb2-media-multiple.md` |
+| What                                    | Path or URL                                                                                                    |
+| --------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| Discovery (scope, constraints)          | `documentation/01-discovery/05-images-and-media.md`                                                            |
+| Dato CDN / Image API (params, base URL) | [Dato: Assets / external URL](https://www.datocms.com/docs/content-management-api/assets#external-url)         |
+| Bunny CDN                               | Document base URL and any rewrite rules in implementation ticket.                                              |
+| Implementation tickets                  | `documentation/03-implementation/03-tickets/h-images-media.md`, `fb1-media-single.md`, `fb2-media-multiple.md` |
 
 **Planned locations (where to implement):**
 
-| What | Path |
-|------|------|
+| What                                                | Path                                                                |
+| --------------------------------------------------- | ------------------------------------------------------------------- |
 | URL helper (single place; all media modules use it) | `apps/website/src/lib/images.ts` or `apps/website/src/lib/media.ts` |
-| Media modules (blocks that render images/video) | `apps/website/src/components/modules/` |
+| Media modules (blocks that render images/video)     | `apps/website/src/components/modules/`                              |
 
 ### Code examples (contract to implement)
 
@@ -76,7 +75,10 @@ tags: [solution, images, media, cdn]
 ```ts
 // Implement in apps/website/src/lib/images.ts (or media.ts)
 // Signature — exact params from Dato CDN docs; document in implementation ticket
-export function getMediaUrl(asset: { url: string } | string, params?: { w?: number; h?: number; fit?: string }): string {
+export function getMediaUrl(
+  asset: { url: string } | string,
+  params?: { w?: number; h?: number; fit?: string }
+): string {
   const base = typeof asset === 'string' ? asset : asset.url
   // Append query params per Dato CDN; if Bunny fronts, same URL or rewritten per implementation
   return base

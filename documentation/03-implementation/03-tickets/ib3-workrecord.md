@@ -22,10 +22,10 @@ tags: [implementation, ticket, content-blocks]
 
 **Acceptance criteria:**
 
-| # | Criterion | Done |
-|---|-----------|------|
-| AC1 | Module renders without data fetching. | |
-| AC2 | Props align with legacy; design-system tokens. | |
+| #   | Criterion                                      | Done |
+| --- | ---------------------------------------------- | ---- |
+| AC1 | Module renders without data fetching.          |      |
+| AC2 | Props align with legacy; design-system tokens. |      |
 
 ---
 

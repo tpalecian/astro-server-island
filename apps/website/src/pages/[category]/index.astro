@@ -8,9 +8,8 @@ const category = Astro.params.category ?? ''
 const getterOptions = { token }
 
 const categoryData = await getCategoryBySlug(category, getterOptions)
-const cardsSlug =
-	{ work: 'works', thinking: 'thinkings', studio: 'studios' }[category] ?? category
-const cards = await getCategoryCards(cardsSlug, getterOptions)
+const cardsSlug = { work: 'works', thinking: 'thinkings', studio: 'studios' }[category] ?? category
+await getCategoryCards(cardsSlug, getterOptions)
 ---
 
 <html lang="en">

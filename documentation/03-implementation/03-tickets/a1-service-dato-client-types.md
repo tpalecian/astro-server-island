@@ -25,10 +25,10 @@ Enables all downstream CMS work without app coupling. Single place for Dato conf
 
 **Acceptance criteria:**
 
-| # | Criterion | Done |
-|---|-----------|------|
-| AC1 | Client wrapper exists and reads token from env. | |
-| AC2 | Base types compile and are exported internally. | |
+| #   | Criterion                                       | Done |
+| --- | ----------------------------------------------- | ---- |
+| AC1 | Client wrapper exists and reads token from env. |      |
+| AC2 | Base types compile and are exported internally. |      |
 
 ---
 

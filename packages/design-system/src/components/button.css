@@ -1,0 +1,131 @@
+/**
+ * Button utilities — Figma design system
+ *
+ * ActionButton (pill): https://www.figma.com/design/bvW6ZFFpRxTRrEH3sFMlF5?node-id=27-151
+ * ActionButtonIcon (circle): https://www.figma.com/design/bvW6ZFFpRxTRrEH3sFMlF5?node-id=27-232
+ * ActionButtonSection (large pill): https://www.figma.com/design/bvW6ZFFpRxTRrEH3sFMlF5?node-id=27-273
+ *
+ * Usage:
+ *   ActionButton:    btn btn-primary btn-size-200
+ *   ActionButtonIcon: btn btn-primary btn-icon btn-size-200
+ *   ActionButtonSection: btn btn-primary btn-section
+ * Optional: btn-press — press animation (web-animation-design)
+ */
+
+@utility btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: var(--spacing-75);
+	font-family: var(--font-title-style1);
+	font-size: var(--size-size-600);
+	font-weight: var(--weight-title-style1);
+	line-height: 1.2;
+	border-radius: var(--radius-radius-full);
+	transition: background-color, border-color, color, box-shadow;
+}
+
+@utility btn-primary {
+	background-color: var(--color-background-action-primary);
+	color: var(--color-content-action-primary);
+
+	&:hover {
+		background-color: var(--color-background-action-tertiary);
+	}
+	&:focus-visible {
+		box-shadow: 0 0 0 2px var(--color-border-focused-primary);
+	}
+	&:disabled {
+		background-color: var(--color-background-disabled-primary-activated);
+		color: var(--color-content-disabled-primary);
+	}
+}
+
+@utility btn-secondary {
+	background-color: transparent;
+	border: 1px solid var(--color-border-action-primary);
+	color: var(--color-content-default-primary);
+
+	&:hover {
+		border-color: var(--color-border-action-secondary);
+		color: var(--color-content-default-secondary);
+	}
+	&:focus-visible {
+		background-color: var(--color-background-default-primary);
+		border-color: var(--color-border-action-primary);
+		box-shadow: 0 0 0 2px var(--color-border-focused-primary);
+	}
+	&:disabled {
+		border-color: var(--color-border-disabled-primary);
+		color: var(--color-content-disabled-primary);
+	}
+}
+
+@utility btn-tertiary {
+	background-color: transparent;
+	color: var(--color-content-default-primary);
+
+	&:hover {
+		color: var(--color-content-default-secondary);
+	}
+	&:focus-visible {
+		background-color: var(--color-background-default-primary);
+		box-shadow: 0 0 0 2px var(--color-border-focused-primary);
+	}
+	&:disabled {
+		color: var(--color-content-disabled-primary);
+	}
+}
+
+@utility btn-size-100 {
+	height: var(--spacing-400);
+	padding-inline: var(--spacing-200);
+}
+@utility btn-size-200 {
+	height: var(--spacing-500);
+	padding-inline: var(--spacing-300);
+}
+
+@utility btn-icon {
+	padding: 0;
+	aspect-ratio: 1 / 1;
+}
+
+@utility btn-icon-padded {
+	padding: var(--spacing-200);
+	aspect-ratio: 1 / 1;
+}
+
+@utility btn-section {
+	height: var(--spacing-600);
+	padding-inline: var(--spacing-400);
+	gap: var(--spacing-200);
+}
+
+@utility btn-disabled {
+	background-color: var(--color-background-disabled-primary-activated);
+	color: var(--color-content-disabled-primary);
+	border-color: transparent;
+	pointer-events: none;
+}
+
+@utility btn-press {
+	transition:
+		transform 100ms cubic-bezier(0.25, 0.46, 0.45, 0.94),
+		background-color 150ms ease,
+		border-color 150ms ease,
+		color 150ms ease,
+		box-shadow 150ms ease;
+
+	&:active {
+		transform: scale(0.97);
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		transition: none;
+
+		&:active {
+			transform: none;
+		}
+	}
+}

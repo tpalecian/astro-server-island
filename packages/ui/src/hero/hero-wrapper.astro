@@ -1,0 +1,10 @@
+---
+import Hero from './hero.astro'
+import type { HeroProps } from './types'
+
+const props = Astro.props as HeroProps
+---
+
+<Hero {...props} />
+
+<script src="./hero-client.ts"></script>

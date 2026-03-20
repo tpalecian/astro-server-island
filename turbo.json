@@ -1,99 +1,99 @@
 {
-  "$schema": "https://turbo.build/schema.json",
-  "globalDependencies": ["**/.dev.vars"],
-  "globalEnv": ["CI", "GITHUB_ACTIONS", "VITEST"],
-  "globalPassThroughEnv": ["WRANGLER_LOG", "FORCE_COLOR"],
-  "remoteCache": {
-    "enabled": false,
-    "signature": true
-  },
-  "ui": "tui",
-  "tasks": {
-    "topo": {
-      "dependsOn": ["^topo"]
-    },
-    "build": {
-      "dependsOn": ["^build", "topo"],
-      "outputs": ["dist/**", ".wrangler/deploy/config.json"],
-      "outputLogs": "new-only"
-    },
-    "dev": {
-      "cache": false,
-      "dependsOn": ["^build", "topo"],
-      "interactive": true,
-      "persistent": true,
-      "outputLogs": "new-only"
-    },
-    "dev:local": {
-      "cache": false,
-      "dependsOn": ["^build", "topo"],
-      "interactive": true,
-      "persistent": true,
-      "outputLogs": "new-only"
-    },
-    "preview": {
-      "cache": false,
-      "dependsOn": ["build", "topo"],
-      "interactive": true,
-      "persistent": true,
-      "outputLogs": "new-only"
-    },
-    "deploy": {
-      "cache": false,
-      "dependsOn": ["build", "topo"],
-      "env": ["CLOUDFLARE_ACCOUNT_ID", "CLOUDFLARE_API_TOKEN"],
-      "outputLogs": "new-only"
-    },
-    "deploy:preview": {
-      "cache": false,
-      "dependsOn": ["build", "topo"],
-      "env": ["CLOUDFLARE_ACCOUNT_ID", "CLOUDFLARE_API_TOKEN", "BRANCH_NAME"],
-      "outputLogs": "new-only"
-    },
-    "check": {
-      "dependsOn": ["check:types", "check:lint", "topo"],
-      "outputLogs": "new-only"
-    },
-    "//#test:ci": {
-      "dependsOn": ["^build"],
-      "outputLogs": "new-only"
-    },
-    "test:ci": {
-      "dependsOn": ["build", "topo"],
-      "outputLogs": "new-only"
-    },
-    "check:ci": {
-      "dependsOn": [
-        "//#check:format",
-        "//#check:deps",
-        "check:types",
-        "//#check:lint:all",
-        "//#test:ci",
-        "test:ci",
-        "topo"
-      ],
-      "outputLogs": "new-only"
-    },
-    "//#check:deps": {
-      "outputLogs": "new-only"
-    },
-    "check:types": {
-      "dependsOn": ["build", "topo"],
-      "outputLogs": "new-only"
-    },
-    "check:lint": {
-      "dependsOn": ["build", "topo"],
-      "outputLogs": "new-only",
-      "env": ["FIX_ESLINT"]
-    },
-    "//#check:lint:all": {
-      "outputLogs": "new-only",
-      "outputs": ["node_modules/.cache/.eslintcache"],
-      "env": ["FIX_ESLINT"]
-    },
-    "//#check:format": {
-      "dependsOn": [],
-      "outputLogs": "new-only"
-    }
-  }
+	"$schema": "https://turbo.build/schema.json",
+	"globalDependencies": ["**/.dev.vars"],
+	"globalEnv": ["CI", "GITHUB_ACTIONS", "VITEST", "DATOCMS_API_KEY"],
+	"globalPassThroughEnv": ["WRANGLER_LOG", "FORCE_COLOR"],
+	"remoteCache": {
+		"enabled": false,
+		"signature": true
+	},
+	"ui": "tui",
+	"tasks": {
+		"topo": {
+			"dependsOn": ["^topo"]
+		},
+		"build": {
+			"dependsOn": ["^build", "topo"],
+			"outputs": ["dist/**", ".wrangler/deploy/config.json"],
+			"outputLogs": "new-only"
+		},
+		"dev": {
+			"cache": false,
+			"dependsOn": ["^build", "topo"],
+			"interactive": true,
+			"persistent": true,
+			"outputLogs": "new-only"
+		},
+		"dev:local": {
+			"cache": false,
+			"dependsOn": ["^build", "topo"],
+			"interactive": true,
+			"persistent": true,
+			"outputLogs": "new-only"
+		},
+		"preview": {
+			"cache": false,
+			"dependsOn": ["build", "topo"],
+			"interactive": true,
+			"persistent": true,
+			"outputLogs": "new-only"
+		},
+		"deploy": {
+			"cache": false,
+			"dependsOn": ["build", "topo"],
+			"env": ["CLOUDFLARE_ACCOUNT_ID", "CLOUDFLARE_API_TOKEN"],
+			"outputLogs": "new-only"
+		},
+		"deploy:preview": {
+			"cache": false,
+			"dependsOn": ["build", "topo"],
+			"env": ["CLOUDFLARE_ACCOUNT_ID", "CLOUDFLARE_API_TOKEN", "BRANCH_NAME"],
+			"outputLogs": "new-only"
+		},
+		"check": {
+			"dependsOn": ["check:types", "check:lint", "topo"],
+			"outputLogs": "new-only"
+		},
+		"//#test:ci": {
+			"dependsOn": ["^build"],
+			"outputLogs": "new-only"
+		},
+		"test:ci": {
+			"dependsOn": ["build", "topo"],
+			"outputLogs": "new-only"
+		},
+		"check:ci": {
+			"dependsOn": [
+				"//#check:format",
+				"//#check:deps",
+				"check:types",
+				"//#check:lint:all",
+				"//#test:ci",
+				"test:ci",
+				"topo"
+			],
+			"outputLogs": "new-only"
+		},
+		"//#check:deps": {
+			"outputLogs": "new-only"
+		},
+		"check:types": {
+			"dependsOn": ["build", "topo"],
+			"outputLogs": "new-only"
+		},
+		"check:lint": {
+			"dependsOn": ["build", "topo"],
+			"outputLogs": "new-only",
+			"env": ["FIX_ESLINT"]
+		},
+		"//#check:lint:all": {
+			"outputLogs": "new-only",
+			"outputs": ["node_modules/.cache/.eslintcache"],
+			"env": ["FIX_ESLINT"]
+		},
+		"//#check:format": {
+			"dependsOn": [],
+			"outputLogs": "new-only"
+		}
+	}
 }

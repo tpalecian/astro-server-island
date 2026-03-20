@@ -14,7 +14,7 @@ tags: [implementation, ticket, content-blocks]
 
 ## Description, Value & ACs
 
-**Scope:** Edit `apps/website/src/components/modules/` (StructuredText inline renderer). Implement **TagRecord** inline block (_modelApiKey). Renders inside structured text. Props only; design-system. No fetch. Inline block props from structured text; shape from GQL onTagRecord. Wire into the structured-text renderer.
+**Scope:** Edit `apps/website/src/components/modules/` (StructuredText inline renderer). Implement **TagRecord** inline block (\_modelApiKey). Renders inside structured text. Props only; design-system. No fetch. Inline block props from structured text; shape from GQL onTagRecord. Wire into the structured-text renderer.
 
 **Outcome:** TagRecord renders inside structured text with props only.
 
@@ -22,10 +22,10 @@ tags: [implementation, ticket, content-blocks]
 
 **Acceptance criteria:**
 
-| # | Criterion | Done |
-|---|-----------|------|
-| AC1 | TagRecord module renders without data fetching. | |
-| AC2 | Props align with legacy; design-system tokens. | |
+| #   | Criterion                                       | Done |
+| --- | ----------------------------------------------- | ---- |
+| AC1 | TagRecord module renders without data fetching. |      |
+| AC2 | Props align with legacy; design-system tokens.  |      |
 
 ---
 

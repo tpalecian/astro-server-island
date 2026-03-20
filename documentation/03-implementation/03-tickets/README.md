@@ -14,23 +14,23 @@ There are **29 tickets**. Each ticket is **self-contained** for use in Linear (o
 
 ## Ticket list (29)
 
-| ID | Ticket |
-|----|--------|
-| A1 | `a1-service-dato-client-types.md` |
-| A2 | `a2-service-dato-gql-fragments.md` |
-| A3 | `a3-service-dato-models.md` (superseded) |
-| A4 | `a4-service-dato-getters-exports.md` |
-| B | `b-app-container.md` |
-| E | `e-dynamic-routes.md` |
-| F1 | `f1-content-blocks-core-modules.md` |
-| F2 | `f2-content-blocks-structured-text.md` |
-| F3 | `f3-content-island-below-fold.md` |
-| FB1–FB7 | `fb1-media-single.md` … `fb7-stats-block.md` |
-| G1–G4 | `g1-seo-meta-jsonld.md` … `g4-seo-errors-robots.md` |
-| H | `h-images-media.md` |
-| I | `i-tracking-cookie-banner.md` |
-| IB1–IB6 | `ib1-tagrecord.md` … `ib6-megaheadingrecord.md` |
-| J | `j-deployment-qa.md` |
+| ID      | Ticket                                              |
+| ------- | --------------------------------------------------- |
+| A1      | `a1-service-dato-client-types.md`                   |
+| A2      | `a2-service-dato-gql-fragments.md`                  |
+| A3      | `a3-service-dato-models.md` (superseded)            |
+| A4      | `a4-service-dato-getters-exports.md`                |
+| B       | `b-app-container.md`                                |
+| E       | `e-dynamic-routes.md`                               |
+| F1      | `f1-content-blocks-core-modules.md`                 |
+| F2      | `f2-content-blocks-structured-text.md`              |
+| F3      | `f3-content-island-below-fold.md`                   |
+| FB1–FB7 | `fb1-media-single.md` … `fb7-stats-block.md`        |
+| G1–G4   | `g1-seo-meta-jsonld.md` … `g4-seo-errors-robots.md` |
+| H       | `h-images-media.md`                                 |
+| I       | `i-tracking-cookie-banner.md`                       |
+| IB1–IB6 | `ib1-tagrecord.md` … `ib6-megaheadingrecord.md`     |
+| J       | `j-deployment-qa.md`                                |
 
 ## Archive
 

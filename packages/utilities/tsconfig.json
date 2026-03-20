@@ -1,0 +1,13 @@
+{
+	"extends": "@build/tsconfig/base.json",
+	"compilerOptions": {
+		"baseUrl": ".",
+		"module": "ESNext",
+		"moduleResolution": "bundler",
+		"paths": {
+			"@rotate/utilities/*": ["./src/*"]
+		}
+	},
+	"include": ["src"],
+	"exclude": ["node_modules", "dist"]
+}

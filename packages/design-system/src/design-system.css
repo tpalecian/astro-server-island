@@ -1,7 +1,8 @@
 @import 'tailwindcss';
 
-@source "../../../apps/website/src/**/*.{astro}";
-@source "../../devtools/src/**/*.{astro}";
+@source '../../../apps/website/src/**/*.{astro}';
+@source '../../devtools/src/**/*.{astro}';
+@source '../../ui/src/**/*.{astro}';
 
 @import './fonts.css';
 @import './base.css';
@@ -15,3 +16,7 @@
 @import './radius.css';
 
 @import './text.css';
+@import './motion.css';
+
+@import './components/button.css';
+@import './components/link.css';

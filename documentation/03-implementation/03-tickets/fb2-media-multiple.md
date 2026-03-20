@@ -14,7 +14,7 @@ tags: [implementation, ticket, content-blocks]
 
 ## Description, Value & ACs
 
-**Scope:** Edit `apps/website/src/components/modules/`. Implement **media multiple/carousel** block (_modelApiKey). Component: props only; multiple assets. Use getMediaUrl (images/media helper) for images. No data fetching. Design-system tokens. Wire into block mapping by _modelApiKey.
+**Scope:** Edit `apps/website/src/components/modules/`. Implement **media multiple/carousel** block (\_modelApiKey). Component: props only; multiple assets. Use getMediaUrl (images/media helper) for images. No data fetching. Design-system tokens. Wire into block mapping by \_modelApiKey.
 
 **Outcome:** Block renders with props only; matches design.
 
@@ -22,10 +22,10 @@ tags: [implementation, ticket, content-blocks]
 
 **Acceptance criteria:**
 
-| # | Criterion | Done |
-|---|-----------|------|
-| AC1 | Module renders without data fetching. | |
-| AC2 | Props align with legacy; design-system tokens. | |
+| #   | Criterion                                      | Done |
+| --- | ---------------------------------------------- | ---- |
+| AC1 | Module renders without data fetching.          |      |
+| AC2 | Props align with legacy; design-system tokens. |      |
 
 ---
 
@@ -58,4 +58,4 @@ Render with mock data; compare to legacy.
 
 ## Notes
 
-Steps: (1) Create module for media multiple/carousel. (2) Map props to legacy behaviour. (3) Wire into block mapping by _modelApiKey.
+Steps: (1) Create module for media multiple/carousel. (2) Map props to legacy behaviour. (3) Wire into block mapping by \_modelApiKey.

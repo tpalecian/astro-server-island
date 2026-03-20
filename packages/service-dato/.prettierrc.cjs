@@ -1,3 +1,3 @@
-const config = require('@build/prettier-config/library');
+const config = require('@build/prettier-config/library')
 
-module.exports = config;
+module.exports = config

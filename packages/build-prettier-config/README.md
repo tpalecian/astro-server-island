@@ -18,6 +18,7 @@ Shared Prettier configurations for the monorepo with variants optimized for diff
 Optimized for Astro web applications.
 
 **Includes:**
+
 - `prettier-plugin-astro` - Format `.astro` component files
 - `@ianvs/prettier-plugin-sort-imports` - Import sorting and organization
 - `prettier-plugin-packagejson` - Format `package.json` files
@@ -30,6 +31,7 @@ Optimized for Astro web applications.
 Minimal configuration for TypeScript/JavaScript libraries and packages.
 
 **Includes:**
+
 - `@ianvs/prettier-plugin-sort-imports` - Import sorting and organization
 - Customized import sorting for libraries
 
@@ -40,6 +42,7 @@ Minimal configuration for TypeScript/JavaScript libraries and packages.
 Tailored for backend services, APIs, and Node.js workers.
 
 **Includes:**
+
 - `@ianvs/prettier-plugin-sort-imports` - Import sorting and organization
 - `prettier-plugin-packagejson` - Format `package.json` files
 - Customized import sorting for backend services
@@ -59,25 +62,25 @@ Create a `.prettierrc.cjs` file in your project root:
 **For Astro:**
 
 ```javascript
-const config = require('@build/prettier-config/astro');
+const config = require('@build/prettier-config/astro')
 
-module.exports = config;
+module.exports = config
 ```
 
 **For Libraries:**
 
 ```javascript
-const config = require('@build/prettier-config/library');
+const config = require('@build/prettier-config/library')
 
-module.exports = config;
+module.exports = config
 ```
 
 **For Backend:**
 
 ```javascript
-const config = require('@build/prettier-config/backend');
+const config = require('@build/prettier-config/backend')
 
-module.exports = config;
+module.exports = config
 ```
 
 ### Running Prettier
@@ -106,29 +109,39 @@ All variants inherit these core formatting rules:
 
 ### Import Organization (Customizable Per Variant)
 
-Each variant defines its own import sorting order. The default pattern used across all variants is:
+**Astro** and **library** variants share a workspace tail from `src/import-order-workspace.cjs`:
 
-1. **Builtin Modules** - Node.js built-in modules (`fs`, `path`, etc.)
-2. **Third-Party Modules** - npm packages
-3. **Workspace Packages** - Packages prefixed with `@repo`
-4. **Path Aliases** - Configured aliases (`~/`, `@/`)
-5. **Local Imports** - Relative imports (`../`, `./`)
+1. **Builtin modules** — Node built-ins
+2. **Astro variant only:** `@astrojs/*`, then `astro`
+3. **Third-party** — npm packages (`<THIRD_PARTY_MODULES>`)
+4. **`@rotate/*`** — separated sub-blocks (blank line between each):
+   - `@rotate/cms` — CMS / getters
+   - `@rotate/design-system/*` — design tokens / CSS entry paths
+   - `@rotate/ui/*` — UI components
+   - `@rotate/devtools/*` — dev-only
+   - `@rotate/*` — any other workspace scope
+5. **`@/*` (app alias)** — separated sub-blocks:
+   - `@/lib/*` — shared helpers
+   - `@/layouts/*` — layouts
+   - `@/components/*` — containers / local composition
+   - `@/*` — everything else (e.g. pages)
+6. **Relative** — `./` and `../`
 
-Type imports follow the same pattern without blank line separators.
+Empty entries in `importOrder` produce blank lines between those groups. **`@build/eslint-config`** uses matching `import/order` pathGroups and `distinctGroup: true` so ESLint agrees with Prettier on grouping.
 
 **Customizing Import Order:**
 
 To override import sorting in a specific variant, you can extend the config:
 
 ```javascript
-const baseConfig = require('@build/prettier-config/library');
+const baseConfig = require('@build/prettier-config/library')
 
 module.exports = {
   ...baseConfig,
   importOrder: [
     // Your custom import order here
   ],
-};
+}
 ```
 
 ### File-Specific Overrides (All Variants)
@@ -143,15 +156,15 @@ module.exports = {
 To customize a variant for your project needs:
 
 ```javascript
-const baseConfig = require('@build/prettier-config/library');
+const baseConfig = require('@build/prettier-config/library')
 
 const customConfig = {
   ...baseConfig,
   printWidth: 120,
   // Override with your custom rules
-};
+}
 
-module.exports = customConfig;
+module.exports = customConfig
 ```
 
 ## Plugin Requirements
@@ -159,16 +172,19 @@ module.exports = customConfig;
 Each variant requires certain plugins to function:
 
 ### Astro Variant
+
 - `prettier` (^3.0.0) - Required
 - `prettier-plugin-astro` (^0.14.0) - Required
 - `@ianvs/prettier-plugin-sort-imports` (^4.6.0) - Required
 - `prettier-plugin-packagejson` (^2.4.0) - Optional
 
 ### Library Variant
+
 - `prettier` (^3.0.0) - Required
 - `@ianvs/prettier-plugin-sort-imports` (^4.6.0) - Required
 
 ### Backend Variant
+
 - `prettier` (^3.0.0) - Required
 - `@ianvs/prettier-plugin-sort-imports` (^4.6.0) - Required
 - `prettier-plugin-packagejson` (^2.4.0) - Optional
@@ -192,10 +208,9 @@ This allows each project type to optimize import organization for its specific n
 
 ### How does this work with ESLint?
 
-This prettier config is completely independent of `@build/eslint-config`. ESLint handles code quality/linting, while Prettier handles formatting. The ESLint config includes `eslint-config-prettier` which disables conflicting rules, so they work together seamlessly.
+Prettier owns final formatting (including import order via `@ianvs/prettier-plugin-sort-imports`). `@build/eslint-config` mirrors the same `@rotate/*` and `@/*` path group order in `import/order` so lint and format stay aligned; `eslint-config-prettier` still disables stylistic conflicts.
 
 ## Related Packages
 
 - `@build/eslint-config` - Shared ESLint configuration
 - `@build/tsconfig` - Shared TypeScript configuration
-

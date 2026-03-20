@@ -22,12 +22,12 @@ Discovery docs contain **why** (outcome & business value), **what/where** (conte
 
 Use this index to find discovery by feature.
 
-| Feature | Document |
-|---|---|
-| CMS and data | `01-discovery/01-cms-and-data.md` |
+| Feature                      | Document                                          |
+| ---------------------------- | ------------------------------------------------- |
+| CMS and data                 | `01-discovery/01-cms-and-data.md`                 |
 | Content blocks and rendering | `01-discovery/02-content-blocks-and-rendering.md` |
-| Tracking and consent | `01-discovery/03-tracking-and-consent.md` |
-| SEO and routing | `01-discovery/04-seo-and-routing.md` |
-| Images and media | `01-discovery/05-images-and-media.md` |
-| Deployment and QA | `01-discovery/06-deployment-and-qa.md` |
-| Coverage checklist | `01-discovery/07-coverage-checklist.md` |
+| Tracking and consent         | `01-discovery/03-tracking-and-consent.md`         |
+| SEO and routing              | `01-discovery/04-seo-and-routing.md`              |
+| Images and media             | `01-discovery/05-images-and-media.md`             |
+| Deployment and QA            | `01-discovery/06-deployment-and-qa.md`            |
+| Coverage checklist           | `01-discovery/07-coverage-checklist.md`           |

@@ -12,7 +12,7 @@ const baseRules = {
 	singleQuote: true,
 	printWidth: 100,
 	endOfLine: 'lf',
-};
+}
 
 const baseOverrides = [
 	{
@@ -39,9 +39,9 @@ const baseOverrides = [
 			alignEntries: true,
 		},
 	},
-];
+]
 
 module.exports = {
 	baseRules,
 	baseOverrides,
-};
+}

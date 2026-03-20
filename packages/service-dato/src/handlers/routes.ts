@@ -1,6 +1,5 @@
 import { executeQuery } from '../client'
 import { routesQuery } from '../gql'
-
 import type { GetterOptions } from '../types'
 import type { RoutesQuery } from '../types-dato'
 

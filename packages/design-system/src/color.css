@@ -14,7 +14,7 @@
 		var(--color-orange-flame-500),
 		var(--color-orange-flame-500)
 	);
-	--color-background-action-primary: light-dark(var(--color-grey-900), var(--color-white));
+	--color-background-action-primary: light-dark(var(--color-grey-900), var(--color-core-white));
 	--color-background-action-secondary: light-dark(var(--color-grey-800), var(--color-grey-600));
 	--color-background-action-tertiary: light-dark(var(--color-grey-600), var(--color-grey-400));
 
@@ -25,9 +25,18 @@
 
 	--color-background-default-primary: light-dark(var(--color-grey-200), var(--color-grey-900));
 	--color-background-default-primary-dark: light-dark(var(--color-grey-300), var(--color-grey-700));
-	--color-background-default-primary-darkest: light-dark(var(--color-grey-400),var(--color-grey-600));
-	--color-background-default-primary-light: light-dark(var(--color-grey-100),var(--color-grey-800));
-	--color-background-default-primary-lightest: light-dark(var(--color-core-white), var(--color-core-black));
+	--color-background-default-primary-darkest: light-dark(
+		var(--color-grey-400),
+		var(--color-grey-600)
+	);
+	--color-background-default-primary-light: light-dark(
+		var(--color-grey-100),
+		var(--color-grey-800)
+	);
+	--color-background-default-primary-lightest: light-dark(
+		var(--color-core-white),
+		var(--color-core-black)
+	);
 
 	--color-background-disabled-primary: light-dark(var(--color-grey-400), var(--color-grey-500));
 	--color-background-disabled-primary-activated: light-dark(

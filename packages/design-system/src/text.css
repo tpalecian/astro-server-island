@@ -212,6 +212,14 @@
 	letter-spacing: var(--letter-spacing-title-style1-1000);
 }
 
+@utility title-style1-hero-desktop {
+	font-family: var(--font-title-style1);
+	font-size: var(--size-size-1400);
+	font-weight: var(--weight-title-style1);
+	line-height: 1.1;
+	letter-spacing: var(--letter-spacing-title-style1-1000);
+}
+
 @utility title-style2-100 {
 	font-family: var(--font-title-style2);
 	font-size: var(--size-size-300);

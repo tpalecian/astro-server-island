@@ -1,6 +1,5 @@
 import { executeQuery } from '../client'
 import { infoQuery } from '../gql'
-
 import type { GetterOptions } from '../types'
 import type { InfoQuery } from '../types-dato'
 

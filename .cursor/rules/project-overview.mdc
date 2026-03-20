@@ -7,13 +7,16 @@ alwaysApply: true
 
 **Monorepo:** pnpm workspaces + Turbo. Root `package.json` has `pnpm codegen` for Dato GraphQL codegen.
 
+**Rules index:** `.cursor/rules/README.md` lists rule files; **`AGENTS.md`** (repo root) is the short agent guide.
+
 ## Package layout
 
 | Package | Purpose |
 |---------|---------|
-| `apps/website` | Astro app (SSR via Vercel). Layout, containers, modules, logic binding only. Core UI imported from `packages/ui`. Follows behaviour-escalation. |
+| `apps/website` | Astro app (SSR via Vercel). Layout, `*-container` components, logic binding only. Core UI imported from `packages/ui`. Follows `website-behaviour.mdc`. |
 | `packages/design-system` | Tailwind v4, CSS variables, typography, colors, grid, spacing. Import via `@rotate/design-system/design-system.css`. |
-| `packages/ui` | All core UI components (buttons, inputs, NavLink, cards, etc.). Grouped by domain. No app logic, no CMS. Website imports from here. |
+| `packages/ui` | All core UI components (Header, Footer, Button, NavLink, etc.). Grouped by domain. No app logic, no CMS. Website imports from here. |
+| `packages/utilities` | Shared, framework-agnostic helpers. UI-related helpers live under `src/ui/` (re-exported from `src/ui/index.ts`). Import **`@rotate/utilities/ui`**. Other paths use `@rotate/utilities/…` as needed. |
 | `packages/service-dato` | CMS layer. All Dato logic. App imports via `@rotate/cms` alias only. |
 | `packages/devtools` | Dev-only components (GridViewer, BreakpointsViewer). Used in layouts. |
 | `packages/build-*` | Shared configs (eslint, prettier, tsconfig). |
@@ -30,22 +33,39 @@ alwaysApply: true
 
 ## Key conventions
 
-- **CMS:** All Dato in `packages/service-dato`. Getters in `src/handlers/`. GQL in `src/gql/*.gql.ts`. Types in `types-dato.ts` (codegen).
-- **App alias:** `@rotate/cms` → `packages/service-dato/src/index.ts`.
+- **File names:** Lowercase, kebab-case (e.g. `my-component.astro`, `base-layout.astro`).
+- **Website data binding:** Use **`*-container`** folders under `apps/website/src/components/` (see `website-architecture.mdc`). All Dato access via `@rotate/cms` only; CMS implementation lives in `packages/service-dato` (`service-dato.mdc`).
 - **Design system:** Tailwind v4 with `@theme` and `@utility`. Uses `@source` to scan `apps/website` and `devtools` for class usage.
-- **Layout:** `BaseLayout.astro` in website — binds composition, imports design-system and devtools. Layout stays in website; core UI in `packages/ui`.
+
+## Website path aliases (`apps/website`)
+
+Defined in `apps/website/tsconfig.json` (`paths`) and `apps/website/astro.config.mjs` (Vite `resolve.alias`). Keep both in sync.
+
+| Alias | Resolves to |
+|-------|-------------|
+| `@/*` | `apps/website/src/*` (e.g. `@/lib/…` for shared site helpers) |
+| `@rotate/cms` | `packages/service-dato/src/index.ts` (public API only; all Dato code lives in that package) |
+| `@rotate/design-system/*` | `packages/design-system/src/*` |
+| `@rotate/devtools/*` | `packages/devtools/src/*` |
+| `@rotate/ui/*` | `packages/ui/src/*` |
+| `@rotate/utilities/*` | `packages/utilities/src/*` |
+
+- **Layout:** `base-layout.astro` in website — binds composition, imports design-system and devtools. Layout stays in website; core UI in `packages/ui`.
 
 ## packages/ui vs apps/website
 
 | Layer | Location | Responsibility |
 |-------|----------|----------------|
-| Core UI | `packages/ui` | Buttons, inputs, NavLink, cards, etc. Grouped by domain. No app logic, no CMS. |
-| Layout, containers, modules | `apps/website` | Logic binding only. Layout binds composition; containers fetch; modules compose from packages/ui. Follows behaviour-escalation. |
+| Core UI | `packages/ui` | Buttons, inputs, NavLink, cards, etc. Grouped by domain. No app logic, no CMS. Optional minimal JS per `website-behaviour.mdc`. |
+| Layout, containers, binding | `apps/website` | Layout binds composition; **`*-container`** folders fetch and pass props to `packages/ui` (and optional wrappers). Follows `website-architecture.mdc` and `website-behaviour.mdc`. |
 
 ## Related rules
 
-- `.cursor/rules/architecture.mdc` — Strict rules for website Astro (containers, modules, base components).
-- `.cursor/rules/behaviour-escalation.mdc` — Server first, then islands, minimal JS, Alpine last.
-- `.cursor/rules/components.mdc` — packages/ui vs website; design system; Figma.
-- `.cursor/rules/functional-style.mdc` — Pure functions, immutability, composition (TypeScript and Astro).
-- `.cursor/rules/planning.mdc` — Documentation and planning structure (SEL format).
+- `website-architecture.mdc` — Website Astro: containers (`*-container`), wrappers, core UI boundaries.
+- `website-behaviour.mdc` — Server first, then islands, minimal JS, Alpine last.
+- `components.mdc` — packages/ui vs website; Figma; how to add scripts.
+- `design-system.mdc` — Tokens, breakpoints, typography, Tailwind class grouping.
+- `functional-style.mdc` — Pure functions, immutability, composition.
+- `service-dato.mdc` — Dato getters, GQL, codegen.
+- `repo-tooling.mdc` — pnpm, Turbo, format, lint.
+- `planning.mdc` — Documentation and planning structure (SEL format).

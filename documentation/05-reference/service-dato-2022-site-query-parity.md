@@ -17,24 +17,25 @@ Reference document for validating that `packages/service-dato` GQL queries match
 
 ## 1. Query mapping
 
-| 2022-site | service-dato | Status |
-|-----------|---------------|--------|
-| `gql/pages/home.gql.js` | `gql/home.gql.ts` | ✅ Parity |
-| `gql/pages/info.gql.js` | `gql/info.gql.ts` | ✅ Parity |
-| `gql/pages/work.gql.js` | `gql/work-by-slug.gql.ts` | ✅ Parity |
-| `gql/pages/thinking.gql.js` | `gql/thinking-by-slug.gql.ts` | ✅ Parity |
-| `gql/pages/studio.gql.js` | `gql/studio-by-slug.gql.ts` | ✅ Parity |
-| `gql/routes.gql.js` | `gql/routes.gql.ts` | ✅ Parity |
-| `gql/globals.gql.js` | `gql/globals.gql.ts` | ✅ Parity |
-| `gql/navigation/header.gql.js` | `gql/navigation-header.gql.ts` | ✅ Parity |
-| `gql/navigation/footer.gql.js` | `gql/navigation-footer.gql.ts` | ✅ Parity |
-| `gql/categories.gql.js` | `gql/all-categories.gql.ts`, `gql/category-by-slug.gql.ts` | ✅ Parity |
-| `gql/categoryCards.gql.js` | `gql/all-works-cards.gql.ts`, `gql/all-thinkings-cards.gql.ts`, `gql/all-studios-cards.gql.ts`, `gql/homepage-card-slider.gql.ts` | ✅ Parity |
-| `services/redirects.js` (query) | `gql/redirects.gql.ts` | ✅ Parity |
+| 2022-site                       | service-dato                                                                                                                      | Status    |
+| ------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | --------- |
+| `gql/pages/home.gql.js`         | `gql/home.gql.ts`                                                                                                                 | ✅ Parity |
+| `gql/pages/info.gql.js`         | `gql/info.gql.ts`                                                                                                                 | ✅ Parity |
+| `gql/pages/work.gql.js`         | `gql/work-by-slug.gql.ts`                                                                                                         | ✅ Parity |
+| `gql/pages/thinking.gql.js`     | `gql/thinking-by-slug.gql.ts`                                                                                                     | ✅ Parity |
+| `gql/pages/studio.gql.js`       | `gql/studio-by-slug.gql.ts`                                                                                                       | ✅ Parity |
+| `gql/routes.gql.js`             | `gql/routes.gql.ts`                                                                                                               | ✅ Parity |
+| `gql/globals.gql.js`            | `gql/globals.gql.ts`                                                                                                              | ✅ Parity |
+| `gql/navigation/header.gql.js`  | `gql/navigation-header.gql.ts`                                                                                                    | ✅ Parity |
+| `gql/navigation/footer.gql.js`  | `gql/navigation-footer.gql.ts`                                                                                                    | ✅ Parity |
+| `gql/categories.gql.js`         | `gql/all-categories.gql.ts`, `gql/category-by-slug.gql.ts`                                                                        | ✅ Parity |
+| `gql/categoryCards.gql.js`      | `gql/all-works-cards.gql.ts`, `gql/all-thinkings-cards.gql.ts`, `gql/all-studios-cards.gql.ts`, `gql/homepage-card-slider.gql.ts` | ✅ Parity |
+| `services/redirects.js` (query) | `gql/redirects.gql.ts`                                                                                                            | ✅ Parity |
 
 ## 2. Field parity (per query)
 
 ### Homepage
+
 - slug, title, backgroundColor, heroWords, heroVideo, heroCursor
 - heroVideoLink (text, url, record)
 - heroLink (structured text: links Work/Thinking/Studio, value)
@@ -42,14 +43,16 @@ Reference document for validating that `packages/service-dato` GQL queries match
 - content (all block types: Quote, TextHalf, TextLead, MediaSingle, MediaMultiple, CardSlider, Stats)
 
 ### Info page
+
 - title, slug
 - seo (title, description, image), seoMetaTags
 - heroTitle (links OnEmojiRecord, value)
 - content (all block types)
 
 ### Work / Thinking / Studio pages
-- type (_modelApiKey), title, slug
-- publishDate (Work/Studio: _publishedAt; Thinking: publishDate)
+
+- type (\_modelApiKey), title, slug
+- publishDate (Work/Studio: \_publishedAt; Thinking: publishDate)
 - introduction (structured text with emoji) — Work, Studio only
 - client { name, site } — Work, Studio only
 - author { name } — Thinking only
@@ -60,19 +63,20 @@ Reference document for validating that `packages/service-dato` GQL queries match
 - content (all block types)
 
 ### Category by slug
+
 - id, slug, filterText
 - seo (title, description, image), seoMetaTags
 
 ## 3. Fragment parity
 
-| 2022-site | service-dato |
-|-----------|---------------|
-| `meta/type`, `meta/media`, `meta/seo` | `TypeFragment`, `MediaFragment`, `SeoHomepageFragment` |
-| `link.gql` | Inlined in queries (text, url, record) |
-| `models/card`, `models/tag` | `CardFragment`, `TagFragment` |
-| `inline-blocks` (onTagRecord, onEmojiRecord, etc.) | `OnTagRecordFragment`, `OnEmojiRecordFragment`, etc. |
-| `blocks` (onQuoteRecord, onTextHalfRecord, etc.) | `OnQuoteRecordFragment`, `OnTextHalfRecordFragment`, etc. |
-| `structured-text.gql` (structuredTextAll, structuredTextEmoji, structuredTextLinks) | Inlined in queries (links + value) |
+| 2022-site                                                                           | service-dato                                              |
+| ----------------------------------------------------------------------------------- | --------------------------------------------------------- |
+| `meta/type`, `meta/media`, `meta/seo`                                               | `TypeFragment`, `MediaFragment`, `SeoHomepageFragment`    |
+| `link.gql`                                                                          | Inlined in queries (text, url, record)                    |
+| `models/card`, `models/tag`                                                         | `CardFragment`, `TagFragment`                             |
+| `inline-blocks` (onTagRecord, onEmojiRecord, etc.)                                  | `OnTagRecordFragment`, `OnEmojiRecordFragment`, etc.      |
+| `blocks` (onQuoteRecord, onTextHalfRecord, etc.)                                    | `OnQuoteRecordFragment`, `OnTextHalfRecordFragment`, etc. |
+| `structured-text.gql` (structuredTextAll, structuredTextEmoji, structuredTextLinks) | Inlined in queries (links + value)                        |
 
 ## 4. Validation
 

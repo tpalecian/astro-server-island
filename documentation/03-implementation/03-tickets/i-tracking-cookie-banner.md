@@ -14,7 +14,7 @@ tags: [implementation, ticket, tracking]
 
 ## Description, Value & ACs
 
-**Scope:** Edit `apps/website/src/layouts/` (script gating); `apps/website/src/components/` (CookieBanner); `apps/website/.env.example`. **CookieBanner:** Component (or client island). Heading, body, policy link, Accept button. Cookie name e.g. `cookies`; on Accept set consent cookie/storage. **Gating:** Layout loads tracking scripts (HubSpot, gtag, Meta, LinkedIn, Lead Feeder, Apollo) only when consent given AND ENABLE_TRACKING=true. **Env:** ENABLE_TRACKING, PUBLIC_* for each vendor in .env.example. No script runs before consent. Out of scope: new vendors beyond discovery list; server-side tracking.
+**Scope:** Edit `apps/website/src/layouts/` (script gating); `apps/website/src/components/` (CookieBanner); `apps/website/.env.example`. **CookieBanner:** Component (or client island). Heading, body, policy link, Accept button. Cookie name e.g. `cookies`; on Accept set consent cookie/storage. **Gating:** Layout loads tracking scripts (HubSpot, gtag, Meta, LinkedIn, Lead Feeder, Apollo) only when consent given AND ENABLE*TRACKING=true. **Env:** ENABLE_TRACKING, PUBLIC*\* for each vendor in .env.example. No script runs before consent. Out of scope: new vendors beyond discovery list; server-side tracking.
 
 **Outcome:** CookieBanner renders; consent gates all scripts; .env.example complete; scripts load only after consent and when enabled.
 
@@ -22,12 +22,12 @@ tags: [implementation, ticket, tracking]
 
 **Acceptance criteria:**
 
-| # | Criterion | Done |
-|---|-----------|------|
-| AC1 | CookieBanner shows; Accept sets consent; policy link works. | |
-| AC2 | No tracking script runs before consent. | |
-| AC3 | When consent + ENABLE_TRACKING=true, scripts load. | |
-| AC4 | .env.example includes ENABLE_TRACKING and all PUBLIC_* tracking vars. | |
+| #   | Criterion                                                              | Done |
+| --- | ---------------------------------------------------------------------- | ---- |
+| AC1 | CookieBanner shows; Accept sets consent; policy link works.            |      |
+| AC2 | No tracking script runs before consent.                                |      |
+| AC3 | When consent + ENABLE_TRACKING=true, scripts load.                     |      |
+| AC4 | .env.example includes ENABLE*TRACKING and all PUBLIC*\* tracking vars. |      |
 
 ---
 
@@ -60,4 +60,4 @@ Load site; no tracking until Accept; after Accept and ENABLE_TRACKING=true, scri
 
 ## Notes
 
-Steps: (1) Add ENABLE_TRACKING and all PUBLIC_* tracking vars to .env.example. (2) Implement CookieBanner (heading, body, policy link, Accept); set consent on Accept. (3) In layout: load tracking scripts only when consent + ENABLE_TRACKING=true.
+Steps: (1) Add ENABLE*TRACKING and all PUBLIC*\* tracking vars to .env.example. (2) Implement CookieBanner (heading, body, policy link, Accept); set consent on Accept. (3) In layout: load tracking scripts only when consent + ENABLE_TRACKING=true.

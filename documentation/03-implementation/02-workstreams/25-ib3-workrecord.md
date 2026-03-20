@@ -23,41 +23,53 @@ tags: [implementation, workstream, content-blocks]
 - **Legacy/reference behaviour:** 2022-site onWorkRecord; match work reference behaviour.
 
 ## 1. Allowed paths
+
 - `apps/website/src/components/modules/` (StructuredText inline)
 
 ## 2. Blocking dependencies
+
 - A4, F2.
 
 ## 3. Unblocks
+
 - —
 
 ## 4. Contract / API
+
 - **Inline block:** WorkRecord. Props only; design-system. No fetch.
 
 ## 5. Data source & shape
+
 - Inline block props; GQL onWorkRecord.
 
 ## 6. Out of scope / Don't do
+
 - No fetch in component.
 
 ## 7. Steps (ordered)
+
 1. Create inline component for WorkRecord; wire into F2.
 2. Map props; design-system tokens.
 
 ## 8. Done criteria
+
 - WorkRecord renders inside structured text.
 
 ## 9. Acceptance criteria
-| # | Criterion |
-|---|-----------|
-| AC1 | Module renders without data fetching. |
+
+| #   | Criterion                                      |
+| --- | ---------------------------------------------- |
+| AC1 | Module renders without data fetching.          |
 | AC2 | Props align with legacy; design-system tokens. |
 
 ## 10. Validation
+
 - Render with mock data.
 
 ## 11. Solution / discovery links
+
 - Solution: `documentation/02-solution/content-blocks-and-inline-blocks-plan.md`
 
 ## 12. Old code (2022-site)
+
 - `2022-site/gql/fragments/inline-blocks.gql.js` (onWorkRecord)

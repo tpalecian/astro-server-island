@@ -22,11 +22,11 @@ tags: [implementation, ticket, images]
 
 **Acceptance criteria:**
 
-| # | Criterion | Done |
-|---|-----------|------|
-| AC1 | getMediaUrl exists; accepts asset and optional params. | |
-| AC2 | All image/video modules use helper; no raw asset.url in templates. | |
-| AC3 | Rendered media uses correct URL and params. | |
+| #   | Criterion                                                          | Done |
+| --- | ------------------------------------------------------------------ | ---- |
+| AC1 | getMediaUrl exists; accepts asset and optional params.             |      |
+| AC2 | All image/video modules use helper; no raw asset.url in templates. |      |
+| AC3 | Rendered media uses correct URL and params.                        |      |
 
 ---
 

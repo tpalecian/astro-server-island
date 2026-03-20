@@ -22,10 +22,10 @@ tags: [implementation, ticket, seo]
 
 **Acceptance criteria:**
 
-| # | Criterion | Done |
-|---|-----------|------|
-| AC1 | sitemap.xml exists and is generated from getRoutes(). | |
-| AC2 | All route paths from getRoutes() included. | |
+| #   | Criterion                                             | Done |
+| --- | ----------------------------------------------------- | ---- |
+| AC1 | sitemap.xml exists and is generated from getRoutes(). |      |
+| AC2 | All route paths from getRoutes() included.            |      |
 
 ---
 

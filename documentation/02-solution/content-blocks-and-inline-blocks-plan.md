@@ -29,46 +29,51 @@ tags: [solution, content-blocks, content-island, rendering]
 ## 3. Solution Design (how, at a high level)
 
 **Success criteria:**
+
 - First content block renders server‑side.
 - Remaining blocks load via ContentIsland.
 - Block mapping is deterministic via `_modelApiKey`.
 
-
 **Proposed approach:**
+
 - Server render the first content block.
 - Render remaining blocks via **ContentIsland** (client island) with a separate fetch.
 
 **System boundaries:**
+
 - Blocks and inline blocks data live in `service-dato` (gql, models).
 - Rendering happens in app modules, mapped by block type.
 
 **Interfaces & data:**
+
 - Block type discriminator is Dato `_modelApiKey`.
 - ContentIsland receives a page identifier and fetches below‑fold blocks.
 
 **Alternatives considered:**
+
 - Server render all blocks. Rejected in discovery; recorded here for context.
 
 **Non‑goals:**
+
 - Changing Dato schema or introducing new block types outside current CMS.
 
 ### References (exact)
 
 **Informational (read before / during implementation):**
 
-| What | Path or URL |
-|------|--------------|
-| Discovery (scope, constraints) | `documentation/01-discovery/02-content-blocks-and-rendering.md` |
-| Implementation tickets | `documentation/03-implementation/03-tickets/f1-content-blocks-core-modules.md`, `f2-*`, `f3-*`, `fb1-*`–`fb7-*` |
-| Astro islands | [Astro: Client-side Islands](https://docs.astro.build/en/guides/client-side-rendering/) |
+| What                           | Path or URL                                                                                                     |
+| ------------------------------ | --------------------------------------------------------------------------------------------------------------- |
+| Discovery (scope, constraints) | `documentation/01-discovery/02-content-blocks-and-rendering.md`                                                 |
+| Implementation tickets         | `documentation/03-implementation/03-tickets/f1-content-blocks-core-modules.md`, `f2-*`, `f3-*`, `fb1-*`–`fb7-*` |
+| Astro islands                  | [Astro: Client-side Islands](https://docs.astro.build/en/guides/client-side-rendering/)                         |
 
 **Planned locations (where to implement):**
 
-| What | Path |
-|------|------|
-| Block data (GQL, getters) | `packages/service-dato/src/gql/` (fragments e.g. blocks, inline-blocks), `packages/service-dato/src/handlers/` (page getter and per-type queries) |
-| App block modules (one per block type) | `apps/website/src/components/modules/` (e.g. `MediaSingle.astro`, `CardSlider.astro`). Modules import core UI from `packages/ui`; website = logic binding only. |
-| ContentIsland (client island, below-fold fetch) | `apps/website/src/components/` (e.g. `ContentIsland.tsx` or `.astro` + client fetch) |
+| What                                            | Path                                                                                                                                                            |
+| ----------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Block data (GQL, getters)                       | `packages/service-dato/src/gql/` (fragments e.g. blocks, inline-blocks), `packages/service-dato/src/handlers/` (page getter and per-type queries)               |
+| App block modules (one per block type)          | `apps/website/src/components/modules/` (e.g. `MediaSingle.astro`, `CardSlider.astro`). Modules import core UI from `packages/ui`; website = logic binding only. |
+| ContentIsland (client island, below-fold fetch) | `apps/website/src/components/` (e.g. `ContentIsland.tsx` or `.astro` + client fetch)                                                                            |
 
 ### Code examples (contract to implement)
 
@@ -92,16 +97,20 @@ const Block = blockComponents[block._modelApiKey]
 ## 4. Delivery Plan (how, at a practical level)
 
 **Phases / steps:**
+
 1. Define block gql and models in `service-dato`.
 2. Implement block modules in the app.
 3. Implement ContentIsland fetch and rendering.
 
 **Deliverables:**
+
 - Block mapping by `_modelApiKey`.
 - ContentIsland and below‑fold fetch.
 
 **Validation:**
+
 - First block SSR renders and remaining blocks render client‑side.
 
 **Open questions / TBD:**
+
 - None.

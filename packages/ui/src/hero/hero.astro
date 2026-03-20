@@ -1,0 +1,188 @@
+---
+import type { HeroProps } from './types'
+
+const {
+	words = [],
+	inlineVideo = null,
+	isInlineVideo = false,
+	videoLink = null,
+	action = null,
+} = Astro.props as HeroProps
+
+const isVideo = isInlineVideo
+const hasCyclingWords = words.length > 0
+---
+
+<section
+	class:list={[
+		'bg-background-default-primary-lightest w-full [contain:layout_style]',
+		'[--hero-enter-delay-ms:340ms] [--hero-letter-stagger-ms:80ms] [--hero-transition-in:380ms] [--hero-transition-out:320ms]',
+		'[--hero-ease-in:cubic-bezier(0.175,0.885,0.32,1.275)] [--hero-ease-out:cubic-bezier(0.55,0.055,0.675,0.19)]',
+	]}
+	aria-labelledby="hero-heading"
+	data-hero
+	data-hero-word-count={words.length}
+>
+	<div
+		class:list={[
+			'relative flex flex-col items-center justify-center',
+			'min-h-[50vh]',
+			'gap-500 px-[var(--grid-default-margin)] pt-800 pb-800',
+			'tablet:gap-700 tablet:pt-1000 tablet:pb-1000',
+		]}
+	>
+		<h1
+			id="hero-heading"
+			class:list={[
+				'relative flex flex-col items-center',
+				'w-full max-w-[9.5em]',
+				'gap-100',
+				'[--hero-word-height:1.2em] [perspective:12em]',
+				'tablet:[--hero-word-height:1.1em]',
+				'title-style1-900 text-content-default-primary',
+				'tablet:title-style1-hero-desktop',
+			]}
+		>
+			{
+				hasCyclingWords && (
+					<span
+						class="relative h-[var(--hero-word-height)] w-full [transform-style:preserve-3d]"
+						aria-hidden="true"
+					>
+						{words.map((word, wordIndex) => (
+							<span
+								class:list={[
+									'group absolute top-0 left-1/2 -translate-x-1/2',
+									'w-max',
+									'pointer-events-none whitespace-nowrap [transform-style:preserve-3d]',
+									'opacity-0 data-[word-state=current]:opacity-100 data-[word-state=exiting]:opacity-100',
+								]}
+								data-hero-word
+								data-word-state={wordIndex === 0 ? 'current' : 'next'}
+							>
+								{word.letters.map((letter, letterIndex) => (
+									<span
+										class:list={[
+											'inline-block',
+											'[transform-origin:50%_50%_25px] [transform:translateZ(25px)_rotateX(0deg)] [backface-visibility:hidden]',
+											'transition-[transform,opacity] [transition-duration:var(--hero-transition-in)] [transition-timing-function:var(--hero-ease-in)]',
+											'[transition-delay:calc(var(--hero-enter-delay-ms)+var(--hero-letter-index)*var(--hero-letter-stagger-ms))]',
+											'opacity-100',
+											'group-data-[word-state=next]:[transform:translateZ(25px)_rotateX(-90deg)] group-data-[word-state=next]:opacity-0 group-data-[word-state=next]:[transition-delay:0ms]',
+											'group-data-[word-state=exiting]:[transition-duration:var(--hero-transition-out)] group-data-[word-state=exiting]:[transition-timing-function:var(--hero-ease-out)]',
+											'group-data-[word-state=exiting]:[transition-delay:calc(var(--hero-letter-index)*var(--hero-letter-stagger-ms))]',
+											'group-data-[word-state=exiting]:[transform:translateZ(25px)_rotateX(90deg)] group-data-[word-state=exiting]:opacity-0',
+											'motion-reduce:[transform:none] motion-reduce:opacity-100 motion-reduce:transition-none',
+											'motion-reduce:group-data-[word-state=next]:[transform:none] motion-reduce:group-data-[word-state=next]:opacity-0',
+											'motion-reduce:group-data-[word-state=exiting]:[transform:none] motion-reduce:group-data-[word-state=exiting]:opacity-0',
+										]}
+										style={`--hero-letter-index: ${letterIndex};`}
+									>
+										{letter === ' ' ? '\u00A0' : letter}
+									</span>
+								))}
+							</span>
+						))}
+					</span>
+				)
+			}
+
+			<span
+				class:list={[
+					'hero-ecommerce relative z-10 flex flex-nowrap items-center justify-center',
+					'whitespace-nowrap',
+				]}
+			>
+				<span class:list={['hero-ecomm flex items-center', 'tablet:gap-100 gap-75']}>
+					<span class="hero-ec relative z-10">eC</span>
+					{
+						inlineVideo?.url &&
+							(videoLink?.href ? (
+								<a
+									href={videoLink.href}
+									class:list={[
+										'hero-inline-video-link relative inline-block align-bottom',
+										'aspect-square h-[1.125em] p-0',
+										'top-[0.04em]',
+									]}
+									aria-label={videoLink.text ?? inlineVideo.alt ?? 'Video'}
+								>
+									{isVideo ? (
+										<video
+											class:list={[
+												'hero-inline-video block',
+												'aspect-square h-full w-auto object-fill',
+											]}
+											src={inlineVideo.url}
+											autoplay
+											muted
+											loop
+											playsinline
+											aria-hidden
+										/>
+									) : (
+										<img
+											src={inlineVideo.url}
+											alt={inlineVideo.alt ?? ''}
+											class:list={[
+												'hero-inline-video block',
+												'aspect-square h-full w-auto object-fill',
+											]}
+										/>
+									)}
+								</a>
+							) : (
+								<span
+									class:list={[
+										'hero-inline-video-link relative inline-block align-bottom',
+										'aspect-square h-[1.125em] p-0',
+										'top-[0.04em]',
+									]}
+								>
+									{isVideo ? (
+										<video
+											class:list={[
+												'hero-inline-video block',
+												'aspect-square h-full w-auto object-fill',
+											]}
+											src={inlineVideo.url}
+											autoplay
+											muted
+											loop
+											playsinline
+											aria-hidden
+										/>
+									) : (
+										<img
+											src={inlineVideo.url}
+											alt={inlineVideo.alt ?? ''}
+											class:list={[
+												'hero-inline-video block',
+												'aspect-square h-full w-auto object-fill',
+											]}
+										/>
+									)}
+								</span>
+							))
+					}
+					<span class="hero-m relative z-10">m</span>
+				</span>
+				<span class="hero-merce tablet:inline hidden">merce</span>
+			</span>
+		</h1>
+
+		{
+			action && (
+				<a
+					href={action.href}
+					class:list={[
+						'link link-underline title-style1-200 text-content-default-primary',
+						'absolute bottom-0 left-1/2 -translate-x-1/2',
+					]}
+				>
+					{action.text}
+				</a>
+			)
+		}
+	</div>
+</section>

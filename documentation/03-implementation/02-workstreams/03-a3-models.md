@@ -23,37 +23,49 @@ tags: [implementation, workstream, cms]
 - **Legacy/reference behaviour:** N/A. Decision: A2 codegen + A4 getters are sufficient; no models layer.
 
 ## 1. Allowed paths
+
 - N/A — ticket superseded.
 
 ## 2. Blocking dependencies
+
 - None.
 
 ## 3. Unblocks
+
 - None (skipped).
 
 ## 4. Contract / API
+
 - **Decision:** No normaliser layer. Getters return typed query results directly from `types-dato.ts`. No separate "models" layer.
 
 ## 5. Data source & shape
+
 - N/A.
 
 ## 6. Out of scope / Don't do
+
 - Do not implement a normaliser or models layer. A2 codegen + A4 getters are sufficient.
 
 ## 7. Steps (ordered)
+
 1. **Skipped.** Migrate models from 2022-site was original scope; superseded by "no normaliser" decision.
 
 ## 8. Done criteria
+
 - N/A — workstream skipped.
 
 ## 9. Acceptance criteria
+
 - N/A.
 
 ## 10. Validation
+
 - N/A.
 
 ## 11. Solution / discovery links
+
 - Solution: `documentation/02-solution/cms-service-pattern-and-dato-centralisation.md` (no normaliser; getters return query results directly).
 
 ## 12. Old code (2022-site)
+
 - N/A.

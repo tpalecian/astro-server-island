@@ -1,5 +1,4 @@
 import { executeQuery as libExecuteQuery } from '@datocms/cda-client'
-
 import type { DocumentNode } from 'graphql'
 
 export type ExecuteQueryOptions = {

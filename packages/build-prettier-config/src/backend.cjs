@@ -4,7 +4,7 @@
  * Customized import sorting for backend services
  */
 
-const { baseRules, baseOverrides } = require('./shared-rules.cjs');
+const { baseRules, baseOverrides } = require('./shared-rules.cjs')
 
 const codeImports = [
 	'<BUILTIN_MODULES>',
@@ -23,20 +23,17 @@ const codeImports = [
 	'^[.]$', // .
 	'^[.]\\/index$', // ./index
 	'',
-];
+]
 
 const typeImports = ['<TYPES>'].concat(
-	codeImports.filter((i) => i !== '').map((i) => `<TYPES>${i}`),
-);
+	codeImports.filter((i) => i !== '').map((i) => `<TYPES>${i}`)
+)
 
 module.exports = {
 	...baseRules,
 	importOrder: [...codeImports, ...typeImports],
 	importOrderParserPlugins: ['typescript', 'jsx', 'explicitResourceManagement'],
 	importOrderTypeScriptVersion: '5.8.2',
-	plugins: [
-		'@ianvs/prettier-plugin-sort-imports',
-		'prettier-plugin-packagejson',
-	],
+	plugins: ['@ianvs/prettier-plugin-sort-imports', 'prettier-plugin-packagejson'],
 	overrides: baseOverrides,
-};
+}

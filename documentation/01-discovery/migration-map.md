@@ -31,23 +31,26 @@ tags: [discovery, routes, migration, 2022-site, nuxt]
 ## 3. Ideas, options & references
 
 **Ideas / options explored:**
+
 - Single handover map (this doc) vs. embedding route list in implementation only (map preferred for discoverability and sitemap/SEO alignment).
 - Path list from `getRoutes()` (from `@rotate/cms`) for sitemap (G2).
 
 **References & further reading:**
+
 - Nuxt 2 [directory structure](https://v2.nuxt.com/docs/directory-structure/pages); 2022-site `pages/` and `services/routes.js`.
 - `01-discovery/04-seo-and-routing.md` for SEO/routing scope; Task E and G2 for implementation.
 
 **Key information:**
+
 - Legacy route → Astro file mapping; `getRoutes()` output (`allCategories`, `allThinkings`, `allWorks`, `allStudios`, `infoPage`).
 
 **Old code (2022-site) — current state / prior art:**
 
-| What | Path (2022-site) |
-|------|-------------------|
-| Nuxt file-based routing | `2022-site/pages/` (e.g. `index.vue`, `info.vue`, `_category/index.vue`, `_category/_slug.vue`, `styleguide/*.vue`) — [Nuxt 2 directory structure](https://v2.nuxt.com/docs/directory-structure/pages) |
-| Dynamic route list from Dato | `2022-site/services/routes.js` — used at build/generate time |
-| This repo | No 2022-site code lives here; this map is the handover. When in doubt, audit the legacy repo. |
+| What                         | Path (2022-site)                                                                                                                                                                                       |
+| ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Nuxt file-based routing      | `2022-site/pages/` (e.g. `index.vue`, `info.vue`, `_category/index.vue`, `_category/_slug.vue`, `styleguide/*.vue`) — [Nuxt 2 directory structure](https://v2.nuxt.com/docs/directory-structure/pages) |
+| Dynamic route list from Dato | `2022-site/services/routes.js` — used at build/generate time                                                                                                                                           |
+| This repo                    | No 2022-site code lives here; this map is the handover. When in doubt, audit the legacy repo.                                                                                                          |
 
 ### Source of truth: legacy project (2022-site)
 
@@ -67,13 +70,13 @@ Routes are retrieved from the **legacy Nuxt project (2022-site)** using the path
 
 ## Route → Astro page mapping
 
-| Legacy (Nuxt) route | Astro file | Data source (getters) |
-|--------------------|------------|------------------------|
-| `/` | `apps/website/src/pages/index.astro` | `getHomepage()` |
-| `/info` | `apps/website/src/pages/info.astro` (or slug-based) | `getRoutes().infoPage` for path; page content via `getInfo()` |
-| `/[category]` | `apps/website/src/pages/[category]/index.astro` | `getCategoryBySlug(category)`, `getCategoryCards(category)` |
-| `/[category]/[slug]` | `apps/website/src/pages/[category]/[slug].astro` | `getPageBySlug(category, slug)` — category is `work` \| `thinking` \| `studio` (handler switch) |
-| `/styleguide/*` | TBD (migrate or drop) | — |
+| Legacy (Nuxt) route  | Astro file                                          | Data source (getters)                                                                           |
+| -------------------- | --------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| `/`                  | `apps/website/src/pages/index.astro`                | `getHomepage()`                                                                                 |
+| `/info`              | `apps/website/src/pages/info.astro` (or slug-based) | `getRoutes().infoPage` for path; page content via `getInfo()`                                   |
+| `/[category]`        | `apps/website/src/pages/[category]/index.astro`     | `getCategoryBySlug(category)`, `getCategoryCards(category)`                                     |
+| `/[category]/[slug]` | `apps/website/src/pages/[category]/[slug].astro`    | `getPageBySlug(category, slug)` — category is `work` \| `thinking` \| `studio` (handler switch) |
+| `/styleguide/*`      | TBD (migrate or drop)                               | —                                                                                               |
 
 **Note:** Styleguide reflects the new design-system; decision to migrate or drop is documented in [vue-to-astro-migration.md](../03-implementation/vue-to-astro-migration.md). If dropped, exclude from sitemap (G2).
 

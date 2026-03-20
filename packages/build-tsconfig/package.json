@@ -1,6 +1,6 @@
 {
-  "name": "@build/tsconfig",
-  "version": "0.0.0",
-  "private": true,
-  "sideEffects": false
+	"name": "@build/tsconfig",
+	"version": "0.0.0",
+	"private": true,
+	"sideEffects": false
 }

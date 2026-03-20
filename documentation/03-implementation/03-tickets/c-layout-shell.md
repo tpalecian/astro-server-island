@@ -1,9 +1,9 @@
 ---
 title: Ticket C — layout shell (Header, Footer, Navigation)
 phase: implementation
-status: draft
+status: approved
 owner: solutions-engineering
-last_updated: 2026-03-12
+last_updated: 2026-03-20
 depends_on: [CMS getters + exports]
 tags: [implementation, ticket, app-shell, layout]
 ---
@@ -14,7 +14,7 @@ tags: [implementation, ticket, app-shell, layout]
 
 ## Description, Value & ACs
 
-**Scope:** Implement the layout shell: Header (nav links, pill button, circle button) and Footer (CTA, footer links, social links) with their containers. Core UI (NavLink, PillButton, CircleButton, etc.) in `packages/ui`; Header/Footer modules in website import from `packages/ui` and bind props from containers. Wire Header + Footer into BaseLayout.astro. Website = logic binding only.
+**Scope:** Implement the layout shell: Header (nav links, pill button, circle button) and Footer (CTA, footer links, social links) with their containers. Core UI (NavLink, Button with pill/circle variants, etc.) in `packages/ui`; Header/Footer modules in website import from `packages/ui` and bind props from containers. Wire Header + Footer into base-layout.astro. Website = logic binding only.
 
 **Outcome:** Layout shell renders with navigation data; all pages use Header + slot + Footer. Containers fetch; modules render props only.
 
@@ -22,12 +22,15 @@ tags: [implementation, ticket, app-shell, layout]
 
 **Acceptance criteria:**
 
-| # | Criterion | Done |
-|---|-----------|------|
-| AC1 | HeaderContainer and FooterContainer fetch from @rotate/cms; pass props to modules. | |
-| AC2 | Header and Footer modules receive props only; no CMS imports. | |
-| AC3 | BaseLayout composes Header + slot + Footer. | |
-| AC4 | Core UI in packages/ui; Header/Footer modules import from packages/ui. | |
+| #   | Criterion                                                                             | Done                                                                                                                                 |
+| --- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| AC1 | HeaderContainer and FooterContainer fetch from @rotate/cms; pass props to modules.    | ✅                                                                                                                                   |
+| AC2 | Header and Footer modules receive props only; no CMS imports.                         | ✅                                                                                                                                   |
+| AC3 | BaseLayout composes Header + slot + Footer.                                           | ✅                                                                                                                                   |
+| AC4 | Core UI in packages/ui; Header/Footer modules import from packages/ui.                | ✅ (`header.astro` / `footer.astro` — primitives from design-system utilities)                                                       |
+| AC5 | Figma links added for each component; designs updated; implementation matches design. | ✅ Footer (`documentation/wip/footer-figma-validation.md`). ✅ Header (`documentation/wip/header-figma-validation.md`). |
+
+**Progress (2026-03-20):** Header and footer signed off (validation docs **approved**). Ticket C **approved**.
 
 ---
 
@@ -54,10 +57,23 @@ Run `pnpm dev`, open `/` — Header and Footer render with navigation data. Layo
 
 ## Design & References
 
-**Figma / design:** [Add when available]
+Figma sources (aligned with workstream `02-workstreams/05b-c-layout-shell.md` and `documentation/wip/*-figma-validation.md`):
+
+| Component                                | Figma                                                                                                                     |
+| ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| Header (`15:88`)                         | [WebsiteModules](https://www.figma.com/design/AoKFGaJDETjoU1TRLSufQv/Rotate-Library-WebsiteModules?node-id=15-88&m=dev)   |
+| Footer main (`48:754`)                   | [WebsiteModules](https://www.figma.com/design/AoKFGaJDETjoU1TRLSufQv/Rotate-Library-WebsiteModules?node-id=48-754&m=dev)  |
+| Footer CTA (`59:1383`)                   | [Separate file](https://www.figma.com/design/DWfUHaVMjp8pMg4Dhj5lgb?node-id=59-1383&m=dev)                                |
+| Nav `link` / Action Default (`4246:184`) | [Action Default](https://www.figma.com/design/FlWyqUG6r50kdIZjUQ160i?node-id=4246-184&m=dev)                              |
+| Button (`27:151`)                        | [ActionButton](https://www.figma.com/design/bvW6ZFFpRxTRrEH3sFMlF5/Rotate-Library-WebsiteComponents?node-id=27-151&m=dev) |
+| ButtonTitle (`27:94`)                    | [ButtonTitle](https://www.figma.com/design/bvW6ZFFpRxTRrEH3sFMlF5/Rotate-Library-WebsiteComponents?node-id=27-94&m=dev)   |
+
+Use Figma MCP: fetch variables and assets. Match design except documented deviations (e.g. footer mobile layout — see `documentation/wip/footer-figma-validation.md`).
+
+**Header design spec (Figma node 15-88):** device (desktop|mobile), layout (default|shortened), style (default|overlay). Desktop: h-160px, px-80px; Mobile: h-80px, px-21px. Left: Logo (full or R°). Right: desktop = 48×48 circle button (white); mobile = 20×20 hamburger. Default bg: black; overlay: transparent.
 
 ---
 
 ## Notes
 
-Steps: (1) Add core UI (NavLink, PillButton, CircleButton) to packages/ui. (2) Create Header.container.astro + Header.astro; Footer.container.astro + Footer.astro — modules import from packages/ui. (3) Edit BaseLayout.astro to compose Header + slot + Footer.
+Steps: (1) Add core UI (NavLink, Button) to packages/ui. (2) Create `header-container/index.astro` and `footer-container/index.astro`; Header/Footer live in `packages/ui`. (3) Edit base-layout.astro to compose Header + slot + Footer.

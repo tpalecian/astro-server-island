@@ -24,42 +24,54 @@ tags: [implementation, workstream, seo]
 - **Legacy/reference behaviour:** 2022-site nuxt.config or redirect config; map 301/302 correctly.
 
 ## 1. Allowed paths
+
 - `apps/website/vercel.json` (or host redirect config); build script that calls getRedirects().
 
 ## 2. Blocking dependencies
+
 - A4 (getRedirects()).
 
 ## 3. Unblocks
+
 - J (deployment validates redirects).
 
 ## 4. Contract / API
+
 - **Redirects:** Call getRedirects() at build; output in host format. Vercel: `vercel.json` with `redirects` array (source, destination, permanent). Map Dato redirectType (301/302) to permanent true/false. Document exact field names in implementation.
 
 ## 5. Data source & shape
+
 - getRedirects() from @rotate/cms; source, destination, redirectType (or equivalent).
 
 ## 6. Out of scope / Don't do
+
 - Runtime redirect server. Build-time config only. Meta (G1), sitemap (G2), errors (G4).
 
 ## 7. Steps (ordered)
+
 1. At build, call getRedirects().
 2. Map to Vercel (or host) redirect format; write vercel.json or inject into config.
 
 ## 8. Done criteria
+
 - Redirects generated at build; host config applied; redirectType mapped.
 
 ## 9. Acceptance criteria
-| # | Criterion |
-|---|-----------|
-| AC1 | getRedirects() at build produces redirect config. |
+
+| #   | Criterion                                            |
+| --- | ---------------------------------------------------- |
+| AC1 | getRedirects() at build produces redirect config.    |
 | AC2 | Vercel (or host) redirects applied; 301/302 correct. |
 
 ## 10. Validation
+
 - Test redirect URLs in staging.
 
 ## 11. Solution / discovery links
+
 - Discovery: `documentation/01-discovery/04-seo-and-routing.md`
 - Solution: `documentation/02-solution/seo-sitemap-redirects-error-pages-plan.md`
 
 ## 12. Old code (2022-site)
+
 - 2022-site nuxt.config or redirect config.

@@ -1,0 +1,18 @@
+---
+import { getNavigationHeader } from '@rotate/cms'
+
+import Header from '@rotate/ui/header.astro'
+
+import { formatHeaderNav } from './format-header-nav'
+
+interface Props {
+	token: string
+	style?: 'default' | 'overlay'
+}
+
+const { token, style = 'default' } = Astro.props
+const nav = (await getNavigationHeader({ token })) ?? null
+const { primaryLink, iconLink } = formatHeaderNav(nav)
+---
+
+<Header primaryLink={primaryLink} iconLink={iconLink} style={style} />

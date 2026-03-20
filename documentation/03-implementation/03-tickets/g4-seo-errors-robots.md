@@ -22,10 +22,10 @@ tags: [implementation, ticket, seo]
 
 **Acceptance criteria:**
 
-| # | Criterion | Done |
-|---|-----------|------|
-| AC1 | 404.astro and 500.astro exist and render. | |
-| AC2 | robots.txt in public/; references sitemap. | |
+| #   | Criterion                                  | Done |
+| --- | ------------------------------------------ | ---- |
+| AC1 | 404.astro and 500.astro exist and render.  |      |
+| AC2 | robots.txt in public/; references sitemap. |      |
 
 ---
 

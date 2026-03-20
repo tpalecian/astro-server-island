@@ -26,7 +26,7 @@ tags: [implementation, migration]
 - **Purpose:** Migrate the existing Nuxt 2 site (2022-site) into the Astro app and shared packages so we run one stack, reuse the design-system and service-dato, and retire the Vue app.
 - **Key decisions:**
   - Migration is phased: discovery/audit → layout/shell → homepage → static/list → dynamic routes → islands → redirects/SEO.
-  - Data lives in containers only; UI in modules. All CMS access via `@rotate/cms` (alias to service-dato); no inline fetch in containers.
+  - Data lives in **`*-container`** folders only; presentation in `packages/ui` (and thin website wrappers). All CMS access via `@rotate/cms` (alias to service-dato); no inline fetch in presentational components.
   - Styling aligns with `@rotate/design-system`; extend tokens only when the Vue design requires something new.
   - Client JS only where justified; prefer CSS-first and server-rendered content.
 - **Impact & risks:** One codebase and one deploy; risk of regressions or missing routes — mitigated by a migration map, phased rollout, and visual/regression checks before cutover.
@@ -35,9 +35,9 @@ tags: [implementation, migration]
 
 ## Context (holistic)
 
-- **In scope:** 2022-site routes, components, Vuex → Astro pages, containers/modules, service-dato; design-system token alignment; static generation and optional redirects/SEO.
+- **In scope:** 2022-site routes, components, Vuex → Astro pages, `*-container` + `packages/ui`, service-dato; design-system token alignment; static generation and optional redirects/SEO.
 - **Out of scope:** Rewriting product strategy; changing Dato schema or content workflows; new features not present in the Vue site.
-- **Dependencies:** DatoCMS (unchanged); design-system and service-dato packages; architecture rule set (containers/modules, no data in modules).
+- **Dependencies:** DatoCMS (unchanged); design-system and service-dato packages; architecture rule set (`*-container` / `packages/ui`, no data in presentational UI).
 - **Assumptions:** 2022-site remains the source of truth for behaviour and content until cutover; Astro app can adopt the same env (DATO_API_KEY, etc.).
 
 ---
@@ -58,40 +58,40 @@ The Vue app lives at **2022-site/** (repo root). Nuxt 2, `target: 'static'`, Dat
 ### 1. Discovery: audit 2022-site
 
 - **Routes:** Map each Nuxt route to `apps/website/src/pages/`: e.g. `index.astro`, `info.astro` or `[slug].astro`, `[category]/index.astro`, `[category]/[slug].astro`, `styleguide/*.astro`.
-- **Components:** Layout (BaseLayout) in website — binds composition. Core UI (buttons, NavLink, cards, etc.) in `packages/ui`, grouped by domain. Page-level/feature → container + module in website; modules import from `packages/ui` and bind props from containers. Website = logic binding only; core UI = `packages/ui`.
-- **State and data:** Per store — server-only (containers + service-dato) or client-only (small islands with justification). API/CMS → service-dato or app data layer; callers = containers only.
+- **Components:** Layout (`base-layout.astro`) in website — binds composition. Core UI (buttons, NavLink, cards, etc.) in `packages/ui`, grouped by domain. Page-level/feature → **`*-container`** + `packages/ui` (and optional thin wrappers); containers pass props into UI. Website = logic binding only; core UI = `packages/ui`.
+- **State and data:** Per store — server-only (`*-container` + service-dato) or client-only (small islands with justification). API/CMS → service-dato; callers = containers only.
 - **Styling:** List global CSS, variables, Tailwind usage; map Vue styles to design-system tokens or “new token”.
 
-**Deliverable:** Migration map (route → Astro page; component → container/module or UI; data → service-dato or island; styles → token or new).
+**Deliverable:** Migration map (route → Astro page; component → `*-container` / `packages/ui` / wrapper; data → service-dato or island; styles → token or new).
 
 ### 2. Design-system alignment
 
-- Import design-system in main layout (BaseLayout.astro): `@import "@rotate/design-system/design-system.css";`
+- Import design-system in main layout (base-layout.astro): `@import "@rotate/design-system/design-system.css";`
 - Add or extend tokens only when Vue design needs something not in base, color, dimension, grid, text, ddd.
 - Keep Tailwind v4 + `@tailwindcss/vite` in the website; single pipeline that consumes design-system CSS.
 
 ### 3. Astro structure mapping (architecture)
 
-| Vue concept           | Astro target                                                                 | Rule |
-|------------------------|-------------------------------------------------------------------------------|------|
-| Route                  | File under `src/pages/`                                                       | Static or dynamic route |
-| Page view              | Page composes **containers**; containers fetch and pass props to **modules**  | architecture.mdc: containers = data, modules = UI only |
-| Component with data    | `*.container.astro` (fetch, validate, normalise) → `*.astro` module           | No data inside modules |
-| Component without data | Core UI in `packages/ui`; modules in website compose from `packages/ui` | Zero JS by default |
-| Client-only behaviour  | Minimal islands; comment justification                                       | See `.cursor/rules/behaviour-escalation.mdc` |
-| Global state           | Prefer server-driven; if client-only, one small island                        | Avoid broad client state |
+| Vue concept            | Astro target                                                                                                             | Rule                                                           |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------- |
+| Route                  | File under `src/pages/`                                                                                                  | Static or dynamic route                                        |
+| Page view              | Page composes **`*-container`** components; containers fetch and pass props to **`packages/ui`** (and optional wrappers) | `website-architecture.mdc`: containers = data, UI = props-only |
+| Component with data    | `components/<feature>-container/index.astro` (fetch, validate, normalise) + optional `format-*.ts`                       | No CMS inside `packages/ui` or props-only views                |
+| Component without data | Core UI in `packages/ui`; website composes from `@rotate/ui/*`                                                           | Zero JS by default (escalate per `website-behaviour.mdc`)      |
+| Client-only behaviour  | Minimal islands; comment justification                                                                                   | See `.cursor/rules/website-behaviour.mdc`                      |
+| Global state           | Prefer server-driven; if client-only, one small island                                                                   | Avoid broad client state                                       |
 
 ### 4. Data and CMS
 
 - Centralise: `packages/service-dato` for CMS/backend; containers call it, no inline fetch.
-- Modules receive only props from their container; no CMS/API/domain imports in module files.
+- Presentational components receive only props from their container; no CMS/API/domain imports in `packages/ui` or props-only website views.
 
 ### 5. Phased migration execution
 
-1. **Layout and shell** — Header, Footer, Navigation → containers + modules in website; modules import core UI (NavLink, Button, etc.) from `packages/ui`; BaseLayout.astro binds composition. See **Workstream C** (`02-workstreams/05b-c-layout-shell.md`). Core UI lives in `packages/ui`; website = logic binding only.
-2. **Homepage** — `/` → `index.astro`; data-driven sections = container + module; static sections = fragments or single modules.
+1. **Layout and shell** — Header, Footer, Navigation → `*-container` + `packages/ui`; base-layout.astro binds composition. See **Workstream C** (`02-workstreams/05b-c-layout-shell.md`). Core UI lives in `packages/ui`; website = logic binding only.
+2. **Homepage** — `/` → `index.astro`; data-driven sections = `*-container` + UI; static sections = fragments or single presentational components.
 3. **Static and list pages** — About, contact, list pages → `src/pages/`; containers only where data is needed.
-4. **Dynamic routes** — e.g. `[category]/[slug]` following existing product page pattern: page → container(s) → modules.
+4. **Dynamic routes** — e.g. `[category]/[slug]` following existing product page pattern: page → `*-container`(s) → `packages/ui`.
 5. **Islands and client JS** — Only where necessary; minimal islands, justification comments; CSS-first.
 6. **Redirects and SEO** — Preserve old URLs; meta and structured data as in Vue app.
 
@@ -103,12 +103,16 @@ The Vue app lives at **2022-site/** (repo root). Nuxt 2, `target: 'static'`, Dat
 
 ### Key files and references
 
-- **Architecture:** [.cursor/rules/architecture.mdc](../../.cursor/rules/architecture.mdc)
-- **Behaviour escalation:** [.cursor/rules/behaviour-escalation.mdc](../../.cursor/rules/behaviour-escalation.mdc) — server → islands → minimal JS → Alpine
-- **Components (design system, Figma, packages/ui):** [.cursor/rules/components.mdc](../../.cursor/rules/components.mdc) — core UI in `packages/ui`; website = logic binding only; Figma: fetch variables, ask for SVGs
+- **Rules index:** [.cursor/rules/README.md](../../.cursor/rules/README.md)
+- **Website architecture:** [.cursor/rules/website-architecture.mdc](../../.cursor/rules/website-architecture.mdc) — `*-container`, wrappers, `packages/ui`
+- **Behaviour escalation:** [.cursor/rules/website-behaviour.mdc](../../.cursor/rules/website-behaviour.mdc) — server → islands → minimal JS → Alpine
+- **Components (design system, Figma, packages/ui):** [.cursor/rules/components.mdc](../../.cursor/rules/components.mdc) — core UI in `packages/ui`; website = logic binding; Figma: fetch variables, ask for SVGs
+- **Design system / Tailwind:** [.cursor/rules/design-system.mdc](../../.cursor/rules/design-system.mdc)
+- **Service Dato:** [.cursor/rules/service-dato.mdc](../../.cursor/rules/service-dato.mdc)
+- **Repo tooling:** [.cursor/rules/repo-tooling.mdc](../../.cursor/rules/repo-tooling.mdc)
 - **Functional style:** [.cursor/rules/functional-style.mdc](../../.cursor/rules/functional-style.mdc) — pure functions, immutability, composition
 - **Design-system entry:** `packages/design-system/src/design-system.css`
-- **Layout:** `apps/website/src/layouts/BaseLayout.astro`
+- **Layout:** `apps/website/src/layouts/base-layout.astro`
 - **Data layer:** `packages/service-dato`; app imports via `@rotate/cms`; see [documentation/05-reference/dato-vue-to-service-review.md](../05-reference/dato-vue-to-service-review.md)
 
 ### Decisions (from discovery)

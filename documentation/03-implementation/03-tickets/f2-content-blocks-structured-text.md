@@ -1,9 +1,9 @@
 ---
 title: Ticket F2 — content blocks structured text
 phase: implementation
-status: approved
+status: completed
 owner: solutions-engineering
-last_updated: 2026-02-04
+last_updated: 2026-03-21
 depends_on: [CMS getters + exports, core content block modules]
 tags: [implementation, ticket, content-blocks]
 ---
@@ -14,7 +14,7 @@ tags: [implementation, ticket, content-blocks]
 
 ## Description, Value & ACs
 
-**Scope:** Edit `apps/website/src/components/modules/` (StructuredText inline renderers). Implement structured text rendering with inline block support. Map inline record types (Tag, Emoji, Work, Thinking, Studio, MegaHeading) to components. Use @datocms/structured-text or equivalent; custom renderers for inline blocks. Data: structured text field from GQL; inline blocks have \_modelApiKey (e.g. TagRecord, EmojiRecord). No block-level page rendering here (use F1/FB modules on the server for blocks); inline only within structured text. No data fetching inside inline components; props only.
+**Scope:** Structured text with inline and link-to-record renderers. Map inline record types (Tag, Emoji, Work, Thinking, Studio, MegaHeading) to components. Use `@datocms/astro` `StructuredText` (equivalent to legacy `@datocms/structured-text` stack). Data from GQL `value` + `links`. No block-level page rendering here (F1 containers for blocks); inline/link only inside structured text. No data fetching inside inline/link components; href resolution uses pure helpers. **Implementation paths:** `apps/website/src/components/structured-text/` (not `components/modules/`), per website architecture.
 
 **Outcome:** Structured text renders with inline blocks correctly mapped.
 
@@ -24,8 +24,8 @@ tags: [implementation, ticket, content-blocks]
 
 | #   | Criterion                                                              | Done |
 | --- | ---------------------------------------------------------------------- | ---- |
-| AC1 | Structured text renders; inline blocks use correct component per type. |      |
-| AC2 | No data fetching inside inline components; props only.                 |      |
+| AC1 | Structured text renders; inline blocks use correct component per type. | Yes  |
+| AC2 | No data fetching inside inline components; props only.                 | Yes  |
 
 ---
 
@@ -58,4 +58,4 @@ Render page with structured text + inline blocks; compare to 2022-site behaviour
 
 ## Notes
 
-Steps: (1) Wire structured text renderer; support inline blocks. (2) Map inline record types to small components (or shared renderer).
+**Implementation / completion (2026-03-21):** `cms-structured-text.astro` wraps `@datocms/astro` `StructuredText` with default inline/link component maps (`structured-text/inline/*`, `structured-text/link/*`). Helpers: `normalizeStructuredTextLinks`, `buildHrefForStructuredTextRecord` (+ `link-to-site-href` for Emoji links), exported from `apps/website/src/lib/dato/index.ts`. Wired from blocks that expose structured text (e.g. quote, text_lead, text_half). GQL inline record fragments updated in `packages/service-dato` (`inline-blocks.gql.ts`) for `__typename` and article `category.slug` where needed.

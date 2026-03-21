@@ -16,6 +16,7 @@
 	},
 	"dependencies": {
 		"@astrojs/vercel": "^9.0.4",
+		"@datocms/astro": "^0.6.11",
 		"@rotate/design-system": "workspace:*",
 		"@rotate/devtools": "workspace:*",
 		"@rotate/service-dato": "workspace:*",

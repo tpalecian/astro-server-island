@@ -1,0 +1,56 @@
+---
+import { StructuredText } from '@datocms/astro/StructuredText'
+import type { CdaStructuredTextValue } from 'datocms-structured-text-utils'
+
+import { normalizeStructuredTextLinks } from '@/lib/dato/normalize-structured-text-links'
+
+import InlineArticle from './inline/article-record.astro'
+import InlineEmoji from './inline/emoji-record.astro'
+import InlineMegaHeading from './inline/mega-heading-record.astro'
+import InlineTag from './inline/tag-record.astro'
+
+import LinkArticle from './link/article-record.astro'
+import LinkEmoji from './link/emoji-record.astro'
+import LinkMegaHeading from './link/mega-heading-record.astro'
+import LinkTag from './link/tag-record.astro'
+
+const defaultInline = {
+	TagRecord: InlineTag,
+	EmojiRecord: InlineEmoji,
+	WorkRecord: InlineArticle,
+	ThinkingRecord: InlineArticle,
+	StudioRecord: InlineArticle,
+	MegaHeadingRecord: InlineMegaHeading,
+}
+
+const defaultLinkTo = {
+	TagRecord: LinkTag,
+	EmojiRecord: LinkEmoji,
+	WorkRecord: LinkArticle,
+	ThinkingRecord: LinkArticle,
+	StudioRecord: LinkArticle,
+	MegaHeadingRecord: LinkMegaHeading,
+}
+
+const {
+	data,
+	inlineRecordComponents: userInline,
+	linkToRecordComponents: userLinkTo,
+	...rest
+} = Astro.props
+
+const normalized =
+	data != null && typeof data === 'object' && 'links' in data
+		? (normalizeStructuredTextLinks(data as CdaStructuredTextValue) ?? data)
+		: data
+
+const inlineRecordComponents = { ...defaultInline, ...userInline }
+const linkToRecordComponents = { ...defaultLinkTo, ...userLinkTo }
+---
+
+<StructuredText
+	data={normalized}
+	inlineRecordComponents={inlineRecordComponents}
+	linkToRecordComponents={linkToRecordComponents}
+	{...rest}
+/>

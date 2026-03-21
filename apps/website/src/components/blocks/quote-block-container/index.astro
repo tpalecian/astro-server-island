@@ -1,0 +1,32 @@
+---
+import Quote from '@rotate/ui/blocks/quote.astro'
+
+import DevBlockContentWarning from '@/components/blocks/dev-block-content-warning.astro'
+import CmsStructuredText from '@/components/structured-text/cms-structured-text.astro'
+import type { BlockContainerProps } from '@/lib/page-content-block'
+
+import { formatQuoteBlock } from './format-quote'
+
+type Props = BlockContainerProps
+
+const { block } = Astro.props
+const formatted = formatQuoteBlock(block)
+---
+
+{
+	formatted && !formatted.copy ? (
+		<DevBlockContentWarning
+			blockType="quote"
+			message="Quote block: missing structured text (copy). Add body copy in Dato for SEO and accessibility."
+		/>
+	) : null
+}
+{
+	formatted?.copy ? (
+		<Quote name={formatted.name} info={formatted.info}>
+			<div slot="body" class="contents">
+				<CmsStructuredText data={formatted.copy} />
+			</div>
+		</Quote>
+	) : null
+}

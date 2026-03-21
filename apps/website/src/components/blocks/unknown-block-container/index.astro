@@ -1,0 +1,19 @@
+---
+import type { BlockContainerProps } from '@/lib/page-content-block'
+
+type Props = BlockContainerProps
+
+const { block } = Astro.props
+const isDev = import.meta.env.DEV
+---
+
+{
+	isDev ? (
+		<p
+			class="body-style1-400 text-content-default-secondary mb-200"
+			data-unknown-block-type={block.type}
+		>
+			Unknown block type: {block.type}
+		</p>
+	) : null
+}

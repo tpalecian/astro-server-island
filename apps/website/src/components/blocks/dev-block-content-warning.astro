@@ -1,0 +1,22 @@
+---
+interface Props {
+	/** e.g. `quote`, `text_lead` — sets `data-dev-block-warning` */
+	blockType: string
+	message: string
+}
+
+const { blockType, message } = Astro.props
+const isDev = import.meta.env.DEV
+---
+
+{
+	isDev ? (
+		<p
+			class="body-style1-300 mb-200 rounded-radius-primary-small border border-amber-500/60 bg-amber-500/10 px-200 py-100 text-amber-200"
+			data-dev-block-warning={blockType}
+			role="status"
+		>
+			{message}
+		</p>
+	) : null
+}

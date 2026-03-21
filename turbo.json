@@ -1,7 +1,17 @@
 {
 	"$schema": "https://turbo.build/schema.json",
 	"globalDependencies": ["**/.dev.vars"],
-	"globalEnv": ["CI", "GITHUB_ACTIONS", "VITEST", "DATOCMS_API_KEY"],
+	"globalEnv": [
+		"CI",
+		"GITHUB_ACTIONS",
+		"VITEST",
+		"DATOCMS_API_KEY",
+		"BASE_URL",
+		"DEV",
+		"MODE",
+		"PROD",
+		"SSR"
+	],
 	"globalPassThroughEnv": ["WRANGLER_LOG", "FORCE_COLOR"],
 	"remoteCache": {
 		"enabled": false,

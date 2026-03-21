@@ -1,9 +1,9 @@
 ---
 title: Workstream F1 — content block core modules
 phase: implementation
-status: in-review
+status: completed
 owner: solutions-engineering
-last_updated: 2026-03-20
+last_updated: 2026-03-21
 depends_on: []
 related_docs:
   - 01-discovery/02-content-blocks-and-rendering.md

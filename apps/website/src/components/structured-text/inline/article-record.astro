@@ -1,0 +1,17 @@
+---
+import { buildHrefForStructuredTextRecord } from '@/lib/dato/structured-text-record-href'
+
+const { record } = Astro.props
+const href = buildHrefForStructuredTextRecord(record)
+const title = record?.title?.trim() ?? ''
+---
+
+{
+	href && title ? (
+		<a href={href} class="link link-underline title-style1-300 text-content-default-primary">
+			{title}
+		</a>
+	) : title ? (
+		<span class="title-style1-300 text-content-default-primary">{title}</span>
+	) : null
+}

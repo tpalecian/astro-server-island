@@ -1,9 +1,9 @@
 ---
 title: Ticket F1 — content block core modules
 phase: implementation
-status: approved
+status: completed
 owner: solutions-engineering
-last_updated: 2026-02-04
+last_updated: 2026-03-21
 depends_on: [CMS getters + exports, app container]
 tags: [implementation, ticket, content-blocks]
 ---
@@ -14,7 +14,7 @@ tags: [implementation, ticket, content-blocks]
 
 ## Description, Value & ACs
 
-**Scope:** Edit `apps/website/src/components/modules/` only. Implement core block modules (Text, Quote, Media basics) mapped by `_modelApiKey`. Props only; no data fetching. Use design-system tokens. Block mapping: \_modelApiKey → component. Block data comes from page getter (blocks array); each block has \_modelApiKey and block-specific fields. Do not add CMS/fetch in modules; structured-text inline blocks (F2) are out of scope here. **All blocks are server-rendered** (F3 ContentIsland superseded).
+**Scope:** Implement core block UI mapped by Dato block type (`_modelApiKey`, exposed as `type` on records via the `Type` fragment). Props only; no data fetching in presentational components. Use design-system tokens. Block data comes from the page getter (`content` blocks array). Structured-text inline blocks (F2) are implemented separately. **All blocks are server-rendered** (F3 ContentIsland superseded). **Implementation note:** Core UI lives in `packages/ui/src/blocks/`; website uses `*-block-container` folders under `apps/website/src/components/blocks/` (not `components/modules/`), per current website architecture rules.
 
 **Outcome:** Core blocks render with props only; match block mapping.
 
@@ -24,8 +24,8 @@ tags: [implementation, ticket, content-blocks]
 
 | #   | Criterion                                            | Done |
 | --- | ---------------------------------------------------- | ---- |
-| AC1 | Core modules exist and render without data fetching. |      |
-| AC2 | Modules match block mapping by \_modelApiKey.        |      |
+| AC1 | Core modules exist and render without data fetching. | Yes  |
+| AC2 | Modules match block mapping by \_modelApiKey.        | Yes  |
 
 ---
 
@@ -58,4 +58,4 @@ Render block in page with mock CMS data.
 
 ## Notes
 
-Steps: (1) Implement core module components for basic blocks. (2) Wire props from containers; ensure block mapping by \_modelApiKey.
+**Implementation / completion (2026-03-21):** Shipped server-only block rendering for **`media_single`**, **`quote`**, **`text_lead`**, **`text_half`**: `apps/website/src/components/blocks/*-block-container/` with colocated `format-*.ts`, `content-blocks-container/index.astro`, lazy `block-container-loaders.ts`, presentational `packages/ui/src/blocks/*.astro`, article page wiring in `apps/website/src/pages/[category]/[slug].astro`. Unknown block types show a dev-only notice (`unknown-block-container`). Additional types still present in GQL (`media_multiple`, `card_slider`, `stats`) are **not** in the map yet — track under FB2 / FB6 / FB7 or follow-up.

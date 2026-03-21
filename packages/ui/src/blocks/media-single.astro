@@ -1,0 +1,30 @@
+---
+interface Props {
+	url: string
+	alt?: string | null
+	caption?: string | null
+	ratio?: string | null
+	displayType?: string | null
+	isFullscreen?: boolean | null
+}
+
+const { url, alt, caption, ratio, displayType, isFullscreen } = Astro.props
+---
+
+<figure
+	class:list={[
+		'flex flex-col gap-200',
+		{ 'w-full': isFullscreen },
+	]}
+	data-display-type={displayType ?? undefined}
+	data-ratio={ratio ?? undefined}
+>
+	<div class="overflow-hidden rounded-radius-primary-small bg-background-default-secondary">
+		<img class="h-auto w-full object-cover" src={url} alt={alt ?? ''} loading="lazy" decoding="async" />
+	</div>
+	{
+		caption ? (
+			<figcaption class="body-style1-400 text-content-default-secondary">{caption}</figcaption>
+		) : null
+	}
+</figure>

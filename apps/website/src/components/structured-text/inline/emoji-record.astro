@@ -1,0 +1,17 @@
+---
+const { record } = Astro.props
+const url = record?.media?.url?.trim()
+const alt = record?.media?.alt?.trim() ?? record?.title?.trim() ?? ''
+---
+
+{
+	url ? (
+		<img
+			src={url}
+			alt={alt}
+			class="inline-block h-[1em] w-[1em] align-[-0.125em] object-contain"
+			loading="lazy"
+			decoding="async"
+		/>
+	) : null
+}

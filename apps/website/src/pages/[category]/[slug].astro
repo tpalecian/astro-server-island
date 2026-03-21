@@ -1,7 +1,9 @@
 ---
 import { getPageBySlug } from '@rotate/cms'
 
+import ContentBlocksContainer from '@/components/blocks/content-blocks-container/index.astro'
 import { isSiteCategory } from '@/lib'
+import type { PageContentBlock } from '@/lib/page-content-block'
 
 import BaseLayout from '@/layouts/base-layout.astro'
 
@@ -23,6 +25,7 @@ if (!page) {
 
 const titleText = page.title?.trim() || slug
 const pageTitle = `${titleText} | ${category}`
+const blocks = (page.content ?? []) as PageContentBlock[]
 ---
 
 <BaseLayout title={pageTitle} headerStyle="default">
@@ -31,9 +34,9 @@ const pageTitle = `${titleText} | ${category}`
 	>
 		<article>
 			<h1 class="title-style1-700 text-content-default-primary mb-300">{titleText}</h1>
-			<p class="body-style1-400 text-content-default-secondary">
-				{category} / {slug} — content blocks (ticket F).
-			</p>
+			<div class="mt-600 flex flex-col gap-800">
+				<ContentBlocksContainer blocks={blocks} />
+			</div>
 		</article>
 	</main>
 </BaseLayout>

@@ -1,0 +1,32 @@
+---
+import { blockContainerLoaders } from '@/lib/blocks/block-container-loaders'
+import type { BlockContainerProps, ContentBlocksContainerProps } from '@/lib/page-content-block'
+
+type Props = ContentBlocksContainerProps
+
+const blocks = Astro.props.blocks ?? []
+
+if (blocks.length === 0) {
+	return null
+}
+
+const resolved = await Promise.all(
+	blocks.map(async (block) => {
+		const loader = blockContainerLoaders[block.type]
+		if (!loader) {
+			const { default: Unknown } =
+				await import('@/components/blocks/unknown-block-container/index.astro')
+			return { Container: Unknown, block }
+		}
+		const { default: Container } = await loader()
+		return { Container, block }
+	})
+)
+---
+
+{
+	resolved.map(({ Container, block }) => {
+		const Cmp = Container as (props: BlockContainerProps) => unknown
+		return <Cmp block={block} />
+	})
+}

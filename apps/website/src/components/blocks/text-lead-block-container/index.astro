@@ -1,0 +1,32 @@
+---
+import TextLead from '@rotate/ui/blocks/text-lead.astro'
+
+import DevBlockContentWarning from '@/components/blocks/dev-block-content-warning.astro'
+import CmsStructuredText from '@/components/structured-text/cms-structured-text.astro'
+import type { BlockContainerProps } from '@/lib/page-content-block'
+
+import { formatTextLeadBlock } from './format-text-lead'
+
+type Props = BlockContainerProps
+
+const { block } = Astro.props
+const formatted = formatTextLeadBlock(block)
+---
+
+{
+	formatted && !formatted.copy ? (
+		<DevBlockContentWarning
+			blockType="text_lead"
+			message="Text lead block: missing structured text (copy). Add body copy in Dato for SEO and accessibility."
+		/>
+	) : null
+}
+{
+	formatted?.copy ? (
+		<TextLead pretitle={formatted.pretitle} size={formatted.size}>
+			<div slot="body" class="contents">
+				<CmsStructuredText data={formatted.copy} />
+			</div>
+		</TextLead>
+	) : null
+}

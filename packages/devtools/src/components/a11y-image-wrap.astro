@@ -1,0 +1,30 @@
+---
+interface Props {
+	alt?: string | null
+}
+
+const { alt } = Astro.props
+const isDev = import.meta.env.DEV
+const missingAlt = alt == null || String(alt).trim() === ''
+const showChrome = isDev && missingAlt
+---
+
+{
+	showChrome ? (
+		<div
+			class="outline-2 outline-offset-4 outline-amber-500 outline-dashed"
+			data-dev-a11y-missing-alt=""
+		>
+			<p
+				class="body-style1-300 rounded-radius-primary-smallest mb-100 bg-amber-500/15 px-100 py-75 text-amber-200"
+				role="status"
+			>
+				Missing <code class="font-mono">alt</code> — not SEO-friendly; add alt in Dato for this
+				asset.
+			</p>
+			<slot />
+		</div>
+	) : (
+		<slot />
+	)
+}

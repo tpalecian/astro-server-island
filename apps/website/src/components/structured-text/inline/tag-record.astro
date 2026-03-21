@@ -1,0 +1,6 @@
+---
+const { record } = Astro.props
+const name = record?.name?.trim() ?? ''
+---
+
+{name ? <span class="text-content-default-primary">{name}</span> : null}

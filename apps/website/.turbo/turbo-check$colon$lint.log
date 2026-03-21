@@ -1,0 +1,16 @@
+
+> astro-server-island@1.0.0 check:lint /Users/tamaspalecian/Documents/private/astro-server-island/apps/website
+> eslint .
+
+
+/Users/tamaspalecian/Documents/private/astro-server-island/apps/website/src/components/blocks/text-half-block-container/format-text-half.ts
+  1:1  warning  There should be no empty line within import group                                                              import/order
+  3:1  warning  `@/lib/blocks/dato-structured-text` type import should occur before type import of `@/lib/page-content-block`  import/order
+
+/Users/tamaspalecian/Documents/private/astro-server-island/apps/website/src/components/blocks/text-lead-block-container/format-text-lead.ts
+  1:1  warning  There should be no empty line within import group                                                              import/order
+  3:1  warning  `@/lib/blocks/dato-structured-text` type import should occur before type import of `@/lib/page-content-block`  import/order
+
+✖ 4 problems (0 errors, 4 warnings)
+  0 errors and 4 warnings potentially fixable with the `--fix` option.
+

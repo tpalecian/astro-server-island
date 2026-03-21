@@ -3,7 +3,7 @@ import { gql } from 'graphql-tag'
 export const OnTagRecordFragment = gql(/* GraphQL */ `
 	fragment OnTagRecord on TagRecord {
 		id
-		type: __typename
+		__typename
 		name
 		cards {
 			...Card
@@ -14,7 +14,7 @@ export const OnTagRecordFragment = gql(/* GraphQL */ `
 export const OnEmojiRecordFragment = gql(/* GraphQL */ `
 	fragment OnEmojiRecord on EmojiRecord {
 		id
-		type: __typename
+		__typename
 		title
 		media {
 			...Media
@@ -55,34 +55,43 @@ export const OnEmojiRecordFragment = gql(/* GraphQL */ `
 export const OnWorkRecordFragment = gql(/* GraphQL */ `
 	fragment OnWorkRecord on WorkRecord {
 		id
-		type: __typename
+		__typename
 		slug
 		title
+		category {
+			slug
+		}
 	}
 `)
 
 export const OnThinkingRecordFragment = gql(/* GraphQL */ `
 	fragment OnThinkingRecord on ThinkingRecord {
 		id
-		type: __typename
+		__typename
 		slug
 		title
+		category {
+			slug
+		}
 	}
 `)
 
 export const OnStudioRecordFragment = gql(/* GraphQL */ `
 	fragment OnStudioRecord on StudioRecord {
 		id
-		type: __typename
+		__typename
 		slug
 		title
+		category {
+			slug
+		}
 	}
 `)
 
 export const OnMegaHeadingRecordFragment = gql(/* GraphQL */ `
 	fragment OnMegaHeadingRecord on MegaHeadingRecord {
 		id
-		type: __typename
+		__typename
 		title
 	}
 `)

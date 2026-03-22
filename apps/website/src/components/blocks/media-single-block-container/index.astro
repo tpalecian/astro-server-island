@@ -1,6 +1,7 @@
 ---
+import MediaSingle from '@rotate/ui/blocks/media-single/media-single.astro'
+
 import A11yImageWrap from '@rotate/devtools/components/a11y-image-wrap.astro'
-import MediaSingle from '@rotate/ui/blocks/media-single.astro'
 
 import type { BlockContainerProps } from '@/lib/page-content-block'
 
@@ -14,7 +15,7 @@ const props = formatMediaSingleBlock(block)
 
 {
 	props ? (
-		<A11yImageWrap alt={props.alt}>
+		<A11yImageWrap alt={props.asset.alt}>
 			<MediaSingle {...props} />
 		</A11yImageWrap>
 	) : null

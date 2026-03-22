@@ -1,0 +1,78 @@
+---
+import DatoAsset from '@rotate/ui/media/dato-asset.astro'
+
+import type { MediaSingleProps } from './media-single-types'
+
+const { asset, caption, layout, imgSizes, aspectRatio } = Astro.props as MediaSingleProps
+
+const hasRatioFrame = aspectRatio != null
+const isFullBleed = layout === 'full_bleed'
+const isRightHalf = layout === 'right_half'
+const roundedFrame = !isFullBleed
+
+const figureClass = isRightHalf
+	? 'grid grid-cols-12 gap-x-[var(--grid-default-gutter)] gap-y-200'
+	: 'flex flex-col gap-200'
+
+const mediaCellClass = isRightHalf
+	? 'col-span-12 min-w-0 tablet:col-span-6 tablet:col-start-7'
+	: 'min-w-0 w-full'
+---
+
+<section
+	class:list={[
+		'media-single',
+		{
+			'relative left-1/2 w-screen max-w-[100vw] -translate-x-1/2 overflow-x-clip': isFullBleed,
+		},
+	]}
+	data-testid="media-single"
+>
+	<figure class:list={[figureClass, { 'w-full': isFullBleed }]}>
+		<div class:list={[mediaCellClass]}>
+			{
+				hasRatioFrame ? (
+					<div
+						class:list={[
+							'relative w-full overflow-hidden',
+							{ 'rounded-radius-primary-small': roundedFrame },
+						]}
+						style={{ aspectRatio }}
+					>
+						<div class="bg-background-default-secondary absolute inset-0 overflow-hidden">
+							<DatoAsset
+								class="block min-h-0 min-w-0"
+								layoutMode="fill"
+								media={asset}
+								sizes={imgSizes}
+							/>
+						</div>
+					</div>
+				) : (
+					<div
+						class:list={[
+							'bg-background-default-secondary overflow-hidden',
+							{ 'rounded-radius-primary-small': roundedFrame },
+						]}
+					>
+						<DatoAsset layoutMode="natural" media={asset} sizes={imgSizes} />
+					</div>
+				)
+			}
+		</div>
+		{
+			caption ? (
+				<figcaption
+					class:list={[
+						'body-style1-400 text-content-default-secondary',
+						{
+							'tablet:col-span-6 tablet:col-start-7 col-span-12': isRightHalf,
+						},
+					]}
+				>
+					{caption}
+				</figcaption>
+			) : null
+		}
+	</figure>
+</section>

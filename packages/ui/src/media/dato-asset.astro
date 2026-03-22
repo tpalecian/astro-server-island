@@ -1,0 +1,86 @@
+---
+import { buildDatoSrcset, DEFAULT_DATO_SRCSET_WIDTHS, isVideoAsset } from '@rotate/utilities/ui'
+
+import type { DatoAssetMedia } from './dato-asset-types'
+
+interface Props {
+	media: DatoAssetMedia
+	/** Required for images when using srcset (layout supplies this). */
+	sizes: string
+	srcsetWidths?: readonly number[]
+	class?: string
+	imgClass?: string
+	fit?: 'cover' | 'contain'
+	/** When true, video is autoplay/muted/loop without controls (legacy presentational). */
+	isPresentational?: boolean
+	loading?: 'lazy' | 'eager'
+	decoding?: 'async' | 'sync'
+	/**
+	 * `fill` — parent provides aspect box (e.g. ratio frame).
+	 * `natural` — image keeps intrinsic height (no ratio from CMS).
+	 */
+	layoutMode?: 'fill' | 'natural'
+}
+
+const {
+	media,
+	sizes,
+	srcsetWidths = DEFAULT_DATO_SRCSET_WIDTHS,
+	class: className,
+	imgClass,
+	fit = 'cover',
+	isPresentational = true,
+	loading = 'lazy',
+	decoding = 'async',
+	layoutMode = 'fill',
+} = Astro.props
+
+const isVideo = isVideoAsset(media)
+const alt = media.alt ?? ''
+const imageSrcset = isVideo ? undefined : buildDatoSrcset(media.url, srcsetWidths)
+const fitClass = fit === 'cover' ? 'object-cover' : 'object-contain'
+const fillLayout = layoutMode === 'fill'
+
+/** Video in a fixed aspect box: fill with `object-fit`; drop intrinsic width/height so layout isn’t overridden. */
+const videoFillClass = fillLayout
+	? 'absolute inset-0 min-h-0 min-w-0 h-full w-full'
+	: 'h-auto w-full'
+---
+
+{
+	isVideo ? (
+		<video
+			class:list={[className, videoFillClass, fitClass]}
+			autoplay
+			muted
+			playsinline
+			preload="metadata"
+			width={fillLayout ? undefined : (media.width ?? undefined)}
+			height={fillLayout ? undefined : (media.height ?? undefined)}
+			aria-hidden={isPresentational ? 'true' : undefined}
+			aria-label={!isPresentational && alt ? alt : undefined}
+			controls={!isPresentational}
+			loop={isPresentational ? true : undefined}
+		>
+			<source src={media.url} type={media.mimeType ?? undefined} />
+		</video>
+	) : (
+		<img
+			class:list={[
+				className,
+				fillLayout ? 'h-full w-full' : 'h-auto w-full',
+				'max-w-full',
+				fitClass,
+				imgClass,
+			]}
+			src={media.url}
+			srcset={imageSrcset}
+			sizes={sizes}
+			alt={alt}
+			width={media.width ?? undefined}
+			height={media.height ?? undefined}
+			loading={loading}
+			decoding={decoding}
+		/>
+	)
+}
